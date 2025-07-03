@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "appian_rombo"
+name = "rombo_appian"
 version = "0.0.1"
 description = "Automate your Appin code testing with Python. Boost quality, save time."
 authors = ["Dinil Mithra <dinilmithra@mailme@gmail.com>"]

@@ -1,10 +1,10 @@
-from appian_rombo.utils.components.ComponentUtils import ComponentUtils
-from appian_rombo.utils.components.DateUtils import DateUtils
-from appian_rombo.utils.components.DropdownUtils import DropdownUtils
-from appian_rombo.utils.components.InputUtils import InputUtils
-from appian_rombo.utils.components.LabelUtils import LabelUtils
-from appian_rombo.utils.components.LinkUtils import LinkUtils
-from appian_rombo.utils.components.TabUtils import TabUtils
+from rombo_appian.utils.components.ComponentUtils import ComponentUtils
+from rombo_appian.utils.components.DateUtils import DateUtils
+from rombo_appian.utils.components.DropdownUtils import DropdownUtils
+from rombo_appian.utils.components.InputUtils import InputUtils
+from rombo_appian.utils.components.LabelUtils import LabelUtils
+from rombo_appian.utils.components.LinkUtils import LinkUtils
+from rombo_appian.utils.components.TabUtils import TabUtils
 
 
 class ComponentDriver():
