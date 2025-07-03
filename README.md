@@ -1,2 +1,2 @@
-# rombo_appian
-rombo_appian
+# Rombo Test suite for Appian framework
+Rombo Test suite for Appian framework

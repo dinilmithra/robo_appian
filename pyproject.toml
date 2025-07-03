@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "appian_rombo"
+version = "0.0.1"
+description = "Automate your Appin code testing with Python. Boost quality, save time."
+authors = ["Dinil Mithra <dinilmithra@mailme@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+requests = "^2.25.1"
+numpy = "*"
+selenium = ">=4.34.0"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
