@@ -12,7 +12,7 @@ setup(
     description='Automate your Appin code testing with Python. Boost quality, save time.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/dinilmithra/robo_test_suite_appian.git', 
+    url='https://github.com/dinilmithra/robo_appian.git', 
     classifiers=[
         'Programming Language :: Python :: 3',
         # 'License :: MIT License',  
