@@ -6,14 +6,55 @@ from robo_appian.utils.components.InputUtils import InputUtils
 
 class DropdownUtils():
 
+    """    Utility class for interacting with dropdown components in Appian UI.
+    Usage Example:
+    from robo_appian.utils.components.DropdownUtils import DropdownUtils
+    
+    # Select a value from a dropdown
+    DropdownUtils.selectDropdownValue(wait, "Status", "Approved")
+
+    # Select a value from a search dropdown
+    DropdownUtils.selectSearchDropdownValue(wait, "Category", "Finance")
+    """
+
+
     @staticmethod
     def findDropdownEnabled(wait, dropdown_label):
+        """
+        Finds a dropdown component that is enabled and has the specified label.
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            dropdown_label: The visible text label of the dropdown component.
+        Returns:
+            The Selenium WebElement for the dropdown component.
+        Example:
+            DropdownUtils.findDropdownEnabled(wait, "Status")
+        """
+        # This method locates a dropdown component that contains a label with the specified text.
+        # It then retrieves the component's ID and uses it to find the actual dropdown element.
+        # The dropdown is identified by its role as a combobox and tabindex attribute.
+        # The XPath searches for a div that contains a span with the specified label text.
+        # It ensures that the dropdown is clickable and ready for interaction.
+        # The dropdown component is expected to have a structure where the label is within a span inside a div.
+
         xpath = f'.//div[./div/span[normalize-space(text())="{dropdown_label}"]]/div/div/div/div[@role="combobox" and @tabindex="0"]'
         component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         return component
 
     @staticmethod
     def selectValueUsingComponent(wait, combobox, value):
+        """
+        Selects a value from a dropdown component using the provided combobox element.
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            combobox: The Selenium WebElement for the combobox.
+            value: The value to select from the dropdown.
+        Example:
+            DropdownUtils.selectValueUsingComponent(wait, combobox, "Approved")
+        """
+        # This method assumes that the combobox is already found and passed as an argument.
+        # It retrieves the aria-controls attribute to find the dropdown list and selects the specified value.
+
         component = combobox.find_element(By.XPATH, "./div/div")
         aria_controls = component.get_attribute("aria-controls")
         component.click()
@@ -25,6 +66,18 @@ class DropdownUtils():
 
     @staticmethod
     def selectDropdownValue(wait, label, value):
+        """
+        Selects a value from a dropdown component identified by its label.
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            label: The visible text label of the dropdown component.
+            value: The value to select from the dropdown.
+        Example:
+            DropdownUtils.selectDropdownValue(wait, "Status", "Approved")
+        """
+        # This method finds the dropdown component by its label, retrieves the aria-controls attribute,
+        # and then clicks on the dropdown to display the options.
+
         combobox = DropdownUtils.findDropdownEnabled(wait, label)
         aria_controls = combobox.get_attribute("aria-controls")
         combobox.click()
@@ -36,6 +89,18 @@ class DropdownUtils():
 
     @staticmethod
     def selectSearchDropdownValue(wait, dropdown_label, value):
+        """
+        Selects a value from a search-enabled dropdown component identified by its label.
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            dropdown_label: The visible text label of the search dropdown component.
+            value: The value to select from the dropdown.
+        Example:
+            DropdownUtils.selectSearchDropdownValue(wait, "Category", "Finance")
+        """
+        # This method finds the search-enabled dropdown component by its label, retrieves the aria-controls attribute
+        # and the component ID, clicks on the dropdown to display the search input,
+        
         component = DropdownUtils.findDropdownEnabled(wait, dropdown_label)
         component_id = component.get_attribute("aria-labelledby")
         aria_controls = component.get_attribute("aria-controls")

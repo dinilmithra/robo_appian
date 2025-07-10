@@ -8,9 +8,29 @@ from robo_appian.utils.components.TabUtils import TabUtils
 
 
 class ComponentDriver():
+    """    
+    Utility class for interacting with various components in Appian UI.
+    Usage Example:
+    from robo_appian.utils.controllers.ComponentDriver import ComponentDriver
+    # Set a date value
+    ComponentDriver.execute(wait, "Date", "Set Value", "Start Date", "01/01/2024")
+    """ 
 
     @staticmethod
     def execute(wait, type, action, label, value):
+        """        
+        Executes an action on a specified component type.
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            type: The type of component (e.g., "Date", "Input Text", "Search Input Text", etc.).
+            action: The action to perform on the component (e.g., "Set Value", "Click", "Select").
+            label: The visible text label of the component.
+            value: The value to set in the component (if applicable).
+        Example:
+            ComponentDriver.execute(wait, "Date", "Set Value", "Start Date", "01/01/2024")
+        """
+        # This method executes an action on a specified component type based on the provided parameters.
+
 
         match type:
 

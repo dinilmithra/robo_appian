@@ -3,9 +3,32 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class LabelUtils():
+    """    
+    Utility class for interacting with label components in Appian UI.
+
+    Usage Example:
+    from robo_appian.utils.components.LabelUtils import LabelUtils 
+
+    # Find a label component
+    label_component = LabelUtils.find(wait, "Username")
+
+    """
 
     @staticmethod
     def find(wait, label):
+        """
+        Finds a label component by its text.
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            label: The visible text label of the component.
+        Returns:
+            The Selenium WebElement for the label component.
+        Example:
+            LabelUtils.find(wait, "Username")
+        """
+        # This method locates a label component that contains the specified text.
+        # It uses XPath to find the element that matches the text.  
+        
         xpath = f".//*[text()='{label}']"
         component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return component

@@ -1,4 +1,3 @@
-./.venv/bin/activate
 
 py -m pip install --upgrade pip
 pip3 --version
