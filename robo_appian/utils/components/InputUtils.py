@@ -1,10 +1,13 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 
 
-class InputUtils():
-    """    
+class InputUtils:
+    """
     Utility class for interacting with input components in Appian UI.
 
         Usage Example:
@@ -16,7 +19,7 @@ class InputUtils():
     """
 
     @staticmethod
-    def findComponent(wait, label):
+    def findComponent(wait: WebDriverWait[WebDriver], label: str):
         """
         Finds an input component by its label.
 
@@ -34,16 +37,24 @@ class InputUtils():
         # This method locates an input component that contains a label with the specified text.
         # It then retrieves the component's ID and uses it to find the actual input element.
 
-
         xpath = f".//div/label[text()='{label}']"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        component_id = component.get_attribute("for")
+        component: WebElement = wait.until(
+            EC.element_to_be_clickable((By.XPATH, xpath))
+        )
+
+        attribute: str = "for"
+        component_id = component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
+        if not component_id:
+            raise ValueError(
+                f"Could not find component using {attribute} attribute for label '{label}'."
+            )
+
         component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
         return component
 
     @staticmethod
-    def setValueUsingComponent(component, value):
-        """        
+    def setValueUsingComponent(component: WebElement, value: str):
+        """
         Sets a value in an input component using the provided component element.
 
         Parameters:
@@ -61,15 +72,17 @@ class InputUtils():
         # It clears the existing value and sets the new value in the input field.
 
         if not component.is_displayed():
-            raise Exception(f"Component with label '{component.text}' is not displayed.")
-        
+            raise Exception(
+                f"Component with label '{component.text}' is not displayed."
+            )
+
         component.clear()
         component.send_keys(value)
         return component
 
     @staticmethod
-    def setValueAndSubmitUsingComponent(component, value):
-        """        
+    def setValueAndSubmitUsingComponent(component: WebElement, value: str):
+        """
         Sets a value in an input component and submits it using the provided component element.
 
         Parameters:
@@ -86,15 +99,17 @@ class InputUtils():
         # This method assumes that the component is already found and passed as an argument.
 
         if not component.is_displayed():
-            raise Exception(f"Component with label '{component.text}' is not displayed.")
-        
+            raise Exception(
+                f"Component with label '{component.text}' is not displayed."
+            )
+
         component = InputUtils.setValueUsingComponent(component, value)
         component.send_keys(Keys.ENTER)
         return component
 
     @staticmethod
-    def setInputValue(wait, label, value):
-        """        
+    def setInputValue(wait: WebDriverWait[WebDriver], label: str, value: str):
+        """
         Sets a value in an input component identified by its label.
 
         Parameters:
@@ -117,7 +132,7 @@ class InputUtils():
         return component
 
     @staticmethod
-    def setValueAndSubmit(wait, label, value):
+    def setValueAndSubmit(wait: WebDriverWait[WebDriver], label: str, value: str):
         """
         Sets a value in an input component identified by its label and submits it.
 
@@ -141,10 +156,10 @@ class InputUtils():
         return component
 
     @staticmethod
-    def setSearchInputValue(wait, label, value):
+    def setSearchInputValue(wait: WebDriverWait[WebDriver], label: str, value: str):
         """
         Sets a value in a search-enabled input component identified by its label.
-        
+
         Parameters:
             wait: Selenium WebDriverWait instance.
             label: The visible text label of the search input component.
@@ -154,15 +169,19 @@ class InputUtils():
             None
         Example:
             InputUtils.setSearchInputValue(wait, "Search", "Appian")
-            
+
         """
         # This method finds the search-enabled input component by its label, retrieves the aria-controls attribute
         # and the component ID, clicks on the input to display the search input,
         # and sets the specified value in the search input field.
-        
-        xpath = f".//div[./div/span[text()='{label}']]/div/div/div/input[@role='combobox']"
-        search_input_component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        aria_controls = search_input_component.get_attribute("aria-controls")
+
+        xpath = (
+            f".//div[./div/span[text()='{label}']]/div/div/div/input[@role='combobox']"
+        )
+        search_input_component = wait.until(
+            EC.element_to_be_clickable((By.XPATH, xpath))
+        )
+        aria_controls = search_input_component.get_attribute("aria-controls")  # type: ignore[reportUnknownMemberType]
         InputUtils.setValueUsingComponent(search_input_component, value)
 
         xpath = f".//ul[@id='{aria_controls}' and @role='listbox' ]/li[@role='option']/div/div/div/div/div/div/p[text()='{value}'][1]"

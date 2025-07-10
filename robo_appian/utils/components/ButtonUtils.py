@@ -1,12 +1,14 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webdriver import WebDriver
 
 
-class ButtonUtils():
+class ButtonUtils:
     """
     Utility class for interacting with button elements in Selenium-based Appian UI automation.
-    
-        Usage Example:      
+
+        Usage Example:
 
         from selenium.webdriver.support.ui import WebDriverWait
         from robo_appian.utils.components.ButtonUtils import ButtonUtils
@@ -17,7 +19,7 @@ class ButtonUtils():
     """
 
     @staticmethod
-    def find(wait, label):
+    def find(wait: WebDriverWait[WebDriver], label: str):
         """
         Finds a button element by its label.
 
@@ -35,12 +37,12 @@ class ButtonUtils():
 
         # This method locates a button that contains a span with the specified label text.
 
-        xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00A0', ' '), '{label}')]]"
+        xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
         component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         return component
 
     @staticmethod
-    def click(wait, label):
+    def click(wait: WebDriverWait[WebDriver], label: str):
         """
         Clicks a button identified by its label.
 
@@ -53,9 +55,8 @@ class ButtonUtils():
         """
         component = ButtonUtils.find(wait, label)
         component.click()
-
     @staticmethod
-    def clickInputButtonById(wait, id):
+    def clickInputButtonById(wait: WebDriverWait[WebDriver], id: str):
         """
         Finds and clicks an input button by its HTML id attribute.
 
@@ -68,4 +69,5 @@ class ButtonUtils():
 
         """
         component = wait.until(EC.element_to_be_clickable((By.ID, id)))
+        component.click()
         component.click()

@@ -1,16 +1,18 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 
 from robo_appian.utils.components.InputUtils import InputUtils
 
 
-class DropdownUtils():
-
-    """    
+class DropdownUtils:
+    """
     Utility class for interacting with dropdown components in Appian UI.
 
         Usage Example:
-    
+
         # Select a value from a dropdown
         from robo_appian.utils.components.DropdownUtils import DropdownUtils
         DropdownUtils.selectDropdownValue(wait, "Status", "Approved")
@@ -20,9 +22,8 @@ class DropdownUtils():
         DropdownUtils.selectSearchDropdownValue(wait, "Category", "Finance")
     """
 
-
     @staticmethod
-    def findDropdownEnabled(wait, dropdown_label):
+    def findDropdownEnabled(wait: WebDriverWait[WebDriver], dropdown_label: str):
         """
         Finds a dropdown component that is enabled and has the specified label.
 
@@ -49,7 +50,11 @@ class DropdownUtils():
         return component
 
     @staticmethod
-    def selectValueUsingComponent(wait, combobox, value):
+    def selectValueUsingComponent(
+        wait: WebDriverWait[WebDriver], 
+        combobox: WebElement, 
+        value: str
+    ) -> None:
         """
         Selects a value from a dropdown component using the provided combobox element.
 
@@ -65,8 +70,11 @@ class DropdownUtils():
         # This method assumes that the combobox is already found and passed as an argument.
         # It retrieves the aria-controls attribute to find the dropdown list and selects the specified value.
 
-        component = combobox.find_element(By.XPATH, "./div/div")
-        aria_controls = component.get_attribute("aria-controls")
+        if not combobox:
+            raise ValueError(f"Dropdown component object is not valid.")
+
+        component: WebElement = combobox.find_element(By.XPATH, "./div/div")  # type: ignore[reportUnknownMemberType]
+        aria_controls = component.get_attribute("aria-controls") # type: ignore[reportUnknownMemberType]
         component.click()
 
         xpath = f'.//div/ul[@id="{aria_controls}"]/li[./div[normalize-space(text())="{value}"]]'
@@ -75,7 +83,7 @@ class DropdownUtils():
         component.click()
 
     @staticmethod
-    def selectDropdownValue(wait, label, value):
+    def selectDropdownValue(wait: WebDriverWait[WebDriver], label: str, value: str) -> None:
         """
         Selects a value from a dropdown component identified by its label.
 
@@ -92,7 +100,7 @@ class DropdownUtils():
         # and then clicks on the dropdown to display the options.
 
         combobox = DropdownUtils.findDropdownEnabled(wait, label)
-        aria_controls = combobox.get_attribute("aria-controls")
+        aria_controls = combobox.get_attribute("aria-controls") # type: ignore[reportUnknownMemberType]
         combobox.click()
 
         xpath = f'.//div/ul[@id="{aria_controls}"]/li[./div[normalize-space(text())="{value}"]]'
@@ -101,7 +109,7 @@ class DropdownUtils():
         component.click()
 
     @staticmethod
-    def selectSearchDropdownValue(wait, dropdown_label, value):
+    def selectSearchDropdownValue(wait: WebDriverWait[WebDriver], dropdown_label: str, value: str):
         """
         Selects a value from a search-enabled dropdown component identified by its label.
 
@@ -116,14 +124,16 @@ class DropdownUtils():
         """
         # This method finds the search-enabled dropdown component by its label, retrieves the aria-controls attribute
         # and the component ID, clicks on the dropdown to display the search input,
-        
+
         component = DropdownUtils.findDropdownEnabled(wait, dropdown_label)
-        component_id = component.get_attribute("aria-labelledby")
-        aria_controls = component.get_attribute("aria-controls")
+        component_id = component.get_attribute("aria-labelledby") # type: ignore[reportUnknownMemberType]
+        aria_controls = component.get_attribute("aria-controls") # type: ignore[reportUnknownMemberType]
         component.click()
 
-        input_component_id = component_id + "_searchInput"
-        input_component = wait.until(EC.element_to_be_clickable((By.ID, input_component_id)))
+        input_component_id = str(component_id) + "_searchInput"
+        input_component = wait.until(
+            EC.element_to_be_clickable((By.ID, input_component_id))
+        )
         InputUtils.setValueUsingComponent(input_component, value)
 
         xpath = f'.//ul[@id="{aria_controls}"]/li[./div[normalize-space(text())="{value}"]][1]'

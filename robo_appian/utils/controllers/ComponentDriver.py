@@ -7,18 +7,18 @@ from robo_appian.utils.components.LinkUtils import LinkUtils
 from robo_appian.utils.components.TabUtils import TabUtils
 
 
-class ComponentDriver():
-    """    
+class ComponentDriver:
+    """
     Utility class for interacting with various components in Appian UI.
     Usage Example:
     from robo_appian.utils.controllers.ComponentDriver import ComponentDriver
     # Set a date value
     ComponentDriver.execute(wait, "Date", "Set Value", "Start Date", "01/01/2024")
-    """ 
+    """
 
     @staticmethod
-    def execute(wait, type, action, label, value):
-        """        
+    def execute(wait : WebDriverWait[WebDriver], type, action, label, value):
+        """
         Executes an action on a specified component type.
         Parameters:
             wait: Selenium WebDriverWait instance.
@@ -30,7 +30,6 @@ class ComponentDriver():
             ComponentDriver.execute(wait, "Date", "Set Value", "Start Date", "01/01/2024")
         """
         # This method executes an action on a specified component type based on the provided parameters.
-
 
         match type:
 

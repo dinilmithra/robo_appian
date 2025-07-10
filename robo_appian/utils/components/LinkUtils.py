@@ -1,28 +1,32 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webdriver import WebDriver
 
 
-class LinkUtils():
-    """    
+class LinkUtils:
+    
+    """
     Utility class for interacting with link components in Appian UI.
 
         Usage Example:
 
         # Click a link with a specific label
-        from robo_appian.utils.components.LinkUtils import LinkUtils    
+        from robo_appian.utils.components.LinkUtils import LinkUtils
         LinkUtils.click(wait, "Learn More")
 
     """
 
     @staticmethod
-    def click(wait, label):
-        """        
+    def click(wait: WebDriverWait[WebDriver], label: str):
+
+        """
         Clicks a link identified by its label.
 
         Parameters:
             wait: Selenium WebDriverWait instance.
             label: The visible text label of the link.
-            
+
         Example:
             LinkUtils.click(wait, "Learn More")
         """

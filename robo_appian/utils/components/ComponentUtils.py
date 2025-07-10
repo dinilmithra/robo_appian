@@ -3,9 +3,11 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support.ui import WebDriverWait
 
 
-class ComponentUtils():
+class ComponentUtils:
     """
     Utility class for interacting with various components in Appian UI.
 
@@ -18,6 +20,7 @@ class ComponentUtils():
         """
 
         from datetime import date
+
         today = date.today()
         yesterday_formatted = today.strftime("%m/%d/%Y")
         return yesterday_formatted
@@ -29,6 +32,7 @@ class ComponentUtils():
         """
 
         from datetime import date, timedelta
+
         yesterday = date.today() - timedelta(days=1)
         yesterday_formatted = yesterday.strftime("%m/%d/%Y")
         return yesterday_formatted
@@ -125,7 +129,7 @@ class ComponentUtils():
     #     component.click()
 
     @staticmethod
-    def findSuccessMessage(wait, message):
+    def findSuccessMessage(wait: WebDriverWait[WebDriver], message: str):
         """
         Finds a success message in the UI by its text.
         Parameters:
@@ -139,15 +143,15 @@ class ComponentUtils():
         # This method locates a success message that contains a strong tag with the specified text.
         # The message is normalized to handle any extra spaces.
         # It uses the presence_of_element_located condition to ensure the element is present in the DOM.
-        
+
         xpath = f'.//div/div/p/span/strong[normalize-space(text())="{message}"]'
         component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return component
 
     @staticmethod
-    def findComponentUsingXpathAndClick(wait, xpath):
+    def findComponentUsingXpathAndClick(wait: WebDriverWait[WebDriver], xpath: str):
         """
-        Finds a component using its XPath and clicks it.                
+        Finds a component using its XPath and clicks it.
         Parameters:
             wait: Selenium WebDriverWait instance.
             xpath: The XPath of the component to find and click.
@@ -162,7 +166,7 @@ class ComponentUtils():
         component.click()
 
     @staticmethod
-    def findComponentUsingXpath(wait, xpath):
+    def findComponentUsingXpath(wait: WebDriverWait[WebDriver], xpath: str):
         """
         Finds a component using its XPath.
         Parameters:
@@ -180,10 +184,10 @@ class ComponentUtils():
         return component
 
     @staticmethod
-    def checkComponentExistsByXpath(wait, xpath):
+    def checkComponentExistsByXpath(wait: WebDriverWait[WebDriver], xpath: str):
         """
         Checks if a component exists using its XPath.
-        Parameters:         
+        Parameters:
             wait: Selenium WebDriverWait instance.
             xpath: The XPath of the component to check.
         Returns:
@@ -197,7 +201,7 @@ class ComponentUtils():
 
         status = False
         try:
-            component = ComponentUtils.findComponentUsingXpath(wait, xpath)
+            ComponentUtils.findComponentUsingXpath(wait, xpath)
             status = True
         except NoSuchElementException:
             pass
@@ -205,7 +209,7 @@ class ComponentUtils():
         return status
 
     @staticmethod
-    def checkComponentExistsById(driver, id):
+    def checkComponentExistsById(driver: WebDriver, id: str):
         """
         Checks if a component exists using its ID.
         Parameters:
@@ -218,11 +222,11 @@ class ComponentUtils():
         """
         # This method checks if a component exists by attempting to find it using the provided ID.
         # If the component is found, it returns True; otherwise, it catches the NoSuchElementException and returns False.
-        # It uses the find_element method to locate the element by its ID.      
+        # It uses the find_element method to locate the element by its ID.
 
         status = False
         try:
-            component = driver.find_element(By.ID, id)
+            driver.find_element(By.ID, id)
             status = True
         except NoSuchElementException:
             pass
@@ -230,7 +234,7 @@ class ComponentUtils():
         return status
 
     @staticmethod
-    def findCount(wait, xpath):
+    def findCount(wait: WebDriverWait[WebDriver], xpath: str):
         """
         Finds the count of components matching the given XPath.
         Parameters:
@@ -243,12 +247,14 @@ class ComponentUtils():
         """
         # This method locates all components matching the provided XPath and returns their count.
         # It uses the presence_of_all_elements_located condition to ensure all elements are present in the DOM.
-        # If no elements are found, it catches the NoSuchElementException and returns 0.    
+        # If no elements are found, it catches the NoSuchElementException and returns 0.
 
         length = 0
 
         try:
-            component = wait.until(EC.presence_of_all_elements_located((By.XPATH, xpath)))
+            component = wait.until(
+                EC.presence_of_all_elements_located((By.XPATH, xpath))
+            )
             length = len(component)
         except NoSuchElementException:
             pass
@@ -263,21 +269,21 @@ class ComponentUtils():
 
     #     component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
     #     return component
-    
+
     @staticmethod
-    def tab(driver):
+    def tab(driver: WebDriver):
         """
         Simulates a TAB key press in the browser.
-        
+
         Parameters:
-            driver: Selenium WebDriver instance.        
+            driver: Selenium WebDriver instance.
         Example:
-            ComponentUtils.tab(driver)  
+            ComponentUtils.tab(driver)
         """
         # This method simulates a TAB key press in the browser using ActionChains.
         # It creates an ActionChains instance, sends the TAB key, and performs the action.
         # This is useful for navigating through form fields or components in the UI.
-        # It uses the ActionChains class to perform the key press action.   
+        # It uses the ActionChains class to perform the key press action.
 
         actions = ActionChains(driver)
         actions.send_keys(Keys.TAB).perform()
