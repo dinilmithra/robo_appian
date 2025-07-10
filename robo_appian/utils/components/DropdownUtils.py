@@ -23,7 +23,7 @@ class DropdownUtils:
     """
 
     @staticmethod
-    def findDropdownEnabled(wait: WebDriverWait[WebDriver], dropdown_label: str):
+    def findDropdownEnabled(wait: WebDriverWait, dropdown_label: str):
         """
         Finds a dropdown component that is enabled and has the specified label.
 
@@ -51,7 +51,7 @@ class DropdownUtils:
 
     @staticmethod
     def selectValueUsingComponent(
-        wait: WebDriverWait[WebDriver], 
+        wait: WebDriverWait, 
         combobox: WebElement, 
         value: str
     ) -> None:
@@ -83,7 +83,7 @@ class DropdownUtils:
         component.click()
 
     @staticmethod
-    def selectDropdownValue(wait: WebDriverWait[WebDriver], label: str, value: str) -> None:
+    def selectDropdownValue(wait: WebDriverWait, label: str, value: str) -> None:
         """
         Selects a value from a dropdown component identified by its label.
 
@@ -109,7 +109,7 @@ class DropdownUtils:
         component.click()
 
     @staticmethod
-    def selectSearchDropdownValue(wait: WebDriverWait[WebDriver], dropdown_label: str, value: str):
+    def selectSearchDropdownValue(wait: WebDriverWait, dropdown_label: str, value: str):
         """
         Selects a value from a search-enabled dropdown component identified by its label.
 

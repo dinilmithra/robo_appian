@@ -18,7 +18,7 @@ class LinkUtils:
     """
 
     @staticmethod
-    def click(wait: WebDriverWait[WebDriver], label: str):
+    def click(wait: WebDriverWait, label: str):
 
         """
         Clicks a link identified by its label.

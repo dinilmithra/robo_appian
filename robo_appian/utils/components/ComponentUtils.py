@@ -129,7 +129,7 @@ class ComponentUtils:
     #     component.click()
 
     @staticmethod
-    def findSuccessMessage(wait: WebDriverWait[WebDriver], message: str):
+    def findSuccessMessage(wait: WebDriverWait, message: str):
         """
         Finds a success message in the UI by its text.
         Parameters:
@@ -149,7 +149,7 @@ class ComponentUtils:
         return component
 
     @staticmethod
-    def findComponentUsingXpathAndClick(wait: WebDriverWait[WebDriver], xpath: str):
+    def findComponentUsingXpathAndClick(wait: WebDriverWait, xpath: str):
         """
         Finds a component using its XPath and clicks it.
         Parameters:
@@ -166,7 +166,7 @@ class ComponentUtils:
         component.click()
 
     @staticmethod
-    def findComponentUsingXpath(wait: WebDriverWait[WebDriver], xpath: str):
+    def findComponentUsingXpath(wait: WebDriverWait, xpath: str):
         """
         Finds a component using its XPath.
         Parameters:
@@ -184,7 +184,7 @@ class ComponentUtils:
         return component
 
     @staticmethod
-    def checkComponentExistsByXpath(wait: WebDriverWait[WebDriver], xpath: str):
+    def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
         """
         Checks if a component exists using its XPath.
         Parameters:
@@ -234,7 +234,7 @@ class ComponentUtils:
         return status
 
     @staticmethod
-    def findCount(wait: WebDriverWait[WebDriver], xpath: str):
+    def findCount(wait: WebDriverWait, xpath: str):
         """
         Finds the count of components matching the given XPath.
         Parameters:

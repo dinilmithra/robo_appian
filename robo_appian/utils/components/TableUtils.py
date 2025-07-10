@@ -17,7 +17,7 @@ class TableUtils:
     """
 
     @staticmethod
-    def findTableUsingColumnName(wait: WebDriverWait[WebDriver], columnName: str):
+    def findTableUsingColumnName(wait: WebDriverWait, columnName: str):
         """
         Finds a table component that contains a column with the specified name.
 

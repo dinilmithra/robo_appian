@@ -17,7 +17,7 @@ class ComponentDriver:
     """
 
     @staticmethod
-    def execute(wait : WebDriverWait[WebDriver], type, action, label, value):
+    def execute(wait : WebDriverWait, type, action, label, value):
         """
         Executes an action on a specified component type.
         Parameters:

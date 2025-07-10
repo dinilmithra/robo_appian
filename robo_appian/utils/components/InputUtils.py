@@ -19,7 +19,7 @@ class InputUtils:
     """
 
     @staticmethod
-    def findComponent(wait: WebDriverWait[WebDriver], label: str):
+    def findComponent(wait: WebDriverWait, label: str):
         """
         Finds an input component by its label.
 
@@ -108,7 +108,7 @@ class InputUtils:
         return component
 
     @staticmethod
-    def setInputValue(wait: WebDriverWait[WebDriver], label: str, value: str):
+    def setInputValue(wait: WebDriverWait, label: str, value: str):
         """
         Sets a value in an input component identified by its label.
 
@@ -132,7 +132,7 @@ class InputUtils:
         return component
 
     @staticmethod
-    def setValueAndSubmit(wait: WebDriverWait[WebDriver], label: str, value: str):
+    def setValueAndSubmit(wait: WebDriverWait, label: str, value: str):
         """
         Sets a value in an input component identified by its label and submits it.
 
@@ -156,7 +156,7 @@ class InputUtils:
         return component
 
     @staticmethod
-    def setSearchInputValue(wait: WebDriverWait[WebDriver], label: str, value: str):
+    def setSearchInputValue(wait: WebDriverWait, label: str, value: str):
         """
         Sets a value in a search-enabled input component identified by its label.
 

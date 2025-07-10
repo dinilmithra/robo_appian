@@ -20,7 +20,7 @@ class DateUtils:
     """
 
     @staticmethod
-    def findComponent(wait: WebDriverWait[WebDriver], label: str):
+    def findComponent(wait: WebDriverWait, label: str):
         """
         Finds a date component by its label.
 
@@ -54,7 +54,7 @@ class DateUtils:
         return component
 
     @staticmethod
-    def setDateValue(wait: WebDriverWait[WebDriver], label: str, value: str):
+    def setDateValue(wait: WebDriverWait, label: str, value: str):
         """
         Sets a date value in a date component identified by its label.
 
@@ -79,7 +79,7 @@ class DateUtils:
         return component
 
     @staticmethod
-    def setDateValueAndSubmit(wait: WebDriverWait[WebDriver], label: str, value: str):
+    def setDateValueAndSubmit(wait: WebDriverWait, label: str, value: str):
         """
         Sets a date value in a date component identified by its label and submits the form.
 
@@ -106,7 +106,7 @@ class DateUtils:
         return component
 
     @staticmethod
-    def click(wait: WebDriverWait[WebDriver], label: str):
+    def click(wait: WebDriverWait, label: str):
         """
         Clicks on a date component identified by its label.
 

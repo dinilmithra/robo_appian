@@ -19,7 +19,7 @@ class ButtonUtils:
     """
 
     @staticmethod
-    def find(wait: WebDriverWait[WebDriver], label: str):
+    def find(wait: WebDriverWait, label: str):
         """
         Finds a button element by its label.
 
@@ -42,7 +42,7 @@ class ButtonUtils:
         return component
 
     @staticmethod
-    def click(wait: WebDriverWait[WebDriver], label: str):
+    def click(wait: WebDriverWait, label: str):
         """
         Clicks a button identified by its label.
 
@@ -56,7 +56,7 @@ class ButtonUtils:
         component = ButtonUtils.find(wait, label)
         component.click()
     @staticmethod
-    def clickInputButtonById(wait: WebDriverWait[WebDriver], id: str):
+    def clickInputButtonById(wait: WebDriverWait, id: str):
         """
         Finds and clicks an input button by its HTML id attribute.
 

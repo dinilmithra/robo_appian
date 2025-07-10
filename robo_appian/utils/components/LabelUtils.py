@@ -17,7 +17,7 @@ class LabelUtils:
     """
 
     @staticmethod
-    def find(wait : WebDriverWait[WebDriver], label: str):
+    def find(wait : WebDriverWait, label: str):
         """
         Finds a label component by its text.
 
