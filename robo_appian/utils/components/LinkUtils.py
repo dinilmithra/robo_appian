@@ -6,11 +6,11 @@ class LinkUtils():
     """    
     Utility class for interacting with link components in Appian UI.
 
-    Usage Example:
-    from robo_appian.utils.components.LinkUtils import LinkUtils    
+        Usage Example:
 
-    # Click a link with a specific label
-    LinkUtils.click(wait, "Learn More")
+        # Click a link with a specific label
+        from robo_appian.utils.components.LinkUtils import LinkUtils    
+        LinkUtils.click(wait, "Learn More")
 
     """
 

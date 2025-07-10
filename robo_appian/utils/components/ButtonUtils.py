@@ -6,12 +6,13 @@ class ButtonUtils():
     """
     Utility class for interacting with button elements in Selenium-based Appian UI automation.
     
-    Usage Example:
-    from selenium.webdriver.support.ui import WebDriverWait
-    from robo_appian.utils.components.ButtonUtils import ButtonUtils
+        Usage Example:      
 
-    wait = WebDriverWait(driver, 10)
-    ButtonUtils.click(wait, "Login")
+        from selenium.webdriver.support.ui import WebDriverWait
+        from robo_appian.utils.components.ButtonUtils import ButtonUtils
+
+        wait = WebDriverWait(driver, 10)
+        ButtonUtils.click(wait, "Login")
 
     """
 

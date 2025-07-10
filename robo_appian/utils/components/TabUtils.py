@@ -6,15 +6,16 @@ class TabUtils():
     """    
     Utility class for interacting with tab components in Appian UI.     
 
-    Usage Example:
-    from robo_appian.utils.components.TabUtils import TabUtils
+    Usage Example:       
 
-    # Select a tab by its label
-    TabUtils.select_tab(wait, "Settings")
+        # Select a tab by its label
+        from robo_appian.utils.components.TabUtils import TabUtils
+        TabUtils.select_tab(wait, "Settings")
 
-    # Find the currently selected tab by its label
-    selected_tab = TabUtils.find_selected_tab(wait, "Settings")
-    """
+        # Find the currently selected tab by its label
+        from robo_appian.utils.components.TabUtils import TabUtils
+        selected_tab = TabUtils.find_selected_tab(wait, "Settings")
+        """
 
     @staticmethod
     def find_selected_tab(wait, label):
@@ -24,8 +25,10 @@ class TabUtils():
         Parameters:            
         wait: Selenium WebDriverWait instance.
             label: The visible text label of the tab.
+
         Returns:
             The Selenium WebElement for the selected tab.
+
         Example:
             TabUtils.find_selected_tab(wait, "Settings")
         """
@@ -40,9 +43,11 @@ class TabUtils():
         
         """
         Selects a tab by its label.
+
         Parameters:
             wait: Selenium WebDriverWait instance.
             label: The visible text label of the tab to select.
+
         Example:
             TabUtils.select_tab(wait, "Settings")
         """

@@ -1,0 +1,28 @@
+# mkdocs.yml
+site_name: Robo Appian Docs
+theme:
+  name: material
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - .  
+          options:
+            inherited_members: false
+            members: true
+            show_object_full_path: false
+            show_root_heading: true
+            show_source: false
+
+nav:
+  - Home: index.md
+  - Components:
+      - ButtonUtils: ButtonUtils.md
+      - DateUtils: DateUtils.md
+      - DropdownUtils: DropdownUtils.md
+      - InputUtils: InputUtils.md
+      - LabelUtils: LabelUtils.md
+      - LinkUtils: LinkUtils.md
+      - TableUtils: TableUtils.md
+      - TabUtils: TabUtils.md

@@ -6,15 +6,18 @@ from robo_appian.utils.components.InputUtils import InputUtils
 
 class DropdownUtils():
 
-    """    Utility class for interacting with dropdown components in Appian UI.
-    Usage Example:
-    from robo_appian.utils.components.DropdownUtils import DropdownUtils
-    
-    # Select a value from a dropdown
-    DropdownUtils.selectDropdownValue(wait, "Status", "Approved")
+    """    
+    Utility class for interacting with dropdown components in Appian UI.
 
-    # Select a value from a search dropdown
-    DropdownUtils.selectSearchDropdownValue(wait, "Category", "Finance")
+        Usage Example:
+    
+        # Select a value from a dropdown
+        from robo_appian.utils.components.DropdownUtils import DropdownUtils
+        DropdownUtils.selectDropdownValue(wait, "Status", "Approved")
+
+        # Select a value from a search dropdown
+        from robo_appian.utils.components.DropdownUtils import DropdownUtils
+        DropdownUtils.selectSearchDropdownValue(wait, "Category", "Finance")
     """
 
 
@@ -22,13 +25,17 @@ class DropdownUtils():
     def findDropdownEnabled(wait, dropdown_label):
         """
         Finds a dropdown component that is enabled and has the specified label.
+
         Parameters:
             wait: Selenium WebDriverWait instance.
             dropdown_label: The visible text label of the dropdown component.
+
         Returns:
             The Selenium WebElement for the dropdown component.
+
         Example:
             DropdownUtils.findDropdownEnabled(wait, "Status")
+
         """
         # This method locates a dropdown component that contains a label with the specified text.
         # It then retrieves the component's ID and uses it to find the actual dropdown element.
@@ -45,12 +52,15 @@ class DropdownUtils():
     def selectValueUsingComponent(wait, combobox, value):
         """
         Selects a value from a dropdown component using the provided combobox element.
+
         Parameters:
             wait: Selenium WebDriverWait instance.
             combobox: The Selenium WebElement for the combobox.
             value: The value to select from the dropdown.
+
         Example:
             DropdownUtils.selectValueUsingComponent(wait, combobox, "Approved")
+
         """
         # This method assumes that the combobox is already found and passed as an argument.
         # It retrieves the aria-controls attribute to find the dropdown list and selects the specified value.
@@ -68,12 +78,15 @@ class DropdownUtils():
     def selectDropdownValue(wait, label, value):
         """
         Selects a value from a dropdown component identified by its label.
+
         Parameters:
             wait: Selenium WebDriverWait instance.
             label: The visible text label of the dropdown component.
             value: The value to select from the dropdown.
+
         Example:
             DropdownUtils.selectDropdownValue(wait, "Status", "Approved")
+
         """
         # This method finds the dropdown component by its label, retrieves the aria-controls attribute,
         # and then clicks on the dropdown to display the options.
@@ -91,12 +104,15 @@ class DropdownUtils():
     def selectSearchDropdownValue(wait, dropdown_label, value):
         """
         Selects a value from a search-enabled dropdown component identified by its label.
+
         Parameters:
             wait: Selenium WebDriverWait instance.
             dropdown_label: The visible text label of the search dropdown component.
             value: The value to select from the dropdown.
+
         Example:
             DropdownUtils.selectSearchDropdownValue(wait, "Category", "Finance")
+
         """
         # This method finds the search-enabled dropdown component by its label, retrieves the aria-controls attribute
         # and the component ID, clicks on the dropdown to display the search input,
