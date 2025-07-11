@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../TableUtils/">
+        <link rel="prev" href="..">
       
+      
+        <link rel="next" href="../examples/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>TabUtils - Robo Appian Docs</title>
+        <title>Installation - Robo Appian Docs</title>
       
     
     
@@ -62,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#robo_appian.utils.components.TabUtils" class="md-skip">
+        <a href="#installation-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TabUtils
+              Installation
             
           </span>
         </div>
@@ -173,10 +175,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -187,6 +211,128 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-pip-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1: pip (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 2: Poetry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 3: From Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webdriver-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebDriver Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WebDriver Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chrome-webdriver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chrome WebDriver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firefox-webdriver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firefox WebDriver
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -217,20 +363,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -246,7 +390,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Components
@@ -418,30 +562,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    TabUtils
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../TabUtils/" class="md-nav__link">
         
   
   
@@ -452,72 +576,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils" class="md-nav__link">
-    <span class="md-ellipsis">
-      TabUtils
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="TabUtils">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils.TabUtils" class="md-nav__link">
-    <span class="md-ellipsis">
-      TabUtils
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="TabUtils">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils.TabUtils.find_selected_tab" class="md-nav__link">
-    <span class="md-ellipsis">
-      find_selected_tab
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils.TabUtils.select_tab" class="md-nav__link">
-    <span class="md-ellipsis">
-      select_tab
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -547,6 +605,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -555,38 +615,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      TabUtils
+      Prerequisites
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="TabUtils">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils.TabUtils" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      TabUtils
+      Installation Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="TabUtils">
+    <nav class="md-nav" aria-label="Installation Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils.TabUtils.find_selected_tab" class="md-nav__link">
+  <a href="#method-1-pip-recommended" class="md-nav__link">
     <span class="md-ellipsis">
-      find_selected_tab
+      Method 1: pip (Recommended)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#robo_appian.utils.components.TabUtils.TabUtils.select_tab" class="md-nav__link">
+  <a href="#method-2-poetry" class="md-nav__link">
     <span class="md-ellipsis">
-      select_tab
+      Method 2: Poetry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 3: From Source
     </span>
   </a>
   
@@ -596,9 +664,55 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#webdriver-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebDriver Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WebDriver Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chrome-webdriver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chrome WebDriver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firefox-webdriver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firefox WebDriver
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
   
 </li>
       
@@ -618,220 +732,67 @@
 
 
 
-  <h1>TabUtils</h1>
-
-<div class="doc doc-object doc-module">
-
-
-
-<h2 id="robo_appian.utils.components.TabUtils" class="doc doc-heading">
-            <code>robo_appian.utils.components.TabUtils</code>
-
-
-</h2>
-
-    <div class="doc doc-contents first">
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<h3 id="robo_appian.utils.components.TabUtils.TabUtils" class="doc doc-heading">
-            <code>TabUtils</code>
-
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-
-        <p>Utility class for interacting with tab components in Appian UI.</p>
-<p>Usage Example:</p>
-<pre><code># Select a tab by its label
-from robo_appian.utils.components.TabUtils import TabUtils
-TabUtils.select_tab(wait, "Settings")
-
-# Find the currently selected tab by its label
-from robo_appian.utils.components.TabUtils import TabUtils
-selected_tab = TabUtils.find_selected_tab(wait, "Settings")
+<h1 id="installation-guide">Installation Guide</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before installing Robo Appian, ensure you have:</p>
+<ul>
+<li>Python 3.12 or higher</li>
+<li>pip package manager</li>
+<li>A compatible web browser (Chrome, Firefox, Edge, Safari)</li>
+<li>Selenium WebDriver for your chosen browser</li>
+</ul>
+<h2 id="installation-methods">Installation Methods</h2>
+<h3 id="method-1-pip-recommended">Method 1: pip (Recommended)</h3>
+<pre><code class="language-bash">pip install robo-appian
 </code></pre>
+<h3 id="method-2-poetry">Method 2: Poetry</h3>
+<pre><code class="language-bash">poetry add robo-appian
+</code></pre>
+<h3 id="method-3-from-source">Method 3: From Source</h3>
+<pre><code class="language-bash">git clone https://github.com/dinilmithra/robo_appian.git
+cd robo_appian
+pip install -e .
+</code></pre>
+<h2 id="webdriver-setup">WebDriver Setup</h2>
+<h3 id="chrome-webdriver">Chrome WebDriver</h3>
+<pre><code class="language-bash"># Install ChromeDriver
+pip install webdriver-manager
 
+# Usage in your code
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+</code></pre>
+<h3 id="firefox-webdriver">Firefox WebDriver</h3>
+<pre><code class="language-bash"># Install GeckoDriver
+pip install webdriver-manager
 
+# Usage in your code
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.service import Service
 
+service = Service(GeckoDriverManager().install())
+driver = webdriver.Firefox(service=service)
+</code></pre>
+<h2 id="verification">Verification</h2>
+<p>Verify your installation:</p>
+<pre><code class="language-python">import robo_appian
+print(f&quot;Robo Appian version: {robo_appian.__version__}&quot;)
 
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-<h4 id="robo_appian.utils.components.TabUtils.TabUtils.find_selected_tab" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">find_selected_tab</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Finds the currently selected tab by its label.</p>
-        <p>wait: Selenium WebDriverWait instance.
-    label: The visible text label of the tab.</p>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The Selenium WebElement for the selected tab.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<details class="example" open>
-  <summary>Example</summary>
-  <p>TabUtils.find_selected_tab(wait, "Settings")</p>
-</details>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h4 id="robo_appian.utils.components.TabUtils.TabUtils.select_tab" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">select_tab</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Selects a tab by its label.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>wait</code>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Selenium WebDriverWait instance.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>label</code>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The visible text label of the tab to select.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<details class="example" open>
-  <summary>Example</summary>
-  <p>TabUtils.select_tab(wait, "Settings")</p>
-</details>
-
-    </div>
-
-</div>
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
+# Test basic import
+from robo_appian import ButtonUtils
+print(&quot;Installation successful!&quot;)
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Check out the <a href="../#quick-start">Quick Start Guide</a></li>
+<li>Explore the <a href="../ButtonUtils/">Component Documentation</a></li>
+<li>Review <a href="../examples/">Examples</a></li>
+</ul>
 
 
 
