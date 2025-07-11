@@ -1,33 +1,82 @@
 # Robo Appian
 
-Python library for automating Appian web UI test cases!
+**Automate your Appian code testing with Python. Boost quality, save time.**
 
-# Modules
-## Components
+[![PyPI version](https://badge.fury.io/py/robo-appian.svg)](https://badge.fury.io/py/robo-appian)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://dinilmithra.github.io/robo_appian/)
 
-    ButtonUtils: Find and click buttons.
-    DateUtils: Interact with date fields.
-    DropdownUtils: Interact with dropdowns.
-    InputUtils: Interact with input fields.
-    LabelUtils: Find labels.
-    LinkUtils: Click links.
-    TableUtils: Interact with tables.
-    TabUtils: Interact with tabs.
-    ComponentUtils: General utilities for components (input, dropdown, tab, etc).
+## 🚀 Quick Start
 
-## Controllers
+### Installation
 
-    ComponentDriver: High-level interface to execute actions on components.
+```bash
+pip install robo-appian
+```
 
-## Exceptions
+### Basic Usage
 
-    MyCustomError: Custom exception for specific error conditions.
+```python
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from robo_appian import ButtonUtils, InputUtils, TableUtils
 
-# Usage
+# Setup your driver
+driver = webdriver.Chrome()
+wait = WebDriverWait(driver, 10)
 
-Import the utilities in your test scripts:
+# Interact with Appian components
+ButtonUtils.click(wait, "Submit")
+InputUtils.set_text(wait, "Username", "john.doe")
+TableUtils.click_cell_link(wait, "Actions", 1, "Edit")
+```
 
-from robo_appian import (
+## 📚 Features
+
+### Components
+- **ButtonUtils**: Find and click buttons
+- **DateUtils**: Interact with date fields and date pickers  
+- **DropdownUtils**: Interact with dropdown/select components
+- **InputUtils**: Interact with input fields and text areas
+- **LabelUtils**: Find and interact with labels
+- **LinkUtils**: Click links and navigate
+- **TableUtils**: Interact with tables and grids
+- **TabUtils**: Switch between tabs
+- **ComponentUtils**: General component utilities
+
+### Controllers
+- **ComponentDriver**: High-level interface for component interaction
+
+### Exceptions
+- **MyCustomError**: Custom exceptions for better error handling
+
+## 📖 Documentation
+
+Visit our [full documentation](https://dinilmithra.github.io/robo_appian/) for:
+- Detailed API reference
+- Complete examples and tutorials
+- Installation guide
+- Best practices
+
+## 🛠️ Requirements
+
+- Python 3.12+
+- Selenium WebDriver 4.34.0+
+- Compatible web browser (Chrome, Firefox, etc.)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🔗 Links
+
+- [Documentation](https://dinilmithra.github.io/robo_appian/)
+- [PyPI Package](https://pypi.org/project/robo-appian/)
+- [GitHub Repository](https://github.com/dinilmithra/robo_appian)
     ButtonUtils, ComponentUtils, DateUtils, DropdownUtils, InputUtils,
     LabelUtils, LinkUtils, TableUtils, TabUtils
 )

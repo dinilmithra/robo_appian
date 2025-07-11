@@ -17,6 +17,8 @@ plugins:
 
 nav:
   - Home: index.md
+  - Installation: installation.md
+  - Examples: examples.md
   - Components:
       - ButtonUtils: ButtonUtils.md
       - DateUtils: DateUtils.md

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="robo_appian",
-    version="0.0.1",
+    version="0.0.2",
     packages=find_packages(),
     install_requires=["selenium>=4.34.0"],
     author="Dinil Mithra",

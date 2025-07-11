@@ -1,0 +1,47 @@
+
+poetry build
+ls -la dist/robo_appian-0.0.2*
+python -m twine check dist/robo_appian-0.0.2*
+
+
+pip install dist/robo_appian-0.0.2-py3-none-any.whl
+python -c "import robo_appian; print('Poetry package installed successfully! Version:', robo_appian.__version__)"
+ls -lh dist/ && echo -e "\nFile sizes:" && du -h dist/*
+
+poetry config pypi-token.pypi <PYPI-TOKEN>
+poetry publish
+
+# Configure TestPyPI token (get from https://test.pypi.org/manage/account/token/)
+poetry config repositories.testpypi https://test.pypi.org/legacy/
+poetry config pypi-token.testpypi pypi-YOUR_TEST_TOKEN_HERE
+
+# Publish to TestPyPI first
+/home/codespace/.local/bin/poetry publish -r testpypi
+
+
+# Update version and fix issues
+poetry version patch
+poetry build
+poetry publish
+
+twine yank robo_appian 0.0.2 --reason "Found critical bug"
+
+# === DOCUMENTATION COMMANDS ===
+
+# Install documentation dependencies
+poetry add --group dev mkdocs mkdocs-material mkdocstrings[python]
+
+# Build documentation
+mkdocs build
+
+# Serve documentation locally (opens at http://localhost:8000)
+mkdocs serve
+
+# Serve documentation on all interfaces (for containers/codespaces)
+mkdocs serve --dev-addr=0.0.0.0:8000
+
+# Deploy documentation to GitHub Pages
+mkdocs gh-deploy
+
+# Generate documentation script
+./scripts/generate-docs.sh

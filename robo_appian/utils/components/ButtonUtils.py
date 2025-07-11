@@ -3,7 +3,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webdriver import WebDriver
 
-
 class ButtonUtils:
     """
     Utility class for interacting with button elements in Selenium-based Appian UI automation.

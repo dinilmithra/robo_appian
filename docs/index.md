@@ -1,31 +1,81 @@
 # Robo Appian
 
-Python library for automating Appian web UI test cases!
+**Automate your Appian code testing with Python. Boost quality, save time.**
 
-# Modules
-## Components
+<!-- [![PyPI version](https://badge.fury.io/py/robo-appian.svg)](https://badge.fury.io/py/robo-appian)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/) -->
 
-    ButtonUtils: Interact with button components.
-    DateUtils: Interact with date fields.
-    DropdownUtils: Interact with dropdowns.
-    InputUtils: Interact with input fields.
-    LabelUtils: Interact with date Find labels.
-    LinkUtils: Interact with date  links.
-    TableUtils: Interact with tables.
-    TabUtils: Interact with tabs.
-    ComponentUtils: General utilities for components.
+## 🚀 Quick Start
 
-## Controllers
+### Installation
 
-    ComponentDriver: High-level interface to execute actions on components.
+```bash
+pip install robo-appian
+```
 
-## Exceptions
+### Basic Usage
 
-    MyCustomError: Custom exception for specific error conditions.
+```python
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from robo_appian import ButtonUtils, InputUtils, TableUtils
 
-# Usage
+# Setup your driver
+driver = webdriver.Chrome()
+wait = WebDriverWait(driver, 10)
 
-Import the utilities in your test scripts:
+# Interact with Appian components
+ButtonUtils.click(wait, "Submit")
+InputUtils.set_text(wait, "Username", "john.doe")
+TableUtils.click_cell_link(wait, "Actions", 1, "Edit")
+```
+
+## 📚 Modules
+
+### Components
+Utilities for interacting with Appian UI components:
+
+- **ButtonUtils**: Interact with button components
+- **DateUtils**: Interact with date fields and date pickers
+- **DropdownUtils**: Interact with dropdown/select components
+- **InputUtils**: Interact with input fields and text areas
+- **LabelUtils**: Find and interact with labels
+- **LinkUtils**: Interact with links and clickable elements
+- **TableUtils**: Interact with tables, grids, and data structures
+- **TabUtils**: Interact with tab components
+- **ComponentUtils**: General utilities for components
+
+### Controllers
+High-level interfaces for component interaction:
+
+- **ComponentDriver**: High-level interface to execute actions on components
+
+### Exceptions
+Custom exceptions for better error handling:
+
+- **MyCustomError**: Custom exception for specific error conditions
+
+## 🛠️ Requirements
+
+- Python 3.12+
+- Selenium WebDriver 4.34.0+
+- A compatible web browser (Chrome, Firefox, etc.)
+
+## 📖 Documentation Navigation
+
+Use the navigation menu to explore detailed documentation for each component:
+
+- Click on any component in the **Components** section for detailed API documentation
+- Each component page includes method signatures, parameters, and usage examples
+- All methods include docstrings with clear explanations and examples
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our contributing guidelines for more information.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
     from robo_appian import (
         ButtonUtils, ComponentUtils, DateUtils, DropdownUtils, InputUtils,
