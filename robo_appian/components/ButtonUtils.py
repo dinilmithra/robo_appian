@@ -10,7 +10,7 @@ class ButtonUtils:
         Usage Example:
 
         from selenium.webdriver.support.ui import WebDriverWait
-        from robo_appian.utils.components.ButtonUtils import ButtonUtils
+        from robo_appian.components.ButtonUtils import ButtonUtils
 
         wait = WebDriverWait(driver, 10)
         ButtonUtils.click(wait, "Login")

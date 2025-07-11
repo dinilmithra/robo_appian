@@ -37,97 +37,6 @@ class ComponentUtils:
         yesterday_formatted = yesterday.strftime("%m/%d/%Y")
         return yesterday_formatted
 
-    # @staticmethod
-    # def find_dropdown_id(wait, dropdown_label):
-    #     label_class_name = "FieldLayout---field_label"
-    #     xpath = f'.//div/span[normalize-space(text())="{dropdown_label}" and @class="{label_class_name}"]'
-    #     span_element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-    #     span_element_id = span_element.get_attribute('id')
-    #     return span_element_id
-
-    # @staticmethod
-    # def find_input_id(wait, label_text):
-    #     label_class_name = "FieldLayout---field_label"
-    #     xpath = f'.//div/div/label[@class="{label_class_name}" and contains(normalize-space(text()), "{label_text}")]'
-    #     label_element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-    #     input_element_id = label_element.get_attribute('for')
-    #     return input_element_id
-
-    # @staticmethod
-    # def set_input_value(wait, label_text, value):
-    #     input_element_id = ComponentUtils.find_input_id(wait, label_text)
-    #     input_element = ComponentUtils.set_input_value_using_id(wait, input_element_id, value)
-    #     return input_element
-
-    # @staticmethod
-    # def set_input_value_using_id(wait, input_element_id, value):
-    #     input_element = wait.until(EC.presence_of_element_located((By.ID, input_element_id)))
-    #     input_element = wait.until(EC.element_to_be_clickable((By.ID, input_element_id)))
-    #     input_element.clear()
-    #     input_element.send_keys(value)
-    #     input_element.send_keys(Keys.RETURN)
-    #     return input_element
-
-    # @staticmethod
-    # def select_search_dropdown_value(wait, label, value):
-    #     span_element_id = ComponentUtils.find_dropdown_id(wait, label)
-    #     xpath = f'.//div[@id="{span_element_id}_value"]'
-    #     combobox = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-    #     disabled = combobox.get_attribute("aria-disabled")
-    #     if disabled == "true":
-    #         return
-    #     aria_controls = combobox.get_attribute("aria-controls")
-    #     combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     combobox.click()
-
-    #     input_element_id = span_element_id + "_searchInput"
-    #     ComponentUtils.set_input_value_using_id(wait, input_element_id, value)
-
-    #     xpath = f'.//ul[@id="{aria_controls}"]/li[./div[normalize-space(text())="{value}"]]'
-    #     component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     component.click()
-
-    # @staticmethod
-    # def selectDropdownValue(wait, combobox, value):
-
-    #     aria_controls = combobox.get_attribute("aria-controls")
-    #     combobox.click()
-
-    #     xpath = f'.//div/ul[@id="{aria_controls}"]/li[./div[normalize-space(text())="{value}"]]'
-    #     component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-    #     component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     component.click()
-
-    # @staticmethod
-    # def select_dropdown_value(wait, label, value):
-    #     span_element_id = ComponentUtils.find_dropdown_id(wait, label)
-
-    #     xpath = f'.//div[@id="{span_element_id}_value"]'
-    #     combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     disabled = combobox.get_attribute("aria-disabled")
-    #     if disabled == "true":
-    #         return
-
-    #     combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     ComponentUtils.selectDropdownValue(wait, combobox, value)
-
-    # @staticmethod
-    # def findButton(wait, button_text):
-    #     xpath = f'.//button[.//span/span[contains(normalize-space(text()), "{button_text}")]]'
-    #     component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     return component
-
-    # @staticmethod
-    # def click_button(wait, button_text):
-    #     component = ComponentUtils.findButton(wait, button_text)
-    #     component.click()
-
-    # @staticmethod
-    # def select_tab(wait, tab_label_text):
-    #     xpath = f'.//div[@role="presentation"]/div/div/p[./span[normalize-space(text())="{tab_label_text}"]]'
-    #     component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     component.click()
-
     @staticmethod
     def findSuccessMessage(wait: WebDriverWait, message: str):
         """
@@ -261,15 +170,6 @@ class ComponentUtils:
 
         return length
 
-    # @staticmethod
-    # def findComponent(wait, label):
-    #     xpath = f".//div/label[text()='{label}']"
-    #     component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    #     component_id = component.get_attribute("for")
-
-    #     component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
-    #     return component
-
     @staticmethod
     def tab(driver: WebDriver):
         """
@@ -287,3 +187,40 @@ class ComponentUtils:
 
         actions = ActionChains(driver)
         actions.send_keys(Keys.TAB).perform()
+
+    @staticmethod
+    def findComponentsByXPath(wait: WebDriverWait, xpath: str):
+        """
+        Finds multiple components that match the same XPath.
+
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            xpath: The XPath expression to find components.
+
+        Returns:
+            List of WebElement objects that match the XPath.
+
+        Raises:
+            Exception: If no components are found.
+        """
+        
+        # Wait for at least one element to be present
+        wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+
+        # Find all matching elements
+        driver = wait._driver
+        components = driver.find_elements(By.XPATH, xpath)
+
+        # Filter for clickable and displayed components
+        valid_components = []
+        for component in components:
+            try:
+                if component.is_displayed() and component.is_enabled():
+                    valid_components.append(component)
+            except Exception:
+                continue
+
+        if len(valid_components) > 0:
+            return valid_components
+
+        raise Exception(f"No valid components found for XPath: {xpath}")

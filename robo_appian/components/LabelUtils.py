@@ -11,7 +11,7 @@ class LabelUtils:
         Usage Example:
 
         # Find a label component
-        from robo_appian.utils.components.LabelUtils import LabelUtils
+        from robo_appian.components.LabelUtils import LabelUtils
         label_component = LabelUtils.find(wait, "Username")
 
     """

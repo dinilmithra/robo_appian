@@ -9,11 +9,11 @@ class TabUtils:
     Usage Example:
 
         # Select a tab by its label
-        from robo_appian.utils.components.TabUtils import TabUtils
+        from robo_appian.components.TabUtils import TabUtils
         TabUtils.select_tab(wait, "Settings")
 
         # Find the currently selected tab by its label
-        from robo_appian.utils.components.TabUtils import TabUtils
+        from robo_appian.components.TabUtils import TabUtils
         selected_tab = TabUtils.find_selected_tab(wait, "Settings")
     """
 

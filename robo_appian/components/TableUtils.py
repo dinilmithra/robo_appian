@@ -11,7 +11,7 @@ class TableUtils:
         Usage Example:
 
         # Find a table using a column name
-        from robo_appian.utils.components.TableUtils import TableUtils
+        from robo_appian.components.TableUtils import TableUtils
         table = TableUtils.findTableUsingColumnName(wait, "Status")
 
     """
@@ -140,6 +140,10 @@ class TableUtils:
 
         xpath = f'./thead/tr/th[@scope="col" and @abbr="{columnName}"]'
         component = tableObject.find_element(By.XPATH, xpath)
+
+        if component is None:
+            raise ValueError(f"Could not find a column with abbr '{columnName}' in the table header.")
+        
         class_string = component.get_attribute("class")
         partial_string = "headCell_"
         words = class_string.split()
@@ -149,6 +153,9 @@ class TableUtils:
             if partial_string in word:
                 selected_word = word
 
+        if selected_word is None:
+            raise ValueError(f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'.")
+        
         data = selected_word.split("_")
         return int(data[1])
 

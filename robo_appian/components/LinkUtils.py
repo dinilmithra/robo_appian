@@ -12,7 +12,7 @@ class LinkUtils:
         Usage Example:
 
         # Click a link with a specific label
-        from robo_appian.utils.components.LinkUtils import LinkUtils
+        from robo_appian.components.LinkUtils import LinkUtils
         LinkUtils.click(wait, "Learn More")
 
     """

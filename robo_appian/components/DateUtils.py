@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-from robo_appian.utils.components.InputUtils import InputUtils
+from robo_appian.components.InputUtils import InputUtils
 
 
 class DateUtils:
@@ -14,7 +14,7 @@ class DateUtils:
         Usage Example:
 
         # Set a date value
-        from robo_appian.utils.components.DateUtils import DateUtils
+        from robo_appian.components.DateUtils import DateUtils
         DateUtils.setDateValue(wait, "Start Date", "01/01/2024")
 
     """
@@ -75,7 +75,7 @@ class DateUtils:
         # component = wait.until(EC.element_to_be_clickable((By.XPATH, f".//div/label[text()='{label}']/following-sibling::input")))
 
         component = DateUtils.findComponent(wait, label)
-        InputUtils.setValueUsingComponent(component, value)
+        InputUtils._setComponentValue(component, value)
         return component
 
     @staticmethod
