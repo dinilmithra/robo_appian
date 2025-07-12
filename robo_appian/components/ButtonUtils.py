@@ -69,4 +69,3 @@ class ButtonUtils:
         """
         component = wait.until(EC.element_to_be_clickable((By.ID, id)))
         component.click()
-        component.click()
