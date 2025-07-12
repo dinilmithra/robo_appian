@@ -17,7 +17,7 @@ class LabelUtils:
     """
 
     @staticmethod
-    def find(wait : WebDriverWait, label: str):
+    def find(wait: WebDriverWait, label: str):
         """
         Finds a label component by its text.
 
@@ -38,3 +38,8 @@ class LabelUtils:
         xpath = f".//*[text()='{label}']"
         component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return component
+
+    @staticmethod
+    def click(wait: WebDriverWait, label: str):
+        component = LabelUtils.find(wait, label)
+        component.click()
