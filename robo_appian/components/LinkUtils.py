@@ -16,6 +16,11 @@ class LinkUtils:
         LinkUtils.click(wait, "Learn More")
 
     """
+    @staticmethod
+    def find(wait: WebDriverWait, label: str):
+        xpath = f'.//a[normalize-space(text())="{label}"]'
+        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        return component
 
     @staticmethod
     def click(wait: WebDriverWait, label: str):
@@ -30,12 +35,7 @@ class LinkUtils:
         Example:
             LinkUtils.click(wait, "Learn More")
         """
-        # This method locates a link that contains a span with the specified label text.
-        # It uses XPath to find the element that matches the text and waits until it is clickable.
-        # The link component is expected to have a structure where the label is within a span inside a paragraph element.
-
-        xpath = f'.//p/span[normalize-space(text())="{label}"]'
-        # component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)) )
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        
+        component = LinkUtils.find(wait. label)
         component.click()
         return component
