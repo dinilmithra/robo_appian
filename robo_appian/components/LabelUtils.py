@@ -35,7 +35,7 @@ class LabelUtils:
         # This method locates a label component that contains the specified text.
         # It uses XPath to find the element that matches the text.
 
-        xpath = f".//*[text()='{label}']"
+        xpath = f".//*[normalize-space(text())='{label}']"
         component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return component
 

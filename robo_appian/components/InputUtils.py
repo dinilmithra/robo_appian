@@ -1,3 +1,4 @@
+import stat
 from numpy import size
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.common.by import By
@@ -105,3 +106,9 @@ class InputUtils:
     def setValueByLabelText(wait: WebDriverWait, label: str, value: str):
         input_components = InputUtils.__findInputComponentsByLabel(wait, label)
         InputUtils.__setValueByComponents(wait, input_components, value)
+
+    @staticmethod
+    def setValueById(wait: WebDriverWait, component_id: str, value: str):
+        component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        InputUtils._setComponentValue(component, value)
+        return component

@@ -34,7 +34,7 @@ class LinkUtils:
         # It uses XPath to find the element that matches the text and waits until it is clickable.
         # The link component is expected to have a structure where the label is within a span inside a paragraph element.
 
-        xpath = f'.//p/span[text()="{label}"]'
+        xpath = f'.//p/span[normalize-space(text())="{label}"]'
         # component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)) )
         component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         component.click()
