@@ -1,3 +1,4 @@
+from operator import le
 import stat
 from turtle import st
 from selenium.webdriver.common.by import By
@@ -62,7 +63,8 @@ class DropdownUtils:
         dropdown_id = combobox.get_attribute("aria-controls")  # type: ignore[reportUnknownMemberType]
         combobox.click()
 
-        option_xpath = f'.//div/ul[@id="{dropdown_id}"]/li[./div[normalize-space(text())="{value}"]]'
+        # option_xpath = f'.//div/ul[@id="{dropdown_id}"]/li[./div[normalize-space(text())="{value}"]]'
+        option_xpath = f'.//ul[@id="{dropdown_id}"]/li[./div[normalize-space(text())="{value}"]][1]'
         component = wait.until(EC.presence_of_element_located((By.XPATH, option_xpath)))
         component = wait.until(EC.element_to_be_clickable((By.XPATH, option_xpath)))
         component.click()
@@ -70,6 +72,9 @@ class DropdownUtils:
     @staticmethod
     def __selectDropdownValueByXpath(wait, xpath, value):
         components = DropdownUtils.__findDropdownComponentsByXpath(wait, xpath)
+        if len(components) == 0:
+            raise Exception(f'No dropdown components found with xpath "{xpath}".')
+
         for combobox in components:
             if combobox.is_displayed() and combobox.is_enabled():
                 DropdownUtils.selectDropdownValueByComponent(wait, combobox, value)
@@ -134,3 +139,15 @@ class DropdownUtils:
         combobox = component.find_element(By.XPATH, xpath)
         DropdownUtils.selectDropdownValueByComponent(wait, combobox, value)
         return combobox
+
+    @staticmethod
+    def findDropdownByValue(wait: WebDriverWait, dropdown_value: str):
+        xpath = f'.//div[./span[normalize-space(text())="{dropdown_value}"] and @role="combobox" and @tabindex="0"]'
+        components = DropdownUtils.__findDropdownComponentsByXpath(wait, xpath)
+        return components
+    
+    @staticmethod
+    def findDropdownByLabelText(wait: WebDriverWait, dropdown_label: str):
+        xpath = f'.//div[./div/span[normalize-space(text())="{dropdown_label}"]]/div/div/div/div[@role="combobox" and @tabindex="0"]'
+        components = DropdownUtils.__findDropdownComponentsByXpath(wait, xpath)
+        return components
