@@ -10,14 +10,42 @@ echo ""
 
 # Run setup scripts
 echo "Step 1: Setting up environment..."
-./scripts/setup-env.sh
+echo "Checking Python version..."
+python --version
+
+echo "Creating virtual environment..."
+python -m venv ./.venv
+
+echo "Virtual environment created at ./.venv"
 echo ""
 
 echo "Activating environment..."
 source ./.venv/bin/activate
 
-echo "Step 2: Installing packages..."
-./scripts/install-packages.sh
+echo "Upgrading pip..."
+python -m pip install --upgrade pip
+python -m pip --version
+
+echo "Checking if Poetry is installed..."
+if ! command -v poetry &> /dev/null; then
+    echo "Poetry not found. Installing from requirements-dev.txt..."
+    python -m pip install -r requirements-dev.txt
+    echo "Poetry and development tools installed successfully!"
+else
+    echo "Poetry is already installed. Installing remaining development dependencies..."
+    python -m pip install -r requirements-dev.txt
+fi
+
+echo "Configuring Poetry to use local virtual environment..."
+poetry config virtualenvs.in-project true
+
+echo "Installing project dependencies with Poetry..."
+poetry install
+
+echo "Verifying installation..."
+poetry show --tree
+
+echo "Package installation completed!"
 echo ""
 
 echo "======================================"

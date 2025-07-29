@@ -1,0 +1,13 @@
+# Development and build requirements
+# These are installed before Poetry to bootstrap the environment
+
+# Package management
+poetry>=1.8.0
+
+# Build tools
+setuptools>=75.0.0
+build>=1.0.0
+twine>=5.0.0
+
+# Upgrade pip first
+pip>=24.0
