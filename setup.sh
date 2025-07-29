@@ -13,12 +13,12 @@ echo "Step 1: Setting up environment..."
 ./scripts/setup-env.sh
 echo ""
 
+echo "Activating environment..."
+source ./.venv/bin/activate
+
 echo "Step 2: Installing packages..."
 ./scripts/install-packages.sh
 echo ""
-
-echo "Activating environment..."
-source ./.venv/bin/activate
 
 echo "======================================"
 echo "  Setup completed successfully! 🎉   "
