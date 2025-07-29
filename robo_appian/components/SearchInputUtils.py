@@ -6,7 +6,6 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class SearchInputUtils:
-
     @staticmethod
     def __findSearchInputComponentsByLabelPathAndSelectValue(
         wait: WebDriverWait, xpath: str, value: str
@@ -19,9 +18,18 @@ class SearchInputUtils:
             if dropdown_list_id:
                 InputUtils._setComponentValue(search_input_component, value)
                 xpath = f".//ul[@id='{dropdown_list_id}' and @role='listbox' ]/li[@role='option']/div/div/div/div/div/div/p[text()='{value}'][1]"
-                drop_down_item = wait.until(
-                    EC.element_to_be_clickable((By.XPATH, xpath))
-                )
+                try:
+                    drop_down_item = wait.until(
+                        EC.element_to_be_clickable((By.XPATH, xpath))
+                    )
+                except TimeoutError as e:
+                    raise TimeoutError(
+                        f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
+                    ) from e
+                except Exception as e:
+                    raise RuntimeError(
+                        f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
+                    ) from e
                 drop_down_item.click()
             else:
                 raise ValueError(
@@ -52,7 +60,6 @@ class SearchInputUtils:
 
     @staticmethod
     def selectSearchDropdownByLabelText(wait: WebDriverWait, label: str, value: str):
-
         SearchInputUtils.__selectSearchInputComponentsByLabelText(wait, label, value)
 
     @staticmethod

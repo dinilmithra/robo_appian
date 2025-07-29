@@ -1,12 +1,9 @@
-import stat
-from numpy import size
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
-from typing import List
 
 
 class InputUtils:
@@ -56,10 +53,19 @@ class InputUtils:
             attribute: str = "for"
             component_id = label_component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
             if component_id:
-                component = wait.until(
-                    EC.element_to_be_clickable((By.ID, component_id))
-                )
-                input_components.append(component)
+                try:
+                    component = wait.until(
+                        EC.element_to_be_clickable((By.ID, component_id))
+                    )
+                    input_components.append(component)
+                except TimeoutError as e:
+                    raise TimeoutError(
+                        f"Timeout or error finding input component with id '{component_id}': {e}"
+                    )
+                except Exception as e:
+                    raise Exception(
+                        f"Timeout or error finding input component with id '{component_id}': {e}"
+                    )
         return input_components
 
     @staticmethod
@@ -109,6 +115,15 @@ class InputUtils:
 
     @staticmethod
     def setValueById(wait: WebDriverWait, component_id: str, value: str):
-        component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Timeout or error finding input component with id '{component_id}': {e}"
+            )
+        except Exception as e:
+            raise Exception(
+                f"Timeout or error finding input component with id '{component_id}': {e}"
+            )
         InputUtils._setComponentValue(component, value)
         return component

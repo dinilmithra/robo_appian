@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
 from robo_appian.components.InputUtils import InputUtils
@@ -37,11 +36,18 @@ class DateUtils:
         """
 
         xpath = f".//div/label[text()='{label}']"
-        component: WebElement = wait.until(
-            EC.element_to_be_clickable((By.XPATH, xpath))
-        )
-        if not component:
-            raise ValueError(f"Could not find date component with label '{label}'.")
+        try:
+            component: WebElement = wait.until(
+                EC.element_to_be_clickable((By.XPATH, xpath))
+            )
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find clickable date component with label '{label}': {e}"
+            )
+        except Exception as e:
+            raise Exception(
+                f"Could not find clickable date component with label '{label}': {e}"
+            )
 
         attribute: str = "for"
         component_id = component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
@@ -50,7 +56,16 @@ class DateUtils:
                 f"Could not find component using {attribute} attribute for label '{label}'."
             )
 
-        component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find clickable date input with id '{component_id}': {e}"
+            )
+        except Exception as e:
+            raise Exception(
+                f"Could not find clickable date input with id '{component_id}': {e}"
+            )
         return component
 
     @staticmethod

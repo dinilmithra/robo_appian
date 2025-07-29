@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class LabelUtils:
@@ -36,7 +35,17 @@ class LabelUtils:
         # It uses XPath to find the element that matches the text.
 
         xpath = f".//*[normalize-space(text())='{label}']"
-        component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Label '{label}' not found within the timeout period."
+            ) from e
+        except Exception as e:
+            raise Exception(
+                f"Label '{label}' not found within the timeout period."
+            ) from e
+
         return component
 
     @staticmethod

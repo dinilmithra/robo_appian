@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webdriver import WebDriver
+
 
 class ButtonUtils:
     """
@@ -37,7 +37,16 @@ class ButtonUtils:
         # This method locates a button that contains a span with the specified label text.
 
         xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Button with label '{label}' not found or not clickable."
+            ) from e
+        except Exception as e:
+            raise RuntimeError(
+                f"Button with label '{label}' not found or not clickable."
+            ) from e
         return component
 
     @staticmethod
@@ -54,6 +63,7 @@ class ButtonUtils:
         """
         component = ButtonUtils.find(wait, label)
         component.click()
+
     @staticmethod
     def clickInputButtonById(wait: WebDriverWait, id: str):
         """
@@ -67,5 +77,15 @@ class ButtonUtils:
             ButtonUtils.clickInputButtonById(wait, "button_id")
 
         """
-        component = wait.until(EC.element_to_be_clickable((By.ID, id)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.ID, id)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Input button with id '{id}' not found or not clickable."
+            ) from e
+        except Exception as e:
+            raise RuntimeError(
+                f"Input button with id '{id}' not found or not clickable."
+            ) from e
+
         component.click()

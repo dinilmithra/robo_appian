@@ -35,7 +35,12 @@ class TabUtils:
         # This method locates a tab that is currently selected and contains the specified label.
 
         xpath = f".//div[./div[./div/div/div/div/div/p/strong[normalize-space(text())='{label}']]/span[text()='Selected Tab.']]/div[@role='link']"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(f"Could not find selected tab with label '{label}': {e}")
+        except Exception as e:
+            raise RuntimeError(f"Could not find selected tab with label '{label}': {e}")
         return component
 
     @staticmethod
@@ -54,5 +59,10 @@ class TabUtils:
 
         xpath = f".//div[@role='link']/div/div/div/div/div[./p/span[text()='{label}']]"
         # xpath=f".//div[./div[./div/div/div/div/div/p/strong[normalize-space(text())='{label}']]/span[text()='Selected Tab.']]/div[@role='link']"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(f"Could not find tab with label '{label}': {e}")
+        except Exception as e:
+            raise RuntimeError(f"Could not find tab with label '{label}': {e}")
         component.click()

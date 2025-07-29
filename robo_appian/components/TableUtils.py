@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class TableUtils:
@@ -38,7 +37,16 @@ class TableUtils:
 
         # xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]"
         xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]'
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find table with column name '{columnName}': {e}"
+            )
+        except Exception as e:
+            raise RuntimeError(
+                f"Could not find table with column name '{columnName}': {e}"
+            )
         return component
 
     @staticmethod
@@ -64,7 +72,16 @@ class TableUtils:
 
         xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]/tbody/tr[@data-dnd-name='row {rowNumber + 1}']/td[not (@data-empty-grid-message)]/div/p/a[./span[text()='{hoverText}']]"
         # xpath=f".//table[./thead/tr/th/div[text()='{columnName}']][1]/tbody/tr[@data-dnd-name='row {rowNumber}']/td/div/p/a[./span[text()='{hoverText}']]"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find link with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
+            )
+        except Exception as e:
+            raise RuntimeError(
+                f"Could not find link with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
+            )
         component.click()
 
     @staticmethod
@@ -90,11 +107,29 @@ class TableUtils:
         # TODO rowNumber = rowNumber + 1  # Adjusting for 1-based index in XPath
 
         xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]/tbody/tr[@data-dnd-name='row {rowNumber}']/td[not (@data-empty-grid-message)]"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
+            )
+        except Exception as e:
+            raise RuntimeError(
+                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
+            )
         component.click()
 
         xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]/tbody/tr[@data-dnd-name='row {rowNumber}']/td[not (@data-empty-grid-message)]/div/div/button[./span[text()='{hoverText}']]"
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
+            )
+        except Exception as e:
+            raise RuntimeError(
+                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
+            )
         component.click()
 
     @staticmethod
@@ -142,8 +177,10 @@ class TableUtils:
         component = tableObject.find_element(By.XPATH, xpath)
 
         if component is None:
-            raise ValueError(f"Could not find a column with abbr '{columnName}' in the table header.")
-        
+            raise ValueError(
+                f"Could not find a column with abbr '{columnName}' in the table header."
+            )
+
         class_string = component.get_attribute("class")
         partial_string = "headCell_"
         words = class_string.split()
@@ -154,8 +191,10 @@ class TableUtils:
                 selected_word = word
 
         if selected_word is None:
-            raise ValueError(f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'.")
-        
+            raise ValueError(
+                f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'."
+            )
+
         data = selected_word.split("_")
         return int(data[1])
 
@@ -189,6 +228,15 @@ class TableUtils:
         rowNumber = rowNumber + 1
         columnNumber = columnNumber + 1
         xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]/tbody/tr[@data-dnd-name="row {rowNumber}"]/td[not (@data-empty-grid-message)][{columnNumber}]/*'
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except TimeoutError as e:
+            raise TimeoutError(
+                f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}"
+            )
+        except Exception as e:
+            raise RuntimeError(
+                f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}"
+            )
         # childComponent=component.find_element(By.xpath("./*"))
         return component
