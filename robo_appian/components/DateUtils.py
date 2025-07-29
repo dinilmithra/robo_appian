@@ -116,7 +116,7 @@ class DateUtils:
         # It sets the value of the input element and submits it.
 
         component = DateUtils.findComponent(wait, label)
-        InputUtils.setValueAndSubmitUsingComponent(component, value)
+        InputUtils.setValueAndSubmitByComponent(component, value)
 
         return component
 

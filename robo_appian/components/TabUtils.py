@@ -10,15 +10,15 @@ class TabUtils:
 
         # Select a tab by its label
         from robo_appian.components.TabUtils import TabUtils
-        TabUtils.select_tab(wait, "Settings")
+        TabUtils.selectInactiveTab(wait, "Settings")
 
         # Find the currently selected tab by its label
         from robo_appian.components.TabUtils import TabUtils
-        selected_tab = TabUtils.find_selected_tab(wait, "Settings")
+        selected_tab = TabUtils.findSelectedTab(wait, "Settings")
     """
 
     @staticmethod
-    def find_selected_tab(wait, label):
+    def findSelectedTab(wait, label):
         """
         Finds the currently selected tab by its label.
 
@@ -30,7 +30,7 @@ class TabUtils:
             The Selenium WebElement for the selected tab.
 
         Example:
-            TabUtils.find_selected_tab(wait, "Settings")
+            TabUtils.findSelectedTab(wait, "Settings")
         """
         # This method locates a tab that is currently selected and contains the specified label.
 
@@ -44,7 +44,7 @@ class TabUtils:
         return component
 
     @staticmethod
-    def select_tab(wait, label):
+    def selectInactiveTab(wait, label):
         """
         Selects a tab by its label.
 
@@ -53,7 +53,7 @@ class TabUtils:
             label: The visible text label of the tab to select.
 
         Example:
-            TabUtils.select_tab(wait, "Settings")
+            TabUtils.selectInactiveTab(wait, "Settings")
         """
         # This method locates a tab that contains a label with the specified text.
 

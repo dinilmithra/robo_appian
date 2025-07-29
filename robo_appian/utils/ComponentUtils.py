@@ -203,7 +203,7 @@ class ComponentUtils:
         Raises:
             Exception: If no components are found.
         """
-        
+
         # Wait for at least one element to be present
         wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
 

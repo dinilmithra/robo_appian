@@ -19,7 +19,7 @@ class InputUtils:
     """
 
     @staticmethod
-    def setValueAndSubmitUsingComponent(component: WebElement, value: str):
+    def setValueAndSubmitByComponent(component: WebElement, value: str):
         """
         Sets a value in an input component and submits it using the provided component element.
 
@@ -31,7 +31,7 @@ class InputUtils:
             The Selenium WebElement for the input component after setting the value and submitting.
 
         Example:
-            InputUtils.setValueAndSubmitUsingComponent(component, "test_user")
+            InputUtils.setValueAndSubmitByComponent(component, "test_user")
 
         """
         # This method assumes that the component is already found and passed as an argument.
@@ -46,7 +46,7 @@ class InputUtils:
         return component
 
     @staticmethod
-    def __findInputComponentsByLabelPath(wait: WebDriverWait, xpath: str):
+    def __findInputComponentsByXpath(wait: WebDriverWait, xpath: str):
         label_components = ComponentUtils.findComponentsByXPath(wait, xpath)
         input_components = []
         for label_component in label_components:
@@ -71,13 +71,13 @@ class InputUtils:
     @staticmethod
     def __findInputComponentsByPartialLabel(wait: WebDriverWait, label: str):
         xpath = f'.//div/label[contains(normalize-space(text()), "{label}")]'
-        components = InputUtils.__findInputComponentsByLabelPath(wait, xpath)
+        components = InputUtils.__findInputComponentsByXpath(wait, xpath)
         return components
 
     @staticmethod
     def __findInputComponentsByLabel(wait: WebDriverWait, label: str):
         xpath = f'.//div/label[normalize-space(text())="{label}"]'
-        components = InputUtils.__findInputComponentsByLabelPath(wait, xpath)
+        components = InputUtils.__findInputComponentsByXpath(wait, xpath)
         return components
 
     @staticmethod

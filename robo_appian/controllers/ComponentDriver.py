@@ -1,6 +1,5 @@
 from robo_appian.components.ButtonUtils import ButtonUtils
 from selenium.webdriver.support.ui import WebDriverWait
-from robo_appian.utils.ComponentUtils import ComponentUtils
 from robo_appian.components.DateUtils import DateUtils
 from robo_appian.components.DropdownUtils import DropdownUtils
 from robo_appian.components.InputUtils import InputUtils
@@ -35,7 +34,6 @@ class ComponentDriver:
         # This method executes an action on a specified component type based on the provided parameters.
 
         match type:
-
             case "Date":
                 match action:
                     case "Set Value":
@@ -77,7 +75,9 @@ class ComponentDriver:
             case "Search Drop Down":
                 match action:
                     case "Select":
-                        DropdownUtils.selectSearchDropdownValueByLabelText(wait, label, value)
+                        DropdownUtils.selectSearchDropdownValueByLabelText(
+                            wait, label, value
+                        )
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Button":
@@ -89,7 +89,7 @@ class ComponentDriver:
             case "Tab":
                 match action:
                     case "Find":
-                        TabUtils.find_selected_tab(wait, label)
+                        TabUtils.findSelectedTab(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case _:

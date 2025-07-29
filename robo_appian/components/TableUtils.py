@@ -11,12 +11,12 @@ class TableUtils:
 
         # Find a table using a column name
         from robo_appian.components.TableUtils import TableUtils
-        table = TableUtils.findTableUsingColumnName(wait, "Status")
+        table = TableUtils.findTableByColumnName(wait, "Status")
 
     """
 
     @staticmethod
-    def findTableUsingColumnName(wait: WebDriverWait, columnName: str):
+    def findTableByColumnName(wait: WebDriverWait, columnName: str):
         """
         Finds a table component that contains a column with the specified name.
 
@@ -28,7 +28,7 @@ class TableUtils:
             The Selenium WebElement for the table component.
 
         Example:
-            table = TableUtils.findTableUsingColumnName(wait, "Status")
+            table = TableUtils.findTableByColumnName(wait, "Status")
 
         """
         # This method locates a table that contains a header cell with the specified column name.
@@ -48,89 +48,6 @@ class TableUtils:
                 f"Could not find table with column name '{columnName}': {e}"
             )
         return component
-
-    @staticmethod
-    def clickOnLinkUsingHoverText(wait, columnName, rowNumber, hoverText):
-        """
-        Clicks on a link in a table cell identified by its column name, row number, and the hover text of the link.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            columnName: The name of the column where the link is located.
-            rowNumber: The row number (0-based index) where the link is located.
-            hoverText: The text that appears when hovering over the link.
-
-        Example:
-            TableUtils.clickOnLinkUsingHoverText(wait, "Status", 2, "View Details")
-
-        """
-
-        # This method locates a link within a specific table cell based on the column name and row number.
-        # It constructs an XPath that targets the table cell containing the link with the specified hover text.
-        # The XPath first identifies the table by the column name, then finds the specific row and cell,
-        # and finally looks for the link with the specified hover text.
-
-        xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]/tbody/tr[@data-dnd-name='row {rowNumber + 1}']/td[not (@data-empty-grid-message)]/div/p/a[./span[text()='{hoverText}']]"
-        # xpath=f".//table[./thead/tr/th/div[text()='{columnName}']][1]/tbody/tr[@data-dnd-name='row {rowNumber}']/td/div/p/a[./span[text()='{hoverText}']]"
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find link with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
-            )
-        except Exception as e:
-            raise RuntimeError(
-                f"Could not find link with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
-            )
-        component.click()
-
-    @staticmethod
-    def clickOnButtonUsingHoverText(wait, columnName, rowNumber, hoverText):
-        """
-        Clicks on a button in a table cell identified by its column name, row number, and the hover text of the button.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            columnName: The name of the column where the button is located.
-            rowNumber: The row number (0-based index) where the button is located.
-            hoverText: The text that appears when hovering over the button.
-
-        Example:
-            TableUtils.clickOnButtonUsingHoverText(wait, "Actions", 2, "Delete")
-
-        """
-        # This method locates a button within a specific table cell based on the column name and row number.
-        # It constructs an XPath that targets the table cell containing the button with the specified hover text.
-        # The XPath first identifies the table by the column name, then finds the specific row and cell,
-        # and finally looks for the button with the specified hover text.
-
-        # TODO rowNumber = rowNumber + 1  # Adjusting for 1-based index in XPath
-
-        xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]/tbody/tr[@data-dnd-name='row {rowNumber}']/td[not (@data-empty-grid-message)]"
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
-            )
-        except Exception as e:
-            raise RuntimeError(
-                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
-            )
-        component.click()
-
-        xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]/tbody/tr[@data-dnd-name='row {rowNumber}']/td[not (@data-empty-grid-message)]/div/div/button[./span[text()='{hoverText}']]"
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
-            )
-        except Exception as e:
-            raise RuntimeError(
-                f"Could not find button with hover text '{hoverText}' in column '{columnName}', row {rowNumber}: {e}"
-            )
-        component.click()
 
     @staticmethod
     def rowCount(tableObject):
@@ -155,7 +72,7 @@ class TableUtils:
         return len(rows)
 
     @staticmethod
-    def findColumNumberUsingColumnName(tableObject, columnName):
+    def findColumNumberByColumnName(tableObject, columnName):
         """
         Finds the column number in a table based on the column name.
 
@@ -167,7 +84,7 @@ class TableUtils:
             The index of the column (0-based).
 
         Example:
-            column_number = TableUtils.findColumNumberUsingColumnName(table, "Status")
+            column_number = TableUtils.findColumNumberByColumnName(table, "Status")
 
         """
         # This method locates the column header cell with the specified column name
@@ -199,7 +116,7 @@ class TableUtils:
         return int(data[1])
 
     @staticmethod
-    def find_component_from_tabele_cell(wait, rowNumber, columnName):
+    def findComponentFromTableCell(wait, rowNumber, columnName):
         """
         Finds a component within a specific table cell based on the row number and column name.
 
@@ -212,17 +129,15 @@ class TableUtils:
             The Selenium WebElement for the component within the specified table cell.
 
         Example:
-            component = TableUtils.find_component_from_tabele_cell(wait, 2, "Status")
+            component = TableUtils.findComponentFromTableCell(wait, 2, "Status")
 
         """
         # This method locates a specific component within a table cell based on the provided row number
         # and column name. It constructs an XPath that targets the table cell containing the specified column
         # and row, and then retrieves the component within that cell.
 
-        tableObject = TableUtils.findTableUsingColumnName(wait, columnName)
-        columnNumber = TableUtils.findColumNumberUsingColumnName(
-            tableObject, columnName
-        )
+        tableObject = TableUtils.findTableByColumnName(wait, columnName)
+        columnNumber = TableUtils.findColumNumberByColumnName(tableObject, columnName)
         # xpath=f'./tbody/tr[@data-dnd-name="row {rowNumber+1}"]/td[not (@data-empty-grid-message)][{columnNumber}]'
         # component = tableObject.find_elements(By.XPATH, xpath)
         rowNumber = rowNumber + 1
