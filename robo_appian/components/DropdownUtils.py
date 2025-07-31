@@ -15,12 +15,6 @@ class DropdownUtils:
     """
 
     @staticmethod
-    def __findComboboxByDropdownComponent(wait: WebDriverWait, dropdown: WebElement):
-        xpath = './div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
-        combobox = wait._driver.find_element(By.XPATH, xpath)
-        return combobox
-
-    @staticmethod
     def __findComboboxByPartialLabelText(wait: WebDriverWait, label: str):
         xpath = f'.//div[./div/span[contains(normalize-space(text()), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
         try:
@@ -117,10 +111,9 @@ class DropdownUtils:
             raise Exception(f'Error checking read-only status for label "{label}"')
 
     @staticmethod
-    def selectDropdownValueByDropdownComponent(wait: WebDriverWait, dropdown_component: WebElement, value: str):
-        combobox = DropdownUtils.__findComboboxByDropdownComponent(wait, dropdown_component)
-        DropdownUtils.__clickCombobox(wait, combobox)
+    def selectDropdownValueByComboboxComponent(wait: WebDriverWait, combobox: WebElement, value: str):
         dropdown_option_id = DropdownUtils.__findDropdownOptionId(wait, combobox)
+        DropdownUtils.__clickCombobox(wait, combobox)
         DropdownUtils.__selectDropdownValueByDropdownOptionId(wait, dropdown_option_id, value)
 
     @staticmethod
