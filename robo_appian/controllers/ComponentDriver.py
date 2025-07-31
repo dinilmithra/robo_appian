@@ -7,6 +7,7 @@ from robo_appian.components.LabelUtils import LabelUtils
 from robo_appian.components.LinkUtils import LinkUtils
 from robo_appian.components.TabUtils import TabUtils
 from robo_appian.components.SearchInputUtils import SearchInputUtils
+from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
 
 
 class ComponentDriver:
@@ -49,9 +50,7 @@ class ComponentDriver:
             case "Search Input Text":
                 match action:
                     case "Select":
-                        SearchInputUtils.selectSearchDropdownByLabelText(
-                            wait, label, value
-                        )
+                        SearchInputUtils.selectSearchDropdownByLabelText(wait, label, value)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Label":
@@ -75,9 +74,7 @@ class ComponentDriver:
             case "Search Drop Down":
                 match action:
                     case "Select":
-                        DropdownUtils.selectSearchDropdownValueByLabelText(
-                            wait, label, value
-                        )
+                        SearchDropdownUtils.selectSearchDropdownValueByLabelText(wait, label, value)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Button":
