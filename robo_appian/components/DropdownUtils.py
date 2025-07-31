@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.common.exceptions import NoSuchElementException
 
 
 class DropdownUtils:
@@ -12,6 +13,54 @@ class DropdownUtils:
         from robo_appian.components.DropdownUtils import DropdownUtils
         DropdownUtils.selectDropdownValueByLabelText(wait, "Status", "Approved")
     """
+
+    @staticmethod
+    def __findComboboxByDropdownComponent(wait: WebDriverWait, dropdown: WebElement):
+        xpath = './div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        combobox = wait._driver.find_element(By.XPATH, xpath)
+        return combobox
+
+    @staticmethod
+    def __findComboboxByPartialLabelText(wait: WebDriverWait, label: str):
+        xpath = f'.//div[./div/span[contains(normalize-space(text()), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except Exception as e:
+            raise Exception(f'Could not find combobox with partial label "{label}" : {str(e)}')
+
+        return component
+
+    @staticmethod
+    def __findComboboxByLabelText(wait: WebDriverWait, label: str):
+        xpath = f'.//div[./div/span[normalize-space(text())="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except Exception as e:
+            raise Exception(f'Could not find combobox with label "{label}" : {str(e)}')
+
+        return component
+
+    @staticmethod
+    def __clickCombobox(wait: WebDriverWait, combobox: WebElement):
+        combobox.click()
+
+    @staticmethod
+    def __findDropdownOptionId(wait: WebDriverWait, combobox: WebElement):
+        dropdown_option_id = combobox.get_attribute("aria-controls")
+        if dropdown_option_id is None:
+            raise Exception('Dropdown component does not have a valid "aria-controls" attribute.')
+        return dropdown_option_id
+
+    @staticmethod
+    def __checkDropdownOptionValueExistsByDropdownOptionId(wait: WebDriverWait, dropdown_option_id: str, value: str):
+        option_xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(text())="{value}"]]'
+        try:
+            wait.until(EC.element_to_be_clickable((By.XPATH, option_xpath)))
+            return True
+        except NoSuchElementException:
+            return False
+        except Exception as e:
+            raise Exception(f'Could not find dropdown option "{value}" with dropdown option id "{dropdown_option_id}": {str(e)}')
 
     @staticmethod
     def __selectDropdownValueByDropdownOptionId(wait: WebDriverWait, dropdown_option_id: str, value: str):
@@ -37,18 +86,9 @@ class DropdownUtils:
         :param label: The label of the dropdown.
         :param value: The value to select from the dropdown.
         """
-
-        xpath = f'.//div[./div/span[contains(normalize-space(text()), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f'Could not find or click dropdown with partial label "{label}" using xpath "{xpath}": {str(e)}')
-
-        dropdown_option_id = component.get_attribute("aria-controls")
-        if dropdown_option_id is None:
-            raise Exception('Dropdown component does not have a valid "aria-controls" attribute.')
-        component.click()
-
+        combobox = DropdownUtils.__findComboboxByPartialLabelText(wait, label)
+        DropdownUtils.__clickCombobox(wait, combobox)
+        dropdown_option_id = DropdownUtils.__findDropdownOptionId(wait, combobox)
         DropdownUtils.__selectDropdownValueByDropdownOptionId(wait, dropdown_option_id, value)
 
     @staticmethod
@@ -60,48 +100,28 @@ class DropdownUtils:
         :param label: The label of the dropdown.
         :param value: The value to select from the dropdown.
         """
-        xpath = f'.//div[./div/span[normalize-space(text())="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f'Could not find or click dropdown with label "{label}" using xpath "{xpath}": {str(e)}')
-
-        dropdown_option_id = component.get_attribute("aria-controls")
-        if dropdown_option_id is None:
-            raise Exception('Dropdown component does not have a valid "aria-controls" attribute.')
-        component.click()
-
+        combobox = DropdownUtils.__findComboboxByLabelText(wait, label)
+        DropdownUtils.__clickCombobox(wait, combobox)
+        dropdown_option_id = DropdownUtils.__findDropdownOptionId(wait, combobox)
         DropdownUtils.__selectDropdownValueByDropdownOptionId(wait, dropdown_option_id, value)
 
     @staticmethod
-    def __selectDropdownValueByComboBoxId(wait: WebDriverWait, combo_box_Id: str, value: str):
-        # component = wait.until(EC.element_to_be_clickable((By.ID, combo_box_Id)))
-        xpath = f'.//div[@id="{combo_box_Id}" and @role="combobox" and not(@aria-disabled="true")]'
+    def checkReadOnlyStatusByLabelText(wait: WebDriverWait, label: str):
+        xpath = f'.//div[./div/span[normalize-space(text())="{label}"]]/div/div/p[text()]'
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f'Could not find or click dropdown with combobox id "{combo_box_Id}" using xpath "{xpath}": {str(e)}')
+            wait._driver.find_element(By.XPATH, xpath)
+            return True
+        except NoSuchElementException:
+            return False
+        except Exception:
+            raise Exception(f'Error checking read-only status for label "{label}"')
 
-        dropdown_option_id = component.get_attribute("aria-controls")
-        if dropdown_option_id is None:
-            raise Exception('Dropdown component does not have a valid "aria-controls" attribute.')
-        component.click()
-
+    @staticmethod
+    def selectDropdownValueByDropdownComponent(wait: WebDriverWait, dropdown_component: WebElement, value: str):
+        combobox = DropdownUtils.__findComboboxByDropdownComponent(wait, dropdown_component)
+        DropdownUtils.__clickCombobox(wait, combobox)
+        dropdown_option_id = DropdownUtils.__findDropdownOptionId(wait, combobox)
         DropdownUtils.__selectDropdownValueByDropdownOptionId(wait, dropdown_option_id, value)
-
-    @staticmethod
-    def __findComboboxIdByDropdownComponent(wait: WebDriverWait, component: WebElement):
-        xpath = './div/div/div/div[@role="combobox"]'
-        component = component.find_element(By.XPATH, xpath)
-        id = component.get_attribute("id")
-        if id is None:
-            raise Exception('Dropdown component does not have a valid "id" attribute.')
-        return id
-
-    @staticmethod
-    def selectDropdownValueByDropdownComponent(wait: WebDriverWait, component: WebElement, value: str):
-        id = DropdownUtils.__findComboboxIdByDropdownComponent(wait, component)
-        DropdownUtils.__selectDropdownValueByComboBoxId(wait, id, value)
 
     @staticmethod
     def selectDropdownValueByLabelText(wait: WebDriverWait, dropdown_label: str, value: str):
@@ -110,3 +130,10 @@ class DropdownUtils:
     @staticmethod
     def selectDropdownValueByPartialLabelText(wait: WebDriverWait, dropdown_label: str, value: str):
         DropdownUtils.__selectDropdownValueByPartialLabelText(wait, dropdown_label, value)
+
+    @staticmethod
+    def checkDropdownOptionValueExists(wait: WebDriverWait, dropdown_label: str, value: str):
+        combobox = DropdownUtils.__findComboboxByLabelText(wait, dropdown_label)
+        DropdownUtils.__clickCombobox(wait, combobox)
+        dropdown_option_id = DropdownUtils.__findDropdownOptionId(wait, combobox)
+        return DropdownUtils.__checkDropdownOptionValueExistsByDropdownOptionId(wait, dropdown_option_id, value)
