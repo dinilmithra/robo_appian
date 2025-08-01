@@ -4,8 +4,30 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class ButtonUtils:
+    """
+    Utility class for interacting with button components in Appian UI.
+    Usage Example:
+        # Click a button by its label
+        from robo_appian.components.ButtonUtils import ButtonUtils
+        ButtonUtils.clickByLabelText(wait, "Submit")
+    """
+
     @staticmethod
-    def find(wait: WebDriverWait, label: str):
+    def __findByLabelText(wait: WebDriverWait, label: str):
+        """
+        Finds a button by its label.
+
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            label: The label of the button to find.
+            label: The label of the button to find.
+
+        Returns:
+            WebElement representing the button.
+
+        Example:
+            component = ButtonUtils.__findByLabelText(wait, "Submit")
+        """
         xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
@@ -14,22 +36,20 @@ class ButtonUtils:
         return component
 
     @staticmethod
-    def click(wait: WebDriverWait, label: str):
-        """
-        Clicks a button identified by its label.
+    def clickByLabelText(wait: WebDriverWait, label: str):
+        """Finds a button by its label and clicks it.
 
         Parameters:
             wait: Selenium WebDriverWait instance.
-            label: The visible text label of the button.
-        Example:
-            ButtonUtils.click(wait, "Submit")
-
+            label: The label of the button to click.
+            Example:
+                ButtonUtils.clickByLabelText(wait, "Button Label")
         """
-        component = ButtonUtils.find(wait, label)
+        component = ButtonUtils.__findByLabelText(wait, label)
         component.click()
 
     @staticmethod
-    def clickInputButtonById(wait: WebDriverWait, id: str):
+    def clickById(wait: WebDriverWait, id: str):
         """
         Finds and clicks an input button by its HTML id attribute.
 
@@ -38,13 +58,11 @@ class ButtonUtils:
             id: The HTML id of the input button.
 
         Example:
-            ButtonUtils.clickInputButtonById(wait, "button_id")
+            ButtonUtils.clickById(wait, "button_id")
 
         """
         try:
             component = wait.until(EC.element_to_be_clickable((By.ID, id)))
-        except TimeoutError as e:
-            raise TimeoutError(f"Input button with id '{id}' not found or not clickable.") from e
         except Exception as e:
             raise RuntimeError(f"Input button with id '{id}' not found or not clickable.") from e
 

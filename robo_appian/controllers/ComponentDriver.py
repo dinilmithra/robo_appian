@@ -38,7 +38,7 @@ class ComponentDriver:
             case "Date":
                 match action:
                     case "Set Value":
-                        DateUtils.setDateValue(wait, label, value)
+                        DateUtils.setValueByLabelText(wait, label, value)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Input Text":
@@ -56,7 +56,7 @@ class ComponentDriver:
             case "Label":
                 match action:
                     case "Find":
-                        LabelUtils.find(wait, label)
+                        LabelUtils.findByLabelText(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Link":
@@ -80,13 +80,13 @@ class ComponentDriver:
             case "Button":
                 match action:
                     case "Click":
-                        ButtonUtils.click(wait, label)
+                        ButtonUtils.clickByLabelText(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Tab":
                 match action:
                     case "Find":
-                        TabUtils.findSelectedTab(wait, label)
+                        TabUtils.findSelectedTabByLabelText(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case _:

@@ -5,98 +5,77 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class TableUtils:
     """
-    Utility class for interacting with table components in Appian UI.
-
-        Usage Example:
-
-        # Find a table using a column name
+    Utility class for handling table operations in Selenium WebDriver.
+    Example usage:
+        from selenium import webdriver
+        from selenium.webdriver.support.ui import WebDriverWait
         from robo_appian.components.TableUtils import TableUtils
+
+        driver = webdriver.Chrome()
+        wait = WebDriverWait(driver, 10)
         table = TableUtils.findTableByColumnName(wait, "Status")
+        row_count = TableUtils.rowCount(table)
+        component = TableUtils.findComponentFromTableCell(wait, 1, "Status")
+        driver.quit()
 
     """
 
     @staticmethod
     def findTableByColumnName(wait: WebDriverWait, columnName: str):
         """
-        Finds a table component that contains a column with the specified name.
+        Finds a table component by its column name.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            columnName: The name of the column to search for in the table.
-
-        Returns:
-            The Selenium WebElement for the table component.
-
+        :param wait: Selenium WebDriverWait instance.
+        :param columnName: The name of the column to search for.
+        :return: WebElement representing the table.
         Example:
-            table = TableUtils.findTableByColumnName(wait, "Status")
-
+            component = TableUtils.findTableByColumnName(wait, "Status")
         """
-        # This method locates a table that contains a header cell with the specified column name.
-        # It uses XPath to find the table element that has a header cell with the specified 'columnName'.
-        # The 'abbr' attribute is used to match the column name, which is a common practice in Appian UI tables.
 
-        # xpath = f".//table[./thead/tr/th[@abbr='{columnName}']]"
         xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find table with column name '{columnName}': {e}"
-            )
+            raise TimeoutError(f"Could not find table with column name '{columnName}': {e}")
         except Exception as e:
-            raise RuntimeError(
-                f"Could not find table with column name '{columnName}': {e}"
-            )
+            raise RuntimeError(f"Could not find table with column name '{columnName}': {e}")
         return component
 
     @staticmethod
     def rowCount(tableObject):
         """
-        Returns the number of rows in a table, excluding empty grid messages.
+        Counts the number of rows in a table.
 
-        Parameters:
-            tableObject: The Selenium WebElement representing the table.
-
-        Returns:
-            The number of rows in the table.
-
+        :param tableObject: The Selenium WebElement representing the table.
+        :return: The number of rows in the table.
         Example:
-            count = TableUtils.rowCount(table)
-
+            row_count = TableUtils.rowCount(table)
         """
-        # This method counts the number of rows in a table by finding all the table row elements
-        # that do not have the 'data-empty-grid-message' attribute.
 
         xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
-        rows = tableObject.find_elements(By.XPATH, xpath)
+        try:
+            rows = tableObject.find_elements(By.XPATH, xpath)
+        except Exception as e:
+            raise RuntimeError(f"Could not count rows in table: {e}")
         return len(rows)
 
     @staticmethod
-    def findColumNumberByColumnName(tableObject, columnName):
+    def __findColumNumberByColumnName(tableObject, columnName):
         """
-        Finds the column number in a table based on the column name.
+        Finds the column number in a table by its column name.
 
-        Parameters:
-            tableObject: The Selenium WebElement representing the table.
-            columnName: The name of the column to find.
-
-        Returns:
-            The index of the column (0-based).
-
+        :param tableObject: The Selenium WebElement representing the table.
+        :param columnName: The name of the column to search for.
+        :return: The index of the column (0-based).
         Example:
-            column_number = TableUtils.findColumNumberByColumnName(table, "Status")
-
+            column_number = TableUtils.__findColumNumberByColumnName(table, "Status")
         """
-        # This method locates the column header cell with the specified column name
-        # and extracts the column index from its class attribute.
 
         xpath = f'./thead/tr/th[@scope="col" and @abbr="{columnName}"]'
         component = tableObject.find_element(By.XPATH, xpath)
 
         if component is None:
-            raise ValueError(
-                f"Could not find a column with abbr '{columnName}' in the table header."
-            )
+            raise ValueError(f"Could not find a column with abbr '{columnName}' in the table header.")
 
         class_string = component.get_attribute("class")
         partial_string = "headCell_"
@@ -108,9 +87,7 @@ class TableUtils:
                 selected_word = word
 
         if selected_word is None:
-            raise ValueError(
-                f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'."
-            )
+            raise ValueError(f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'.")
 
         data = selected_word.split("_")
         return int(data[1])
@@ -118,26 +95,18 @@ class TableUtils:
     @staticmethod
     def findComponentFromTableCell(wait, rowNumber, columnName):
         """
-        Finds a component within a specific table cell based on the row number and column name.
+        Finds a component within a specific cell of a table by row number and column name.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            rowNumber: The row number (0-based index) where the component is located.
-            columnName: The name of the column where the component is located.
-
-        Returns:
-            The Selenium WebElement for the component within the specified table cell.
-
+        :param wait: Selenium WebDriverWait instance.
+        :param rowNumber: The row number (0-based index).
+        :param columnName: The name of the column to search in.
+        :return: WebElement representing the component in the specified cell.
         Example:
-            component = TableUtils.findComponentFromTableCell(wait, 2, "Status")
-
+            component = TableUtils.findComponentFromTableCell(wait, 1, "Status")
         """
-        # This method locates a specific component within a table cell based on the provided row number
-        # and column name. It constructs an XPath that targets the table cell containing the specified column
-        # and row, and then retrieves the component within that cell.
 
         tableObject = TableUtils.findTableByColumnName(wait, columnName)
-        columnNumber = TableUtils.findColumNumberByColumnName(tableObject, columnName)
+        columnNumber = TableUtils.__findColumNumberByColumnName(tableObject, columnName)
         # xpath=f'./tbody/tr[@data-dnd-name="row {rowNumber+1}"]/td[not (@data-empty-grid-message)][{columnNumber}]'
         # component = tableObject.find_elements(By.XPATH, xpath)
         rowNumber = rowNumber + 1
@@ -146,12 +115,8 @@ class TableUtils:
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}"
-            )
+            raise TimeoutError(f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}")
         except Exception as e:
-            raise RuntimeError(
-                f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}"
-            )
+            raise RuntimeError(f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}")
         # childComponent=component.find_element(By.xpath("./*"))
         return component
