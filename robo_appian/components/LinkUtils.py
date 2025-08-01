@@ -5,14 +5,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class LinkUtils:
     """
-    Utility class for interacting with link components in Appian UI.
-
-        Usage Example:
-
-        # Click a link with a specific label
+    Utility class for handling link operations in Selenium WebDriver.
+    Example usage:
+        from selenium import webdriver
+        from selenium.webdriver.support.ui import WebDriverWait
         from robo_appian.components.LinkUtils import LinkUtils
-        LinkUtils.click(wait, "Learn More")
 
+        driver = webdriver.Chrome()
+        wait = WebDriverWait(driver, 10)
+        LinkUtils.click(wait, "Learn More")
+        driver.quit()
     """
 
     @staticmethod
@@ -21,9 +23,7 @@ class LinkUtils:
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find clickable link with label '{label}': {e}"
-            )
+            raise TimeoutError(f"Could not find clickable link with label '{label}': {e}")
         except Exception as e:
             raise Exception(f"Could not find clickable link with label '{label}': {e}")
         return component

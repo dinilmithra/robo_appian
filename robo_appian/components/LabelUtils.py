@@ -6,49 +6,41 @@ from selenium.webdriver.support.ui import WebDriverWait
 class LabelUtils:
     """
     Utility class for interacting with label components in Appian UI.
-
-        Usage Example:
-
-        # Find a label component
-        from robo_appian.components.LabelUtils import LabelUtils
-        label_component = LabelUtils.find(wait, "Username")
-
+    Usage Example:
+        # Find a label by its text
+        component = LabelUtils.findByLabelText(wait, "Submit")
+        # Click a label by its text
+        LabelUtils.clickByLabelText(wait, "Submit")
     """
 
     @staticmethod
-    def find(wait: WebDriverWait, label: str):
+    def findByLabelText(wait: WebDriverWait, label: str):
         """
-        Finds a label component by its text.
+        Finds a label element by its text.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the component.
-
-        Returns:
-            The Selenium WebElement for the label component.
-
+        :param wait: Selenium WebDriverWait instance.
+        :param label: The text of the label to find.
+        :return: WebElement representing the label.
         Example:
-            LabelUtils.find(wait, "Username")
-
+            component = LabelUtils.findByLabelText(wait, "Submit")
         """
-        # This method locates a label component that contains the specified text.
-        # It uses XPath to find the element that matches the text.
-
         xpath = f".//*[normalize-space(text())='{label}']"
         try:
             component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(
-                f"Label '{label}' not found within the timeout period."
-            ) from e
         except Exception as e:
-            raise Exception(
-                f"Label '{label}' not found within the timeout period."
-            ) from e
+            raise RuntimeError(f"Label with text '{label}' not found.") from e
 
         return component
 
     @staticmethod
-    def click(wait: WebDriverWait, label: str):
-        component = LabelUtils.find(wait, label)
+    def clickByLabelText(wait: WebDriverWait, label: str):
+        """
+        Clicks a label element identified by its text.
+
+        :param wait: Selenium WebDriverWait instance.
+        :param label: The text of the label to click.
+        Example:
+            LabelUtils.clickByLabelText(wait, "Submit")
+        """
+        component = LabelUtils.findByLabelText(wait, label)
         component.click()

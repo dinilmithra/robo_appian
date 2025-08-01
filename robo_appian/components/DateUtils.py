@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webelement import WebElement
 
 from robo_appian.components.InputUtils import InputUtils
 
@@ -9,137 +8,70 @@ from robo_appian.components.InputUtils import InputUtils
 class DateUtils:
     """
     Utility class for interacting with date components in Appian UI.
-
-        Usage Example:
-
-        # Set a date value
+    Usage Example:
+        # Set a date value in a date component
         from robo_appian.components.DateUtils import DateUtils
-        DateUtils.setDateValue(wait, "Start Date", "01/01/2024")
-
+        DateUtils.setValueByLabelText(wait, "Start Date", "2023-10-01")
     """
 
     @staticmethod
-    def findComponent(wait: WebDriverWait, label: str):
+    def __findComponent(wait: WebDriverWait, label: str):
         """
         Finds a date component by its label.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the date component.
-
-        Returns:
-            The Selenium WebElement for the date component.
-
+        :param wait: WebDriverWait instance to wait for elements.
+        :param label: The label of the date component.
+        :return: The WebElement representing the date component.
         Example:
-            DateUtils.findComponent(wait, "Start Date")
-
+            DateUtils.__findComponent(wait, "Start Date")
         """
+        # xpath = f".//div/label[text()='{label}']"
+        # try:
+        #     component: WebElement = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        # except Exception as e:
+        #     raise Exception(f"Could not find clickable date component with label '{label}': {e}")
 
-        xpath = f".//div/label[text()='{label}']"
+        # attribute: str = "for"
+        # component_id = component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
+        # if component_id is None:
+        #     raise ValueError(f"Could not find component using {attribute} attribute for label '{label}'.")
+
+        # try:
+        #     component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        # except Exception as e:
+        #     raise Exception(f"Could not find clickable date input with id '{component_id}': {e}")
+
+        xpath = f'.//div[./div/label[text()="{label}"]]/div/div/div/input'
         try:
-            component: WebElement = wait.until(
-                EC.element_to_be_clickable((By.XPATH, xpath))
-            )
-        except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find clickable date component with label '{label}': {e}"
-            )
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(
-                f"Could not find clickable date component with label '{label}': {e}"
-            )
-
-        attribute: str = "for"
-        component_id = component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
-        if component_id is None:
-            raise ValueError(
-                f"Could not find component using {attribute} attribute for label '{label}'."
-            )
-
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
-        except TimeoutError as e:
-            raise TimeoutError(
-                f"Could not find clickable date input with id '{component_id}': {e}"
-            )
-        except Exception as e:
-            raise Exception(
-                f"Could not find clickable date input with id '{component_id}': {e}"
-            )
+            raise Exception(f"Could not find clickable date component with label '{label}': {e}")
         return component
 
     @staticmethod
-    def setDateValue(wait: WebDriverWait, label: str, value: str):
+    def setValueByLabelText(wait: WebDriverWait, label: str, value: str):
         """
-        Sets a date value in a date component identified by its label.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the date component.
-            value: The date value to set (e.g., "01/01/2024").
-
-        Returns:
-            The Selenium WebElement for the date component after setting the value.
-
+        Sets the value of a date component.
+        :param wait: WebDriverWait instance to wait for elements.
+        :param label: The label of the date component.
+        :param value: The value to set in the date component.
+        :return: The WebElement representing the date component.
         Example:
-            DateUtils.setDateValue(wait, "Start Date", "01/01/2024")
-
+            DateUtils.setValueByLabelText(wait, "Start Date", "2023-10-01")
         """
-        # This method locates a date component that contains a label with the specified text.
-        # It then retrieves the component's ID and uses it to find the actual input element.
-        # component = wait.until(EC.element_to_be_clickable((By.XPATH, f".//div/label[text()='{label}']/following-sibling::input")))
-
-        component = DateUtils.findComponent(wait, label)
-        InputUtils._setComponentValue(component, value)
+        component = DateUtils.__findComponent(wait, label)
+        InputUtils._setValueByComponent(component, value)
         return component
 
     @staticmethod
-    def setDateValueAndSubmit(wait: WebDriverWait, label: str, value: str):
+    def clickByLabelText(wait: WebDriverWait, label: str):
         """
-        Sets a date value in a date component identified by its label and submits the form.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the date component.
-            value: The date value to set (e.g., "01/01/2024").
-
-        Returns:
-            The Selenium WebElement for the date component after setting the value.
-
+        Clicks on the date component to open the date picker.
+        :param wait: WebDriverWait instance to wait for elements.
+        :param label: The label of the date component.
+        :return: The WebElement representing the date component.
         Example:
-            DateUtils.setDateValueAndSubmit(wait, "Start Date", "01/01/2024")
-
+            DateUtils.clickByLabelText(wait, "Start Date")
         """
-
-        # This method locates a date component that contains a label with the specified text.
-        # It then retrieves the component's ID and uses it to find the actual input element.
-        # It sets the value of the input element and submits it.
-
-        component = DateUtils.findComponent(wait, label)
-        InputUtils.setValueAndSubmitByComponent(component, value)
-
-        return component
-
-    @staticmethod
-    def click(wait: WebDriverWait, label: str):
-        """
-        Clicks on a date component identified by its label.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the date component.
-
-        Returns:
-            The Selenium WebElement for the date component after clicking.
-
-        Example:
-            DateUtils.click(wait, "Start Date")
-        """
-        # This method locates a date component that contains a label with the specified text.
-        # It then retrieves the component's ID and uses it to find the actual input element.
-        # It clicks on the input element to open the date picker.
-
-        component = DateUtils.findComponent(wait, label)
+        component = DateUtils.__findComponent(wait, label)
         component.click()
-
         return component

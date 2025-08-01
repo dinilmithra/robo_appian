@@ -20,7 +20,7 @@ class SearchDropdownUtils:
             input_component = wait.until(EC.element_to_be_clickable((By.ID, input_component_id)))
         except Exception as e:
             raise RuntimeError(f"Failed to locate or click input component with ID '{input_component_id}': {e}")
-        InputUtils._setComponentValue(input_component, value)
+        InputUtils._setValueByComponent(input_component, value)
 
         xpath = f'.//ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(text())="{value}"]][1]'
         try:

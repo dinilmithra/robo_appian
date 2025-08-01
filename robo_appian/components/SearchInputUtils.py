@@ -6,22 +6,31 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class SearchInputUtils:
+    """
+    Utility class for handling search input operations in Selenium WebDriver.
+    Example usage:
+        from selenium import webdriver
+        from selenium.webdriver.support.ui import WebDriverWait
+        from robo_appian.components.SearchInputUtils import SearchInputUtils
+
+        driver = webdriver.Chrome()
+        wait = WebDriverWait(driver, 10)
+        SearchInputUtils.selectSearchDropdownByLabelText(wait, "Search Label", "Value")
+        driver.quit()
+    """
+
     @staticmethod
-    def __findSearchInputComponentsByLabelPathAndSelectValue(
-        wait: WebDriverWait, xpath: str, value: str
-    ):
+    def __findSearchInputComponentsByLabelPathAndSelectValue(wait: WebDriverWait, xpath: str, value: str):
         search_input_components = ComponentUtils.findComponentsByXPath(wait, xpath)
         input_components = []
         for search_input_component in search_input_components:
             attribute: str = "aria-controls"
             dropdown_list_id = search_input_component.get_attribute(attribute)
             if dropdown_list_id:
-                InputUtils._setComponentValue(search_input_component, value)
+                InputUtils._setValueByComponent(search_input_component, value)
                 xpath = f".//ul[@id='{dropdown_list_id}' and @role='listbox' ]/li[@role='option']/div/div/div/div/div/div/p[text()='{value}'][1]"
                 try:
-                    drop_down_item = wait.until(
-                        EC.element_to_be_clickable((By.XPATH, xpath))
-                    )
+                    drop_down_item = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
                 except TimeoutError as e:
                     raise TimeoutError(
                         f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
@@ -39,33 +48,19 @@ class SearchInputUtils:
         return input_components
 
     @staticmethod
-    def __selectSearchInputComponentsByPartialLabelText(
-        wait: WebDriverWait, label: str, value: str
-    ):
+    def __selectSearchInputComponentsByPartialLabelText(wait: WebDriverWait, label: str, value: str):
         xpath = f".//div[./div/span[contains(normalize-space(text())='{label}']]/div/div/div/input[@role='combobox']"
-        SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
-            wait, xpath, value
-        )
+        SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(wait, xpath, value)
 
     @staticmethod
-    def __selectSearchInputComponentsByLabelText(
-        wait: WebDriverWait, label: str, value: str
-    ):
-        xpath = (
-            f".//div[./div/span[text()='{label}']]/div/div/div/input[@role='combobox']"
-        )
-        SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
-            wait, xpath, value
-        )
+    def __selectSearchInputComponentsByLabelText(wait: WebDriverWait, label: str, value: str):
+        xpath = f".//div[./div/span[text()='{label}']]/div/div/div/input[@role='combobox']"
+        SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(wait, xpath, value)
 
     @staticmethod
     def selectSearchDropdownByLabelText(wait: WebDriverWait, label: str, value: str):
         SearchInputUtils.__selectSearchInputComponentsByLabelText(wait, label, value)
 
     @staticmethod
-    def selectSearchDropdownByPartialLabelText(
-        wait: WebDriverWait, label: str, value: str
-    ):
-        SearchInputUtils.__selectSearchInputComponentsByPartialLabelText(
-            wait, label, value
-        )
+    def selectSearchDropdownByPartialLabelText(wait: WebDriverWait, label: str, value: str):
+        SearchInputUtils.__selectSearchInputComponentsByPartialLabelText(wait, label, value)
