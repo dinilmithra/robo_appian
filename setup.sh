@@ -28,12 +28,12 @@ python -m pip --version
 
 echo "Checking if Poetry is installed..."
 if ! command -v poetry &> /dev/null; then
-    echo "Poetry not found. Installing from requirements-dev.txt..."
-    python -m pip install -r requirements-dev.txt
+    echo "Poetry not found. Installing from requirements.txt..."
+    python -m pip install -r requirements.txt
     echo "Poetry and development tools installed successfully!"
 else
     echo "Poetry is already installed. Installing remaining development dependencies..."
-    python -m pip install -r requirements-dev.txt
+    python -m pip install -r requirements.txt
 fi
 
 echo "Configuring Poetry to use local virtual environment..."
