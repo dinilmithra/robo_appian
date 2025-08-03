@@ -13,7 +13,7 @@ class ButtonUtils:
     """
 
     @staticmethod
-    def __findByLabelText(wait: WebDriverWait, label: str):
+    def __findByPartialLabelText(wait: WebDriverWait, label: str):
         """
         Finds a button by its label.
 
@@ -34,6 +34,42 @@ class ButtonUtils:
         except Exception as e:
             raise RuntimeError(f"Button with label '{label}' not found or not clickable.") from e
         return component
+
+    @staticmethod
+    def __findByLabelText(wait: WebDriverWait, label: str):
+        """
+        Finds a button by its label.
+
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            label: The label of the button to find.
+            label: The label of the button to find.
+
+        Returns:
+            WebElement representing the button.
+
+        Example:
+            component = ButtonUtils.__findByLabelText(wait, "Submit")
+        """
+        xpath = f".//button[./span[normalize-space(text())='{label}']]"
+        try:
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        except Exception as e:
+            raise RuntimeError(f"Button with label '{label}' not found or not clickable.") from e
+        return component
+
+    @staticmethod
+    def clickByPartialLabelText(wait: WebDriverWait, label: str):
+        """Finds a button by its partial label and clicks it.
+
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            label: The partial label of the button to click.
+            Example:
+                ButtonUtils.clickByPartialLabelText(wait, "Button Label")
+        """
+        component = ButtonUtils.__findByPartialLabelText(wait, label)
+        component.click()
 
     @staticmethod
     def clickByLabelText(wait: WebDriverWait, label: str):
