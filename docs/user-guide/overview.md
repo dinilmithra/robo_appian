@@ -262,67 +262,33 @@ Robo Appian integrates seamlessly with popular testing frameworks:
             ButtonUtils.clickByLabelText(self.wait, "Submit")
     ```
 
-### With CI/CD Pipelines
-
-Example GitHub Actions integration:
-
-```yaml
-name: Appian UI Tests
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.12'
-      - name: Install dependencies
-        run: |
-          pip install robo_appian pytest
-      - name: Run tests
-        run: pytest tests/
-```
-
 ## Next Steps
+
+
 
 Ready to dive deeper? Choose your path:
 
 <div class="grid cards" markdown>
 
--   :material-play:{ .lg .middle } __Start with Components__
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/cog.svg" alt="Start with Components" width="36" height="36" style="vertical-align:middle;"/>  
+    **[Start with Components](components.md)**  
+    Learn each component utility in detail  
+    [:material-arrow-right: Core Components](components.md)
 
-    ---
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/rocket-launch.svg" alt="Explore Advanced Features" width="36" height="36" style="vertical-align:middle;"/>  
+    **[Explore Advanced Features](advanced.md)**  
+    Discover powerful automation patterns  
+    [:material-arrow-right: Advanced Features](advanced.md)
 
-    Learn each component utility in detail
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/file-document-multiple.svg" alt="See Real Examples" width="36" height="36" style="vertical-align:middle;"/>  
+    **[See Real Examples](../examples/login.md)**  
+    Study complete test examples  
+    [:material-arrow-right: Examples](../examples/login.md)
 
-    [:octicons-arrow-right-24: Core Components](components.md)
-
--   :material-rocket:{ .lg .middle } __Explore Advanced Features__
-
-    ---
-
-    Discover powerful automation patterns
-
-    [:octicons-arrow-right-24: Advanced Features](advanced.md)
-
--   :material-school:{ .lg .middle } __See Real Examples__
-
-    ---
-
-    Study complete test examples
-
-    [:octicons-arrow-right-24: Examples](../examples/login.md)
-
--   :material-help:{ .lg .middle } __Get Help__
-
-    ---
-
-    Find answers to common questions
-
-    [:octicons-arrow-right-24: Error Handling](error-handling.md)
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/lifebuoy.svg" alt="Get Help" width="36" height="36" style="vertical-align:middle;"/>  
+    **[Get Help](error-handling.md)**  
+    Find answers to common questions  
+    [:material-arrow-right: Error Handling](error-handling.md)
 
 </div>
 

@@ -19,15 +19,15 @@ theme:
   palette:
     # Palette toggle for light mode
     - scheme: default
-      primary: blue
-      accent: blue
+      primary: teal
+      accent: orange
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     # Palette toggle for dark mode
     - scheme: slate
-      primary: blue
-      accent: blue
+      primary: teal
+      accent: orange
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -43,6 +43,8 @@ theme:
     - content.action.view
   icon:
     repo: fontawesome/brands/github
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.png
 
 plugins:
   - search
@@ -77,36 +79,36 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started:
-    - Installation: getting-started/installation.md
-    - Quick Start: getting-started/quick-start.md
-    - Your First Test: getting-started/first-test.md
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quick-start.md
+      - Your First Test: getting-started/first-test.md
   - User Guide:
-    - Overview: user-guide/overview.md
-    - Core Components: user-guide/components.md
-    - Advanced Features: user-guide/advanced.md
-    - Best Practices: user-guide/best-practices.md
-    - Error Handling: user-guide/error-handling.md
+      - Overview: user-guide/overview.md
+      - Core Components: user-guide/components.md
+      - Advanced Features: user-guide/advanced.md
+      - Best Practices: user-guide/best-practices.md
+      - Error Handling: user-guide/error-handling.md
   - API Reference:
-    - ButtonUtils: api/button-utils.md
-    - InputUtils: api/input-utils.md
-    - DateUtils: api/date-utils.md
-    - DropdownUtils: api/dropdown-utils.md
-    - SearchDropdownUtils: api/search-dropdown-utils.md
-    - SearchInputUtils: api/search-input-utils.md
-    - TableUtils: api/table-utils.md
-    - TabUtils: api/tab-utils.md
-    - LabelUtils: api/label-utils.md
-    - LinkUtils: api/link-utils.md
-    - ComponentUtils: api/component-utils.md
-    - ComponentDriver: api/component-driver.md
+      - ButtonUtils: api/button-utils.md
+      - InputUtils: api/input-utils.md
+      - DateUtils: api/date-utils.md
+      - DropdownUtils: api/dropdown-utils.md
+      - SearchDropdownUtils: api/search-dropdown-utils.md
+      - SearchInputUtils: api/search-input-utils.md
+      - TableUtils: api/table-utils.md
+      - TabUtils: api/tab-utils.md
+      - LabelUtils: api/label-utils.md
+      - LinkUtils: api/link-utils.md
+      - ComponentUtils: api/component-utils.md
+      - ComponentDriver: api/component-driver.md
   - Examples:
-    - Login Tests: examples/login.md
-    - Form Automation: examples/forms.md
-    - Table Operations: examples/tables.md
-    - Complex Workflows: examples/workflows.md
+      - Login Tests: examples/login.md
+      - Form Automation: examples/forms.md
+      - Table Operations: examples/tables.md
+      - Complex Workflows: examples/workflows.md
   - Testing Frameworks:
-    - pytest Integration: frameworks/pytest.md
-    - unittest Integration: frameworks/unittest.md
+      - pytest Integration: frameworks/pytest.md
+      - unittest Integration: frameworks/unittest.md
   - About: about.md
 
 extra:

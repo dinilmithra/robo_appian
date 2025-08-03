@@ -1,61 +1,82 @@
 
-# Robo Appian: A Python Library for Appian UI Test Automation
 
-In response to the growing need for robust and streamlined testing of Appian applications, we are proud to introduce robo_appian, a powerful open-source Python library designed to simplify and accelerate the creation of automated test scripts for Appian user interfaces. This library provides a high-level API to interact with Appian's unique UI components, abstracting away the complexities of their underlying implementation and enabling developers and QA engineers to write more readable, maintainable, and resilient tests.
 
-robo_appian is built on top of the widely-used Selenium WebDriver framework, allowing for cross-browser testing and seamless integration into existing testing workflows. It addresses the common challenge of locating and interacting with Appian's dynamically generated UI elements by providing a set of intuitive functions and locator strategies tailored specifically for the Appian platform.
-
-## Why use Robo Appian?
-
-- **Simplified Component Interaction:** The library offers a suite of functions for easily finding and manipulating common Appian UI components such as text fields, buttons, dropdowns, grids, and more.
-
-- **Robust Locator Strategies:** appian-automator employs intelligent locator strategies that go beyond simple ID or class name matching, making tests less brittle and more resistant to changes in the application's UI.
-
-- **Improved Readability and Maintainability:** By providing a higher-level of abstraction, the library allows for the creation of test scripts that are more descriptive and easier to understand, reducing the maintenance overhead.
-
-- **Seamless Selenium Integration:** Built as a layer on top of Selenium, appian-automator allows users to leverage the full power and flexibility of the Selenium framework when needed.
-
-- **Extensibility:** The library is designed to be extensible, allowing users to add custom functions and locator strategies for unique or complex UI components.
-
-## Quick Start Example
-```python
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from robo_appian.components.InputUtils import InputUtils
-from robo_appian.components.ButtonUtils import ButtonUtils
-
-driver = webdriver.Chrome()
-wait = WebDriverWait(driver, 10)
-driver.get("https://your-appian-app.com")
-
-InputUtils.setValueByLabelText(wait, "Username", "test_user")
-InputUtils.setValueByLabelText(wait, "Password", "password123")
-ButtonUtils.clickByLabelText(wait, "Sign In")
-driver.quit()
-```
-
-## What can you automate?
-- Text fields, dropdowns, buttons, dates, tables, tabs, and more
-
-## Learn More
-- [Quick Start Guide](getting-started/quick-start.md)
-- [User Guide](user-guide/overview.md)
-- [API Reference](api/component-utils.md)
-- [Examples](examples/login.md)
-
-## Main Components
-| Component         | What it does                | Example Usage                                      |
-|-------------------|----------------------------|----------------------------------------------------|
-| ButtonUtils       | Click Appian buttons       | `ButtonUtils.clickByLabelText(wait, "Submit")`     |
-| InputUtils        | Enter text in fields       | `InputUtils.setValueByLabelText(wait, "Name", "John")` |
-| DropdownUtils     | Select dropdown options    | `DropdownUtils.selectDropdownValueByLabelText(wait, "Status", "Active")` |
-| DateUtils         | Set date fields            | `DateUtils.setValueByLabelText(wait, "Start Date", "01/15/2024")` |
-| TableUtils        | Work with data tables      | `TableUtils.findTableByColumnName(wait, "Employee ID")` |
-| ComponentDriver   | Universal component action | `ComponentDriver.execute(wait, "Input Text", "Set Value", "Name", "John")` |
-
-## Author
-**Dinil Mithra**  
-[LinkedIn](https://www.linkedin.com/in/dinilmithra) | dinilmithra.mailme@gmail.com
+<div style="background: #f5f7fa; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); padding: 2.2em 2em 2em 2em; margin-bottom: 2em;">
+  <div style="display: flex; align-items: center; gap: 1.5em; flex-wrap: wrap;">
+    <div>
+      <h1 style="margin: 0 0 0.2em 0; font-size: 2.1em; font-weight: 700; color: #1a3a4f; letter-spacing: -1px;">
+        <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/robot.svg" alt="Robo Appian Logo" width="48" height="48" style="vertical-align:middle; margin-right: 0.5em;"/>Robo Appian
+      </h1>
+      <div style="font-size: 1.18em; color: #2b4a5a; font-weight: 400; margin-bottom: 0.5em;">
+        <strong>Business-friendly Python automation for Appian UI testing.</strong>
+      </div>
+      <div style="font-size: 1.05em; color: #3d5a6c; max-width: 600px;">
+        Robo Appian empowers teams to automate Appian UI testing with clarity, speed, and resilience. Built on Selenium, it abstracts away Appian’s UI complexity, letting you focus on business logic, not brittle selectors. <br><br>
+        <span style="color:#1976d2; font-weight:500;">Write readable, maintainable, and robust tests—no Appian internals required.</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5em;">
+    <ul style="font-size:1.08em; color:#2b4a5a; line-height:1.7;">
+      <li><b>🔎 Intuitive Component Utilities:</b> Interact with Appian fields, buttons, dropdowns, tables, and more using simple, business-focused methods.</li>
+      <li><b>🛡️ Resilient Locators:</b> Smart strategies adapt to UI changes—no more fragile XPaths.</li>
+      <li><b>📈 Maintainable & Scalable:</b> Write tests that are easy to read, update, and extend as your Appian apps evolve.</li>
+      <li><b>⚡ Seamless Selenium Integration:</b> Leverage the full power of Selenium with Appian-specific enhancements.</li>
+      <li><b>🧩 Extensible by Design:</b> Add your own utilities and strategies for unique business needs.</li>
+    </ul>
+  </div>
+</div>
 
 ---
-MIT License
+
+## 🚀 Get Started
+
+- **[Installation Guide](getting-started/installation.md)**
+- **[Quick Start](getting-started/quick-start.md)**
+- **[Your First Test](getting-started/first-test.md)**
+
+---
+
+## 🧭 Explore Robo Appian
+
+<div class="grid cards" markdown>
+
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/book-open-page-variant.svg" alt="User Guide" width="36" height="36" style="vertical-align:middle;"/>  
+    **[User Guide](user-guide/overview.md)**  
+    Learn all core concepts, advanced features, and best practices.
+
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/code-tags.svg" alt="API Reference" width="36" height="36" style="vertical-align:middle;"/>  
+    **[API Reference](api/button-utils.md)**  
+    Full reference for all utility classes and methods.
+
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/rocket.svg" alt="Examples" width="36" height="36" style="vertical-align:middle;"/>  
+    **[Examples](examples/login.md)**  
+    Real-world test automation examples and workflows.
+
+-   <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/help-circle.svg" alt="Error Handling" width="36" height="36" style="vertical-align:middle;"/>  
+    **[Error Handling](user-guide/error-handling.md)**  
+    Debugging, troubleshooting, and error resolution tips.
+
+</div>
+
+---
+
+## 👥 Contributors
+
+- <div style="display: flex; align-items: center; gap: 0.7em; margin-bottom: 0.2em;">
+    <a href="https://www.linkedin.com/in/dinilmithra" style="font-weight:500; color:#1976d2; text-decoration:none;" target="_blank" rel="noopener noreferrer">Dinil Mithra</a>
+    <img src="https://avatars.githubusercontent.com/u/10297848?v=4" width="32" height="32" style="border-radius:50%" alt="Dinil Mithra"/>
+    <span style="font-size:1.05em; color:#222;">Creator &amp; Maintainer</span>
+  </div>
+
+---
+
+
+
+
+!!! tip "Why Robo Appian?"
+    - **Business-friendly**: Write tests in business terms, not just code.
+    - **Robust**: Resilient to UI changes and easy to maintain.
+    - **Modern**: Built with the latest Python and Selenium best practices.
+
+Happy testing with Robo Appian! 🚀
