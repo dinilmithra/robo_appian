@@ -1,0 +1,123 @@
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/dinilmithra
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/robo-appian/
+    - icon: fontawesome/regular/envelope
+      link: mailto:dinilmithra.mailme@gmail.com
+  version:
+    provider: mike
+site_name: Robo Appian Documentation
+site_description: Python library for Appian UI test automation
+site_author: Dinil Mithra
+site_url: https://dinilmithra.github.io/robo_appian/
+
+theme:
+  name: material
+  # custom_dir: overrides
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_object_full_path: false
+            show_category_heading: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - footnotes
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quick-start.md
+    - Your First Test: getting-started/first-test.md
+  - User Guide:
+    - Overview: user-guide/overview.md
+    - Core Components: user-guide/components.md
+    - Advanced Features: user-guide/advanced.md
+    - Best Practices: user-guide/best-practices.md
+    - Error Handling: user-guide/error-handling.md
+  - API Reference:
+    - ButtonUtils: api/button-utils.md
+    - InputUtils: api/input-utils.md
+    - DateUtils: api/date-utils.md
+    - DropdownUtils: api/dropdown-utils.md
+    - SearchDropdownUtils: api/search-dropdown-utils.md
+    - SearchInputUtils: api/search-input-utils.md
+    - TableUtils: api/table-utils.md
+    - TabUtils: api/tab-utils.md
+    - LabelUtils: api/label-utils.md
+    - LinkUtils: api/link-utils.md
+    - ComponentUtils: api/component-utils.md
+    - ComponentDriver: api/component-driver.md
+  - Examples:
+    - Login Tests: examples/login.md
+    - Form Automation: examples/forms.md
+    - Table Operations: examples/tables.md
+    - Complex Workflows: examples/workflows.md
+  - Testing Frameworks:
+    - pytest Integration: frameworks/pytest.md
+    - unittest Integration: frameworks/unittest.md
+  - About: about.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/dinilmithra
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/robo-appian/
+    - icon: fontawesome/regular/envelope
+      link: mailto:dinilmithra.mailme@gmail.com
+  version:
+    provider: mike
+
+copyright: Copyright &copy; 2024 Dinil Mithra
