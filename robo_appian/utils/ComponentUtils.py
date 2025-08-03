@@ -9,11 +9,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class ComponentUtils:
-    """
-    Utility class for interacting with various components in Appian UI.
-
-    """
-
     @staticmethod
     def today():
         """
@@ -40,79 +35,60 @@ class ComponentUtils:
 
     @staticmethod
     def findChildComponent(wait: WebDriverWait, component: WebElement, xpath: str):
+        """Finds a child component using the given XPath within a parent component.
+
+        :param wait: WebDriverWait instance to wait for elements
+        :param component: Parent WebElement to search within
+        :param xpath: XPath string to locate the child component
+        :return: WebElement if found, raises NoSuchElementException otherwise
+        Example usage:
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium import webdriver
+
+        driver = webdriver.Chrome()
+        wait = WebDriverWait(driver, 10)
+        parent_component = driver.find_element(By.ID, "parent")
+        xpath = ".//button[@class='child']"
+        child_component = ComponentUtils.findChildComponent(wait, parent_component, xpath)
+        """
         return component.find_element(By.XPATH, xpath)
 
     @staticmethod
-    def findSuccessMessage(wait: WebDriverWait, message: str):
-        """
-        Finds a success message in the UI by its text.
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            message: The text of the success message to find.
-        Returns:
-            The Selenium WebElement for the success message.
-        Example:
-            ComponentUtils.findSuccessMessage(wait, "Operation completed successfully")
-        """
-        # This method locates a success message that contains a strong tag with the specified text.
-        # The message is normalized to handle any extra spaces.
-        # It uses the presence_of_element_located condition to ensure the element is present in the DOM.
-
-        xpath = f'.//div/div/p/span/strong[normalize-space(text())="{message}"]'
-        component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-        return component
-
-    @staticmethod
     def findComponentUsingXpathAndClick(wait: WebDriverWait, xpath: str):
-        """
-        Finds a component using its XPath and clicks it.
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            xpath: The XPath of the component to find and click.
-        Example:
-            ComponentUtils.findComponentUsingXpathAndClick(wait, "//button[@id='submit']")
+        """Finds a component using the given XPath and clicks it.
 
+        :param wait: WebDriverWait instance to wait for elements
+        :param xpath: XPath string to locate the component
+        :return: None
+        Example usage:
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium import webdriver
+
+        driver = webdriver.Chrome()
+        wait = WebDriverWait(driver, 10)
+        xpath = "//button[@id='submit']"
+        ComponentUtils.findComponentUsingXpathAndClick(wait, xpath)
         """
-        # This method locates a component using the provided XPath and clicks it.
-        # It uses the presence_of_element_located condition to ensure the element is present in the DOM.
-        # After locating the component, it clicks it to perform the action.
         component = ComponentUtils.findComponentUsingXpath(wait, xpath)
         component.click()
 
     @staticmethod
     def findComponentUsingXpath(wait: WebDriverWait, xpath: str):
+        """Finds a component using the given XPath in the current WebDriver instance.
+
+        :param wait: WebDriverWait instance to wait for elements
+        :param xpath: XPath string to locate the component
+        :return: WebElement if found, raises NoSuchElementException otherwise
+        Example usage:
+        component = ComponentUtils.findComponentUsingXpath(wait, "//button[@id='submit']")
+        component.click()
         """
-        Finds a component using its XPath.
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            xpath: The XPath of the component to find.
-        Returns:
-            The Selenium WebElement for the component.
-        Example:
-            ComponentUtils.findComponentUsingXpath(wait, "//button[@id='submit']")
-        """
-        # This method locates a component using the provided XPath.
-        # It uses the presence_of_element_located condition to ensure the element is present in the DOM.
-        # The method returns the WebElement for further interaction.
         component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return component
 
     @staticmethod
     def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
-        """
-        Checks if a component exists using its XPath.
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            xpath: The XPath of the component to check.
-        Returns:
-            True if the component exists, False otherwise.
-        Example:
-            ComponentUtils.checkComponentExistsByXpath(wait, "//button[@id='submit']")
-        """
-        # This method checks if a component exists by attempting to find it using the provided XPath.
-        # If the component is found, it returns True; otherwise, it catches the NoSuchElementException and returns False.
-        # It uses the presence_of_element_located condition to ensure the element is present in the DOM.
-
+        """Checks if a component with the given XPath exists in the current WebDriver instance."""
         status = False
         try:
             ComponentUtils.findComponentUsingXpath(wait, xpath)
@@ -124,20 +100,15 @@ class ComponentUtils:
 
     @staticmethod
     def checkComponentExistsById(driver: WebDriver, id: str):
-        """
-        Checks if a component exists using its ID.
-        Parameters:
-            driver: Selenium WebDriver instance.
-            id: The ID of the component to check.
-        Returns:
-            True if the component exists, False otherwise.
-        Example:
-            ComponentUtils.checkComponentExistsById(driver, "submit-button")
-        """
-        # This method checks if a component exists by attempting to find it using the provided ID.
-        # If the component is found, it returns True; otherwise, it catches the NoSuchElementException and returns False.
-        # It uses the find_element method to locate the element by its ID.
+        """Checks if a component with the given ID exists in the current WebDriver instance.
 
+        :param driver: WebDriver instance to check for the component
+        :param id: ID of the component to check
+        :return: True if the component exists, False otherwise
+        Example usage:
+        exists = ComponentUtils.checkComponentExistsById(driver, "submit-button")
+        print(f"Component exists: {exists}")
+        """
         status = False
         try:
             driver.find_element(By.ID, id)
@@ -149,19 +120,15 @@ class ComponentUtils:
 
     @staticmethod
     def findCount(wait: WebDriverWait, xpath: str):
+        """Finds the count of components matching the given XPath.
+
+        :param wait: WebDriverWait instance to wait for elements
+        :param xpath: XPath string to locate components
+        :return: Count of components matching the XPath
+        Example usage:
+        count = ComponentUtils.findCount(wait, "//div[@class='item']")
+        print(f"Number of items found: {count}")
         """
-        Finds the count of components matching the given XPath.
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            xpath: The XPath of the components to count.
-        Returns:
-            The count of components matching the XPath.
-        Example:
-            count = ComponentUtils.findCount(wait, "//div[@class='item']")
-        """
-        # This method locates all components matching the provided XPath and returns their count.
-        # It uses the presence_of_all_elements_located condition to ensure all elements are present in the DOM.
-        # If no elements are found, it catches the NoSuchElementException and returns 0.
 
         length = 0
 
@@ -174,40 +141,32 @@ class ComponentUtils:
         return length
 
     @staticmethod
-    def tab(driver: WebDriver):
-        """
-        Simulates a TAB key press in the browser.
+    def tab(wait: WebDriverWait):
+        """Simulates a tab key press in the current WebDriver instance.
 
-        Parameters:
-            driver: Selenium WebDriver instance.
-        Example:
-            ComponentUtils.tab(driver)
+        :param wait: WebDriverWait instance to wait for elements
+        :return: None
+        Example usage:
+        ComponentUtils.tab(wait)
         """
-        # This method simulates a TAB key press in the browser using ActionChains.
-        # It creates an ActionChains instance, sends the TAB key, and performs the action.
-        # This is useful for navigating through form fields or components in the UI.
-        # It uses the ActionChains class to perform the key press action.
-
+        driver = wait._driver
         actions = ActionChains(driver)
         actions.send_keys(Keys.TAB).perform()
 
     @staticmethod
     def findComponentsByXPath(wait: WebDriverWait, xpath: str):
+        """Finds all components matching the given XPath and returns a list of valid components
+        that are clickable and displayed.
+
+        :param wait: WebDriverWait instance to wait for elements
+        :param xpath: XPath string to locate components
+        :return: List of valid WebElement components
+        Example usage:
+        components = ComponentUtils.findComponentsByXPath(wait, "//button[@class='submit']")
+        for component in components:
+            component.click()
         """
-        Finds multiple components that match the same XPath.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            xpath: The XPath expression to find components.
-
-        Returns:
-            List of WebElement objects that match the XPath.
-
-        Raises:
-            Exception: If no components are found.
-        """
-
-        # Wait for at least one element to be present
+        # Wait for the presence of elements matching the XPath
         wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
 
         # Find all matching elements
