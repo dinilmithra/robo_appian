@@ -26,7 +26,7 @@ class LabelUtils:
         """
         xpath = f".//*[normalize-space(.)='{label}']"
         try:
-            component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
             raise RuntimeError(f"Label with text '{label}' not found.") from e
 
