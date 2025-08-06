@@ -19,7 +19,7 @@ class LinkUtils:
 
     @staticmethod
     def find(wait: WebDriverWait, label: str):
-        xpath = f'.//a[normalize-space(text())="{label}"]'
+        xpath = f'.//a[normalize-space(.)="{label}"]'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except TimeoutError as e:

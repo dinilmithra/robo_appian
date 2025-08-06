@@ -22,7 +22,7 @@ class SearchDropdownUtils:
             raise RuntimeError(f"Failed to locate or click input component with ID '{input_component_id}': {e}")
         InputUtils._setValueByComponent(input_component, value)
 
-        xpath = f'.//ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(text())="{value}"]][1]'
+        xpath = f'.//ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]][1]'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
@@ -31,7 +31,7 @@ class SearchDropdownUtils:
 
     @staticmethod
     def __selectSearchDropdownValueByPartialLabelText(wait: WebDriverWait, label: str, value: str):
-        xpath = f'.//div[./div/span[contains(normalize-space(text()), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        xpath = f'.//div[./div/span[contains(normalize-space(.), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
@@ -44,7 +44,7 @@ class SearchDropdownUtils:
 
     @staticmethod
     def __selectSearchDropdownValueByLabelText(wait: WebDriverWait, label: str, value: str):
-        xpath = f'.//div[./div/span[normalize-space(text())="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:

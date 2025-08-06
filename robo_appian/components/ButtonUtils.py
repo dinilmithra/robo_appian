@@ -13,7 +13,7 @@ class ButtonUtils:
     """
 
     @staticmethod
-    def __findByPartialLabelText(wait: WebDriverWait, label: str):
+    def _findByPartialLabelText(wait: WebDriverWait, label: str):
         """
         Finds a button by its label.
 
@@ -26,7 +26,7 @@ class ButtonUtils:
             WebElement representing the button.
 
         Example:
-            component = ButtonUtils.__findByLabelText(wait, "Submit")
+            component = ButtonUtils._findByPartialLabelText(wait, "Submit")
         """
         xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
         try:
@@ -36,7 +36,7 @@ class ButtonUtils:
         return component
 
     @staticmethod
-    def __findByLabelText(wait: WebDriverWait, label: str):
+    def _findByLabelText(wait: WebDriverWait, label: str):
         """
         Finds a button by its label.
 
@@ -49,9 +49,9 @@ class ButtonUtils:
             WebElement representing the button.
 
         Example:
-            component = ButtonUtils.__findByLabelText(wait, "Submit")
+            component = ButtonUtils._findByLabelText(wait, "Submit")
         """
-        xpath = f".//button[./span[normalize-space(text())='{label}']]"
+        xpath = f".//button[./span[normalize-space(.)='{label}']]"
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
@@ -68,7 +68,7 @@ class ButtonUtils:
             Example:
                 ButtonUtils.clickByPartialLabelText(wait, "Button Label")
         """
-        component = ButtonUtils.__findByPartialLabelText(wait, label)
+        component = ButtonUtils._findByPartialLabelText(wait, label)
         component.click()
 
     @staticmethod
@@ -81,7 +81,7 @@ class ButtonUtils:
             Example:
                 ButtonUtils.clickByLabelText(wait, "Button Label")
         """
-        component = ButtonUtils.__findByLabelText(wait, label)
+        component = ButtonUtils._findByLabelText(wait, label)
         component.click()
 
     @staticmethod

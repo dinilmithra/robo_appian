@@ -33,7 +33,7 @@ class TabUtils:
         Example:
             component = TabUtils.findSelectedTabByLabelText(wait, "Tab Label")
         """
-        xpath = f".//div[./div[./div/div/div/div/div/p/strong[normalize-space(text())='{label}']]/span[text()='Selected Tab.']]/div[@role='link']"
+        xpath = f".//div[./div[./div/div/div/div/div/p/strong[normalize-space(.)='{label}']]/span[text()='Selected Tab.']]/div[@role='link']"
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except TimeoutError as e:
