@@ -25,7 +25,7 @@ class DropdownUtils:
         Example:
             component = DropdownUtils.__findComboboxByPartialLabelText(wait, "Dropdown Label")
         """
-        xpath = f'.//div[./div/span[contains(normalize-space(text()), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'  # noqa: E501
+        xpath = f'.//div[./div/span[contains(normalize-space(.), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'  # noqa: E501
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
@@ -44,7 +44,7 @@ class DropdownUtils:
         Example:
             component = DropdownUtils.__findComboboxByLabelText(wait, "Dropdown Label")
         """
-        xpath = f'.//div[./div/span[normalize-space(text())="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'  # noqa: E501
+        xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'  # noqa: E501
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
@@ -96,7 +96,7 @@ class DropdownUtils:
                 print("The value does not exist in the dropdown.")
         """
 
-        xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(text())="{value}"]]'
+        xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]]'
         try:
             wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
             return True
@@ -116,7 +116,7 @@ class DropdownUtils:
         Example:
             DropdownUtils.selectDropdownValueByDropdownOptionId(wait, "dropdown_option_id", "Option Value")
         """
-        option_xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(text())="{value}"]]'
+        option_xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]]'
         try:
             try:
                 component = wait.until(EC.presence_of_element_located((By.XPATH, option_xpath)))
@@ -172,7 +172,7 @@ class DropdownUtils:
             else:
                 print("The dropdown is editable.")
         """
-        xpath = f'.//div[./div/span[normalize-space(text())="{label}"]]/div/div/p[text()]'
+        xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/p[text()]'
         try:
             wait._driver.find_element(By.XPATH, xpath)
             return True

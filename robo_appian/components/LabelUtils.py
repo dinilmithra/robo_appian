@@ -8,13 +8,13 @@ class LabelUtils:
     Utility class for interacting with label components in Appian UI.
     Usage Example:
         # Find a label by its text
-        component = LabelUtils.findByLabelText(wait, "Submit")
+        component = LabelUtils._findByLabelText(wait, "Submit")
         # Click a label by its text
         LabelUtils.clickByLabelText(wait, "Submit")
     """
 
     @staticmethod
-    def findByLabelText(wait: WebDriverWait, label: str):
+    def _findByLabelText(wait: WebDriverWait, label: str):
         """
         Finds a label element by its text.
 
@@ -22,9 +22,9 @@ class LabelUtils:
         :param label: The text of the label to find.
         :return: WebElement representing the label.
         Example:
-            component = LabelUtils.findByLabelText(wait, "Submit")
+            component = LabelUtils._findByLabelText(wait, "Submit")
         """
-        xpath = f".//*[normalize-space(text())='{label}']"
+        xpath = f".//*[normalize-space(.)='{label}']"
         try:
             component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         except Exception as e:
@@ -42,5 +42,5 @@ class LabelUtils:
         Example:
             LabelUtils.clickByLabelText(wait, "Submit")
         """
-        component = LabelUtils.findByLabelText(wait, label)
+        component = LabelUtils._findByLabelText(wait, label)
         component.click()

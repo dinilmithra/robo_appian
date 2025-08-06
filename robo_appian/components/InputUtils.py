@@ -31,7 +31,7 @@ class InputUtils:
             A list of Selenium WebElement representing the input components.
 
         Example:
-            InputUtils.__findInputComponentsByXpath(wait, './/div/label[normalize-space(text())="Username"]')
+            InputUtils.__findInputComponentsByXpath(wait, './/div/label[normalize-space(.)="Username"]')
         """
         label_components = ComponentUtils.findComponentsByXPath(wait, xpath)
         input_components = []
@@ -62,7 +62,7 @@ class InputUtils:
         Example:
             InputUtils.__findInputComponentsByPartialLabel(wait, "Username")
         """
-        xpath = f'.//div/label[contains(normalize-space(text()), "{label}")]'
+        xpath = f'.//div/label[contains(normalize-space(.), "{label}")]'
         components = InputUtils.__findInputComponentsByXpath(wait, xpath)
         return components
 
@@ -80,7 +80,7 @@ class InputUtils:
         Example:
             InputUtils.__findComponentsByLabel(wait, "Username")
         """
-        xpath = f'.//div/label[normalize-space(text())="{label}"]'
+        xpath = f'.//div/label[normalize-space(.)="{label}"]'
         components = InputUtils.__findInputComponentsByXpath(wait, xpath)
         return components
 
