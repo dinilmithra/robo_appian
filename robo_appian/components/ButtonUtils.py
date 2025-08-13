@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class ButtonUtils:
@@ -11,6 +12,11 @@ class ButtonUtils:
         from robo_appian.components.ButtonUtils import ButtonUtils
         ButtonUtils.clickByLabelText(wait, "Submit")
     """
+
+    @staticmethod
+    def __click(wait: WebDriverWait, component: WebElement):
+        wait.until(EC.element_to_be_clickable(component))
+        component.click()
 
     @staticmethod
     def _findByPartialLabelText(wait: WebDriverWait, label: str):
@@ -69,7 +75,7 @@ class ButtonUtils:
                 ButtonUtils.clickByPartialLabelText(wait, "Button Label")
         """
         component = ButtonUtils._findByPartialLabelText(wait, label)
-        component.click()
+        ButtonUtils.__click(wait, component)
 
     @staticmethod
     def clickByLabelText(wait: WebDriverWait, label: str):
@@ -82,7 +88,7 @@ class ButtonUtils:
                 ButtonUtils.clickByLabelText(wait, "Button Label")
         """
         component = ButtonUtils._findByLabelText(wait, label)
-        component.click()
+        ButtonUtils.__click(wait, component)
 
     @staticmethod
     def clickById(wait: WebDriverWait, id: str):
@@ -102,4 +108,4 @@ class ButtonUtils:
         except Exception as e:
             raise RuntimeError(f"Input button with id '{id}' not found or not clickable.") from e
 
-        component.click()
+        ButtonUtils.__click(wait, component)

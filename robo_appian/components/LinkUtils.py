@@ -22,8 +22,6 @@ class LinkUtils:
         xpath = f'.//a[normalize-space(.)="{label}"]'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(f"Could not find clickable link with label '{label}': {e}")
         except Exception as e:
             raise Exception(f"Could not find clickable link with label '{label}': {e}")
         return component

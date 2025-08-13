@@ -27,15 +27,11 @@ class SearchInputUtils:
             attribute: str = "aria-controls"
             dropdown_list_id = search_input_component.get_attribute(attribute)
             if dropdown_list_id:
-                InputUtils._setValueByComponent(search_input_component, value)
+                InputUtils._setValueByComponent(wait, search_input_component, value)
                 xpath = f'.//ul[@id="{dropdown_list_id}" and @role="listbox" ]/li[@role="option" and @tabindex="-1" and ./div/div/div/div/div/div/p[normalize-space(.)="{value}"][1]]'
                 try:
                     drop_down_item = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
                     drop_down_item = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-                except TimeoutError as e:
-                    raise TimeoutError(
-                        f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
-                    ) from e
                 except Exception as e:
                     raise RuntimeError(
                         f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."

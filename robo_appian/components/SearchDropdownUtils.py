@@ -15,17 +15,17 @@ class SearchDropdownUtils:
     """
 
     @staticmethod
-    def __selectSearchDropdownValueByDropdownId(wait, component_id, value):
+    def __selectSearchDropdownValueByDropdownId(wait: WebDriverWait, component_id: str, value: str):
         if not component_id:
             raise ValueError("Invalid component_id provided.")
 
+        input_component_id = str(component_id) + "_searchInput"
         try:
-            input_component_id = str(component_id) + "_searchInput"
             wait.until(EC.presence_of_element_located((By.ID, input_component_id)))
             input_component = wait.until(EC.element_to_be_clickable((By.ID, input_component_id)))
         except Exception as e:
             raise RuntimeError(f"Failed to locate or click input component with ID '{input_component_id}': {e}")
-        InputUtils._setValueByComponent(input_component, value)
+        InputUtils._setValueByComponent(wait, input_component, value)
 
         dropdown_option_id = str(component_id) + "_list"
 

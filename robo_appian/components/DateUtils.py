@@ -59,7 +59,7 @@ class DateUtils:
             DateUtils.setValueByLabelText(wait, "Start Date", "2023-10-01")
         """
         component = DateUtils.__findComponent(wait, label)
-        InputUtils._setValueByComponent(component, value)
+        InputUtils._setValueByComponent(wait, component, value)
         return component
 
     @staticmethod

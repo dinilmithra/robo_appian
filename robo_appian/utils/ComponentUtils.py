@@ -52,7 +52,7 @@ class ComponentUtils:
         child_component = ComponentUtils.findChildComponentByXpath(wait, parent_component, xpath)
         """
         try:
-            component = component.find_element(By.XPATH, xpath)
+            component = wait.until(lambda comp: component.find_element(By.XPATH, xpath))
         except Exception:
             raise Exception(f"Child component with XPath '{xpath}' not found within the given parent component.")
         return component

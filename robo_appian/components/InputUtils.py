@@ -85,7 +85,7 @@ class InputUtils:
         return components
 
     @staticmethod
-    def _setValueByComponent(component: WebElement, value: str):
+    def _setValueByComponent(wait: WebDriverWait, component: WebElement, value: str):
         """
         Sets a value in an input component.
         Parameters:
@@ -96,6 +96,7 @@ class InputUtils:
         Example:
             InputUtils._setValueByComponent(component, "test_value")
         """
+        wait.until(EC.element_to_be_clickable(component))
         component.clear()
         component.send_keys(value)
         return component
@@ -115,7 +116,7 @@ class InputUtils:
         """
 
         for component in input_components:
-            InputUtils._setValueByComponent(component, value)
+            InputUtils._setValueByComponent(wait, component, value)
 
     @staticmethod
     def setValueByPartialLabelText(wait: WebDriverWait, label: str, value: str):
@@ -161,5 +162,5 @@ class InputUtils:
             component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
         except Exception as e:
             raise Exception(f"Timeout or error finding input component with id '{component_id}': {e}")
-        InputUtils._setValueByComponent(component, value)
+        InputUtils._setValueByComponent(wait, component, value)
         return component
