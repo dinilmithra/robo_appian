@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class TabUtils:
@@ -17,47 +18,38 @@ class TabUtils:
         selected_tab = TabUtils.findSelectedTabByLabelText(wait, "Tab Label")
 
         # Select an inactive tab by its label
-        TabUtils.selectInactiveTabByLabelText(wait, "Inactive Tab Label")
+        TabUtils.selectTabByLabelText(wait, "Inactive Tab Label")
 
         driver.quit()
     """
 
     @staticmethod
-    def findSelectedTabByLabelText(wait, label):
-        """
-        Finds the currently selected tab by its label.
-
-        :param wait: Selenium WebDriverWait instance.
-        :param label: The label of the tab to find.
-        :return: WebElement representing the selected tab.
-        Example:
-            component = TabUtils.findSelectedTabByLabelText(wait, "Tab Label")
-        """
-        xpath = f".//div[./div[./div/div/div/div/div/p/strong[normalize-space(.)='{label}']]/span[text()='Selected Tab.']]/div[@role='link']"
+    def findTabByLabelText(wait, label):
+        xpath = f'//div/div[@role="link" ]/div/div/div/div/div/p[normalize-space(.)="{label}"]'
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(f"Could not find selected tab with label '{label}': {e}")
-        except Exception as e:
-            raise RuntimeError(f"Could not find selected tab with label '{label}': {e}")
+            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        except Exception:
+            raise Exception(f"Tab with label '{label}' not found.")
         return component
 
     @staticmethod
-    def selectInactiveTabByLabelText(wait, label):
-        """
-        Selects an inactive tab by its label.
-
-        :param wait: Selenium WebDriverWait instance.
-        :param label: The label of the tab to select.
-        :return: None
-        Example:
-            TabUtils.selectInactiveTabByLabelText(wait, "Tab Label")
-        """
-        xpath = f".//div[@role='link']/div/div/div/div/div[./p/span[text()='{label}']]"
+    def selectTabByLabelText(wait, label):
+        component = TabUtils.findTabByLabelText(wait, label)
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except TimeoutError as e:
-            raise TimeoutError(f"Could not find tab with label '{label}': {e}")
-        except Exception as e:
-            raise RuntimeError(f"Could not find tab with label '{label}': {e}")
+            component = wait.until(EC.element_to_be_clickable(component))
+        except Exception:
+            raise Exception(f"Tab with label '{label}' is not clickable.")
         component.click()
+
+    @staticmethod
+    def checkTabSelectedByLabelText(wait, label):
+        component = TabUtils.findTabByLabelText(wait, label)
+
+        select_text = "Selected Tab."
+        xpath = f'./span[normalize-space(.)="{select_text}"]'
+        try:
+            component = ComponentUtils.findChildComponentByXpath(wait, component, xpath)
+        except Exception:
+            return False
+
+        return True

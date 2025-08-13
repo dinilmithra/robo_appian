@@ -56,7 +56,7 @@ class ComponentDriver:
             case "Label":
                 match action:
                     case "Find":
-                        LabelUtils._findByLabelText(wait, label)
+                        LabelUtils.checkLabelExists(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Link":
@@ -86,7 +86,7 @@ class ComponentDriver:
             case "Tab":
                 match action:
                     case "Find":
-                        TabUtils.findSelectedTabByLabelText(wait, label)
+                        TabUtils.selectTabByLabelText(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case _:

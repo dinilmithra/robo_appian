@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 from robo_appian.components.InputUtils import InputUtils
 
 
@@ -14,13 +15,19 @@ class SearchDropdownUtils:
     """
 
     @staticmethod
-    def __selectSearchDropdownValueByDropdownOptionId(wait, component_id, dropdown_option_id, value):
-        input_component_id = str(component_id) + "_searchInput"
+    def __selectSearchDropdownValueByDropdownId(wait, component_id, value):
+        if not component_id:
+            raise ValueError("Invalid component_id provided.")
+
         try:
+            input_component_id = str(component_id) + "_searchInput"
+            wait.until(EC.presence_of_element_located((By.ID, input_component_id)))
             input_component = wait.until(EC.element_to_be_clickable((By.ID, input_component_id)))
         except Exception as e:
             raise RuntimeError(f"Failed to locate or click input component with ID '{input_component_id}': {e}")
         InputUtils._setValueByComponent(input_component, value)
+
+        dropdown_option_id = str(component_id) + "_list"
 
         xpath = f'.//ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]][1]'
         try:
@@ -33,26 +40,35 @@ class SearchDropdownUtils:
     def __selectSearchDropdownValueByPartialLabelText(wait: WebDriverWait, label: str, value: str):
         xpath = f'.//div[./div/span[contains(normalize-space(.), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
             raise RuntimeError(f"Failed to locate or click dropdown component with XPath '{xpath}': {e}")
-        component_id = component.get_attribute("aria-labelledby")
-        dropdown_id = component.get_attribute("aria-controls")
-        component.click()
 
-        SearchDropdownUtils.__selectSearchDropdownValueByDropdownOptionId(wait, component_id, dropdown_id, value)
+        SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(wait, combobox, value)
 
     @staticmethod
     def __selectSearchDropdownValueByLabelText(wait: WebDriverWait, label: str, value: str):
-        xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        xpath = (
+            f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
+        )
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
             raise RuntimeError(f"Failed to locate or click dropdown component with XPath '{xpath}': {e}")
-        component_id = component.get_attribute("aria-labelledby")
-        dropdown_option_id = component.get_attribute("aria-controls")
-        component.click()
-        SearchDropdownUtils.__selectSearchDropdownValueByDropdownOptionId(wait, component_id, dropdown_option_id, value)
+        SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(wait, combobox, value)
+
+    @staticmethod
+    def _selectSearchDropdownValueByComboboxComponent(wait: WebDriverWait, combobox: WebElement, value: str):
+        id = combobox.get_attribute("id")
+        if id is not None:
+            component_id = id.rsplit("_value", 1)[0]
+        else:
+            raise RuntimeError("Combobox element does not have an 'id' attribute.")
+
+        wait.until(EC.element_to_be_clickable(combobox))
+        combobox.click()
+
+        SearchDropdownUtils.__selectSearchDropdownValueByDropdownId(wait, component_id, value)
 
     @staticmethod
     def selectSearchDropdownValueByLabelText(wait: WebDriverWait, dropdown_label: str, value: str):

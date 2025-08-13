@@ -14,7 +14,7 @@ class LabelUtils:
     """
 
     @staticmethod
-    def _findByLabelText(wait: WebDriverWait, label: str):
+    def __findByLabelText(wait: WebDriverWait, label: str):
         """
         Finds a label element by its text.
 
@@ -26,7 +26,7 @@ class LabelUtils:
         """
         xpath = f".//*[normalize-space(.)='{label}']"
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
             raise RuntimeError(f"Label with text '{label}' not found.") from e
 
@@ -42,5 +42,14 @@ class LabelUtils:
         Example:
             LabelUtils.clickByLabelText(wait, "Submit")
         """
-        component = LabelUtils._findByLabelText(wait, label)
+        component = LabelUtils.__findByLabelText(wait, label)
+        wait.until(EC.element_to_be_clickable(component))
         component.click()
+
+    @staticmethod
+    def checkLabelExists(wait: WebDriverWait, label: str):
+        try:
+            LabelUtils.__findByLabelText(wait, label)
+        except Exception:
+            return False
+        return True

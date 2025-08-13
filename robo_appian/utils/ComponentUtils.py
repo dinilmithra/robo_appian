@@ -34,7 +34,7 @@ class ComponentUtils:
         return yesterday_formatted
 
     @staticmethod
-    def findChildComponent(wait: WebDriverWait, component: WebElement, xpath: str):
+    def findChildComponentByXpath(wait: WebDriverWait, component: WebElement, xpath: str):
         """Finds a child component using the given XPath within a parent component.
 
         :param wait: WebDriverWait instance to wait for elements
@@ -49,9 +49,13 @@ class ComponentUtils:
         wait = WebDriverWait(driver, 10)
         parent_component = driver.find_element(By.ID, "parent")
         xpath = ".//button[@class='child']"
-        child_component = ComponentUtils.findChildComponent(wait, parent_component, xpath)
+        child_component = ComponentUtils.findChildComponentByXpath(wait, parent_component, xpath)
         """
-        return component.find_element(By.XPATH, xpath)
+        try:
+            component = component.find_element(By.XPATH, xpath)
+        except Exception:
+            raise Exception(f"Child component with XPath '{xpath}' not found within the given parent component.")
+        return component
 
     @staticmethod
     def findComponentUsingXpathAndClick(wait: WebDriverWait, xpath: str):
