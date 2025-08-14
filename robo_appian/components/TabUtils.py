@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webelement import WebElement
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
@@ -22,9 +24,16 @@ class TabUtils:
 
         driver.quit()
     """
+    @staticmethod
+    def __click(wait: WebDriverWait, component: WebElement, label: str):
+        try:
+            component = wait.until(EC.element_to_be_clickable(component))
+            component.click()
+        except Exception:
+            raise Exception(f"Tab with label '{label}' is not clickable.")
 
     @staticmethod
-    def findTabByLabelText(wait, label):
+    def findTabByLabelText(wait: WebDriverWait, label: str) -> WebElement:
         xpath = f'//div/div[@role="link" ]/div/div/div/div/div/p[normalize-space(.)="{label}"]'
         try:
             component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
@@ -33,16 +42,12 @@ class TabUtils:
         return component
 
     @staticmethod
-    def selectTabByLabelText(wait, label):
+    def selectTabByLabelText(wait: WebDriverWait, label: str):
         component = TabUtils.findTabByLabelText(wait, label)
-        try:
-            component = wait.until(EC.element_to_be_clickable(component))
-        except Exception:
-            raise Exception(f"Tab with label '{label}' is not clickable.")
-        component.click()
+        TabUtils.__click(wait, component, label)
 
     @staticmethod
-    def checkTabSelectedByLabelText(wait, label):
+    def checkTabSelectedByLabelText(wait: WebDriverWait, label: str):
         component = TabUtils.findTabByLabelText(wait, label)
 
         select_text = "Selected Tab."
