@@ -73,21 +73,31 @@ class ComponentUtils:
         xpath = "//button[@id='submit']"
         ComponentUtils.findComponentUsingXpathAndClick(wait, xpath)
         """
-        component = ComponentUtils.findComponentUsingXpath(wait, xpath)
+        component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
         component.click()
 
     @staticmethod
-    def findComponentUsingXpath(wait: WebDriverWait, xpath: str):
-        """Finds a component using the given XPath in the current WebDriver instance.
+    def findComponentById(wait: WebDriverWait, id: str):
+        try:
+            component = wait.until(EC.presence_of_element_located((By.ID, id)))
+        except Exception:
+            raise Exception(f"Component with ID '{id}' not found.")
+        return component
 
-        :param wait: WebDriverWait instance to wait for elements
-        :param xpath: XPath string to locate the component
-        :return: WebElement if found, raises NoSuchElementException otherwise
-        Example usage:
-        component = ComponentUtils.findComponentUsingXpath(wait, "//button[@id='submit']")
-        component.click()
+    @staticmethod
+    def findVisibleComponentByXpath(wait: WebDriverWait, xpath: str):
         """
-        component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+        Finds a component using the given XPath in the current WebDriver instance.
+
+            :param wait: WebDriverWait instance to wait for elements
+            :param xpath: XPath string to locate the component
+            :return: WebElement if found, raises NoSuchElementException otherwise
+
+        Example usage:
+            component = ComponentUtils.findVisibleComponentByXpath(wait, "//button[@id='submit']")
+            component.click()
+        """
+        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         return component
 
     @staticmethod
@@ -95,7 +105,7 @@ class ComponentUtils:
         """Checks if a component with the given XPath exists in the current WebDriver instance."""
         status = False
         try:
-            ComponentUtils.findComponentUsingXpath(wait, xpath)
+            ComponentUtils.findVisibleComponentByXpath(wait, xpath)
             status = True
         except NoSuchElementException:
             pass

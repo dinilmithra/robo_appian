@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
+from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class ButtonUtils:
@@ -36,32 +37,18 @@ class ButtonUtils:
         """
         xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
         except Exception as e:
             raise RuntimeError(f"Button with label '{label}' not found or not clickable.") from e
         return component
 
     @staticmethod
-    def _findByLabelText(wait: WebDriverWait, label: str):
-        """
-        Finds a button by its label.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The label of the button to find.
-            label: The label of the button to find.
-
-        Returns:
-            WebElement representing the button.
-
-        Example:
-            component = ButtonUtils._findByLabelText(wait, "Submit")
-        """
+    def __findByLabelText(wait: WebDriverWait, label: str):
         xpath = f".//button[./span[normalize-space(.)='{label}']]"
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
         except Exception as e:
-            raise RuntimeError(f"Button with label '{label}' not found or not clickable.") from e
+            raise RuntimeError(f"Button with label '{label}' not found.") from e
         return component
 
     @staticmethod
@@ -87,7 +74,7 @@ class ButtonUtils:
             Example:
                 ButtonUtils.clickByLabelText(wait, "Button Label")
         """
-        component = ButtonUtils._findByLabelText(wait, label)
+        component = ButtonUtils.__findByLabelText(wait, label)
         ButtonUtils.__click(wait, component)
 
     @staticmethod
@@ -109,3 +96,19 @@ class ButtonUtils:
             raise RuntimeError(f"Input button with id '{id}' not found or not clickable.") from e
 
         ButtonUtils.__click(wait, component)
+
+    @staticmethod
+    def checkButtonExistsByLabelText(wait: WebDriverWait, label: str):
+        try:
+            ButtonUtils.__findByLabelText(wait, label)
+        except Exception:
+            return False
+        return True
+
+    @staticmethod
+    def checkButtonExistsByPartialLabelText(wait: WebDriverWait, label: str):
+        try:
+            ButtonUtils.__findByLabelText(wait, label)
+        except Exception:
+            return False
+        return True

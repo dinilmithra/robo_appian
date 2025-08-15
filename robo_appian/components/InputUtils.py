@@ -1,5 +1,4 @@
 from robo_appian.utils.ComponentUtils import ComponentUtils
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
@@ -19,70 +18,53 @@ class InputUtils:
     """
 
     @staticmethod
-    def __findInputComponentsByXpath(wait: WebDriverWait, xpath: str):
+    def __findComponentByPartialLabel(wait: WebDriverWait, label: str):
         """
-        Finds input components by their XPath.
-
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            xpath: The XPath expression to locate the input components.
-
-        Returns:
-            A list of Selenium WebElement representing the input components.
-
-        Example:
-            InputUtils.__findInputComponentsByXpath(wait, './/div/label[normalize-space(.)="Username"]')
-        """
-        label_components = ComponentUtils.findComponentsByXPath(wait, xpath)
-        input_components = []
-        for label_component in label_components:
-            attribute: str = "for"
-            component_id = label_component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
-            if component_id:
-                try:
-                    component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
-                    input_components.append(component)
-                except Exception as e:
-                    raise Exception(f"Could not find clickable input component with id '{component_id}': {e}")
-            else:
-                raise ValueError(f"Input component with label '{label_component.text}' does not have 'for' attribute.")
-        return input_components
-
-    @staticmethod
-    def __findInputComponentsByPartialLabel(wait: WebDriverWait, label: str):
-        """Finds input components by their label text, allowing for partial matches.
+        Finds an input component by its label text, allowing for partial matches.
 
         Parameters:
             wait: Selenium WebDriverWait instance.
             label: The visible text label of the input component, allowing for partial matches.
 
         Returns:
-            A list of Selenium WebElement representing the input components.
+            A Selenium WebElement representing the input component.
 
         Example:
-            InputUtils.__findInputComponentsByPartialLabel(wait, "Username")
+            InputUtils.__findInputComponentByPartialLabel(wait, "User")
         """
+
         xpath = f'.//div/label[contains(normalize-space(.), "{label}")]'
-        components = InputUtils.__findInputComponentsByXpath(wait, xpath)
-        return components
+        label_component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+
+        input_id = label_component.get_attribute("for")
+        if input_id is None:
+            raise ValueError(f"Label component with text '{label}' does not have a 'for' attribute.")
+
+        component = ComponentUtils.findComponentById(wait, input_id)
+        return component
 
     @staticmethod
-    def __findComponentsByLabel(wait: WebDriverWait, label: str):
-        """Finds input components by their label text.
-
+    def __findComponentByLabel(wait: WebDriverWait, label: str):
+        """Finds a component by its label text.
         Parameters:
             wait: Selenium WebDriverWait instance.
             label: The visible text label of the input component.
 
         Returns:
-            A list of Selenium WebElement representing the input components.
+            A Selenium WebElement representing the input component.
 
         Example:
-            InputUtils.__findComponentsByLabel(wait, "Username")
+            InputUtils.__findComponentByLabel(wait, "Username")
         """
+
         xpath = f'.//div/label[normalize-space(.)="{label}"]'
-        components = InputUtils.__findInputComponentsByXpath(wait, xpath)
-        return components
+        label_component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        input_id = label_component.get_attribute("for")
+        if input_id is None:
+            raise ValueError(f"Label component with text '{label}' does not have a 'for' attribute.")
+
+        component = ComponentUtils.findComponentById(wait, input_id)
+        return component
 
     @staticmethod
     def _setValueByComponent(wait: WebDriverWait, component: WebElement, value: str):
@@ -102,26 +84,20 @@ class InputUtils:
         return component
 
     @staticmethod
-    def __setValueByComponents(wait: WebDriverWait, input_components, value: str):
+    def setValueByPartialLabelText(wait: WebDriverWait, label: str, value: str):
         """
-        Sets a value in an input component identified by its label text.
+        Sets a value in an input component identified by its partial label text.
+
         Parameters:
             wait: Selenium WebDriverWait instance.
-            label: The visible text label of the input component.
+            label: The visible text label of the input component (partial match).
             value: The value to set in the input field.
+
         Returns:
             None
-        Example:
-            InputUtils.setValueByLabelText(wait, "Username", "test_user")
         """
-
-        for component in input_components:
-            InputUtils._setValueByComponent(wait, component, value)
-
-    @staticmethod
-    def setValueByPartialLabelText(wait: WebDriverWait, label: str, value: str):
-        input_components = InputUtils.__findInputComponentsByPartialLabel(wait, label)
-        InputUtils.__setValueByComponents(wait, input_components, value)
+        component = InputUtils.__findComponentByPartialLabel(wait, label)
+        InputUtils._setValueByComponent(wait, component, value)
 
     @staticmethod
     def setValueByLabelText(wait: WebDriverWait, label: str, value: str):
@@ -139,17 +115,17 @@ class InputUtils:
         Example:
             InputUtils.setValueByLabelText(wait, "Username", "test_user")
         """
-        input_components = InputUtils.__findComponentsByLabel(wait, label)
-        InputUtils.__setValueByComponents(wait, input_components, value)
+        component = InputUtils.__findComponentByLabel(wait, label)
+        InputUtils._setValueByComponent(wait, component, value)
 
     @staticmethod
-    def setValueById(wait: WebDriverWait, component_id: str, value: str):
+    def setValueById(wait: WebDriverWait, id: str, value: str):
         """
         Sets a value in an input component identified by its ID.
 
         Parameters:
             wait: Selenium WebDriverWait instance.
-            component_id: The ID of the input component.
+            id: The ID of the input component.
             value: The value to set in the input field.
 
         Returns:
@@ -158,9 +134,28 @@ class InputUtils:
         Example:
             InputUtils.setValueById(wait, "inputComponentId", "test_value")
         """
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
-        except Exception as e:
-            raise Exception(f"Timeout or error finding input component with id '{component_id}': {e}")
+        # try:
+        #     component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
+        # except Exception as e:
+        #     raise Exception(f"Timeout or error finding input component with id '{component_id}': {e}")
+        component = ComponentUtils.findComponentById(wait, id)
         InputUtils._setValueByComponent(wait, component, value)
-        return component
+
+    @staticmethod
+    def setValueByPlaceholderText(wait: WebDriverWait, text: str, value: str):
+        """Sets a value in an input component identified by its placeholder text.
+
+        Parameters:
+            wait: Selenium WebDriverWait instance.
+            text: The placeholder text of the input component.
+            value: The value to set in the input field.
+
+        Returns:
+            None
+
+        Example:
+            InputUtils.setValueByPlaceholderText(wait, "Enter your name", "John Doe")
+        """
+        xpath = f'.//input[@placeholder="{text}"]'
+        component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        InputUtils._setValueByComponent(wait, component, value)

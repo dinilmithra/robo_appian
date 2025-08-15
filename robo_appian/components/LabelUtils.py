@@ -1,6 +1,6 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class LabelUtils:
@@ -26,7 +26,8 @@ class LabelUtils:
         """
         xpath = f".//*[normalize-space(.)='{label}']"
         try:
-            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+            # component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+            component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
         except Exception as e:
             raise RuntimeError(f"Label with text '{label}' not found.") from e
 
