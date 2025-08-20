@@ -22,30 +22,6 @@ class TableUtils:
     """
 
     @staticmethod
-    def findTableByColumnName(wait: WebDriverWait, columnName: str):
-        """
-        Finds a table component by its column name.
-
-        :param wait: Selenium WebDriverWait instance.
-        :param columnName: The name of the column to search for.
-        :return: WebElement representing the table.
-        Example:
-            component = TableUtils.findTableByColumnName(wait, "Status")
-        """
-
-        xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]'
-        try:
-            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f"Could not find table with column name '{columnName}': {e}")
-
-        try:
-            component = wait.until(EC.element_to_be_clickable(component))
-        except Exception as e:
-            raise Exception(f"Table found by column name '{columnName}' is not clickable: {e}")
-        return component
-
-    @staticmethod
     def rowCount(tableObject):
         """
         Counts the number of rows in a table.
@@ -98,7 +74,8 @@ class TableUtils:
 
     @staticmethod
     def __findRowByColumnNameAndRowNumber(wait, rowNumber, columnName):
-        xpath = f'.//table[./thead/tr/th/div[normalize-space(.)="{columnName}"] ]/tbody/tr[@data-dnd-name="row {rowNumber + 1}"]'
+        # xpath = f'.//table[./thead/tr/th/div[normalize-space(.)="{columnName}"] ]/tbody/tr[@data-dnd-name="row {rowNumber + 1}"]'
+        xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]/tbody/tr[@data-dnd-name="row {rowNumber + 1}" and not(ancestor::*[@aria-hidden="true"])]'
         row = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return row
 
@@ -134,7 +111,8 @@ class TableUtils:
 
     @staticmethod
     def findComponentByColumnNameAndRowNumber(wait, rowNumber, columnName):
-        xpath = f'.//table/thead/tr/th[./div[normalize-space(.)="{columnName}"]]'
+        # xpath = f'.//table/thead/tr/th[./div[normalize-space(.)="{columnName}"]]'
+        xpath = f'.//table/thead/tr/th[@abbr="{columnName}" and not(ancestor::*[@aria-hidden="true"]) ]'
         column = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         id = column.get_attribute("id")
         parts = id.rsplit("_", 1)
@@ -144,4 +122,28 @@ class TableUtils:
         xpath = f"./td[{columnNumber + 1}]/*"
         component = ComponentUtils.findChildComponentByXpath(wait, tableRow, xpath)
         component = wait.until(EC.element_to_be_clickable(component))
+        return component
+
+    @staticmethod
+    def findTableByColumnName(wait: WebDriverWait, columnName: str):
+        """
+        Finds a table component by its column name.
+
+        :param wait: Selenium WebDriverWait instance.
+        :param columnName: The name of the column to search for.
+        :return: WebElement representing the table.
+        Example:
+            component = TableUtils.findTableByColumnName(wait, "Status")
+        """
+
+        xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]'
+        try:
+            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        except Exception as e:
+            raise Exception(f"Could not find table with column name '{columnName}': {e}")
+
+        try:
+            component = wait.until(EC.element_to_be_clickable(component))
+        except Exception as e:
+            raise Exception(f"Table found by column name '{columnName}' is not clickable: {e}")
         return component

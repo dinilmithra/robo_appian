@@ -56,7 +56,7 @@ class ComponentDriver:
             case "Label":
                 match action:
                     case "Find":
-                        LabelUtils.checkLabelExists(wait, label)
+                        LabelUtils.isLabelExists(wait, label)
                     case _:
                         raise ValueError(f"Unsupported action for {type}: {action}")
             case "Link":

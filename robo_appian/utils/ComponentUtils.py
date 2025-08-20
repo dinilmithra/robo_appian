@@ -58,30 +58,19 @@ class ComponentUtils:
         return component
 
     @staticmethod
-    def findComponentUsingXpathAndClick(wait: WebDriverWait, xpath: str):
-        """Finds a component using the given XPath and clicks it.
-
-        :param wait: WebDriverWait instance to wait for elements
-        :param xpath: XPath string to locate the component
-        :return: None
-        Example usage:
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium import webdriver
-
-        driver = webdriver.Chrome()
-        wait = WebDriverWait(driver, 10)
-        xpath = "//button[@id='submit']"
-        ComponentUtils.findComponentUsingXpathAndClick(wait, xpath)
-        """
-        component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
-        component.click()
-
-    @staticmethod
     def findComponentById(wait: WebDriverWait, id: str):
         try:
             component = wait.until(EC.presence_of_element_located((By.ID, id)))
         except Exception:
             raise Exception(f"Component with ID '{id}' not found.")
+        return component
+
+    @staticmethod
+    def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
+        try:
+            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        except Exception:
+            raise Exception(f"Component with XPath '{xpath}' not visible.")
         return component
 
     @staticmethod
@@ -97,7 +86,10 @@ class ComponentUtils:
             component = ComponentUtils.findVisibleComponentByXpath(wait, "//button[@id='submit']")
             component.click()
         """
-        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        try:
+            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        except Exception:
+            raise Exception(f"Component with XPath '{xpath}' not visible.")
         return component
 
     @staticmethod
@@ -200,3 +192,50 @@ class ComponentUtils:
             return valid_components
 
         raise Exception(f"No valid components found for XPath: {xpath}")
+
+    @staticmethod
+    def findComponentByXPath(wait: WebDriverWait, xpath: str):
+        # component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+        component = wait._driver.find_element(By.XPATH, xpath)
+        return component
+
+    @staticmethod
+    def findComponentUsingXpathAndClick(wait: WebDriverWait, xpath: str):
+        """Finds a component using the given XPath and clicks it.
+
+        :param wait: WebDriverWait instance to wait for elements
+        :param xpath: XPath string to locate the component
+        :return: None
+        Example usage:
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium import webdriver
+
+        driver = webdriver.Chrome()
+        wait = WebDriverWait(driver, 10)
+        xpath = "//button[@id='submit']"
+        ComponentUtils.findComponentUsingXpathAndClick(wait, xpath)
+        """
+
+        component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        ComponentUtils.click(wait, component)
+
+    @staticmethod
+    def click(wait: WebDriverWait, component: WebElement):
+        """
+        Clicks the given component after waiting for it to be clickable.
+
+            :param wait: WebDriverWait instance to wait for elements
+            :param component: WebElement representing the component to click
+            :return: None
+        Example usage:
+            ComponentUtils.click(wait, component)
+        """
+        wait.until(EC.element_to_be_clickable(component))
+        component.click()
+
+    @staticmethod
+    def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
+        try:
+            wait.until(EC.staleness_of(component))
+        except Exception:
+            raise Exception("Component did not become invisible (stale) within the timeout period.")

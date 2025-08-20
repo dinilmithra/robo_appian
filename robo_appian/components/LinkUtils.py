@@ -19,9 +19,10 @@ class LinkUtils:
 
     @staticmethod
     def find(wait: WebDriverWait, label: str):
-        xpath = f'.//a[normalize-space(.)="{label}"]'
+        # xpath = f'.//a[normalize-space(.)="{label}"]'
+        xpath = f'.//a[normalize-space(.)="{label}" and not(ancestor::*[@aria-hidden="true"])]'
         try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         except Exception as e:
             raise Exception(f"Could not find clickable link with label '{label}': {e}")
         return component
@@ -40,5 +41,6 @@ class LinkUtils:
         """
 
         component = LinkUtils.find(wait, label)
+        wait.until(EC.element_to_be_clickable(component))
         component.click()
         return component

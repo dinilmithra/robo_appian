@@ -33,7 +33,7 @@ class SearchInputUtils:
                     drop_down_item = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
                     drop_down_item = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
                 except Exception as e:
-                    raise RuntimeError(
+                    raise Exception(
                         f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
                     ) from e
                 drop_down_item.click()
