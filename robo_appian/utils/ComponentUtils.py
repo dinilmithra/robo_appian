@@ -238,4 +238,15 @@ class ComponentUtils:
         try:
             wait.until(EC.staleness_of(component))
         except Exception:
-            raise Exception("Component did not become invisible (stale) within the timeout period.")
+            raise Exception("Component did not become invisible (stale) within the timeout period.")    
+        
+    @staticmethod
+    def isComponentPresentByXpath(wait: WebDriverWait, xpath: str):
+        status = False
+        try:
+            wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+            status = True
+        except NoSuchElementException:
+            pass
+
+        return status
