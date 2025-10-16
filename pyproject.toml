@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robo_appian"
-version = "0.0.19"
+version = "0.0.21"
 description = "Automate your Appian code testing with Python. Boost quality, save time."
 authors = ["Dinil Mithra <dinilmithra@mailme@gmail.com>"]
 readme = "README.md"
