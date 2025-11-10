@@ -25,7 +25,7 @@ class LabelUtils:
         Example:
             component = LabelUtils._findByLabelText(wait, "Submit")
         """
-        xpath = f'.//*[normalize-space(.)="{label}"]'
+        xpath = f'//*[normalize-space(.)="{label}"]'
         try:
             # component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
             component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
