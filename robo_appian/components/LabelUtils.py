@@ -69,7 +69,8 @@ class LabelUtils:
     @staticmethod
     def waitForLabelToBeVisible(wait: WebDriverWait, label: str):
         try:
-            xpath = f'.//*[normalize-space(.)="{label}"]'
+            # xpath = f'.//*[normalize-space(.)="{label}"]'
+            xpath = f'//*[normalize-space(text())="{label}" and not(*[normalize-space(text())="{label}"])]'
             wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
             raise Exception(f"Label with text '{label}' not found.") from e

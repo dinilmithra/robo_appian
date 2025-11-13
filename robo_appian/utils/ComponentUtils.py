@@ -34,7 +34,9 @@ class ComponentUtils:
         return yesterday_formatted
 
     @staticmethod
-    def findChildComponentByXpath(wait: WebDriverWait, component: WebElement, xpath: str):
+    def findChildComponentByXpath(
+        wait: WebDriverWait, component: WebElement, xpath: str
+    ):
         """Finds a child component using the given XPath within a parent component.
 
         :param wait: WebDriverWait instance to wait for elements
@@ -54,7 +56,9 @@ class ComponentUtils:
         try:
             component = wait.until(lambda comp: component.find_element(By.XPATH, xpath))
         except Exception:
-            raise Exception(f"Child component with XPath '{xpath}' not found within the given parent component.")
+            raise Exception(
+                f"Child component with XPath '{xpath}' not found within the given parent component."
+            )
         return component
 
     @staticmethod
@@ -139,7 +143,9 @@ class ComponentUtils:
         length = 0
 
         try:
-            component = wait.until(EC.presence_of_all_elements_located((By.XPATH, xpath)))
+            component = wait.until(
+                EC.presence_of_all_elements_located((By.XPATH, xpath))
+            )
             length = len(component)
         except NoSuchElementException:
             pass
@@ -238,8 +244,10 @@ class ComponentUtils:
         try:
             wait.until(EC.staleness_of(component))
         except Exception:
-            raise Exception("Component did not become invisible (stale) within the timeout period.")    
-        
+            raise Exception(
+                "Component did not become invisible (stale) within the timeout period."
+            )
+
     @staticmethod
     def isComponentPresentByXpath(wait: WebDriverWait, xpath: str):
         status = False
@@ -250,3 +258,21 @@ class ComponentUtils:
             pass
 
         return status
+
+    @staticmethod
+    def waitForElementToBeVisibleById(wait: WebDriverWait, id: str):
+        return wait.until(EC.visibility_of_element_located((By.ID, id)))
+
+    @staticmethod
+    def waitForElementNotToBeVisibleById(wait: WebDriverWait, id: str):
+        return wait.until(EC.invisibility_of_element_located((By.ID, id)))
+
+    @staticmethod
+    def waitForElementToBeVisibleByText(wait: WebDriverWait, text: str):
+        xpath = f'//*[normalize-space(text())="{text}" and not(*[normalize-space(text())="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        return wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+
+    @staticmethod
+    def waitForElementNotToBeVisibleByText(wait: WebDriverWait, text: str):
+        xpath = f'//*[normalize-space(text())="{text}" and not(*[normalize-space(text())="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
