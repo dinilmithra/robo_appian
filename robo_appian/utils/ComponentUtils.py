@@ -1,3 +1,6 @@
+
+import tomllib
+from pathlib import Path
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -9,6 +12,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class ComponentUtils:
+    
+    @staticmethod
+    def get_version():
+        try:
+            toml_path = Path(__file__).parent.parent / "pyproject.toml"
+            with open(toml_path, "rb") as f:
+                data = tomllib.load(f)
+                return data.get("project", {}).get("version", "0.0.0")
+        except Exception:
+            return "0.0.0"
+    
     @staticmethod
     def today():
         """

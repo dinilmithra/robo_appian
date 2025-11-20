@@ -7,8 +7,9 @@ from robo_appian.components.LabelUtils import LabelUtils
 from robo_appian.components.LinkUtils import LinkUtils
 from robo_appian.components.TableUtils import TableUtils
 from robo_appian.components.TabUtils import TabUtils
+from robo_appian.components.SearchInputUtils import SearchInputUtils
 
-__version__ = "0.0.2"
+__version__ = ComponentUtils.get_version()
 
 __all__ = [
     "ButtonUtils",
@@ -19,5 +20,6 @@ __all__ = [
     "LabelUtils",
     "LinkUtils",
     "TableUtils",
-    "TabUtils"
+    "TabUtils",
+    "SearchInputUtils"
 ]

@@ -9,8 +9,9 @@ from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
 from robo_appian.components.TableUtils import TableUtils
 from robo_appian.components.TabUtils import TabUtils
 from robo_appian.utils.BrowserUtils import BrowserUtils
+from robo_appian.components.SearchInputUtils import SearchInputUtils
 
-__version__ = "0.0.2"
+__version__ = ComponentUtils.get_version()
 
 __all__ = [
     "ButtonUtils",
@@ -24,4 +25,5 @@ __all__ = [
     "TableUtils",
     "TabUtils",
     "BrowserUtils",
+    "SearchInputUtils"
 ]
