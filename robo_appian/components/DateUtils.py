@@ -24,27 +24,14 @@ class DateUtils:
         Example:
             DateUtils.__findComponent(wait, "Start Date")
         """
-        # xpath = f".//div/label[text()='{label}']"
-        # try:
-        #     component: WebElement = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        # except Exception as e:
-        #     raise Exception(f"Could not find clickable date component with label '{label}': {e}")
-
-        # attribute: str = "for"
-        # component_id = component.get_attribute(attribute)  # type: ignore[reportUnknownMemberType]
-        # if component_id is None:
-        #     raise ValueError(f"Could not find component using {attribute} attribute for label '{label}'.")
-
-        # try:
-        #     component = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
-        # except Exception as e:
-        #     raise Exception(f"Could not find clickable date input with id '{component_id}': {e}")
 
         xpath = f'.//div[./div/label[text()="{label}"]]/div/div/div/input'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Could not find clickable date component with label '{label}': {e}")
+            raise Exception(
+                f"Could not find clickable date component with label '{label}': {e}"
+            )
         return component
 
     @staticmethod

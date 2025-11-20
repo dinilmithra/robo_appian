@@ -8,12 +8,13 @@ from robo_appian.components.LinkUtils import LinkUtils
 from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
 from robo_appian.components.TableUtils import TableUtils
 from robo_appian.components.TabUtils import TabUtils
+from robo_appian.utils.BrowserUtils import BrowserUtils
 
 __version__ = "0.0.2"
 
 __all__ = [
     "ButtonUtils",
-    "ComponentUtils", 
+    "ComponentUtils",
     "DateUtils",
     "DropdownUtils",
     "InputUtils",
@@ -21,5 +22,6 @@ __all__ = [
     "LinkUtils",
     "SearchDropdownUtils",
     "TableUtils",
-    "TabUtils"
+    "TabUtils",
+    "BrowserUtils",
 ]

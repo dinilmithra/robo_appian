@@ -25,10 +25,10 @@ class LabelUtils:
         Example:
             component = LabelUtils._findByLabelText(wait, "Submit")
         """
-        xpath = f'//*[normalize-space(.)="{label}"]'
+        xpath = f'//*[normalize-space(translate(., "\u00a0", " "))="{label}"]'
         try:
             # component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-            component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+            component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
         except Exception as e:
             raise Exception(f"Label with text '{label}' not found.") from e
 
@@ -59,18 +59,9 @@ class LabelUtils:
     @staticmethod
     def isLabelExistsAfterLoad(wait: WebDriverWait, label: str):
         try:
-            xpath = f'.//*[normalize-space(.)="{label}"]'
+            xpath = f'.//*[normalize-space(translate(., "\u00a0", " "))="{label}"]'
             wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
             wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         except Exception:
             return False
         return True
-
-    @staticmethod
-    def waitForLabelToBeVisible(wait: WebDriverWait, label: str):
-        try:
-            # xpath = f'.//*[normalize-space(.)="{label}"]'
-            xpath = f'//*[normalize-space(text())="{label}" and not(*[normalize-space(text())="{label}"])]'
-            wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f"Label with text '{label}' not found.") from e

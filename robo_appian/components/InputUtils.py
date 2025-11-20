@@ -34,7 +34,7 @@ class InputUtils:
         """
 
         xpath = f'.//div/label[contains(normalize-space(.), "{label}")]'
-        label_component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        label_component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
 
         input_id = label_component.get_attribute("for")
         if input_id is None:
@@ -58,7 +58,7 @@ class InputUtils:
         """
 
         xpath = f'.//div/label[normalize-space(.)="{label}"]'
-        label_component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        label_component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
         input_id = label_component.get_attribute("for")
         if input_id is None:
             raise ValueError(f"Label component with text '{label}' does not have a 'for' attribute.")
@@ -157,5 +157,5 @@ class InputUtils:
             InputUtils.setValueByPlaceholderText(wait, "Enter your name", "John Doe")
         """
         xpath = f'.//input[@placeholder="{text}"]'
-        component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
         InputUtils._setValueByComponent(wait, component, value)

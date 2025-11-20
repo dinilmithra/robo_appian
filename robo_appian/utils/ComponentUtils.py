@@ -77,31 +77,31 @@ class ComponentUtils:
             raise Exception(f"Component with XPath '{xpath}' not visible.")
         return component
 
-    @staticmethod
-    def findVisibleComponentByXpath(wait: WebDriverWait, xpath: str):
-        """
-        Finds a component using the given XPath in the current WebDriver instance.
+    # @staticmethod
+    # def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
+    #     """
+    #     Finds a component using the given XPath in the current WebDriver instance.
 
-            :param wait: WebDriverWait instance to wait for elements
-            :param xpath: XPath string to locate the component
-            :return: WebElement if found, raises NoSuchElementException otherwise
+    #         :param wait: WebDriverWait instance to wait for elements
+    #         :param xpath: XPath string to locate the component
+    #         :return: WebElement if found, raises NoSuchElementException otherwise
 
-        Example usage:
-            component = ComponentUtils.findVisibleComponentByXpath(wait, "//button[@id='submit']")
-            component.click()
-        """
-        try:
-            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception:
-            raise Exception(f"Component with XPath '{xpath}' not visible.")
-        return component
+    #     Example usage:
+    #         component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, "//button[@id='submit']")
+    #         component.click()
+    #     """
+    #     try:
+    #         component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+    #     except Exception:
+    #         raise Exception(f"Component with XPath '{xpath}' not visible.")
+    #     return component
 
     @staticmethod
     def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
         """Checks if a component with the given XPath exists in the current WebDriver instance."""
         status = False
         try:
-            ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+            ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
             status = True
         except NoSuchElementException:
             pass
@@ -222,7 +222,7 @@ class ComponentUtils:
         ComponentUtils.findComponentUsingXpathAndClick(wait, xpath)
         """
 
-        component = ComponentUtils.findVisibleComponentByXpath(wait, xpath)
+        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
         ComponentUtils.click(wait, component)
 
     @staticmethod
@@ -269,10 +269,10 @@ class ComponentUtils:
 
     @staticmethod
     def waitForElementToBeVisibleByText(wait: WebDriverWait, text: str):
-        xpath = f'//*[normalize-space(text())="{text}" and not(*[normalize-space(text())="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        xpath = f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         return wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
 
     @staticmethod
     def waitForElementNotToBeVisibleByText(wait: WebDriverWait, text: str):
-        xpath = f'//*[normalize-space(text())="{text}" and not(*[normalize-space(text())="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        xpath = f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
