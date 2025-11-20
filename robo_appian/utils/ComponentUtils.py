@@ -1,4 +1,3 @@
-
 import tomllib
 from pathlib import Path
 from selenium.common.exceptions import NoSuchElementException
@@ -12,7 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class ComponentUtils:
-    
+
     @staticmethod
     def get_version():
         try:
@@ -22,7 +21,7 @@ class ComponentUtils:
                 return data.get("project", {}).get("version", "0.0.0")
         except Exception:
             return "0.0.0"
-    
+
     @staticmethod
     def today():
         """
@@ -290,3 +289,14 @@ class ComponentUtils:
     def waitForElementNotToBeVisibleByText(wait: WebDriverWait, text: str):
         xpath = f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
+
+    @staticmethod
+    def waitForComponentToBeClickableByXpath(
+        wait: WebDriverWait, component: WebElement
+    ):
+        try:
+            return wait.until(EC.element_to_be_clickable(component))
+        except Exception:
+            raise Exception(
+                "Component did not become clickable within the timeout period."
+            )
