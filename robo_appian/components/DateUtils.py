@@ -25,7 +25,7 @@ class DateUtils:
             DateUtils.__findComponent(wait, "Start Date")
         """
 
-        xpath = f'.//div[./div/label[text()="{label}"]]/div/div/div/input'
+        xpath = f'.//div[./div/label[normalize-space(translate(., "\u00a0", " "))="{label}"]]/div/div/div/input'
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:

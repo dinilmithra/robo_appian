@@ -24,7 +24,7 @@ class SearchDropdownUtils:
             wait.until(EC.presence_of_element_located((By.ID, input_component_id)))
             input_component = wait.until(EC.element_to_be_clickable((By.ID, input_component_id)))
         except Exception as e:
-            raise Exception(f"Failed to locate or click input component with ID '{input_component_id}': {e}")
+            raise Exception(f"Failed to locate or click input component with ID '{input_component_id}': {e}") from e
         InputUtils._setValueByComponent(wait, input_component, value)
 
         dropdown_option_id = str(component_id) + "_list"
@@ -33,7 +33,7 @@ class SearchDropdownUtils:
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Failed to locate or click dropdown option with XPath '{xpath}': {e}")
+            raise Exception(f"Failed to locate or click dropdown option with XPath '{xpath}': {e}") from e
         component.click()
 
     @staticmethod
@@ -42,7 +42,7 @@ class SearchDropdownUtils:
         try:
             combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Failed to locate or click dropdown component with XPath '{xpath}': {e}")
+            raise Exception(f"Failed to locate or click dropdown component with XPath '{xpath}': {e}") from e
 
         SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(wait, combobox, value)
 
@@ -54,7 +54,7 @@ class SearchDropdownUtils:
         try:
             combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Failed to locate or click dropdown component with XPath '{xpath}': {e}")
+            raise Exception(f"Failed to locate or click dropdown component with XPath '{xpath}': {e}") from e
         SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(wait, combobox, value)
 
     @staticmethod

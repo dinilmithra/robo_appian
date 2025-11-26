@@ -46,12 +46,12 @@ class SearchInputUtils:
 
     @staticmethod
     def __selectSearchInputComponentsByPartialLabelText(wait: WebDriverWait, label: str, value: str):
-        xpath = f".//div[./div/span[contains(normalize-space(.)='{label}']]/div/div/div/input[@role='combobox']"
+        xpath = f'.//div[./div/span[contains(normalize-space(.)="{label}"]]/div/div/div/input[@role="combobox"]'
         SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(wait, xpath, value)
 
     @staticmethod
     def __selectSearchInputComponentsByLabelText(wait: WebDriverWait, label: str, value: str):
-        xpath = f".//div[./div/span[text()='{label}']]/div/div/div/input[@role='combobox']"
+        xpath = f'.//div[./div/span[normalize-space(translate(., "\u00a0", " "))="{label}"]]/div/div/div/input[@role="combobox"]'
         SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(wait, xpath, value)
 
     @staticmethod

@@ -36,7 +36,7 @@ class TableUtils:
         try:
             rows = tableObject.find_elements(By.XPATH, xpath)
         except Exception as e:
-            raise Exception(f"Could not count rows in table: {e}")
+            raise Exception(f"Could not count rows in table: ") from e
         return len(rows)
 
     @staticmethod
@@ -100,7 +100,7 @@ class TableUtils:
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Could not find component in cell at row {rowNumber}, column '{columnName}': {e}")
+            raise Exception(f"Could not find component in cell at row {rowNumber}, column '{columnName}': ") from e
         return component
 
     @staticmethod
@@ -140,10 +140,10 @@ class TableUtils:
         try:
             component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Could not find table with column name '{columnName}': {e}")
+            raise Exception(f"Could not find table with column name '{columnName}': ") from e
 
         try:
             component = wait.until(EC.element_to_be_clickable(component))
         except Exception as e:
-            raise Exception(f"Table found by column name '{columnName}' is not clickable: {e}")
+            raise Exception(f"Table found by column name '{columnName}' is not clickable: ") from e
         return component

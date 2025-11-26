@@ -29,16 +29,16 @@ class TabUtils:
         try:
             component = wait.until(EC.element_to_be_clickable(component))
             component.click()
-        except Exception:
-            raise Exception(f"Tab with label '{label}' is not clickable.")
+        except Exception as e:
+            raise Exception(f"Tab with label '{label}' is not clickable.") from e
 
     @staticmethod
     def findTabByLabelText(wait: WebDriverWait, label: str) -> WebElement:
         xpath = f'//div/div[@role="link" ]/div/div/div/div/div/p[normalize-space(.)="{label}"]'
         try:
             component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception:
-            raise Exception(f"Tab with label '{label}' not found.")
+        except Exception as e:
+            raise Exception(f"Tab with label '{label}' not found.") from e
         return component
 
     @staticmethod

@@ -39,7 +39,7 @@ class DropdownUtils:
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f'Could not find combobox with label "{label}" : {str(e)}')
+            raise Exception(f'Could not find combobox with label "{label}" ') from e
 
         return component
 
@@ -58,7 +58,7 @@ class DropdownUtils:
             combobox.click()
 
         except Exception as e:
-            raise Exception(f"Could not click combobox: {str(e)}")
+            raise Exception(f"Could not click combobox") from e
 
     @staticmethod
     def __findDropdownOptionId(combobox: WebElement):
@@ -75,7 +75,7 @@ class DropdownUtils:
         if dropdown_option_id is None:
             raise Exception(
                 'Dropdown component does not have a valid "aria-controls" attribute.'
-            )
+            ) 
         return dropdown_option_id
 
     @staticmethod
@@ -104,8 +104,8 @@ class DropdownUtils:
             return False
         except Exception as e:
             raise Exception(
-                f'Could not find dropdown option "{value}" with dropdown option id "{dropdown_option_id}": {str(e)}'
-            )
+                f'Could not find dropdown option "{value}" with dropdown option id "{dropdown_option_id}"'
+            ) from e
 
     @staticmethod
     def __selectDropdownValueByDropdownOptionId(
@@ -132,13 +132,12 @@ class DropdownUtils:
                 component.click()
             except Exception as e:
                 raise Exception(
-                    f'Could not locate or click dropdown option "{value}" with dropdown option id "{dropdown_option_id}": {str(e)}'  # noqa: E501
-                )
+                    f'Could not locate or click dropdown option "{value}" with dropdown option id "{dropdown_option_id}"'  # noqa: E501
+                ) from e
         except Exception as e:
             raise Exception(
-                f'Could not find or click dropdown option "{value}" with xpath "{option_xpath}": {str(e)}'
-            )
-
+                f'Could not find or click dropdown option "{value}" with xpath "{option_xpath}"'
+            ) from e
     @staticmethod
     def __selectDropdownValueByPartialLabelText(
         wait: WebDriverWait, label: str, value: str
@@ -188,15 +187,15 @@ class DropdownUtils:
             else:
                 print("The dropdown is editable.")
         """
-        # xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/p[text()]'
+        # xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/p[normalize-space(translate(., "\u00a0", " "))]'
         xpath = f'//span[normalize-space(.)="{label}"]/ancestor::div[@role="presentation"][1]//div[@aria-labelledby=//span[normalize-space(.)="{label}"]/@id and not(@role="combobox")]'
         try:
             wait._driver.find_element(By.XPATH, xpath)
             return True
         except NoSuchElementException:
             return False
-        except Exception:
-            raise Exception(f'Error checking read-only status for label "{label}"')
+        except Exception as e:
+            raise Exception(f'Error checking read-only status for label "{label}"') from e
 
     @staticmethod
     def checkEditableStatusByLabelText(wait: WebDriverWait, label: str):
@@ -213,14 +212,14 @@ class DropdownUtils:
             else:
                 print("The dropdown is disabled.")
         """
-        xpath = f'//span[text()="{label}"]/ancestor::div[@role="presentation"][1]//div[@aria-labelledby=//span[normalize-space(.)="{label}"]/@id and @role="combobox" and not(@aria-disabled="true")]'
+        xpath = f'//span[normalize-space(translate(., "\u00a0", " "))="{label}"]/ancestor::div[@role="presentation"][1]//div[@aria-labelledby=//span[normalize-space(.)="{label}"]/@id and @role="combobox" and not(@aria-disabled="true")]'
         try:
             wait._driver.find_element(By.XPATH, xpath)
             return True  # If disabled element is found, dropdown is not editable
         except NoSuchElementException:
             return False  # If disabled element is not found, dropdown is editable
-        except Exception:
-            raise Exception(f'Error checking editable status for label "{label}"')
+        except Exception as e:
+            raise Exception(f'Error checking editable status for label "{label}"') from e
 
     @staticmethod
     def waitForDropdownToBeEnabled(
@@ -360,8 +359,8 @@ class DropdownUtils:
             return option_texts
         except Exception as e:
             raise Exception(
-                f'Could not get dropdown option values for label "{dropdown_label}": {str(e)}'
-            )
+                f'Could not get dropdown option values for label "{dropdown_label}"'
+            ) from e
 
     @staticmethod
     def waitForDropdownValuesToBeChanged(
