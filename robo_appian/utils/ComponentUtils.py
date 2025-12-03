@@ -116,7 +116,7 @@ class ComponentUtils:
         try:
             return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Component with XPath '{xpath}' not visible.") from e
+            raise Exception(f"Component with XPath '{xpath}' is still visible.") from e
 
     # @staticmethod
     # def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
