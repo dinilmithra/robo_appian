@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from robo_appian.components.InputUtils import InputUtils
+from robo_appian.components.InputUtils  import  InputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
@@ -36,7 +36,7 @@ class SearchInputUtils:
                     raise Exception(
                         f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
                     ) from e
-                drop_down_item.click()
+                ComponentUtils.click(wait, drop_down_item)
             else:
                 raise ValueError(
                     f"Search input component with label '{search_input_component.text}' does not have 'aria-controls' attribute."

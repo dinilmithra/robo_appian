@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from robo_appian.components.InputUtils import InputUtils
+from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class DateUtils:
@@ -59,6 +60,7 @@ class DateUtils:
         Example:
             DateUtils.clickByLabelText(wait, "Start Date")
         """
-        component = DateUtils.__findComponent(wait, label)
-        component.click()
+        component = DateUtils.__findComponent(wait, label)   
+         
+        ComponentUtils.click(wait, component)
         return component

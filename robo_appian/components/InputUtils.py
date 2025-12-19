@@ -1,3 +1,4 @@
+
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -38,7 +39,9 @@ class InputUtils:
 
         input_id = label_component.get_attribute("for")
         if input_id is None:
-            raise ValueError(f"Label component with text '{label}' does not have a 'for' attribute.")
+            raise ValueError(
+                f"Label component with text '{label}' does not have a 'for' attribute."
+            )
 
         component = ComponentUtils.findComponentById(wait, input_id)
         return component
@@ -61,7 +64,9 @@ class InputUtils:
         label_component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
         input_id = label_component.get_attribute("for")
         if input_id is None:
-            raise ValueError(f"Label component with text '{label}' does not have a 'for' attribute.")
+            raise ValueError(
+                f"Label component with text '{label}' does not have a 'for' attribute."
+            )
 
         component = ComponentUtils.findComponentById(wait, input_id)
         return component

@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webelement import WebElement
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
@@ -15,18 +14,12 @@ class ButtonUtils:
     """
 
     @staticmethod
-    def __click(wait: WebDriverWait, component: WebElement):
-        wait.until(EC.element_to_be_clickable(component))
-        component.click()
-
-    @staticmethod
     def _findByPartialLabelText(wait: WebDriverWait, label: str):
         """
         Finds a button by its label.
 
         Parameters:
             wait: Selenium WebDriverWait instance.
-            label: The label of the button to find.
             label: The label of the button to find.
 
         Returns:
@@ -64,7 +57,8 @@ class ButtonUtils:
                 ButtonUtils.clickByPartialLabelText(wait, "Button Label")
         """
         component = ButtonUtils._findByPartialLabelText(wait, label)
-        ButtonUtils.__click(wait, component)
+
+        ComponentUtils.click(wait, component)
 
     @staticmethod
     def clickByLabelText(wait: WebDriverWait, label: str):
@@ -77,7 +71,8 @@ class ButtonUtils:
                 ButtonUtils.clickByLabelText(wait, "Button Label")
         """
         component = ButtonUtils.__findByLabelText(wait, label)
-        ButtonUtils.__click(wait, component)
+
+        ComponentUtils.click(wait, component)
 
     @staticmethod
     def clickById(wait: WebDriverWait, id: str):
@@ -99,7 +94,7 @@ class ButtonUtils:
                 f"Input button with id '{id}' not found or not clickable."
             ) from e
 
-        ButtonUtils.__click(wait, component)
+        ComponentUtils.click(wait, component)
 
     @staticmethod
     def isButtonExistsByLabelText(wait: WebDriverWait, label: str):

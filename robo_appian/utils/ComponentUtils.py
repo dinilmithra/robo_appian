@@ -1,7 +1,7 @@
 import tomllib
 from pathlib import Path
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver import ActionChains
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -92,7 +92,7 @@ class ComponentUtils:
 
     @staticmethod
     def waitForComponentNotToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-        """ 
+        """
         Wait until the element identified by the given XPath is no longer visible.
         This function uses the provided WebDriverWait instance to poll for the
         invisibility (or absence) of the element located by the given XPath.
@@ -112,7 +112,7 @@ class ComponentUtils:
         ------
         Exception
             If the element does not become invisible within the wait timeout or another error occurs while waiting.
-        """ 
+        """
         try:
             return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
@@ -242,8 +242,11 @@ class ComponentUtils:
 
     @staticmethod
     def findComponentByXPath(wait: WebDriverWait, xpath: str):
-        # component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-        component = wait._driver.find_element(By.XPATH, xpath)
+
+        try:
+            component = wait._driver.find_element(By.XPATH, xpath)
+        except NoSuchElementException as e:
+            raise Exception(f"Component with XPath '{xpath}' not found.") from e
         return component
 
     @staticmethod
@@ -278,14 +281,15 @@ class ComponentUtils:
             ComponentUtils.click(wait, component)
         """
         wait.until(EC.element_to_be_clickable(component))
-        component.click()
+        actions = ActionChains(wait._driver)
+        actions.move_to_element(component).click().perform()
 
     @staticmethod
     def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
         try:
             wait.until(EC.staleness_of(component))
         except Exception as e:
-            raise Exception (
+            raise Exception(
                 "Component did not become invisible (stale) within the timeout period."
             ) from e
 
@@ -325,6 +329,6 @@ class ComponentUtils:
         try:
             return wait.until(EC.element_to_be_clickable(component))
         except Exception as e:
-            raise Exception (
+            raise Exception(
                 "Component did not become clickable within the timeout period. "
             ) from e

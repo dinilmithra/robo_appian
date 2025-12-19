@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from robo_appian.utils.ComponentUtils import ComponentUtils
 
 
 class LinkUtils:
@@ -41,6 +42,5 @@ class LinkUtils:
         """
 
         component = LinkUtils.find(wait, label)
-        wait.until(EC.element_to_be_clickable(component))
-        component.click()
+        ComponentUtils.click(wait, component)
         return component

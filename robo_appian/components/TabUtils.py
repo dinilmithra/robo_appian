@@ -24,13 +24,6 @@ class TabUtils:
 
         driver.quit()
     """
-    @staticmethod
-    def __click(wait: WebDriverWait, component: WebElement, label: str):
-        try:
-            component = wait.until(EC.element_to_be_clickable(component))
-            component.click()
-        except Exception as e:
-            raise Exception(f"Tab with label '{label}' is not clickable.") from e
 
     @staticmethod
     def findTabByLabelText(wait: WebDriverWait, label: str) -> WebElement:
@@ -44,7 +37,7 @@ class TabUtils:
     @staticmethod
     def selectTabByLabelText(wait: WebDriverWait, label: str):
         component = TabUtils.findTabByLabelText(wait, label)
-        TabUtils.__click(wait, component, label)
+        ComponentUtils.click(wait, component)
 
     @staticmethod
     def checkTabSelectedByLabelText(wait: WebDriverWait, label: str):

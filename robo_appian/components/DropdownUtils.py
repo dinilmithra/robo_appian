@@ -1,4 +1,5 @@
 import time
+from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -54,8 +55,9 @@ class DropdownUtils:
             DropdownUtils.__clickCombobox(wait, combobox)
         """
         try:
-            wait.until(EC.element_to_be_clickable(combobox))
-            combobox.click()
+            id = combobox.get_attribute("id")
+            element = wait.until(EC.element_to_be_clickable((By.ID, id)))
+            ComponentUtils.click(wait, element)
 
         except Exception as e:
             raise Exception(f"Could not click combobox") from e
@@ -75,7 +77,7 @@ class DropdownUtils:
         if dropdown_option_id is None:
             raise Exception(
                 'Dropdown component does not have a valid "aria-controls" attribute.'
-            ) 
+            )
         return dropdown_option_id
 
     @staticmethod
@@ -138,6 +140,7 @@ class DropdownUtils:
             raise Exception(
                 f'Could not find or click dropdown option "{value}" with xpath "{option_xpath}"'
             ) from e
+
     @staticmethod
     def __selectDropdownValueByPartialLabelText(
         wait: WebDriverWait, label: str, value: str
@@ -195,7 +198,9 @@ class DropdownUtils:
         except NoSuchElementException:
             return False
         except Exception as e:
-            raise Exception(f'Error checking read-only status for label "{label}"') from e
+            raise Exception(
+                f'Error checking read-only status for label "{label}"'
+            ) from e
 
     @staticmethod
     def checkEditableStatusByLabelText(wait: WebDriverWait, label: str):
@@ -219,7 +224,9 @@ class DropdownUtils:
         except NoSuchElementException:
             return False  # If disabled element is not found, dropdown is editable
         except Exception as e:
-            raise Exception(f'Error checking editable status for label "{label}"') from e
+            raise Exception(
+                f'Error checking editable status for label "{label}"'
+            ) from e
 
     @staticmethod
     def waitForDropdownToBeEnabled(

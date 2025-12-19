@@ -106,8 +106,8 @@ class TableUtils:
     @staticmethod
     def selectRowFromTableByColumnNameAndRowNumber(wait, rowNumber, columnName):
         row = TableUtils.__findRowByColumnNameAndRowNumber(wait, rowNumber, columnName)
-        row = wait.until(EC.element_to_be_clickable(row))
-        row.click()
+        row = wait.until(EC.element_to_be_clickable(row))  
+        ComponentUtils.click(wait, row)
 
     @staticmethod
     def findComponentByColumnNameAndRowNumber(wait, rowNumber, columnName):

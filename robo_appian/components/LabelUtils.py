@@ -45,8 +45,7 @@ class LabelUtils:
             LabelUtils.clickByLabelText(wait, "Submit")
         """
         component = LabelUtils.__findByLabelText(wait, label)
-        wait.until(EC.element_to_be_clickable(component))
-        component.click()
+        ComponentUtils.click(wait, component)
 
     @staticmethod
     def isLabelExists(wait: WebDriverWait, label: str):
