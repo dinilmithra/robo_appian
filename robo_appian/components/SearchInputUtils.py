@@ -1,6 +1,4 @@
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from robo_appian.components.InputUtils  import  InputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
@@ -21,28 +19,26 @@ class SearchInputUtils:
 
     @staticmethod
     def __findSearchInputComponentsByLabelPathAndSelectValue(wait: WebDriverWait, xpath: str, value: str):
-        search_input_components = ComponentUtils.findComponentsByXPath(wait, xpath)
-        input_components = []
-        for search_input_component in search_input_components:
-            attribute: str = "aria-controls"
-            dropdown_list_id = search_input_component.get_attribute(attribute)
-            if dropdown_list_id:
-                InputUtils._setValueByComponent(wait, search_input_component, value)
-                xpath = f'.//ul[@id="{dropdown_list_id}" and @role="listbox" ]/li[@role="option" and @tabindex="-1" and ./div/div/div/div/div/div/p[normalize-space(.)="{value}"][1]]'
-                try:
-                    drop_down_item = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-                    drop_down_item = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-                except Exception as e:
-                    raise Exception(
-                        f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
-                    ) from e
-                ComponentUtils.click(wait, drop_down_item)
-            else:
-                raise ValueError(
-                    f"Search input component with label '{search_input_component.text}' does not have 'aria-controls' attribute."
-                )
+            
+        search_input_component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
+        attribute: str = "aria-controls"
+        dropdown_list_id = search_input_component.get_attribute(attribute)
+        if dropdown_list_id:
+            InputUtils._setValueByComponent(wait, search_input_component, value)
+            xpath = f'.//ul[@id="{dropdown_list_id}" and @role="listbox" ]/li[@role="option" and @tabindex="-1" and ./div/div/div/div/div/div/p[normalize-space(.)="{value}"][1]]'
+            try:
+                drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
+            except Exception as e:
+                raise Exception(
+                    f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
+                ) from e
+            ComponentUtils.click(wait, drop_down_item)
+        else:
+            raise ValueError(
+                f"Search input component with label '{search_input_component.text}' does not have 'aria-controls' attribute."
+            )
 
-        return input_components
+        return search_input_component
 
     @staticmethod
     def __selectSearchInputComponentsByPartialLabelText(wait: WebDriverWait, label: str, value: str):

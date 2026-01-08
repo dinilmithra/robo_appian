@@ -9,11 +9,10 @@ from selenium.common.exceptions import NoSuchElementException
 
 class DropdownUtils:
     """
-    Utility class for interacting with dropdown components in Appian UI.
-    Usage Example:
-        # Select a value from a dropdown
-        from robo_appian.components.DropdownUtils import DropdownUtils
-        DropdownUtils.selectDropdownValueByLabelText(wait, "Status", "Approved")
+    Utility class for interacting with dropdown components in a web application.
+    Provides methods to select values, check statuses, and retrieve options from dropdowns.
+    Example:
+        DropdownUtils.selectDropdownValueByLabelText(wait, "Dropdown Label", "Option Value")
     """
 
     @staticmethod
@@ -23,13 +22,12 @@ class DropdownUtils:
         """
         Finds the combobox element by its label text.
         :param wait: WebDriverWait instance to wait for elements.
-        :param label: The label of the combobox.
+        :param label: The label of the dropdown.
         :param isPartialText: Whether to use partial text matching for the label.
         :return: The combobox WebElement.
         Example:
-            combobox = DropdownUtils.__findComboboxByLabelText(wait, "Dropdown Label", isPartialText=False)
-            combobox = DropdownUtils.__findComboboxByLabelText(wait, "Dropdown Label", isPartialText=True)
             combobox = DropdownUtils.__findComboboxByLabelText(wait, "Dropdown Label")
+            combobox = DropdownUtils.__findComboboxByLabelText(wait, "Dropdown Label", isPartialText=True)
         """
 
         if isPartialText:
@@ -60,7 +58,7 @@ class DropdownUtils:
             ComponentUtils.click(wait, element)
 
         except Exception as e:
-            raise Exception(f"Could not click combobox") from e
+            raise Exception(f"Could not click combobox . Error: {e} ") from e
 
     @staticmethod
     def __findDropdownOptionId(combobox: WebElement):
@@ -115,30 +113,23 @@ class DropdownUtils:
     ):
         """
         Selects a value from a dropdown by its option id and value.
-
         :param wait: WebDriverWait instance to wait for elements.
         :param dropdown_option_id: The id of the dropdown options list.
         :param value: The value to select from the dropdown.
         Example:
-            DropdownUtils.selectDropdownValueByDropdownOptionId(wait, "dropdown_option_id", "Option Value")
+            DropdownUtils.__selectDropdownValueByDropdownOptionId(wait, "dropdown_option_id", "Option Value")
         """
         option_xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]]'
+
         try:
-            try:
-                component = wait.until(
-                    EC.presence_of_element_located((By.XPATH, option_xpath))
-                )
-                component = wait.until(
-                    EC.element_to_be_clickable((By.XPATH, option_xpath))
-                )
-                component.click()
-            except Exception as e:
-                raise Exception(
-                    f'Could not locate or click dropdown option "{value}" with dropdown option id "{dropdown_option_id}"'  # noqa: E501
-                ) from e
+            component = wait.until(
+                EC.presence_of_element_located((By.XPATH, option_xpath))
+            )
+            component = wait.until(EC.element_to_be_clickable((By.XPATH, option_xpath)))
+            component.click()
         except Exception as e:
             raise Exception(
-                f'Could not find or click dropdown option "{value}" with xpath "{option_xpath}"'
+                f'Could not locate or click dropdown option "{value}" with dropdown option id "{dropdown_option_id}", Error: {e}'  # noqa: E501
             ) from e
 
     @staticmethod
@@ -178,14 +169,13 @@ class DropdownUtils:
     @staticmethod
     def checkReadOnlyStatusByLabelText(wait: WebDriverWait, label: str):
         """
-        Checks if a dropdown is read-only by its label text.
-
+        Checks if a dropdown is read-only (disabled) by its label text.
         :param wait: WebDriverWait instance to wait for elements.
         :param label: The label of the dropdown.
-        :return: True if the dropdown is read-only, False otherwise.
+        :return: True if the dropdown is read-only, False if editable.
         Example:
-            is_read_only = DropdownUtils.checkReadOnlyStatusByLabelText(wait, "Dropdown Label")
-            if is_read_only:
+            is_readonly = DropdownUtils.checkReadOnlyStatusByLabelText(wait, "Dropdown Label")
+            if is_readonly:
                 print("The dropdown is read-only.")
             else:
                 print("The dropdown is editable.")
@@ -232,6 +222,20 @@ class DropdownUtils:
     def waitForDropdownToBeEnabled(
         wait: WebDriverWait, label: str, wait_interval: float = 0.5, timeout: int = 2
     ):
+        """
+        Waits for a dropdown to become enabled (editable) by its label text.
+        :param wait: WebDriverWait instance to wait for elements.
+        :param label: The label of the dropdown.
+        :param wait_interval: The interval (in seconds) to wait between checks.
+        :param timeout: The maximum time (in seconds) to wait for the dropdown to become enabled.
+        :return: True if the dropdown becomes enabled within the timeout, False otherwise.
+        Example:
+            is_enabled = DropdownUtils.waitForDropdownToBeEnabled(wait, "Dropdown Label")
+            if is_enabled:
+                print("The dropdown is enabled.")
+            else:
+                print("The dropdown is still disabled.")
+        """
         elapsed_time = 0
         status = False
 
@@ -377,6 +381,23 @@ class DropdownUtils:
         poll_frequency: float = 0.5,
         timeout: int = 2,
     ):
+        """
+        Waits for the values of a dropdown to change from the initial values.
+
+        :param wait: WebDriverWait instance to wait for elements.
+        :param dropdown_label: The label of the dropdown.
+        :param initial_values: The initial values of the dropdown.
+        :param poll_frequency: The interval (in seconds) to wait between checks.
+        :param timeout: The maximum time (in seconds) to wait for the dropdown values to change.
+        :return: True if the dropdown values change within the timeout, False otherwise.
+        Example:
+            initial_values = DropdownUtils.getDropdownOptionValues(wait, "Dropdown Label")
+            is_changed = DropdownUtils.waitForDropdownValuesToBeChanged(wait, "Dropdown Label", initial_values)
+            if is_changed:
+                print("The dropdown values have changed.")
+            else:
+                print("The dropdown values have not changed within the timeout.")
+        """
 
         elapsed_time = 0
         poll_frequency = 0.5

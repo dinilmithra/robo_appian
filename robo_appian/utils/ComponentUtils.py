@@ -87,8 +87,19 @@ class ComponentUtils:
         try:
             component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Component with XPath '{xpath}' not visible.") from e
+            raise Exception(f"Component with XPath '{xpath}' not visible. Error: {e}") from e
         return component
+    
+    
+
+    @staticmethod
+    def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
+        try:
+            wait.until(EC.staleness_of(component))
+        except Exception as e:
+            raise Exception(
+                "Component did not become invisible (stale) within the timeout period."
+            ) from e
 
     @staticmethod
     def waitForComponentNotToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
@@ -208,16 +219,12 @@ class ComponentUtils:
 
     @staticmethod
     def findComponentsByXPath(wait: WebDriverWait, xpath: str):
-        """Finds all components matching the given XPath and returns a list of valid components
-        that are clickable and displayed.
+        """
+        Finds all components matching the given XPath in the current WebDriver instance.
 
-        :param wait: WebDriverWait instance to wait for elements
-        :param xpath: XPath string to locate components
-        :return: List of valid WebElement components
-        Example usage:
-        components = ComponentUtils.findComponentsByXPath(wait, "//button[@class='submit']")
-        for component in components:
-            component.click()
+            :param wait: WebDriverWait instance to wait for elements
+            :param xpath: XPath string to locate the components
+            :return: List of WebElements matching the XPath
         """
         # Wait for the presence of elements matching the XPath
         wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
@@ -283,15 +290,6 @@ class ComponentUtils:
         wait.until(EC.element_to_be_clickable(component))
         actions = ActionChains(wait._driver)
         actions.move_to_element(component).click().perform()
-
-    @staticmethod
-    def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
-        try:
-            wait.until(EC.staleness_of(component))
-        except Exception as e:
-            raise Exception(
-                "Component did not become invisible (stale) within the timeout period."
-            ) from e
 
     @staticmethod
     def isComponentPresentByXpath(wait: WebDriverWait, xpath: str):

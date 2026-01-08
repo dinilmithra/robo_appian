@@ -3,6 +3,7 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class InputUtils:
@@ -16,7 +17,7 @@ class InputUtils:
 
         # Set a value in an input component by its ID
         InputUtils.setValueById(wait, "inputComponentId", "test_value")
-    """
+    """     
 
     @staticmethod
     def __findComponentByPartialLabel(wait: WebDriverWait, label: str):
@@ -76,16 +77,22 @@ class InputUtils:
         """
         Sets a value in an input component.
         Parameters:
+            wait: Selenium WebDriverWait instance.
             component: The Selenium WebElement for the input component.
             value: The value to set in the input field.
         Returns:
             The Selenium WebElement for the input component after setting the value.
         Example:
-            InputUtils._setValueByComponent(component, "test_value")
+            InputUtils._setValueByComponent(wait, component, "test_value")
         """
-        wait.until(EC.element_to_be_clickable(component))
-        component.clear()
-        component.send_keys(value)
+        try:
+            wait.until(EC.element_to_be_clickable(component))
+            driver = wait._driver
+            ActionChains(driver).move_to_element(component).perform()
+            component.clear()
+            component.send_keys(value)
+        except Exception as e:
+            raise Exception(f"Error setting value in input component: {e}")
         return component
 
     @staticmethod
