@@ -87,10 +87,10 @@ class ComponentUtils:
         try:
             component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         except Exception as e:
-            raise Exception(f"Component with XPath '{xpath}' not visible. Error: {e}") from e
+            raise Exception(
+                f"Component with XPath '{xpath}' not visible. Error: {e}"
+            ) from e
         return component
-    
-    
 
     @staticmethod
     def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):

@@ -31,9 +31,9 @@ class DropdownUtils:
         """
 
         if isPartialText:
-            xpath = f'//span[contains(normalize-space(.), "{label}")]/ancestor::div[@role="presentation"][1]//div[@aria-labelledby=//span[contains(normalize-space(.), "{label}")]/@id and @role="combobox" and not(@aria-disabled="true")]'
+            xpath=f'//span[contains(normalize-space(.), "{label}")]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
         else:
-            xpath = f'//span[normalize-space(.)="{label}"]/ancestor::div[@role="presentation"][1]//div[@aria-labelledby=//span[normalize-space(.)="{label}"]/@id and @role="combobox" and not(@aria-disabled="true")]'
+            xpath=f'//span[text()="{label}"]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
 
         try:
             component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
