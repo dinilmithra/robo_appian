@@ -35,9 +35,7 @@ class DropdownUtils:
         else:
             xpath = f'//span[text()="{label}"]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
 
-        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-
-        return component
+        return wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
 
     @staticmethod
     def __clickCombobox(wait: WebDriverWait, combobox: WebElement):
