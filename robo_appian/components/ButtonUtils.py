@@ -53,12 +53,12 @@ class ButtonUtils:
             component = ButtonUtils._findByPartialLabelText(wait, "Submit")
         """
         xpath = f"//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
-        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
+        return ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
 
     @staticmethod
     def __findByLabelText(wait: WebDriverWait, label: str):
         xpath = f".//button[./span[normalize-space(.)='{label}']]"
-        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
+        return ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
 
     @staticmethod
     def clickByPartialLabelText(wait: WebDriverWait, label: str):
