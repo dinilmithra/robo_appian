@@ -8,11 +8,32 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 class DateUtils:
     """
-    Utility class for interacting with date components in Appian UI.
-    Usage Example:
-        # Set a date value in a date component
-        from robo_appian.components.DateUtils import DateUtils
-        DateUtils.setValueByLabelText(wait, "Start Date", "2023-10-01")
+    Fill date picker components by label or interact with date input fields.
+
+    Set dates in Appian date picker components by their associated label. Handles both
+    text-based date entry and date picker interaction. Automatically waits for clickability
+    and formats dates according to Appian's expected format.
+
+    All methods follow the wait-first pattern: pass WebDriverWait as the first argument.
+
+    Examples:
+        >>> from robo_appian import DateUtils, ComponentUtils
+
+        # Set a date value
+        DateUtils.setValueByLabelText(wait, "Start Date", "01/15/2024")
+        DateUtils.setValueByLabelText(wait, "End Date", "12/31/2024")
+
+        # Use helper functions for common dates
+        DateUtils.setValueByLabelText(wait, "Today", ComponentUtils.today())
+        DateUtils.setValueByLabelText(wait, "Yesterday", ComponentUtils.yesterday())
+
+        # Click to open date picker
+        DateUtils.clickByLabelText(wait, "Event Date")
+
+    Note:
+        - Date format is typically MM/DD/YYYY for Appian
+        - Waits for clickability before interacting with date fields
+        - ComponentUtils.today() returns today's date as MM/DD/YYYY
     """
 
     @staticmethod
@@ -33,13 +54,29 @@ class DateUtils:
     @staticmethod
     def setValueByLabelText(wait: WebDriverWait, label: str, value: str):
         """
-        Sets the value of a date component.
-        :param wait: WebDriverWait instance to wait for elements.
-        :param label: The label of the date component.
-        :param value: The value to set in the date component.
-        :return: The WebElement representing the date component.
-        Example:
-            DateUtils.setValueByLabelText(wait, "Start Date", "2023-10-01")
+        Set a date in a date picker component by label.
+
+        Finds the date input by its associated label, waits for clickability, clears any
+        existing date, and enters the new date value.
+
+        Args:
+            wait: WebDriverWait instance.
+            label: Exact label text of the date component (e.g., "Start Date").
+            value: Date string in MM/DD/YYYY format (e.g., "01/15/2024").
+
+        Returns:
+            WebElement: The date input component (for chaining if needed).
+
+        Raises:
+            ValueError: If label has no 'for' attribute.
+            TimeoutException: If date input not found or not clickable within timeout.
+
+        Examples:
+            >>> DateUtils.setValueByLabelText(wait, "Start Date", "01/15/2024")
+            >>> DateUtils.setValueByLabelText(wait, "End Date", "12/31/2024")
+            >>> # Using helper for today's date
+            >>> from robo_appian.utils.ComponentUtils import ComponentUtils
+            >>> DateUtils.setValueByLabelText(wait, "Date", ComponentUtils.today())
         """
         component = DateUtils.__findComponent(wait, label)
         InputUtils._setValueByComponent(wait, component, value)
@@ -55,7 +92,7 @@ class DateUtils:
         Example:
             DateUtils.clickByLabelText(wait, "Start Date")
         """
-        component = DateUtils.__findComponent(wait, label)   
-         
+        component = DateUtils.__findComponent(wait, label)
+
         ComponentUtils.click(wait, component)
         return component

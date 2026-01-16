@@ -31,9 +31,9 @@ class DropdownUtils:
         """
 
         if isPartialText:
-            xpath=f'//span[contains(normalize-space(.), "{label}")]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
+            xpath = f'//span[contains(normalize-space(.), "{label}")]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
         else:
-            xpath=f'//span[text()="{label}"]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
+            xpath = f'//span[text()="{label}"]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
 
         component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
 
@@ -49,8 +49,10 @@ class DropdownUtils:
         Example:
             DropdownUtils.__clickCombobox(wait, combobox)
         """
-        id = combobox.get_attribute("id")
-        element = wait.until(EC.element_to_be_clickable((By.ID, id)))
+        component_id = combobox.get_attribute("id")
+        if not component_id:
+            raise ValueError("Combobox element does not have an 'id' attribute.")
+        element = wait.until(EC.element_to_be_clickable((By.ID, component_id)))
         ComponentUtils.click(wait, element)
 
     @staticmethod
@@ -346,7 +348,8 @@ class DropdownUtils:
             DropdownUtils.__clickCombobox(wait, combobox)
             return option_texts
         except Exception as e:
-                raise
+            raise
+
     @staticmethod
     def waitForDropdownValuesToBeChanged(
         wait: WebDriverWait,

@@ -6,21 +6,48 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 class LinkUtils:
     """
-    Utility class for handling link operations in Selenium WebDriver.
-    Example usage:
-        from selenium import webdriver
-        from selenium.webdriver.support.ui import WebDriverWait
-        from robo_appian.components.LinkUtils import LinkUtils
+    Click hyperlinks in Appian UI by their visible text.
 
-        driver = webdriver.Chrome()
-        wait = WebDriverWait(driver, 10)
-        LinkUtils.click(wait, "Learn More")
-        driver.quit()
+    Find and click links using their user-visible text label. Automatically waits for
+    clickability and handles hidden/overlay states. Uses ActionChains for reliable clicking
+    even when links are covered by animations or tooltips.
+
+    All methods follow the wait-first pattern: pass WebDriverWait as the first argument.
+
+    Examples:
+        >>> from robo_appian import LinkUtils
+        >>> LinkUtils.click(wait, "Learn More")
+        >>> LinkUtils.click(wait, "Edit Details")
+        >>> link = LinkUtils.find(wait, "View Report")
+
+    Note:
+        - Uses exact text matching for link discovery
+        - Excludes hidden links (aria-hidden="true") automatically
+        - Returns the link element (WebElement) for advanced use cases
     """
 
     @staticmethod
     def find(wait: WebDriverWait, label: str):
-        # xpath = f'.//a[normalize-space(.)="{label}"]'
+        """
+        Find a link element by its visible text.
+
+        Locates the first link that matches the exact text, excluding hidden links.
+        Useful when you need to inspect or chain operations on a link.
+
+        Args:
+            wait: WebDriverWait instance.
+            label: Exact visible text of the link.
+
+        Returns:
+            WebElement: The link element (for advanced chaining).
+
+        Raises:
+            TimeoutException: If link not found within timeout.
+
+        Examples:
+            >>> link = LinkUtils.find(wait, "Edit")
+            >>> link.get_attribute("href")  # Get link URL
+        """
         xpath = f'.//a[normalize-space(.)="{label}" and not(ancestor::*[@aria-hidden="true"])]'
         component = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         return component
@@ -28,14 +55,25 @@ class LinkUtils:
     @staticmethod
     def click(wait: WebDriverWait, label: str):
         """
-        Clicks a link identified by its label.
+        Click a link by its exact visible text.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the link.
+        Finds the link by exact text match, waits for clickability, and clicks it using
+        ActionChains for reliable interaction even with animations or overlays.
 
-        Example:
-            LinkUtils.click(wait, "Learn More")
+        Args:
+            wait: WebDriverWait instance.
+            label: Exact visible text of the link to click (e.g., "Edit", "Learn More").
+
+        Returns:
+            WebElement: The link element that was clicked.
+
+        Raises:
+            TimeoutException: If link not found or not clickable within timeout.
+
+        Examples:
+            >>> LinkUtils.click(wait, "Learn More")
+            >>> LinkUtils.click(wait, "View Details")
+            >>> LinkUtils.click(wait, "Delete")
         """
 
         component = LinkUtils.find(wait, label)

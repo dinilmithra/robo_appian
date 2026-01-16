@@ -15,10 +15,12 @@ class ComponentUtils:
     @staticmethod
     def get_version():
         try:
-            toml_path = Path(__file__).parent.parent / "pyproject.toml"
+            # pyproject.toml lives at the repo root (two levels above package dir)
+            toml_path = Path(__file__).parents[2] / "pyproject.toml"
             with open(toml_path, "rb") as f:
                 data = tomllib.load(f)
-                return data.get("project", {}).get("version", "0.0.0")
+                # Poetry-managed projects store version under [tool.poetry]
+                return data.get("tool", {}).get("poetry", {}).get("version", "0.0.0")
         except Exception:
             return "0.0.0"
 
@@ -76,6 +78,26 @@ class ComponentUtils:
 
     @staticmethod
     def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
+        """
+        Wait for an element to be visible and return it.
+
+        Used internally by all utilities to locate elements. Waits up to the WebDriverWait
+        timeout for an element matching the XPath to be both present in DOM and visible.
+
+        Args:
+            wait: WebDriverWait instance.
+            xpath: XPath expression to find the element.
+
+        Returns:
+            WebElement: The element once it becomes visible.
+
+        Raises:
+            TimeoutException: If element not visible within timeout.
+
+        Examples:
+            >>> elem = ComponentUtils.waitForComponentToBeVisibleByXpath(
+            ...     wait, "//span[text()='Loading']")
+        """
         component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         return component
 
@@ -256,13 +278,26 @@ class ComponentUtils:
     @staticmethod
     def click(wait: WebDriverWait, component: WebElement):
         """
-        Clicks the given component after waiting for it to be clickable.
+        Reliably click an element using ActionChains and wait for clickability.
 
-            :param wait: WebDriverWait instance to wait for elements
-            :param component: WebElement representing the component to click
-            :return: None
-        Example usage:
-            ComponentUtils.click(wait, component)
+        Preferred over direct element.click() because it handles animations, overlays,
+        and other DOM interactions that can cause click failures. Waits for the element
+        to be clickable, moves the mouse to it, and clicks using ActionChains.
+
+        Args:
+            wait: WebDriverWait instance.
+            component: WebElement to click.
+
+        Raises:
+            TimeoutException: If element not clickable within timeout.
+
+        Examples:
+            >>> from robo_appian.utils.ComponentUtils import ComponentUtils
+            >>> button = driver.find_element(By.ID, "save_btn")
+            >>> ComponentUtils.click(wait, button)  # Reliable click
+
+        Note:
+            This is used internally by all robo_appian click methods (ButtonUtils, etc).
         """
         wait.until(EC.element_to_be_clickable(component))
         actions = ActionChains(wait._driver)

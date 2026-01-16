@@ -1,4 +1,4 @@
-from robo_appian.components.InputUtils import  InputUtils
+from robo_appian.components.InputUtils import InputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,11 +8,25 @@ from selenium.webdriver.remote.webelement import WebElement
 
 class SearchDropdownUtils:
     """
-    Utility class for interacting with search dropdown components in Appian UI.
-    Usage Example:
-        # Select a value from a search dropdown
-        from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
-        SearchDropdownUtils.selectSearchDropdownValueByLabelText(wait, "Status", "Approved")
+    Select values from search-enabled dropdowns in Appian UI.
+
+    Search dropdowns allow users to type to filter options, then click to select. These differ
+    from standard dropdowns because they include a search/filter input field. Automatically
+    types the search term, waits for options to populate, and clicks the matching option.
+
+    All methods follow the wait-first pattern: pass WebDriverWait as the first argument.
+
+    Examples:
+        >>> from robo_appian import SearchDropdownUtils
+        >>> # Select by exact label match
+        >>> SearchDropdownUtils.selectSearchDropdownValueByLabelText(wait, "Employee", "John Doe")
+        >>> # Select by partial label match
+        >>> SearchDropdownUtils.selectSearchDropdownValueByPartialLabelText(wait, "Status", "Approved")
+
+    Note:
+        - Search dropdowns use the combobox ARIA pattern with ID-based suffixes (`_searchInput`, `_list`)
+        - Component lookup by label is more reliable than searching by ID directly
+        - Automatically waits for dropdown options to appear after typing search term
     """
 
     @staticmethod
@@ -75,11 +89,27 @@ class SearchDropdownUtils:
     def selectSearchDropdownValueByLabelText(
         wait: WebDriverWait, dropdown_label: str, value: str
     ):
-        """Selects a value from a search dropdown by label text.
+        """
+        Select a value from a search dropdown using exact label match.
+
+        Types the value into the search field, waits for filtered options to appear,
+        then clicks the matching option.
+
         Args:
-            wait (WebDriverWait): The WebDriverWait instance to use for waiting.
-            dropdown_label (str): The label text of the dropdown.
-            value (str): The value to select from the dropdown.
+            wait: WebDriverWait instance.
+            dropdown_label: Exact visible label text of the dropdown (e.g., "Employee").
+            value: Exact text of the option to select (e.g., "John Doe").
+
+        Returns:
+            None
+
+        Raises:
+            TimeoutException: If dropdown or option not found within timeout.
+            ValueError: If dropdown ID cannot be extracted from element.
+
+        Examples:
+            >>> SearchDropdownUtils.selectSearchDropdownValueByLabelText(wait, "Employee", "John Doe")
+            >>> SearchDropdownUtils.selectSearchDropdownValueByLabelText(wait, "Status", "Approved")
         """
         SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
             wait, dropdown_label, value
@@ -89,11 +119,26 @@ class SearchDropdownUtils:
     def selectSearchDropdownValueByPartialLabelText(
         wait: WebDriverWait, dropdown_label: str, value: str
     ):
-        """Selects a value from a search dropdown by partial label text.
+        """
+        Select a value from a search dropdown using partial label match.
+
+        Useful when the dropdown label contains dynamic text (e.g., includes a count or suffix).
+        Searches for the label using a contains check instead of exact match.
+
         Args:
-            wait (WebDriverWait): The WebDriverWait instance to use for waiting.
-            dropdown_label (str): The label text of the dropdown.
-            value (str): The value to select from the dropdown.
+            wait: WebDriverWait instance.
+            dropdown_label: Partial visible label text (uses contains matching).
+            value: Exact text of the option to select.
+
+        Returns:
+            None
+
+        Raises:
+            TimeoutException: If dropdown or option not found within timeout.
+            ValueError: If dropdown ID cannot be extracted from element.
+
+        Examples:
+            >>> SearchDropdownUtils.selectSearchDropdownValueByPartialLabelText(wait, "Employee", "John")
         """
         SearchDropdownUtils.__selectSearchDropdownValueByPartialLabelText(
             wait, dropdown_label, value

@@ -6,30 +6,60 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 class TableUtils:
     """
-    Utility class for handling table operations in Selenium WebDriver.
-    Example usage:
-        from selenium import webdriver
-        from selenium.webdriver.support.ui import WebDriverWait
-        from robo_appian.components.TableUtils import TableUtils
+    Interact with Appian grid/table components: read cells, click rows, find elements.
 
-        driver = webdriver.Chrome()
-        wait = WebDriverWait(driver, 10)
-        table = TableUtils.findTableByColumnName(wait, "Status")
+    Query and interact with table rows and cells using column names as locators.
+    Automatically handles row/column indexing, finding cells by their position, and
+    interacting with components within cells (buttons, links, inputs).
+
+    Key concepts:
+        - Columns are identified by their header 'abbr' (abbreviation) attribute
+        - Rows are 0-based in public APIs (first row = 0)
+        - Rows are internally 1-indexed in Appian's data-dnd-name (conversion is automatic)
+
+    All methods follow the wait-first pattern: pass WebDriverWait as the first argument.
+
+    Examples:
+        >>> from robo_appian.components.TableUtils import TableUtils
+        >>> from selenium.webdriver.support.ui import WebDriverWait
+
+        # Find a table by column name and count rows
+        table = TableUtils.findTableByColumnName(wait, "Employee ID")
         row_count = TableUtils.rowCount(table)
-        component = TableUtils.findComponentFromTableCell(wait, 1, "Status")
-        driver.quit()
+        print(f"Table has {row_count} rows")
 
+        # Find and click component in specific cell (row 0, column "Status")
+        TableUtils.selectRowFromTableByColumnNameAndRowNumber(wait, 0, "Employee ID")
+
+        # Get a specific cell component
+        edit_button = TableUtils.findComponentFromTableCell(wait, 0, "Actions")
+
+        # Interact with element in table cell
+        component = TableUtils.findComponentByColumnNameAndRowNumber(wait, 1, "Status")
+
+    Note:
+        - Tables are located by column header 'abbr' attribute
+        - Column positions are derived from header class attributes (e.g., "headCell_2")
+        - Hidden/aria-hidden elements are automatically excluded
     """
 
     @staticmethod
     def rowCount(tableObject):
         """
-        Counts the number of rows in a table.
+        Count non-empty rows in a table.
 
-        :param tableObject: The Selenium WebElement representing the table.
-        :return: The number of rows in the table.
-        Example:
-            row_count = TableUtils.rowCount(table)
+        Returns the number of data rows (excluding empty grid message placeholders).
+
+        Args:
+            tableObject: WebElement representing the table (from findTableByColumnName).
+
+        Returns:
+            int: Number of rows in the table.
+
+        Examples:
+            >>> table = TableUtils.findTableByColumnName(wait, "Name")
+            >>> rows = TableUtils.rowCount(table)
+            >>> print(f"Found {rows} employees")
         """
 
         xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
@@ -52,7 +82,9 @@ class TableUtils:
         component = tableObject.find_element(By.XPATH, xpath)
 
         if component is None:
-            raise ValueError(f"Could not find a column with abbr '{columnName}' in the table header.")
+            raise ValueError(
+                f"Could not find a column with abbr '{columnName}' in the table header."
+            )
 
         class_string = component.get_attribute("class")
         partial_string = "headCell_"
@@ -64,7 +96,9 @@ class TableUtils:
                 selected_word = word
 
         if selected_word is None:
-            raise ValueError(f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'.")
+            raise ValueError(
+                f"Could not find a class containing '{partial_string}' in the column header for '{columnName}'."
+            )
 
         data = selected_word.split("_")
         return int(data[1])
@@ -100,7 +134,7 @@ class TableUtils:
     @staticmethod
     def selectRowFromTableByColumnNameAndRowNumber(wait, rowNumber, columnName):
         row = TableUtils.__findRowByColumnNameAndRowNumber(wait, rowNumber, columnName)
-        row = wait.until(EC.element_to_be_clickable(row))  
+        row = wait.until(EC.element_to_be_clickable(row))
         ComponentUtils.click(wait, row)
 
     @staticmethod
@@ -112,7 +146,9 @@ class TableUtils:
         parts = id.rsplit("_", 1)
         columnNumber = int(parts[-1])
 
-        tableRow = TableUtils.__findRowByColumnNameAndRowNumber(wait, rowNumber, columnName)
+        tableRow = TableUtils.__findRowByColumnNameAndRowNumber(
+            wait, rowNumber, columnName
+        )
         xpath = f"./td[{columnNumber + 1}]/*"
         component = ComponentUtils.findChildComponentByXpath(wait, tableRow, xpath)
         component = wait.until(EC.element_to_be_clickable(component))

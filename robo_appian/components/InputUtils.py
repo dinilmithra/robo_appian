@@ -1,4 +1,3 @@
-
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,16 +7,34 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 class InputUtils:
     """
-    Utility class for interacting with input components in Appian UI.
-    Usage Example:
-        from robo_appian.components.InputUtils import InputUtils
+    Fill text inputs, search fields, and other input components using label-driven selectors.
 
-        # Set a value in an input component by its label
-        InputUtils.setValueByLabelText(wait, "Username", "test_user")
+    This utility handles text inputs by their visible labels, making tests readable and maintainable.
+    Automatically waits for clickability, clears existing values, and enters new text.
 
-        # Set a value in an input component by its ID
-        InputUtils.setValueById(wait, "inputComponentId", "test_value")
-    """     
+    All methods follow the wait-first pattern: pass WebDriverWait as the first argument.
+
+    Examples:
+        >>> from robo_appian import InputUtils
+
+        # Set value by exact label match
+        InputUtils.setValueByLabelText(wait, "Username", "john_doe")
+        InputUtils.setValueByLabelText(wait, "Email Address", "john@example.com")
+
+        # Set value by partial label match (useful for dynamic labels)
+        InputUtils.setValueByPartialLabelText(wait, "First", "John")
+
+        # Set value by element ID
+        InputUtils.setValueById(wait, "email_input_123", "john@example.com")
+
+        # Set value by placeholder text
+        InputUtils.setValueByPlaceholderText(wait, "Enter your name", "John Doe")
+
+    Note:
+        - Uses normalize-space and NBSP translation to handle whitespace variations
+        - Automatically moves to element, clears it, and enters text via ActionChains
+        - Waits for element to be clickable before interacting
+    """
 
     @staticmethod
     def __findComponentByPartialLabel(wait: WebDriverWait, label: str):
@@ -111,18 +128,24 @@ class InputUtils:
     @staticmethod
     def setValueByLabelText(wait: WebDriverWait, label: str, value: str):
         """
-        Sets a value in an input component identified by its label text.
+        Set value in an input field by its exact label text.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the input component.
-            value: The value to set in the input field.
+        Finds the input by its associated label, waits for clickability, clears any existing
+        text, and enters the new value. Most commonly used method for form filling.
 
-        Returns:
-            None
+        Args:
+            wait: WebDriverWait instance (required by all robo_appian utilities).
+            label: Exact visible label text. Must match exactly (e.g., "First Name", not "First").
+            value: Text to enter into the input field.
 
-        Example:
-            InputUtils.setValueByLabelText(wait, "Username", "test_user")
+        Raises:
+            ValueError: If label element has no 'for' attribute linking to input.
+            TimeoutException: If label or input not found within wait timeout.
+
+        Examples:
+            >>> InputUtils.setValueByLabelText(wait, "Username", "john_doe")
+            >>> InputUtils.setValueByLabelText(wait, "Email", "john@example.com")
+            >>> InputUtils.setValueByLabelText(wait, "Address", "123 Main St")
         """
         component = InputUtils.__findComponentByLabel(wait, label)
         InputUtils._setValueByComponent(wait, component, value)

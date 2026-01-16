@@ -6,11 +6,35 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 class ButtonUtils:
     """
-    Utility class for interacting with button components in Appian UI.
-    Usage Example:
-        # Click a button by its label
-        from robo_appian.components.ButtonUtils import ButtonUtils
+    Click buttons, action links, and control components using visible text labels.
+
+    Find and interact with buttons by their user-visible text, avoiding fragile element IDs
+    or XPaths. Automatically waits for clickability and uses ActionChains for reliable clicking
+    even on overlaid or animated elements.
+
+    All methods follow the wait-first pattern: pass WebDriverWait as the first argument.
+
+    Examples:
+        >>> from robo_appian import ButtonUtils
+
+        # Click by exact label match
         ButtonUtils.clickByLabelText(wait, "Submit")
+        ButtonUtils.clickByLabelText(wait, "Save Changes")
+
+        # Click by partial label match (useful for buttons with dynamic text)
+        ButtonUtils.clickByPartialLabelText(wait, "Save")
+
+        # Click by element ID (when labels are unavailable)
+        ButtonUtils.clickById(wait, "save_button_123")
+
+        # Check if button exists before clicking
+        if ButtonUtils.isButtonExistsByLabelText(wait, "Delete"):
+            ButtonUtils.clickByLabelText(wait, "Delete")
+
+    Note:
+        - Uses ActionChains.move_to_element().click() for reliable interaction
+        - Waits for element_to_be_clickable before clicking (handles animations)
+        - Handles NBSP and whitespace normalization automatically
     """
 
     @staticmethod
@@ -52,13 +76,23 @@ class ButtonUtils:
 
     @staticmethod
     def clickByLabelText(wait: WebDriverWait, label: str):
-        """Finds a button by its label and clicks it.
+        """
+        Click a button by its exact label text.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The label of the button to click.
-            Example:
-                ButtonUtils.clickByLabelText(wait, "Button Label")
+        Finds the button element containing the exact label text, waits for clickability,
+        and clicks it using ActionChains for reliable interaction.
+
+        Args:
+            wait: WebDriverWait instance.
+            label: Exact button text (e.g., "Submit", "Save", "Cancel").
+
+        Raises:
+            TimeoutException: If button not found or not clickable within timeout.
+
+        Examples:
+            >>> ButtonUtils.clickByLabelText(wait, "Submit")
+            >>> ButtonUtils.clickByLabelText(wait, "Save Changes")
+            >>> ButtonUtils.clickByLabelText(wait, "Cancel")
         """
         component = ButtonUtils.__findByLabelText(wait, label)
 
