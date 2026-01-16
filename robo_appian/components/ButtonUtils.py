@@ -29,22 +29,12 @@ class ButtonUtils:
             component = ButtonUtils._findByPartialLabelText(wait, "Submit")
         """
         xpath = f"//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
-        try:
-            component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-        except Exception as e:
-            raise Exception(
-                f"Button with label '{label}' not found or not clickable."
-            ) from e
-        return component
+        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
 
     @staticmethod
     def __findByLabelText(wait: WebDriverWait, label: str):
         xpath = f".//button[./span[normalize-space(.)='{label}']]"
-        try:
-            component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-        except Exception as e:
-            raise Exception(f"Button with label '{label}' not found.") from e
-        return component
+        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
 
     @staticmethod
     def clickByPartialLabelText(wait: WebDriverWait, label: str):
@@ -87,13 +77,7 @@ class ButtonUtils:
             ButtonUtils.clickById(wait, "button_id")
 
         """
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.ID, id)))
-        except Exception as e:
-            raise Exception(
-                f"Input button with id '{id}' not found or not clickable."
-            ) from e
-
+        component = wait.until(EC.element_to_be_clickable((By.ID, id)))
         ComponentUtils.click(wait, component)
 
     @staticmethod
@@ -125,8 +109,4 @@ class ButtonUtils:
     @staticmethod
     def waitForButtonToBeVisibleByPartialLabelText(wait: WebDriverWait, label: str):
         xpath = f".//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), '{label}')]]"
-        try:
-            component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-        except Exception as e:
-            raise Exception(f"Button with partial label '{label}' not visible.") from e
-        return component
+        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)

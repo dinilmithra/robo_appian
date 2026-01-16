@@ -85,14 +85,11 @@ class InputUtils:
         Example:
             InputUtils._setValueByComponent(wait, component, "test_value")
         """
-        try:
-            wait.until(EC.element_to_be_clickable(component))
-            driver = wait._driver
-            ActionChains(driver).move_to_element(component).perform()
-            component.clear()
-            component.send_keys(value)
-        except Exception as e:
-            raise Exception(f"Error setting value in input component: {e}")
+        wait.until(EC.element_to_be_clickable(component))
+        driver = wait._driver
+        ActionChains(driver).move_to_element(component).perform()
+        component.clear()
+        component.send_keys(value)
         return component
 
     @staticmethod

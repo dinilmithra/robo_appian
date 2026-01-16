@@ -28,10 +28,7 @@ class TabUtils:
     @staticmethod
     def findTabByLabelText(wait: WebDriverWait, label: str) -> WebElement:
         xpath = f'//div/div[@role="link" ]/div/div/div/div/div/p[normalize-space(.)="{label}"]'
-        try:
-            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f"Tab with label '{label}' not found.") from e
+        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         return component
 
     @staticmethod

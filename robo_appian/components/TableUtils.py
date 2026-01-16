@@ -33,10 +33,7 @@ class TableUtils:
         """
 
         xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
-        try:
-            rows = tableObject.find_elements(By.XPATH, xpath)
-        except Exception as e:
-            raise Exception(f"Could not count rows in table: ") from e
+        rows = tableObject.find_elements(By.XPATH, xpath)
         return len(rows)
 
     @staticmethod
@@ -97,10 +94,7 @@ class TableUtils:
         rowNumber = rowNumber + 1
         columnNumber = columnNumber + 1
         xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]/tbody/tr[@data-dnd-name="row {rowNumber}"]/td[not (@data-empty-grid-message)][{columnNumber}]/*'
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f"Could not find component in cell at row {rowNumber}, column '{columnName}': ") from e
+        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         return component
 
     @staticmethod
@@ -137,13 +131,7 @@ class TableUtils:
         """
 
         xpath = f'.//table[./thead/tr/th[@abbr="{columnName}"]]'
-        try:
-            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f"Could not find table with column name '{columnName}': ") from e
+        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
 
-        try:
-            component = wait.until(EC.element_to_be_clickable(component))
-        except Exception as e:
-            raise Exception(f"Table found by column name '{columnName}' is not clickable: ") from e
+        component = wait.until(EC.element_to_be_clickable(component))
         return component

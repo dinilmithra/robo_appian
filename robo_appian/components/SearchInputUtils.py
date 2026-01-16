@@ -26,12 +26,7 @@ class SearchInputUtils:
         if dropdown_list_id:
             InputUtils._setValueByComponent(wait, search_input_component, value)
             xpath = f'.//ul[@id="{dropdown_list_id}" and @role="listbox" ]/li[@role="option" and @tabindex="-1" and ./div/div/div/div/div/div/p[normalize-space(.)="{value}"][1]]'
-            try:
-                drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-            except Exception as e:
-                raise Exception(
-                    f"Dropdown item with value '{value}' not found for component '{search_input_component.text}'."
-                ) from e
+            drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
             ComponentUtils.click(wait, drop_down_item)
         else:
             raise ValueError(

@@ -27,12 +27,7 @@ class DateUtils:
         """
 
         xpath = f'.//div[./div/label[normalize-space(translate(., "\u00a0", " "))="{label}"]]/div/div/div/input'
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(
-                f"Could not find clickable date component with label '{label}': {e}"
-            )
+        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         return component
 
     @staticmethod

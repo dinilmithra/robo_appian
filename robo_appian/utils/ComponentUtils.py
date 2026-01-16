@@ -66,40 +66,22 @@ class ComponentUtils:
         xpath = ".//button[@class='child']"
         child_component = ComponentUtils.findChildComponentByXpath(wait, parent_component, xpath)
         """
-        try:
-            component = wait.until(lambda comp: component.find_element(By.XPATH, xpath))
-        except Exception as e:
-            raise Exception(
-                f"Child component with XPath '{xpath}' not found within the given parent component."
-            ) from e
+        component = wait.until(lambda comp: component.find_element(By.XPATH, xpath))
         return component
 
     @staticmethod
     def findComponentById(wait: WebDriverWait, id: str):
-        try:
-            component = wait.until(EC.presence_of_element_located((By.ID, id)))
-        except Exception as e:
-            raise Exception(f"Component with ID '{id}' not found.") from e
+        component = wait.until(EC.presence_of_element_located((By.ID, id)))
         return component
 
     @staticmethod
     def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-        try:
-            component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(
-                f"Component with XPath '{xpath}' not visible. Error: {e}"
-            ) from e
+        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
         return component
 
     @staticmethod
     def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
-        try:
-            wait.until(EC.staleness_of(component))
-        except Exception as e:
-            raise Exception(
-                "Component did not become invisible (stale) within the timeout period."
-            ) from e
+        wait.until(EC.staleness_of(component))
 
     @staticmethod
     def waitForComponentNotToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
@@ -124,10 +106,7 @@ class ComponentUtils:
         Exception
             If the element does not become invisible within the wait timeout or another error occurs while waiting.
         """
-        try:
-            return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f"Component with XPath '{xpath}' is still visible.") from e
+        return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
 
     # @staticmethod
     # def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
@@ -151,14 +130,13 @@ class ComponentUtils:
     @staticmethod
     def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
         """Checks if a component with the given XPath exists in the current WebDriver instance."""
-        status = False
         try:
             ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-            status = True
+            return True
         except NoSuchElementException:
             pass
 
-        return status
+        return False
 
     @staticmethod
     def checkComponentExistsById(driver: WebDriver, id: str):
@@ -171,14 +149,13 @@ class ComponentUtils:
         exists = ComponentUtils.checkComponentExistsById(driver, "submit-button")
         print(f"Component exists: {exists}")
         """
-        status = False
         try:
             driver.find_element(By.ID, id)
-            status = True
+            return True
         except NoSuchElementException:
             pass
 
-        return status
+        return False
 
     @staticmethod
     def findCount(wait: WebDriverWait, xpath: str):
@@ -253,7 +230,7 @@ class ComponentUtils:
         try:
             component = wait._driver.find_element(By.XPATH, xpath)
         except NoSuchElementException as e:
-            raise Exception(f"Component with XPath '{xpath}' not found.") from e
+            raise
         return component
 
     @staticmethod
@@ -293,14 +270,13 @@ class ComponentUtils:
 
     @staticmethod
     def isComponentPresentByXpath(wait: WebDriverWait, xpath: str):
-        status = False
         try:
             wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-            status = True
+            return True
         except NoSuchElementException:
             pass
 
-        return status
+        return False
 
     @staticmethod
     def waitForElementToBeVisibleById(wait: WebDriverWait, id: str):
@@ -324,9 +300,4 @@ class ComponentUtils:
     def waitForComponentToBeClickableByXpath(
         wait: WebDriverWait, component: WebElement
     ):
-        try:
-            return wait.until(EC.element_to_be_clickable(component))
-        except Exception as e:
-            raise Exception(
-                "Component did not become clickable within the timeout period. "
-            ) from e
+        return wait.until(EC.element_to_be_clickable(component))

@@ -23,27 +23,15 @@ class SearchDropdownUtils:
             raise ValueError("Invalid component_id provided.")
 
         input_component_id = str(component_id) + "_searchInput"
-        try:
-            wait.until(EC.presence_of_element_located((By.ID, input_component_id)))
-            input_component = wait.until(
-                EC.element_to_be_clickable((By.ID, input_component_id))
-            )
-        except Exception as e:
-            raise Exception(
-                f"Failed to locate or click input component with ID '{input_component_id}': {e}"
-            ) from e
+        input_component = wait.until(
+            EC.element_to_be_clickable((By.ID, input_component_id))
+        )
         InputUtils._setValueByComponent(wait, input_component, value)
 
         dropdown_option_id = str(component_id) + "_list"
 
         xpath = f'.//ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]][1]'
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(
-                f"Failed to locate or click dropdown option with XPath '{xpath}': {e}"
-            ) from e 
-         
+        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         ComponentUtils.click(wait, component)
 
     @staticmethod
@@ -51,12 +39,7 @@ class SearchDropdownUtils:
         wait: WebDriverWait, label: str, value: str
     ):
         xpath = f'.//div[./div/span[contains(normalize-space(.), "{label}")]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
-        try:
-            combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(
-                f"Failed to locate or click dropdown component with XPath '{xpath}': {e}"
-            ) from e
+        combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
 
         SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(
             wait, combobox, value
@@ -67,12 +50,7 @@ class SearchDropdownUtils:
         wait: WebDriverWait, label: str, value: str
     ):
         xpath = f'.//div[./div/span[normalize-space(.)="{label}"]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
-        try:
-            combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(
-                f"Failed to locate or click dropdown component with XPath '{xpath}': {e}"
-            ) from e
+        combobox = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
         SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(
             wait, combobox, value
         )
@@ -103,14 +81,9 @@ class SearchDropdownUtils:
             dropdown_label (str): The label text of the dropdown.
             value (str): The value to select from the dropdown.
         """
-        try:
-            SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
-                wait, dropdown_label, value
-            )
-        except Exception as e:
-            raise Exception(
-                f"Failed to select value '{value}' from dropdown with label '{dropdown_label}': {e}"
-            ) from e
+        SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
+            wait, dropdown_label, value
+        )
 
     @staticmethod
     def selectSearchDropdownValueByPartialLabelText(

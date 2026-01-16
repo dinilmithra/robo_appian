@@ -35,10 +35,7 @@ class DropdownUtils:
         else:
             xpath=f'//span[text()="{label}"]/ancestor::div[@role="presentation"][1]//div[@role="combobox" and not(@aria-disabled="true")]'
 
-        try:
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        except Exception as e:
-            raise Exception(f'Could not find combobox with label "{label}" ') from e
+        component = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
 
         return component
 
@@ -52,13 +49,9 @@ class DropdownUtils:
         Example:
             DropdownUtils.__clickCombobox(wait, combobox)
         """
-        try:
-            id = combobox.get_attribute("id")
-            element = wait.until(EC.element_to_be_clickable((By.ID, id)))
-            ComponentUtils.click(wait, element)
-
-        except Exception as e:
-            raise Exception(f"Could not click combobox . Error: {e} ") from e
+        id = combobox.get_attribute("id")
+        element = wait.until(EC.element_to_be_clickable((By.ID, id)))
+        ComponentUtils.click(wait, element)
 
     @staticmethod
     def __findDropdownOptionId(combobox: WebElement):
@@ -103,9 +96,7 @@ class DropdownUtils:
         except NoSuchElementException:
             return False
         except Exception as e:
-            raise Exception(
-                f'Could not find dropdown option "{value}" with dropdown option id "{dropdown_option_id}"'
-            ) from e
+            raise
 
     @staticmethod
     def __selectDropdownValueByDropdownOptionId(
@@ -120,17 +111,8 @@ class DropdownUtils:
             DropdownUtils.__selectDropdownValueByDropdownOptionId(wait, "dropdown_option_id", "Option Value")
         """
         option_xpath = f'.//div/ul[@id="{dropdown_option_id}"]/li[./div[normalize-space(.)="{value}"]]'
-
-        try:
-            component = wait.until(
-                EC.presence_of_element_located((By.XPATH, option_xpath))
-            )
-            component = wait.until(EC.element_to_be_clickable((By.XPATH, option_xpath)))
-            component.click()
-        except Exception as e:
-            raise Exception(
-                f'Could not locate or click dropdown option "{value}" with dropdown option id "{dropdown_option_id}", Error: {e}'  # noqa: E501
-            ) from e
+        component = wait.until(EC.element_to_be_clickable((By.XPATH, option_xpath)))
+        component.click()
 
     @staticmethod
     def __selectDropdownValueByPartialLabelText(
@@ -188,9 +170,7 @@ class DropdownUtils:
         except NoSuchElementException:
             return False
         except Exception as e:
-            raise Exception(
-                f'Error checking read-only status for label "{label}"'
-            ) from e
+            raise
 
     @staticmethod
     def checkEditableStatusByLabelText(wait: WebDriverWait, label: str):
@@ -214,9 +194,7 @@ class DropdownUtils:
         except NoSuchElementException:
             return False  # If disabled element is not found, dropdown is editable
         except Exception as e:
-            raise Exception(
-                f'Error checking editable status for label "{label}"'
-            ) from e
+            raise
 
     @staticmethod
     def waitForDropdownToBeEnabled(
@@ -237,7 +215,6 @@ class DropdownUtils:
                 print("The dropdown is still disabled.")
         """
         elapsed_time = 0
-        status = False
 
         while elapsed_time < timeout:
             status = DropdownUtils.checkEditableStatusByLabelText(wait, label)
@@ -369,10 +346,7 @@ class DropdownUtils:
             DropdownUtils.__clickCombobox(wait, combobox)
             return option_texts
         except Exception as e:
-            raise Exception(
-                f'Could not get dropdown option values for label "{dropdown_label}"'
-            ) from e
-
+                raise
     @staticmethod
     def waitForDropdownValuesToBeChanged(
         wait: WebDriverWait,
@@ -400,8 +374,6 @@ class DropdownUtils:
         """
 
         elapsed_time = 0
-        poll_frequency = 0.5
-        timeout = 4  # seconds
         while elapsed_time < timeout:
 
             current_values: list[str] = DropdownUtils.getDropdownOptionValues(
