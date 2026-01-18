@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#user-guide-overview" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -96,11 +98,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Robo Appian Documentation" class="md-header__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -201,16 +206,22 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+      </div>
+    
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -284,7 +295,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api/button-utils/" class="md-tabs__link">
+        <a href="../../api/" class="md-tabs__link">
           
   
   
@@ -358,7 +369,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -379,11 +396,24 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Robo Appian Documentation" class="md-nav__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Robo Appian Documentation
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -635,55 +665,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-youll-learn" class="md-nav__link">
+  <a href="#what-is-robo-appian" class="md-nav__link">
     <span class="md-ellipsis">
-      What You'll Learn
+      What is Robo Appian?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What You&#39;ll Learn">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Design Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Design Principles">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#wait-first-pattern" class="md-nav__link">
     <span class="md-ellipsis">
-      🏗️ Core Concepts
+      Wait-First Pattern
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#component-mastery" class="md-nav__link">
+  <a href="#label-driven-selectors" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 Component Mastery
+      Label-Driven Selectors
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#advanced-techniques" class="md-nav__link">
+  <a href="#safe-click-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Advanced Techniques
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      📋 Best Practices
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      🛠️ Troubleshooting
+      Safe Click Operations
     </span>
   </a>
   
@@ -695,46 +716,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guide-structure" class="md-nav__link">
+  <a href="#library-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      Guide Structure
+      Library Structure
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-the-most-from-this-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting the Most from This Guide
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Getting the Most from This Guide">
+    <nav class="md-nav" aria-label="Library Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#component-utilities" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Component Utilities
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reading-approach" class="md-nav__link">
+  <a href="#shared-utilities" class="md-nav__link">
     <span class="md-ellipsis">
-      Reading Approach
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Learning Tips
+      Shared Utilities
     </span>
   </a>
   
@@ -746,37 +749,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-philosophy" class="md-nav__link">
+  <a href="#key-patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Core Philosophy
+      Key Patterns
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core Philosophy">
+    <nav class="md-nav" aria-label="Key Patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-label-based-interaction" class="md-nav__link">
+  <a href="#static-method-design" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Label-Based Interaction
+      Static Method Design
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-component-specific-methods" class="md-nav__link">
+  <a href="#table-interactions" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Component-Specific Methods
+      Table Interactions
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-progressive-complexity" class="md-nav__link">
+  <a href="#version-management" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Progressive Complexity
+      Version Management
     </span>
   </a>
   
@@ -788,37 +791,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
+  <a href="#resilience-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Use Cases
+      Resilience Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Use Cases">
+    <nav class="md-nav" aria-label="Resilience Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-form-automation" class="md-nav__link">
+  <a href="#automatic-retries" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Form Automation
+      Automatic Retries
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-data-validation" class="md-nav__link">
+  <a href="#partial-label-matching" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Data Validation
+      Partial Label Matching
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-workflow-testing" class="md-nav__link">
+  <a href="#multiple-wait-strategies" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Workflow Testing
+      Multiple Wait Strategies
     </span>
   </a>
   
@@ -840,9 +843,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#with-testing-frameworks" class="md-nav__link">
+  <a href="#pytest-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      With Testing Frameworks
+      Pytest Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unittest-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unittest Integration
     </span>
   </a>
   
@@ -854,9 +866,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#when-to-use-robo-appian" class="md-nav__link">
     <span class="md-ellipsis">
-      Next Steps
+      When to Use Robo Appian
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="When to Use Robo Appian">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ideal-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ideal Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-recommended-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not Recommended For
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Path
     </span>
   </a>
   
@@ -1022,12 +1076,80 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/button-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ButtonUtils
+    Buttons
     
   </span>
   
@@ -1050,7 +1172,7 @@
   
   
   <span class="md-ellipsis">
-    InputUtils
+    Inputs
     
   </span>
   
@@ -1073,7 +1195,7 @@
   
   
   <span class="md-ellipsis">
-    DateUtils
+    Dates
     
   </span>
   
@@ -1096,7 +1218,7 @@
   
   
   <span class="md-ellipsis">
-    DropdownUtils
+    Dropdowns
     
   </span>
   
@@ -1119,7 +1241,7 @@
   
   
   <span class="md-ellipsis">
-    SearchDropdownUtils
+    Search Dropdowns
     
   </span>
   
@@ -1142,7 +1264,7 @@
   
   
   <span class="md-ellipsis">
-    SearchInputUtils
+    Search Inputs
     
   </span>
   
@@ -1165,7 +1287,7 @@
   
   
   <span class="md-ellipsis">
-    TableUtils
+    Tables
     
   </span>
   
@@ -1188,7 +1310,7 @@
   
   
   <span class="md-ellipsis">
-    TabUtils
+    Tabs
     
   </span>
   
@@ -1211,7 +1333,7 @@
   
   
   <span class="md-ellipsis">
-    LabelUtils
+    Labels
     
   </span>
   
@@ -1234,7 +1356,7 @@
   
   
   <span class="md-ellipsis">
-    LinkUtils
+    Links
     
   </span>
   
@@ -1244,6 +1366,59 @@
   
 
               
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shared Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shared Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1275,17 +1450,48 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/component-driver/" class="md-nav__link">
+      <a href="../../api/robo-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ComponentDriver
+    RoboUtils
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/browser-utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BrowserUtils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1589,55 +1795,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-youll-learn" class="md-nav__link">
+  <a href="#what-is-robo-appian" class="md-nav__link">
     <span class="md-ellipsis">
-      What You'll Learn
+      What is Robo Appian?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What You&#39;ll Learn">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Design Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Design Principles">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#wait-first-pattern" class="md-nav__link">
     <span class="md-ellipsis">
-      🏗️ Core Concepts
+      Wait-First Pattern
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#component-mastery" class="md-nav__link">
+  <a href="#label-driven-selectors" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 Component Mastery
+      Label-Driven Selectors
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#advanced-techniques" class="md-nav__link">
+  <a href="#safe-click-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Advanced Techniques
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      📋 Best Practices
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      🛠️ Troubleshooting
+      Safe Click Operations
     </span>
   </a>
   
@@ -1649,46 +1846,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guide-structure" class="md-nav__link">
+  <a href="#library-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      Guide Structure
+      Library Structure
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-the-most-from-this-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting the Most from This Guide
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Getting the Most from This Guide">
+    <nav class="md-nav" aria-label="Library Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#component-utilities" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Component Utilities
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reading-approach" class="md-nav__link">
+  <a href="#shared-utilities" class="md-nav__link">
     <span class="md-ellipsis">
-      Reading Approach
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Learning Tips
+      Shared Utilities
     </span>
   </a>
   
@@ -1700,37 +1879,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-philosophy" class="md-nav__link">
+  <a href="#key-patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Core Philosophy
+      Key Patterns
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core Philosophy">
+    <nav class="md-nav" aria-label="Key Patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-label-based-interaction" class="md-nav__link">
+  <a href="#static-method-design" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Label-Based Interaction
+      Static Method Design
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-component-specific-methods" class="md-nav__link">
+  <a href="#table-interactions" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Component-Specific Methods
+      Table Interactions
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-progressive-complexity" class="md-nav__link">
+  <a href="#version-management" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Progressive Complexity
+      Version Management
     </span>
   </a>
   
@@ -1742,37 +1921,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
+  <a href="#resilience-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Use Cases
+      Resilience Features
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Use Cases">
+    <nav class="md-nav" aria-label="Resilience Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-form-automation" class="md-nav__link">
+  <a href="#automatic-retries" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Form Automation
+      Automatic Retries
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-data-validation" class="md-nav__link">
+  <a href="#partial-label-matching" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Data Validation
+      Partial Label Matching
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-workflow-testing" class="md-nav__link">
+  <a href="#multiple-wait-strategies" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Workflow Testing
+      Multiple Wait Strategies
     </span>
   </a>
   
@@ -1794,9 +1973,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#with-testing-frameworks" class="md-nav__link">
+  <a href="#pytest-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      With Testing Frameworks
+      Pytest Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unittest-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unittest Integration
     </span>
   </a>
   
@@ -1808,9 +1996,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#when-to-use-robo-appian" class="md-nav__link">
     <span class="md-ellipsis">
-      Next Steps
+      When to Use Robo Appian
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="When to Use Robo Appian">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ideal-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ideal Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-recommended-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not Recommended For
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Path
     </span>
   </a>
   
@@ -1831,303 +2061,203 @@
                   
 
 
+  
+  
 
-<h1 id="user-guide-overview">User Guide Overview<a class="headerlink" href="#user-guide-overview" title="Permanent link">&para;</a></h1>
-<p>Welcome to the Robo Appian User Guide! This comprehensive guide will help you master automated testing of Appian applications using the Robo Appian library.</p>
-<h2 id="what-youll-learn">What You'll Learn<a class="headerlink" href="#what-youll-learn" title="Permanent link">&para;</a></h2>
-<p>This user guide covers everything you need to know to become proficient with Robo Appian:</p>
-<h3 id="core-concepts">🏗️ <strong>Core Concepts</strong><a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h3>
-<p>Understand the fundamental concepts and architecture of Robo Appian, including how it simplifies Appian UI automation.</p>
-<h3 id="component-mastery">🎯 <strong>Component Mastery</strong><a class="headerlink" href="#component-mastery" title="Permanent link">&para;</a></h3>
-<p>Learn to use each component utility effectively, from simple buttons to complex data tables.</p>
-<h3 id="advanced-techniques">🚀 <strong>Advanced Techniques</strong><a class="headerlink" href="#advanced-techniques" title="Permanent link">&para;</a></h3>
-<p>Discover powerful features like the ComponentDriver, data-driven testing, and complex workflow automation.</p>
-<h3 id="best-practices">📋 <strong>Best Practices</strong><a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
-<p>Follow industry-proven patterns and practices for maintainable, reliable test automation.</p>
-<h3 id="troubleshooting">🛠️ <strong>Troubleshooting</strong><a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
-<p>Master error handling, debugging techniques, and common issue resolution.</p>
-<h2 id="guide-structure">Guide Structure<a class="headerlink" href="#guide-structure" title="Permanent link">&para;</a></h2>
-<table>
-  <tr>
-    <td align="center" width="25%">
-      <a href="components.md">
-        <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/cog.svg" alt="Core Components" width="32" height="32"/><br/>
-        <b>Core Components</b>
-      </a>
-      <div style="font-size: 0.95em; margin-top: 0.5em;">Detailed guide to all Robo Appian components and their usage</div>
-      <div><a href="components.md">Go to Core Components &rarr;</a></div>
-    </td>
-    <td align="center" width="25%">
-      <a href="advanced.md">
-        <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/rocket.svg" alt="Advanced Features" width="32" height="32"/><br/>
-        <b>Advanced Features</b>
-      </a>
-      <div style="font-size: 0.95em; margin-top: 0.5em;">ComponentDriver, data-driven testing, and complex workflows</div>
-      <div><a href="advanced.md">Go to Advanced Features &rarr;</a></div>
-    </td>
-    <td align="center" width="25%">
-      <a href="best-practices.md">
-        <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/shield-check.svg" alt="Best Practices" width="32" height="32"/><br/>
-        <b>Best Practices</b>
-      </a>
-      <div style="font-size: 0.95em; margin-top: 0.5em;">Industry best practices for test automation</div>
-      <div><a href="best-practices.md">Go to Best Practices &rarr;</a></div>
-    </td>
-    <td align="center" width="25%">
-      <a href="error-handling.md">
-        <img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/bug.svg" alt="Error Handling" width="32" height="32"/><br/>
-        <b>Error Handling</b>
-      </a>
-      <div style="font-size: 0.95em; margin-top: 0.5em;">Master debugging and error resolution techniques</div>
-      <div><a href="error-handling.md">Go to Error Handling &rarr;</a></div>
-    </td>
-  </tr>
-</table>
 
-<h2 id="getting-the-most-from-this-guide">Getting the Most from This Guide<a class="headerlink" href="#getting-the-most-from-this-guide" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<p>Before diving into this guide, make sure you have:</p>
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<p>Robo Appian is a Python library that transforms Appian UI test automation by providing label-driven, readable APIs built on top of Selenium WebDriver. Instead of maintaining brittle XPath selectors or element IDs that break with every Appian update, Robo Appian leverages the visible labels and ARIA attributes that business users already see on screen.</p>
+<h2 id="what-is-robo-appian">What is Robo Appian?<a class="headerlink" href="#what-is-robo-appian" title="Permanent link">&para;</a></h2>
+<p>Robo Appian wraps Selenium with Appian-specific locators and patterns so tests read like business steps. Every public API uses a <code>WebDriverWait</code> first, automatically derives the driver via <code>wait._driver</code>, and relies on label/ARIA metadata to find elements. This approach makes tests:</p>
 <ul>
-<li>[x] <strong>Robo Appian installed</strong> - See <a href="../../getting-started/installation/">Installation Guide</a></li>
-<li>[x] <strong>Basic Python knowledge</strong> - Understanding of functions, classes, and imports</li>
-<li>[x] <strong>Selenium familiarity</strong> - Basic understanding of WebDriver concepts</li>
-<li>[x] <strong>Access to Appian</strong> - An Appian application to test against</li>
+<li><strong>Business-readable</strong>: Use the same terms your product owners use ("Click Submit", "Set Username to test_user")</li>
+<li><strong>Resilient</strong>: Labels rarely change; internal IDs and structure shift constantly</li>
+<li><strong>Maintainable</strong>: One line of code replaces complex XPath and wait logic</li>
+<li><strong>Self-documenting</strong>: Method names describe intent, not implementation</li>
 </ul>
-<h3 id="reading-approach">Reading Approach<a class="headerlink" href="#reading-approach" title="Permanent link">&para;</a></h3>
-<p>This guide is designed to be read in order, but you can also jump to specific sections:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linear Reading</label><label for="__tabbed_1_2">Reference Style</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><strong>Recommended for beginners</strong></p>
-<ol>
-<li>Start with <a href="../components/">Core Components</a></li>
-<li>Progress through <a href="../advanced/">Advanced Features</a>  </li>
-<li>Study <a href="../best-practices/">Best Practices</a></li>
-<li>Reference <a href="../error-handling/">Error Handling</a> as needed</li>
-</ol>
-</div>
-<div class="tabbed-block">
-<p><strong>Good for experienced users</strong></p>
+<h2 id="core-design-principles">Core Design Principles<a class="headerlink" href="#core-design-principles" title="Permanent link">&para;</a></h2>
+<h3 id="wait-first-pattern">Wait-First Pattern<a class="headerlink" href="#wait-first-pattern" title="Permanent link">&para;</a></h3>
+<p>Every robo_appian method accepts <code>WebDriverWait</code> as the first parameter. This ensures:</p>
 <ul>
-<li>Use the search function to find specific topics</li>
-<li>Jump directly to component-specific sections</li>
-<li>Reference best practices for specific scenarios</li>
-<li>Consult error handling for troubleshooting</li>
+<li>Consistent timeout behavior across all interactions</li>
+<li>Automatic waiting for elements to be present, visible, and interactable</li>
+<li>No need for manual <code>time.sleep()</code> or custom wait logic</li>
+<li>Centralized timeout configuration (set once when creating <code>WebDriverWait</code>)</li>
 </ul>
-</div>
-</div>
-</div>
-<h3 id="learning-tips">Learning Tips<a class="headerlink" href="#learning-tips" title="Permanent link">&para;</a></h3>
-<div class="admonition tip">
-<p class="admonition-title">Hands-on Practice</p>
-<p>The best way to learn Robo Appian is by practicing. Try the examples in your own Appian environment.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Code Examples</p>
-<p>All code examples are tested and ready to use. Copy and adapt them for your specific needs.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Version Compatibility</p>
-<p>This guide is for Robo Appian v0.0.12+. Some features may not be available in older versions.</p>
-</div>
-<h2 id="core-philosophy">Core Philosophy<a class="headerlink" href="#core-philosophy" title="Permanent link">&para;</a></h2>
-<p>Understanding Robo Appian's design philosophy will help you use it more effectively:</p>
-<h3 id="1-label-based-interaction">1. <strong>Label-Based Interaction</strong><a class="headerlink" href="#1-label-based-interaction" title="Permanent link">&para;</a></h3>
-<p>Traditional Selenium:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;//div[@class=&#39;appian-component&#39;]//input[@data-field=&#39;username&#39;]&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;testuser&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<p>Robo Appian approach:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Username&quot;</span><span class="p">,</span> <span class="s2">&quot;testuser&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<p><strong>Benefits:</strong>
-- More readable and maintainable
-- Resilient to UI changes
-- Business-user friendly</p>
-<h3 id="2-component-specific-methods">2. <strong>Component-Specific Methods</strong><a class="headerlink" href="#2-component-specific-methods" title="Permanent link">&para;</a></h3>
-<p>Each UI component type has dedicated utilities:</p>
-<table>
-<thead>
-<tr>
-<th>Component Type</th>
-<th>Utility Class</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Text Inputs</td>
-<td><code>InputUtils</code></td>
-<td>Handle text fields, text areas</td>
-</tr>
-<tr>
-<td>Buttons</td>
-<td><code>ButtonUtils</code></td>
-<td>Button interactions</td>
-</tr>
-<tr>
-<td>Dropdowns</td>
-<td><code>DropdownUtils</code></td>
-<td>Dropdown selections</td>
-</tr>
-<tr>
-<td>Date Pickers</td>
-<td><code>DateUtils</code></td>
-<td>Date input handling</td>
-</tr>
-<tr>
-<td>Tables</td>
-<td><code>TableUtils</code></td>
-<td>Data table operations</td>
-</tr>
-<tr>
-<td>Tabs</td>
-<td><code>TabUtils</code></td>
-<td>Tab navigation</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-progressive-complexity">3. <strong>Progressive Complexity</strong><a class="headerlink" href="#3-progressive-complexity" title="Permanent link">&para;</a></h3>
-<p>Start simple and add complexity as needed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Simple: Direct component interaction</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Advanced: Data-driven with ComponentDriver</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">ComponentDriver</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Complex: Custom validation and error handling</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">if</span> <span class="n">ComponentUtils</span><span class="o">.</span><span class="n">checkComponentExistsByXpath</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;//div[@class=&#39;success&#39;]&quot;</span><span class="p">):</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Submission successful&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Submission failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">take_screenshot</span><span class="p">(</span><span class="s2">&quot;submission_error&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Configure wait once</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># All methods use this wait automatically</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Username&quot;</span><span class="p">,</span> <span class="s2">&quot;test_user&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Sign In&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="common-use-cases">Common Use Cases<a class="headerlink" href="#common-use-cases" title="Permanent link">&para;</a></h2>
-<h3 id="1-form-automation">1. <strong>Form Automation</strong><a class="headerlink" href="#1-form-automation" title="Permanent link">&para;</a></h3>
-<p>Filling out Appian forms with various field types:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">fill_employee_form</span><span class="p">(</span><span class="n">employee_data</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Fill out employee form with provided data&quot;&quot;&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">])</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">])</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">DateUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Birth Date&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s2">&quot;birth_date&quot;</span><span class="p">])</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s2">&quot;department&quot;</span><span class="p">])</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Save Employee&quot;</span><span class="p">)</span>
+<h3 id="label-driven-selectors">Label-Driven Selectors<a class="headerlink" href="#label-driven-selectors" title="Permanent link">&para;</a></h3>
+<p>Robo Appian locates elements by their visible labels—the text users actually see. This is powered by:</p>
+<ul>
+<li><strong>Label-to-input associations</strong>: HTML <code>&lt;label for="..."&gt;</code> attributes that connect labels to form fields</li>
+<li><strong>ARIA attributes</strong>: <code>aria-label</code>, <code>aria-labelledby</code>, and <code>aria-controls</code> for complex components</li>
+<li><strong>Header abbreviations</strong>: Table columns identified by <code>abbr</code> attributes on headers</li>
+<li><strong>Normalized text matching</strong>: Automatic handling of whitespace and non-breaking spaces (NBSP)</li>
+</ul>
+<h3 id="safe-click-operations">Safe Click Operations<a class="headerlink" href="#safe-click-operations" title="Permanent link">&para;</a></h3>
+<p>Direct <code>element.click()</code> calls fail frequently due to:</p>
+<ul>
+<li>Elements covered by overlays or animations</li>
+<li>Timing issues during page transitions</li>
+<li>Stale element references after DOM updates</li>
+</ul>
+<p>Robo Appian's <code>ComponentUtils.click()</code> method combines:</p>
+<ul>
+<li><strong>Explicit wait</strong>: Ensures element is clickable before interaction</li>
+<li><strong>ActionChains</strong>: Moves mouse to element center and performs reliable click</li>
+<li><strong>Error context</strong>: Provides clear diagnostics when clicks fail</li>
+</ul>
+<p>All robo_appian click operations use this safe pattern internally.</p>
+<h2 id="library-structure">Library Structure<a class="headerlink" href="#library-structure" title="Permanent link">&para;</a></h2>
+<h3 id="component-utilities">Component Utilities<a class="headerlink" href="#component-utilities" title="Permanent link">&para;</a></h3>
+<p>Located in <code>robo_appian/components</code>, these static utility classes handle specific Appian UI elements:</p>
+<ul>
+<li><strong>ButtonUtils</strong>: Click buttons by label text (exact or partial matching)</li>
+<li><strong>InputUtils</strong>: Fill text inputs by label or placeholder</li>
+<li><strong>DateUtils</strong>: Set date picker values by label</li>
+<li><strong>DropdownUtils</strong>: Select from standard dropdowns (aria-controls pattern)</li>
+<li><strong>SearchDropdownUtils</strong>: Type and select from filterable dropdowns</li>
+<li><strong>SearchInputUtils</strong>: Interact with searchable input fields</li>
+<li><strong>TableUtils</strong>: Find tables, count rows, click cells, extract data</li>
+<li><strong>TabUtils</strong>: Navigate between tab panels</li>
+<li><strong>LabelUtils</strong>: Verify label existence and visibility</li>
+<li><strong>LinkUtils</strong>: Click links by visible text</li>
+</ul>
+<p>Each utility provides multiple methods for common variations (exact label, partial label, by ID, by placeholder, etc.).</p>
+<h3 id="shared-utilities">Shared Utilities<a class="headerlink" href="#shared-utilities" title="Permanent link">&para;</a></h3>
+<p>Located in <code>robo_appian/utils</code>, these provide foundational capabilities:</p>
+<ul>
+<li><strong>ComponentUtils</strong>: Core element finding, waiting, clicking, and version utilities</li>
+<li><strong>RoboUtils</strong>: Retry logic for flaky operations (<code>retry_on_timeout</code>)</li>
+<li><strong>BrowserUtils</strong>: Browser management and configuration helpers</li>
+</ul>
+<h2 id="key-patterns">Key Patterns<a class="headerlink" href="#key-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="static-method-design">Static Method Design<a class="headerlink" href="#static-method-design" title="Permanent link">&para;</a></h3>
+<p>All component utilities are designed as static classes. This approach:</p>
+<ul>
+<li>Eliminates unnecessary object instantiation</li>
+<li>Makes imports cleaner (<code>from robo_appian.components import InputUtils</code>)</li>
+<li>Signals that methods are stateless and side-effect free</li>
+<li>Follows Selenium's established patterns</li>
+</ul>
+<h3 id="table-interactions">Table Interactions<a class="headerlink" href="#table-interactions" title="Permanent link">&para;</a></h3>
+<p>Tables are particularly complex in Appian. TableUtils provides:</p>
+<ul>
+<li><strong>Column identification</strong>: Uses <code>abbr</code> attribute on <code>&lt;th&gt;</code> elements</li>
+<li><strong>Row indexing</strong>: Public APIs use 0-based indexing; internally converts to Appian's 1-based <code>data-dnd-name</code> attribute</li>
+<li><strong>Cell navigation</strong>: Finds components within specific cells by column name + row number</li>
+<li><strong>Data extraction</strong>: Reads text from cells for assertions</li>
+</ul>
+<h3 id="version-management">Version Management<a class="headerlink" href="#version-management" title="Permanent link">&para;</a></h3>
+<p><code>ComponentUtils.get_version()</code> reads the version from <code>pyproject.toml</code> at runtime, enabling:</p>
+<ul>
+<li>Dynamic version reporting in logs</li>
+<li>Version-aware debugging</li>
+<li>Compatibility checks in test setup</li>
+</ul>
+<h2 id="resilience-features">Resilience Features<a class="headerlink" href="#resilience-features" title="Permanent link">&para;</a></h2>
+<h3 id="automatic-retries">Automatic Retries<a class="headerlink" href="#automatic-retries" title="Permanent link">&para;</a></h3>
+<p><code>RoboUtils.retry_on_timeout()</code> wraps flaky operations:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">flaky_operation</span><span class="p">():</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Load More&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">RoboUtils</span><span class="o">.</span><span class="n">retry_on_timeout</span><span class="p">(</span><span class="n">flaky_operation</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Load More Click&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="2-data-validation">2. <strong>Data Validation</strong><a class="headerlink" href="#2-data-validation" title="Permanent link">&para;</a></h3>
-<p>Verifying data in tables and forms:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_employee_data</span><span class="p">(</span><span class="n">expected_employee</span><span class="p">):</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate employee appears in the table correctly&quot;&quot;&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">row_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="n">emp_id</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">if</span> <span class="n">emp_id</span> <span class="o">==</span> <span class="n">expected_employee</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            <span class="n">name</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            <span class="k">assert</span> <span class="n">name</span> <span class="o">==</span> <span class="n">expected_employee</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>            <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Employee </span><span class="si">{</span><span class="n">expected_employee</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+<p>This handles:</p>
+<ul>
+<li>Temporary network delays</li>
+<li>Animation timing issues</li>
+<li>Sporadic stale element references</li>
+</ul>
+<h3 id="partial-label-matching">Partial Label Matching<a class="headerlink" href="#partial-label-matching" title="Permanent link">&para;</a></h3>
+<p>When Appian appends dynamic text to labels (e.g., "Username (Production)" vs "Username (Test)"), use partial matching:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Username&quot;</span><span class="p">,</span> <span class="s2">&quot;test_user&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="3-workflow-testing">3. <strong>Workflow Testing</strong><a class="headerlink" href="#3-workflow-testing" title="Permanent link">&para;</a></h3>
-<p>Testing complete business processes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_employee_onboarding_workflow</span><span class="p">():</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Test complete employee onboarding process&quot;&quot;&quot;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># Login</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">login_as_hr_manager</span><span class="p">()</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="c1"># Create employee</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">create_new_employee</span><span class="p">(</span><span class="n">test_employee_data</span><span class="p">)</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="c1"># Assign to department</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">assign_employee_to_department</span><span class="p">(</span><span class="n">test_employee_data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="c1"># Set up benefits</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">configure_employee_benefits</span><span class="p">(</span><span class="n">test_employee_data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="c1"># Verify completion</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">verify_employee_onboarding_complete</span><span class="p">(</span><span class="n">test_employee_data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
-</code></pre></div>
+<p>This matches any label containing "Username", making tests environment-agnostic.</p>
+<h3 id="multiple-wait-strategies">Multiple Wait Strategies<a class="headerlink" href="#multiple-wait-strategies" title="Permanent link">&para;</a></h3>
+<p>Different methods provide appropriate wait conditions:</p>
+<ul>
+<li><code>visibility_of_element_located</code>: For elements that must be visible</li>
+<li><code>element_to_be_clickable</code>: For interactive elements</li>
+<li><code>presence_of_element_located</code>: For DOM presence checks</li>
+<li><code>invisibility_of_element_located</code>: For waiting until elements disappear</li>
+</ul>
 <h2 id="integration-patterns">Integration Patterns<a class="headerlink" href="#integration-patterns" title="Permanent link">&para;</a></h2>
-<h3 id="with-testing-frameworks">With Testing Frameworks<a class="headerlink" href="#with-testing-frameworks" title="Permanent link">&para;</a></h3>
-<p>Robo Appian integrates seamlessly with popular testing frameworks:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">pytest</label><label for="__tabbed_2_2">unittest</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">driver</span><span class="p">():</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">yield</span> <span class="n">driver</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">wait</span><span class="p">(</span><span class="n">driver</span><span class="p">):</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="k">return</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_login</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">):</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian-app.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Username&quot;</span><span class="p">,</span> <span class="s2">&quot;testuser&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Sign In&quot;</span><span class="p">)</span>
+<h3 id="pytest-integration">Pytest Integration<a class="headerlink" href="#pytest-integration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">browser</span><span class="p">():</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="k">yield</span> <span class="n">driver</span><span class="p">,</span> <span class="n">wait</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_login</span><span class="p">(</span><span class="n">browser</span><span class="p">):</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">driver</span><span class="p">,</span> <span class="n">wait</span> <span class="o">=</span> <span class="n">browser</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian.example.com&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Username&quot;</span><span class="p">,</span> <span class="s2">&quot;test_user&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Sign In&quot;</span><span class="p">)</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestAppianUI</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_form_submission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian-app.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Test&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>        <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
+<h3 id="unittest-integration">Unittest Integration<a class="headerlink" href="#unittest-integration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">AppianTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_form_submission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian.example.com&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Title&quot;</span><span class="p">,</span> <span class="s2">&quot;Test Request&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
 </code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>Ready to dive deeper? Choose your path:</p>
-<div class="grid cards">
+<h2 id="when-to-use-robo-appian">When to Use Robo Appian<a class="headerlink" href="#when-to-use-robo-appian" title="Permanent link">&para;</a></h2>
+<h3 id="ideal-use-cases">Ideal Use Cases<a class="headerlink" href="#ideal-use-cases" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/cog.svg" alt="Start with Components" width="36" height="36" style="vertical-align:middle;"/><br />
-<strong><a href="../components/">Start with Components</a></strong><br />
-    Learn each component utility in detail<br />
-<a href="../components/">:material-arrow-right: Core Components</a></p>
-</li>
-<li>
-<p><img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/rocket-launch.svg" alt="Explore Advanced Features" width="36" height="36" style="vertical-align:middle;"/><br />
-<strong><a href="../advanced/">Explore Advanced Features</a></strong><br />
-    Discover powerful automation patterns<br />
-<a href="../advanced/">:material-arrow-right: Advanced Features</a></p>
-</li>
-<li>
-<p><img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/file-document-multiple.svg" alt="See Real Examples" width="36" height="36" style="vertical-align:middle;"/><br />
-<strong><a href="../../examples/login/">See Real Examples</a></strong><br />
-    Study complete test examples<br />
-<a href="../../examples/login/">:material-arrow-right: Examples</a></p>
-</li>
-<li>
-<p><img src="https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/lifebuoy.svg" alt="Get Help" width="36" height="36" style="vertical-align:middle;"/><br />
-<strong><a href="../error-handling/">Get Help</a></strong><br />
-    Find answers to common questions<br />
-<a href="../error-handling/">:material-arrow-right: Error Handling</a></p>
-</li>
+<li><strong>Regression testing</strong>: Verify existing functionality remains intact after Appian upgrades</li>
+<li><strong>End-to-end workflows</strong>: Test complete business processes from login to data submission</li>
+<li><strong>Data-driven testing</strong>: Run the same test flow with multiple data sets</li>
+<li><strong>CI/CD pipelines</strong>: Automated testing before production deployments</li>
+<li><strong>Smoke testing</strong>: Quickly verify critical paths after releases</li>
 </ul>
-</div>
-<p>Happy testing with Robo Appian! 🚀</p>
+<h3 id="not-recommended-for">Not Recommended For<a class="headerlink" href="#not-recommended-for" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Non-Appian applications</strong>: Library is optimized for Appian's DOM structure</li>
+<li><strong>API testing</strong>: Use direct HTTP clients for backend API tests</li>
+<li><strong>Unit testing</strong>: Test business logic separately from UI</li>
+<li><strong>Performance testing</strong>: Use load testing tools (JMeter, Locust) instead</li>
+</ul>
+<h2 id="technical-requirements">Technical Requirements<a class="headerlink" href="#technical-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Python</strong>: 3.12 or higher (uses match/case syntax)</li>
+<li><strong>Selenium</strong>: 4.34.0 or higher (modern WebDriver API)</li>
+<li><strong>Browser drivers</strong>: ChromeDriver, GeckoDriver, etc. must be installed and in PATH</li>
+</ul>
+<h2 id="learning-path">Learning Path<a class="headerlink" href="#learning-path" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Installation &amp; Setup</strong>: Start with <a href="../../getting-started/installation/">Installation</a></li>
+<li><strong>First Test</strong>: Follow <a href="../../getting-started/first-test/">Your First Test</a></li>
+<li><strong>Component Guide</strong>: Read <a href="../components/">Core Components</a> to understand each utility</li>
+<li><strong>Examples</strong>: Study real scenarios in <a href="../../examples/login/">Examples</a></li>
+<li><strong>Advanced Features</strong>: Explore <a href="../advanced/">Advanced Features</a> for complex scenarios</li>
+<li><strong>Best Practices</strong>: Review <a href="../best-practices/">Best Practices</a> for maintainable tests</li>
+</ol>
+<p>Continue to <a href="../components/">Components</a> for detailed component patterns and API documentation.</p>
 
 
 
@@ -2191,17 +2321,6 @@
     
     
     
-      
-      
-    
-    <a href="https://pypi.org/project/robo-appian/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
-    </a>
-  
-    
-    
-    
-    
     <a href="mailto:dinilmithra.mailme@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M61.4 64C27.5 64 0 91.5 0 125.4c0 .9 0 1.7.1 2.6H0v256c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128h-.1c0-.9.1-1.7.1-2.6 0-33.9-27.5-61.4-61.4-61.4zM464 192.3V384c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192.3l154.8 117.4c31.4 23.9 74.9 23.9 106.4 0zM48 125.4c0-7.4 6-13.4 13.4-13.4h389.2c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7"/></svg>
     </a>
@@ -2220,7 +2339,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.50899def.min.js"></script>

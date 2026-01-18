@@ -26,7 +26,7 @@
     
     
       
-        <title>TabUtils - Robo Appian Documentation</title>
+        <title>Tabs - Robo Appian Documentation</title>
       
     
     
@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tabutils" class="md-skip">
+        <a href="#tab-utils" class="md-skip">
           Skip to content
         </a>
       
@@ -96,11 +98,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Robo Appian Documentation" class="md-header__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TabUtils
+              Tabs
             
           </span>
         </div>
@@ -201,16 +206,22 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+      </div>
+    
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -284,7 +295,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../button-utils/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -358,7 +369,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -379,11 +396,24 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Robo Appian Documentation" class="md-nav__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Robo Appian Documentation
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -752,12 +782,83 @@
   
   
     <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../button-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ButtonUtils
+    Buttons
     
   </span>
   
@@ -780,7 +881,7 @@
   
   
   <span class="md-ellipsis">
-    InputUtils
+    Inputs
     
   </span>
   
@@ -803,7 +904,7 @@
   
   
   <span class="md-ellipsis">
-    DateUtils
+    Dates
     
   </span>
   
@@ -826,7 +927,7 @@
   
   
   <span class="md-ellipsis">
-    DropdownUtils
+    Dropdowns
     
   </span>
   
@@ -849,7 +950,7 @@
   
   
   <span class="md-ellipsis">
-    SearchDropdownUtils
+    Search Dropdowns
     
   </span>
   
@@ -872,7 +973,7 @@
   
   
   <span class="md-ellipsis">
-    SearchInputUtils
+    Search Inputs
     
   </span>
   
@@ -895,7 +996,7 @@
   
   
   <span class="md-ellipsis">
-    TableUtils
+    Tables
     
   </span>
   
@@ -927,7 +1028,7 @@
   
   
   <span class="md-ellipsis">
-    TabUtils
+    Tabs
     
   </span>
   
@@ -940,7 +1041,7 @@
   
   
   <span class="md-ellipsis">
-    TabUtils
+    Tabs
     
   </span>
   
@@ -972,28 +1073,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-methods" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
-      Class Methods
+      Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class Methods">
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#findselectedtabbylabeltext" class="md-nav__link">
+  <a href="#selecttabbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      findSelectedTabByLabelText()
+      selectTabByLabelText
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#selectinactivetabbylabeltext" class="md-nav__link">
+  <a href="#findtabbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      selectInactiveTabByLabelText()
+      findTabByLabelText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checktabselectedbylabeltext" class="md-nav__link">
+    <span class="md-ellipsis">
+      checkTabSelectedByLabelText
     </span>
   </a>
   
@@ -1001,225 +1111,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Best Practices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tab-navigation-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tab Navigation Workflow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-tab-state" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify Tab State
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Use Cases
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multi-step-form-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multi-Step Form Navigation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#settings-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Settings Configuration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-validation-across-tabs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Validation Across Tabs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tab-based-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tab-Based Workflow
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tab-element-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tab Element Structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#xpath-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      XPath Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#navigation-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      Navigation Logic
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Issues
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging Tips
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Integration Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-pytest-and-tab-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      With pytest and Tab Validation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-page-object-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Page Object Model
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-configuration-driven-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Configuration-Driven Navigation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related Components
-    </span>
-  </a>
   
 </li>
       
@@ -1244,7 +1135,7 @@
   
   
   <span class="md-ellipsis">
-    LabelUtils
+    Labels
     
   </span>
   
@@ -1267,7 +1158,7 @@
   
   
   <span class="md-ellipsis">
-    LinkUtils
+    Links
     
   </span>
   
@@ -1277,6 +1168,62 @@
   
 
               
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shared Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shared Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1308,17 +1255,48 @@
   
   
     <li class="md-nav__item">
-      <a href="../component-driver/" class="md-nav__link">
+      <a href="../robo-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ComponentDriver
+    RoboUtils
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BrowserUtils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1631,28 +1609,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-methods" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
-      Class Methods
+      Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class Methods">
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#findselectedtabbylabeltext" class="md-nav__link">
+  <a href="#selecttabbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      findSelectedTabByLabelText()
+      selectTabByLabelText
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#selectinactivetabbylabeltext" class="md-nav__link">
+  <a href="#findtabbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      selectInactiveTabByLabelText()
+      findTabByLabelText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checktabselectedbylabeltext" class="md-nav__link">
+    <span class="md-ellipsis">
+      checkTabSelectedByLabelText
     </span>
   </a>
   
@@ -1660,225 +1647,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Best Practices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tab-navigation-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tab Navigation Workflow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-tab-state" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify Tab State
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Use Cases
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multi-step-form-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multi-Step Form Navigation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#settings-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Settings Configuration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-validation-across-tabs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Validation Across Tabs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tab-based-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tab-Based Workflow
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tab-element-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tab Element Structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#xpath-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      XPath Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#navigation-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      Navigation Logic
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Issues
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging Tips
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Integration Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-pytest-and-tab-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      With pytest and Tab Validation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-page-object-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Page Object Model
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-configuration-driven-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Configuration-Driven Navigation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related Components
-    </span>
-  </a>
   
 </li>
       
@@ -1897,479 +1665,110 @@
                   
 
 
+  
+  
 
-<h1 id="tabutils">TabUtils<a class="headerlink" href="#tabutils" title="Permanent link">&para;</a></h1>
-<p>The <code>TabUtils</code> class provides methods for interacting with tab components in Appian applications. It handles tab navigation, selection, and status checking, enabling seamless navigation through tabbed interfaces.</p>
+
+<h1 id="tab-utils">Tab Utils<a class="headerlink" href="#tab-utils" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>TabUtils is designed to handle Appian's tab components, providing reliable methods to:</p>
+<p>TabUtils provides methods to select and interact with tab components in Appian UI. Use TabUtils to navigate between different sections within a single page. Tabs are commonly used in Appian to organize related content, and clicking a tab triggers content reloads in the tab panel.</p>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<h3 id="selecttabbylabeltext">selectTabByLabelText<a class="headerlink" href="#selecttabbylabeltext" title="Permanent link">&para;</a></h3>
+<p>Click a tab to navigate to it by its exact visible label.</p>
+<p>Use this when you need to switch between different tab sections in an Appian interface. After clicking the tab, content within the tab panel will load, so be ready to wait for elements within the new tab section before interacting with them.</p>
+<p><strong>Args:</strong></p>
 <ul>
-<li>Find currently selected tabs by label text</li>
-<li>Select inactive tabs to navigate between sections</li>
-<li>Handle complex tab structures and hierarchies</li>
-<li>Manage tab state verification</li>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact visible label text of the tab to select</li>
 </ul>
-<h2 id="class-methods">Class Methods<a class="headerlink" href="#class-methods" title="Permanent link">&para;</a></h2>
-<h3 id="findselectedtabbylabeltext">findSelectedTabByLabelText()<a class="headerlink" href="#findselectedtabbylabeltext" title="Permanent link">&para;</a></h3>
-<p>Finds the currently selected (active) tab by its visible label text.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>label</code> (str): The visible text label of the currently selected tab</p>
-<p><strong>Returns:</strong>
-- <code>WebElement</code>: The currently selected tab element</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TabUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabUtils</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Find the currently selected tab</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">current_tab</span> <span class="o">=</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">findSelectedTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;General Information&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Verify current tab selection</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">active_tab</span> <span class="o">=</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">findSelectedTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Contact Details&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contact Details tab is currently active&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">except</span><span class="p">:</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contact Details tab is not currently selected&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># Get reference to selected tab for further operations</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">selected_tab</span> <span class="o">=</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">findSelectedTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Overview&quot;</span><span class="p">)</span>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If tab not found or not clickable within timeout</li>
+</ul>
+<p><strong>Returns:</strong> None</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tabs&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Details<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">p</span><span class="p">&gt;</span>History<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div></p>
-<hr />
-<h3 id="selectinactivetabbylabeltext">selectInactiveTabByLabelText()<a class="headerlink" href="#selectinactivetabbylabeltext" title="Permanent link">&para;</a></h3>
-<p>Selects an inactive tab by its label text, making it the active tab.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>label</code> (str): The visible text label of the tab to select</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Navigate to different tabs</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Personal Information&quot;</span><span class="p">)</span>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TabUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabUtils</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Switch to another tab</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employment History&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Navigate to settings tab</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Account Settings&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Go to the last tab</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Summary&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">TabUtils</span><span class="o">.</span><span class="n">selectTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Details&quot;</span><span class="p">)</span>
 </code></pre></div></p>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="tab-navigation-workflow">Tab Navigation Workflow<a class="headerlink" href="#tab-navigation-workflow" title="Permanent link">&para;</a></h3>
-<p><strong>Follow logical tab progression</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Navigate through tabs in logical order</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">tabs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Basic Info&quot;</span><span class="p">,</span> <span class="s2">&quot;Contact Details&quot;</span><span class="p">,</span> <span class="s2">&quot;Employment&quot;</span><span class="p">,</span> <span class="s2">&quot;Documents&quot;</span><span class="p">,</span> <span class="s2">&quot;Review&quot;</span><span class="p">]</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="n">tabs</span><span class="p">:</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab</span><span class="p">)</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="c1"># Perform tab-specific operations</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">if</span> <span class="n">tab</span> <span class="o">==</span> <span class="s2">&quot;Basic Info&quot;</span><span class="p">:</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">elif</span> <span class="n">tab</span> <span class="o">==</span> <span class="s2">&quot;Contact Details&quot;</span><span class="p">:</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Phone&quot;</span><span class="p">,</span> <span class="s2">&quot;555-1234&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="c1"># Continue with other tabs...</span>
-</code></pre></div></p>
-<h3 id="verify-tab-state">Verify Tab State<a class="headerlink" href="#verify-tab-state" title="Permanent link">&para;</a></h3>
-<p><strong>Check current tab before navigation</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">safe_tab_navigation</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">target_tab</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Safely navigate to a tab, checking current state first&quot;&quot;&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="c1"># Check if target tab is already selected</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">TabUtils</span><span class="o">.</span><span class="n">findSelectedTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">target_tab</span><span class="p">)</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tab &#39;</span><span class="si">{</span><span class="n">target_tab</span><span class="si">}</span><span class="s2">&#39; is already selected&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">except</span><span class="p">:</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="c1"># Tab is not selected, navigate to it</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">target_tab</span><span class="p">)</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully navigated to tab &#39;</span><span class="si">{</span><span class="n">target_tab</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>            <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to navigate to tab &#39;</span><span class="si">{</span><span class="n">target_tab</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>            <span class="k">return</span> <span class="kc">False</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="c1"># Usage</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="n">safe_tab_navigation</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Contact Information&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
-<p><strong>Handle tab navigation errors gracefully</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">navigate_to_tab_with_retry</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Navigate to tab with retry logic&quot;&quot;&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>            <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>            <span class="c1"># Verify navigation was successful</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            <span class="n">TabUtils</span><span class="o">.</span><span class="n">findSelectedTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> failed for tab &#39;</span><span class="si">{</span><span class="n">tab_name</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>                <span class="k">return</span> <span class="kc">False</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>            <span class="c1"># Wait before retry</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="k">return</span> <span class="kc">False</span>
-</code></pre></div></p>
-<h2 id="common-use-cases">Common Use Cases<a class="headerlink" href="#common-use-cases" title="Permanent link">&para;</a></h2>
-<h3 id="multi-step-form-navigation">Multi-Step Form Navigation<a class="headerlink" href="#multi-step-form-navigation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Employee onboarding form with multiple tabs</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">complete_employee_onboarding</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">):</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># Tab 1: Personal Information</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Personal Information&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">DateUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Date of Birth&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;dob&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="c1"># Tab 2: Contact Details</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Contact Details&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Phone&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="c1"># Tab 3: Employment Information</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employment&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;department&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Position&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="n">DateUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="n">employee_data</span><span class="p">[</span><span class="s1">&#39;start_date&#39;</span><span class="p">])</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="c1"># Tab 4: Review and Submit</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Review&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit Application&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="c1"># Usage</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="n">employee_info</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="s1">&#39;dob&#39;</span><span class="p">:</span> <span class="s1">&#39;01/15/1990&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;john.doe@company.com&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>    <span class="s1">&#39;phone&#39;</span><span class="p">:</span> <span class="s1">&#39;555-1234&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;123 Main St&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    <span class="s1">&#39;department&#39;</span><span class="p">:</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="s1">&#39;Software Developer&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="s1">&#39;01/01/2024&#39;</span>
-<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="p">}</span>
-<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="n">complete_employee_onboarding</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">employee_info</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="settings-configuration">Settings Configuration<a class="headerlink" href="#settings-configuration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Application settings across multiple tabs</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure_application_settings</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="c1"># General Settings</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;General&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Language&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">])</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Time Zone&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;timezone&#39;</span><span class="p">])</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="c1"># Security Settings</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Security&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Session Timeout&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;session_timeout&#39;</span><span class="p">])</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Enable Two-Factor Auth&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="c1"># Notification Settings</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Notifications&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Email Notifications&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;SMS Notifications&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="c1"># Save all settings</span>
-<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Review&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Save All Settings&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="data-validation-across-tabs">Data Validation Across Tabs<a class="headerlink" href="#data-validation-across-tabs" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Validate data across multiple tabs</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_form_completion</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">required_tabs</span><span class="p">):</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">validation_results</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">for</span> <span class="n">tab_name</span> <span class="ow">in</span> <span class="n">required_tabs</span><span class="p">:</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>            <span class="c1"># Navigate to tab</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>            <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>            <span class="c1"># Check for validation errors or required fields</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>            <span class="n">error_elements</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s2">&quot;validation-error&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>            <span class="n">required_elements</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;//*[@required and @value=&#39;&#39;]&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>            <span class="n">validation_results</span><span class="p">[</span><span class="n">tab_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>                <span class="s1">&#39;errors&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_elements</span><span class="p">),</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>                <span class="s1">&#39;missing_required&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">required_elements</span><span class="p">),</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>                <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_elements</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">required_elements</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>            <span class="p">}</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>            <span class="n">validation_results</span><span class="p">[</span><span class="n">tab_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>                <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>                <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="kc">False</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>            <span class="p">}</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
-<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>    <span class="k">return</span> <span class="n">validation_results</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
-<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="c1"># Usage</span>
-<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="n">tabs_to_validate</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Personal Info&quot;</span><span class="p">,</span> <span class="s2">&quot;Contact&quot;</span><span class="p">,</span> <span class="s2">&quot;Employment&quot;</span><span class="p">,</span> <span class="s2">&quot;Documents&quot;</span><span class="p">]</span>
-<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="n">results</span> <span class="o">=</span> <span class="n">validate_form_completion</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">tabs_to_validate</span><span class="p">)</span>
-<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>
-<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="k">for</span> <span class="n">tab</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ </span><span class="si">{</span><span class="n">tab</span><span class="si">}</span><span class="s2">: Valid&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ </span><span class="si">{</span><span class="n">tab</span><span class="si">}</span><span class="s2">: Issues found - </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="tab-based-workflow">Tab-Based Workflow<a class="headerlink" href="#tab-based-workflow" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Document review workflow</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">document_review_workflow</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">document_id</span><span class="p">):</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="c1"># Step 1: Open document</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Document Details&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Document ID&quot;</span><span class="p">,</span> <span class="n">document_id</span><span class="p">)</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Load Document&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="c1"># Step 2: Review content</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Content Review&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="c1"># Perform content review operations</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Mark as Reviewed&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="c1"># Step 3: Approval</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Approval&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Approved&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Comments&quot;</span><span class="p">,</span> <span class="s2">&quot;Document approved for publication&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="c1"># Step 4: Final submission</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Final Submit&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="technical-details">Technical Details<a class="headerlink" href="#technical-details" title="Permanent link">&para;</a></h2>
-<h3 id="tab-element-structure">Tab Element Structure<a class="headerlink" href="#tab-element-structure" title="Permanent link">&para;</a></h3>
-<p>TabUtils expects Appian tabs with this structure:</p>
-<p><strong>Selected Tab:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>          <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>            <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>              <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>                <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Tab Label<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>              <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Selected Tab.<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></p>
-<p><strong>Inactive Tab:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>          <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>              <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Tab Label<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></p>
-<h3 id="xpath-strategies">XPath Strategies<a class="headerlink" href="#xpath-strategies" title="Permanent link">&para;</a></h3>
-<p><strong>Selected Tab Detection:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>.//div[./div[./div/div/div/div/div/p/strong[normalize-space(text())=&#39;{label}&#39;]]/span[text()=&#39;Selected Tab.&#39;]]/div[@role=&#39;link&#39;]
-</code></pre></div></p>
-<p><strong>Inactive Tab Selection:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>.//div[@role=&#39;link&#39;]/div/div/div/div/div[./p/span[text()=&#39;{label}&#39;]]
-</code></pre></div></p>
-<h3 id="navigation-logic">Navigation Logic<a class="headerlink" href="#navigation-logic" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Current Tab Detection</strong>: Checks for <code>&lt;strong&gt;</code> element and "Selected Tab." indicator</li>
-<li><strong>Inactive Tab Selection</strong>: Looks for <code>role="link"</code> with <code>&lt;span&gt;</code> containing label text</li>
-<li><strong>Click Action</strong>: Performs click on the clickable tab element</li>
-</ol>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
-<p><strong>Tab Not Found:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>TimeoutError: Could not find tab with label &#39;Contact Details&#39;
-</code></pre></div>
-<strong>Solutions:</strong>
-- Verify exact tab label text (check case sensitivity)
-- Ensure tab is visible (not hidden or collapsed)
-- Check if tab is dynamically loaded
-- Wait for any loading animations to complete</p>
-<p><strong>Selected Tab Detection Fails:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>TimeoutError: Could not find selected tab with label &#39;Overview&#39;
-</code></pre></div>
-<strong>Solutions:</strong>
-- Verify the tab is actually selected
-- Check if tab selection state has changed
-- Ensure tab structure matches expected format
-- Look for alternative selection indicators</p>
-<p><strong>Tab Selection Not Working:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Element not clickable or tab doesn&#39;t change
-</code></pre></div>
-<strong>Solutions:</strong>
-- Verify tab is not disabled
-- Check for overlaying elements blocking click
-- Ensure JavaScript has finished executing
-- Try explicit wait before tab interaction</p>
-<h3 id="debugging-tips">Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Inspect Tab Structure</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Find all tab elements</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">tabs</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;//div[@role=&#39;link&#39;]&quot;</span><span class="p">)</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="n">tabs</span><span class="p">:</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tab HTML: </span><span class="si">{</span><span class="n">tab</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;outerHTML&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Check Tab Labels</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Extract all available tab labels</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">tab_labels</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">tabs</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;//div[@role=&#39;link&#39;]//p/span&quot;</span><span class="p">)</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="n">tabs</span><span class="p">:</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="k">if</span> <span class="n">tab</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>        <span class="n">tab_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available tabs: </span><span class="si">{</span><span class="n">tab_labels</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Verify Current Selection</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Find currently selected tab</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">selected_tabs</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;//p/strong&quot;</span><span class="p">)</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="n">selected_tabs</span><span class="p">:</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="k">if</span> <span class="n">tab</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Currently selected: </span><span class="si">{</span><span class="n">tab</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
-<h3 id="with-pytest-and-tab-validation">With pytest and Tab Validation<a class="headerlink" href="#with-pytest-and-tab-validation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TabUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabUtils</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestTabNavigation</span><span class="p">:</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">teardown_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;tab_name&quot;</span><span class="p">,</span> <span class="p">[</span>
-<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>        <span class="s2">&quot;Personal Information&quot;</span><span class="p">,</span>
-<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>        <span class="s2">&quot;Contact Details&quot;</span><span class="p">,</span> 
-<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>        <span class="s2">&quot;Employment History&quot;</span><span class="p">,</span>
-<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>        <span class="s2">&quot;Documents&quot;</span>
-<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>    <span class="p">])</span>
-<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_tab_navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">):</span>
-<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian-app.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>
-<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>        <span class="c1"># Navigate to tab</span>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>        <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>
-<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>        <span class="c1"># Verify tab is now selected</span>
-<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>        <span class="n">selected_tab</span> <span class="o">=</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">findSelectedTabByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>        <span class="k">assert</span> <span class="n">selected_tab</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Tab &#39;</span><span class="si">{</span><span class="n">tab_name</span><span class="si">}</span><span class="s2">&#39; should be selected&quot;</span>
-</code></pre></div>
-<h3 id="with-page-object-model">With Page Object Model<a class="headerlink" href="#with-page-object-model" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MultiTabFormPage</span><span class="p">:</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">navigate_to_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">):</span>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Navigate to specified tab&quot;&quot;&quot;</span>
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>        <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the currently selected tab name&quot;&quot;&quot;</span>
-<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>        <span class="c1"># Implementation would need to extract current tab name</span>
-<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>        <span class="k">pass</span>
-<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>
-<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">complete_personal_info_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fill personal information tab&quot;&quot;&quot;</span>
-<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">navigate_to_tab</span><span class="p">(</span><span class="s2">&quot;Personal Information&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>
-<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">])</span>
-<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">])</span>
-<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>        <span class="n">DateUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Date of Birth&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;dob&#39;</span><span class="p">])</span>
-<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>
-<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">complete_contact_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fill contact information tab&quot;&quot;&quot;</span>
-<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">navigate_to_tab</span><span class="p">(</span><span class="s2">&quot;Contact Details&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>
-<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
-<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Phone&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">])</span>
-<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>        <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">])</span>
-<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>
-<a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">submit_form</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Navigate to review tab and submit&quot;&quot;&quot;</span>
-<a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">navigate_to_tab</span><span class="p">(</span><span class="s2">&quot;Review&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>        <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="with-configuration-driven-navigation">With Configuration-Driven Navigation<a class="headerlink" href="#with-configuration-driven-navigation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">TabWorkflowManager</span><span class="p">:</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="p">):</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">wait</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_config</span><span class="p">):</span>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute tab-based workflow from configuration&quot;&quot;&quot;</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">workflow_config</span><span class="p">[</span><span class="s1">&#39;steps&#39;</span><span class="p">]:</span>
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>            <span class="n">tab_name</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;tab&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>            <span class="n">actions</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;actions&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
-<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>            <span class="c1"># Navigate to tab</span>
-<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>            <span class="n">TabUtils</span><span class="o">.</span><span class="n">selectInactiveTabByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span>
-<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
-<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>            <span class="c1"># Execute actions for this tab</span>
-<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>            <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
-<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>                <span class="n">action_type</span> <span class="o">=</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
-<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>                <span class="k">if</span> <span class="n">action_type</span> <span class="o">==</span> <span class="s1">&#39;input&#39;</span><span class="p">:</span>
-<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>                    <span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span>
-<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>                    <span class="p">)</span>
-<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>                <span class="k">elif</span> <span class="n">action_type</span> <span class="o">==</span> <span class="s1">&#39;dropdown&#39;</span><span class="p">:</span>
-<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>                    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span>
-<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>                    <span class="p">)</span>
-<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>                <span class="k">elif</span> <span class="n">action_type</span> <span class="o">==</span> <span class="s1">&#39;button&#39;</span><span class="p">:</span>
-<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>                    <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
-<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>                <span class="k">elif</span> <span class="n">action_type</span> <span class="o">==</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span>
-<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>                    <span class="n">DateUtils</span><span class="o">.</span><span class="n">setValueByLabelText</span><span class="p">(</span>
-<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">action</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>                    <span class="p">)</span>
-<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>
-<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a><span class="c1"># Load workflow from YAML</span>
-<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;tab_workflow.yaml&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>    <span class="n">workflow</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>
-<a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a><span class="c1"># Execute workflow</span>
-<a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a><span class="n">manager</span> <span class="o">=</span> <span class="n">TabWorkflowManager</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
-<a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a><span class="n">manager</span><span class="o">.</span><span class="n">execute_workflow</span><span class="p">(</span><span class="n">workflow</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="related-components">Related Components<a class="headerlink" href="#related-components" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong><a href="../button-utils/">ButtonUtils</a></strong> - For buttons within tab content</li>
-<li><strong><a href="../input-utils/">InputUtils</a></strong> - For form fields in tabs</li>
-<li><strong><a href="../dropdown-utils/">DropdownUtils</a></strong> - For dropdowns in tab content</li>
-<li><strong><a href="../component-driver/">ComponentDriver</a></strong> - For universal component interactions</li>
-</ul>
 <hr />
-<p><em>TabUtils provides essential tab navigation capabilities for Appian applications, enabling seamless movement through multi-step forms and complex interfaces while maintaining reliability and ease of use.</em></p>
+<h3 id="findtabbylabeltext">findTabByLabelText<a class="headerlink" href="#findtabbylabeltext" title="Permanent link">&para;</a></h3>
+<p>Find a tab element by its exact visible label without clicking it.</p>
+<p>Use this when you need to inspect a tab element or perform custom operations on it before clicking. Returns the tab WebElement for advanced use cases like checking attributes, getting position, or chaining operations. Most commonly you'll use selectTabByLabelText instead, but this is useful for validation or custom interactions.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact visible label text of the tab</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If tab not found within timeout</li>
+</ul>
+<p><strong>Returns:</strong> WebElement representing the tab element</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tabs&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Details<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TabUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabUtils</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">tab</span> <span class="o">=</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">findTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Details&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tab text: </span><span class="si">{</span><span class="n">tab</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="checktabselectedbylabeltext">checkTabSelectedByLabelText<a class="headerlink" href="#checktabselectedbylabeltext" title="Permanent link">&para;</a></h3>
+<p>Check if a specific tab is currently selected (active).</p>
+<p>Use this to verify that navigation to a tab was successful, or to check the current active tab state in test assertions. Returns True if the tab has the "Selected Tab" indicator, False otherwise. Useful for confirming that clicking a tab actually activated it before interacting with tab content.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact visible label text of the tab to check</li>
+</ul>
+<p><strong>Raises:</strong> None (returns False if tab not found or not selected)</p>
+<p><strong>Returns:</strong> bool: True if tab is currently selected, False otherwise</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Details<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Selected Tab.<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>History<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TabUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabUtils</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">TabUtils</span><span class="o">.</span><span class="n">selectTabByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Details&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">if</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">checkTabSelectedByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Details&quot;</span><span class="p">):</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Details tab is now active&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">assert</span> <span class="n">TabUtils</span><span class="o">.</span><span class="n">checkTabSelectedByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Details&quot;</span><span class="p">),</span> <span class="s2">&quot;Details tab should be selected&quot;</span>
+</code></pre></div></p>
 
 
 
@@ -2433,17 +1832,6 @@
     
     
     
-      
-      
-    
-    <a href="https://pypi.org/project/robo-appian/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
-    </a>
-  
-    
-    
-    
-    
     <a href="mailto:dinilmithra.mailme@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M61.4 64C27.5 64 0 91.5 0 125.4c0 .9 0 1.7.1 2.6H0v256c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128h-.1c0-.9.1-1.7.1-2.6 0-33.9-27.5-61.4-61.4-61.4zM464 192.3V384c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192.3l154.8 117.4c31.4 23.9 74.9 23.9 106.4 0zM48 125.4c0-7.4 6-13.4 13.4-13.4h389.2c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7"/></svg>
     </a>
@@ -2462,7 +1850,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.50899def.min.js"></script>

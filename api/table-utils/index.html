@@ -26,7 +26,7 @@
     
     
       
-        <title>TableUtils - Robo Appian Documentation</title>
+        <title>Tables - Robo Appian Documentation</title>
       
     
     
@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tableutils" class="md-skip">
+        <a href="#table-utils" class="md-skip">
           Skip to content
         </a>
       
@@ -96,11 +98,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Robo Appian Documentation" class="md-header__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TableUtils
+              Tables
             
           </span>
         </div>
@@ -201,16 +206,22 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+      </div>
+    
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -284,7 +295,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../button-utils/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -358,7 +369,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -379,11 +396,24 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Robo Appian Documentation" class="md-nav__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Robo Appian Documentation
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -752,12 +782,83 @@
   
   
     <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../button-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ButtonUtils
+    Buttons
     
   </span>
   
@@ -780,7 +881,7 @@
   
   
   <span class="md-ellipsis">
-    InputUtils
+    Inputs
     
   </span>
   
@@ -803,7 +904,7 @@
   
   
   <span class="md-ellipsis">
-    DateUtils
+    Dates
     
   </span>
   
@@ -826,7 +927,7 @@
   
   
   <span class="md-ellipsis">
-    DropdownUtils
+    Dropdowns
     
   </span>
   
@@ -849,7 +950,7 @@
   
   
   <span class="md-ellipsis">
-    SearchDropdownUtils
+    Search Dropdowns
     
   </span>
   
@@ -872,7 +973,7 @@
   
   
   <span class="md-ellipsis">
-    SearchInputUtils
+    Search Inputs
     
   </span>
   
@@ -904,7 +1005,7 @@
   
   
   <span class="md-ellipsis">
-    TableUtils
+    Tables
     
   </span>
   
@@ -917,7 +1018,7 @@
   
   
   <span class="md-ellipsis">
-    TableUtils
+    Tables
     
   </span>
   
@@ -949,19 +1050,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-methods" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
-      Class Methods
+      Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class Methods">
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#findtablebycolumnname" class="md-nav__link">
     <span class="md-ellipsis">
-      findTableByColumnName()
+      findTableByColumnName
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rowcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      rowCount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selectrowfromtablebycolumnnameandrownumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      selectRowFromTableByColumnNameAndRowNumber
     </span>
   </a>
   
@@ -970,7 +1089,16 @@
           <li class="md-nav__item">
   <a href="#findcomponentfromtablecell" class="md-nav__link">
     <span class="md-ellipsis">
-      findComponentFromTableCell()
+      findComponentFromTableCell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findcomponentbycolumnnameandrownumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      findComponentByColumnNameAndRowNumber
     </span>
   </a>
   
@@ -978,225 +1106,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Best Practices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#table-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table Identification
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#row-iteration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row Iteration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Use Cases
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#data-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Validation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bulk-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Bulk Actions
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-extraction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Extraction
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#table-search-and-filter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table Search and Filter
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#row-specific-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row-Specific Actions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#table-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table Structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#row-selection-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row Selection Logic
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Issues
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging Tips
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Integration Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-pytest-and-data-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      With pytest and Data Validation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-page-object-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Page Object Model
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-data-export-functionality" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Data Export Functionality
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related Components
-    </span>
-  </a>
   
 </li>
       
@@ -1221,7 +1130,7 @@
   
   
   <span class="md-ellipsis">
-    TabUtils
+    Tabs
     
   </span>
   
@@ -1244,7 +1153,7 @@
   
   
   <span class="md-ellipsis">
-    LabelUtils
+    Labels
     
   </span>
   
@@ -1267,7 +1176,7 @@
   
   
   <span class="md-ellipsis">
-    LinkUtils
+    Links
     
   </span>
   
@@ -1277,6 +1186,62 @@
   
 
               
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shared Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shared Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1308,17 +1273,48 @@
   
   
     <li class="md-nav__item">
-      <a href="../component-driver/" class="md-nav__link">
+      <a href="../robo-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ComponentDriver
+    RoboUtils
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BrowserUtils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1631,19 +1627,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-methods" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
-      Class Methods
+      Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class Methods">
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#findtablebycolumnname" class="md-nav__link">
     <span class="md-ellipsis">
-      findTableByColumnName()
+      findTableByColumnName
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rowcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      rowCount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selectrowfromtablebycolumnnameandrownumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      selectRowFromTableByColumnNameAndRowNumber
     </span>
   </a>
   
@@ -1652,7 +1666,16 @@
           <li class="md-nav__item">
   <a href="#findcomponentfromtablecell" class="md-nav__link">
     <span class="md-ellipsis">
-      findComponentFromTableCell()
+      findComponentFromTableCell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findcomponentbycolumnnameandrownumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      findComponentByColumnNameAndRowNumber
     </span>
   </a>
   
@@ -1660,225 +1683,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Best Practices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#table-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table Identification
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#row-iteration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row Iteration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Use Cases
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#data-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Validation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bulk-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Bulk Actions
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-extraction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Extraction
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#table-search-and-filter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table Search and Filter
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#row-specific-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row-Specific Actions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#table-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table Structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#row-selection-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row Selection Logic
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Issues
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging Tips
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Integration Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-pytest-and-data-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      With pytest and Data Validation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-page-object-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Page Object Model
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-data-export-functionality" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Data Export Functionality
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related Components
-    </span>
-  </a>
   
 </li>
       
@@ -1897,433 +1701,192 @@
                   
 
 
+  
+  
 
-<h1 id="tableutils">TableUtils<a class="headerlink" href="#tableutils" title="Permanent link">&para;</a></h1>
-<p>The <code>TableUtils</code> class provides comprehensive methods for interacting with table components in Appian applications. It handles the complex operations required for data table interactions, including finding tables, counting rows, and locating specific cell components.</p>
+
+<h1 id="table-utils">Table Utils<a class="headerlink" href="#table-utils" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>TableUtils is designed to handle Appian's data table structures, providing reliable methods to:</p>
+<p>TableUtils provides methods to interact with Appian grid and table components. Use TableUtils to read cells, click rows, find elements within table cells, and query tables using column names and row indices. Tables are located by their column headers, and rows are accessed using 0-based indexing in public APIs (internally converted to 1-based for Appian's DOM structure).</p>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<h3 id="findtablebycolumnname">findTableByColumnName<a class="headerlink" href="#findtablebycolumnname" title="Permanent link">&para;</a></h3>
+<p>Find a table element by any of its column names.</p>
+<p>Use this when you need to locate a table component and you know one of its column header names. Returns the table WebElement for further operations like counting rows or extracting data. Essential for identifying the correct table when multiple tables exist on the page.</p>
+<p><strong>Args:</strong></p>
 <ul>
-<li>Find tables by column names</li>
-<li>Count table rows (excluding empty rows)</li>
-<li>Locate specific cell components by row and column</li>
-<li>Extract data from table cells</li>
-<li>Navigate complex table hierarchies</li>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>column_name</code> (str): Exact column header text (from the abbr attribute)</li>
 </ul>
-<h2 id="class-methods">Class Methods<a class="headerlink" href="#class-methods" title="Permanent link">&para;</a></h2>
-<p><strong>Signature:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@staticmethod</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">:</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">columnName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">WebElement</span>
-</code></pre></div></p>
-<h3 id="findtablebycolumnname">findTableByColumnName()<a class="headerlink" href="#findtablebycolumnname" title="Permanent link">&para;</a></h3>
-<p><strong>Signature:</strong>
-@staticmethod
-def findTableByColumnName(wait: WebDriverWait, columnName: str) -&gt; WebElement
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>**Parameters:**
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>- `wait` (WebDriverWait): Selenium WebDriverWait instance for element waiting
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>- `columnName` (str): The name of the column to search for in table headers
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Returns:**
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>- `WebElement`: The table element containing the specified column
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>**Usage Example:**
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>```python
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>from selenium import webdriver
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>from selenium.webdriver.support.ui import WebDriverWait
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>from robo_appian.components.TableUtils import TableUtils
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>driver = webdriver.Chrome()
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>wait = WebDriverWait(driver, 10)
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>table = TableUtils.findTableByColumnName(wait, &quot;Employee ID&quot;)
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a># Find table with status column
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>status_table = TableUtils.findTableByColumnName(wait, &quot;Status&quot;)
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>### rowCount()
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>Counts the number of data rows in a table, excluding empty rows and header rows.
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>```python
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>@staticmethod
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>def rowCount(tableObject: WebElement) -&gt; int
-</code></pre></div></p>
-<p><strong>Parameters:</strong>
-- <code>tableObject</code> (WebElement): The table WebElement to count rows in</p>
-<p><strong>Returns:</strong>
-- <code>int</code>: The number of data rows in the table</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Get table and count rows</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table contains </span><span class="si">{</span><span class="n">row_count</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Use row count for iteration</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="c1"># Process each row</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="o">**</span><span class="n">Signature</span><span class="p">:</span><span class="o">**</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="err">```</span><span class="n">python</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nd">@staticmethod</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">:</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">rowNumber</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">columnName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">WebElement</span>
-</code></pre></div>
-    cell_component = TableUtils.findComponentFromTableCell(wait, i, "Status")
-    # Perform operations on cell component</p>
-<h3 id="findcomponentfromtablecell">findComponentFromTableCell()<a class="headerlink" href="#findcomponentfromtablecell" title="Permanent link">&para;</a></h3>
-<p>Finds a component within a specific table cell by row number and column name.</p>
-<p><strong>Signature:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@staticmethod</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">:</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">rowNumber</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">columnName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">WebElement</span>
-</code></pre></div></p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>rowNumber</code> (int): The row number (0-based index) to search in
-- <code>columnName</code> (str): The name of the column to search in</p>
-<p><strong>Returns:</strong>
-- <code>WebElement</code>: The component found in the specified table cell</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Find component in first row, Status column</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">status_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Find component in third row, Name column</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">name_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Employee Name&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Find and interact with button in specific cell</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">button_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Actions&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">button_component</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Find and get text from specific cell</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">text_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">department_text</span> <span class="o">=</span> <span class="n">text_component</span><span class="o">.</span><span class="n">text</span>
-</code></pre></div></p>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="table-identification">Table Identification<a class="headerlink" href="#table-identification" title="Permanent link">&para;</a></h3>
-<p><strong>Use unique column names</strong> for reliable table identification:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># ✅ Recommended - unique column identifier</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># ❌ Less reliable - common column name might match multiple tables</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="row-iteration">Row Iteration<a class="headerlink" href="#row-iteration" title="Permanent link">&para;</a></h3>
-<p><strong>Always check row count</strong> before iterating:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">if</span> <span class="n">row_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="c1"># Process each row safely</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="c1"># Perform operations</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Table is empty&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
-<p><strong>Wrap table operations</strong> in try-catch blocks:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>            <span class="n">component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>            <span class="c1"># Process component</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing row </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>            <span class="k">continue</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error finding or processing table: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h2 id="common-use-cases">Common Use Cases<a class="headerlink" href="#common-use-cases" title="Permanent link">&para;</a></h2>
-<h3 id="data-validation">Data Validation<a class="headerlink" href="#data-validation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Validate all employees have active status</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">inactive_employees</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">status_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">status_text</span> <span class="o">=</span> <span class="n">status_component</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="k">if</span> <span class="n">status_text</span> <span class="o">!=</span> <span class="s2">&quot;Active&quot;</span><span class="p">:</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        <span class="n">emp_id_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="n">inactive_employees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emp_id_component</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inactive employees: </span><span class="si">{</span><span class="n">inactive_employees</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="bulk-actions">Bulk Actions<a class="headerlink" href="#bulk-actions" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Select all items in a table</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Select&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="n">checkbox</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Select&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">is_selected</span><span class="p">():</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="n">checkbox</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Perform bulk action</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Delete Selected&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="data-extraction">Data Extraction<a class="headerlink" href="#data-extraction" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Extract employee data from table</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">employees</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="n">emp_data</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="s1">&#39;department&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="p">}</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="n">employees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emp_data</span><span class="p">)</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
-<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">employees</span><span class="p">)</span><span class="si">}</span><span class="s2"> employee records&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="table-search-and-filter">Table Search and Filter<a class="headerlink" href="#table-search-and-filter" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">find_employee_by_id</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">employee_id</span><span class="p">):</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Find a specific employee by ID in the table&quot;&quot;&quot;</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        <span class="n">id_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="k">if</span> <span class="n">id_component</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">employee_id</span><span class="p">:</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>            <span class="k">return</span> <span class="p">{</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>                <span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>                <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>            <span class="p">}</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="k">return</span> <span class="kc">None</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="c1"># Usage</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="n">employee</span> <span class="o">=</span> <span class="n">find_employee_by_id</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;EMP001&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="k">if</span> <span class="n">employee</span><span class="p">:</span>
-<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found employee: </span><span class="si">{</span><span class="n">employee</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> at row </span><span class="si">{</span><span class="n">employee</span><span class="p">[</span><span class="s1">&#39;row_index&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="row-specific-actions">Row-Specific Actions<a class="headerlink" href="#row-specific-actions" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Edit specific employee record</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">edit_employee_status</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">employee_id</span><span class="p">,</span> <span class="n">new_status</span><span class="p">):</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        <span class="n">id_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>        <span class="k">if</span> <span class="n">id_component</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">employee_id</span><span class="p">:</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>            <span class="c1"># Click edit button for this row</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>            <span class="n">edit_button</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Actions&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>            <span class="n">edit_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>            <span class="c1"># Update status</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>            <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="n">new_status</span><span class="p">)</span>
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>            <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Save&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>            <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>
-<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="k">return</span> <span class="kc">False</span>
-<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>
-<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="c1"># Edit employee EMP001 status to Inactive</span>
-<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="n">edit_employee_status</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;EMP001&quot;</span><span class="p">,</span> <span class="s2">&quot;Inactive&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="technical-details">Technical Details<a class="headerlink" href="#technical-details" title="Permanent link">&para;</a></h2>
-<h3 id="table-structure">Table Structure<a class="headerlink" href="#table-structure" title="Permanent link">&para;</a></h3>
-<p>TableUtils expects Appian tables with this structure:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Employee ID&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;headCell_0&quot;</span><span class="p">&gt;</span>Employee ID<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Name&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;headCell_1&quot;</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Status&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;headCell_2&quot;</span><span class="p">&gt;</span>Status<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 1&quot;</span><span class="p">&gt;</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>EMP001<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>John Doe<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Active<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</code></pre></div></p>
-<ol>
-<li>Finds the header cell with matching <code>abbr</code> attribute</li>
-<li>Extracts the column number from the <code>headCell_X</code> CSS class</li>
-<li>Returns the 0-based column index</li>
-</ol>
-<h3 id="row-selection-logic">Row Selection Logic<a class="headerlink" href="#row-selection-logic" title="Permanent link">&para;</a></h3>
-<p>The XPath for row selection:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>./tbody/tr[./td[not (@data-empty-grid-message)]]
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>- Header rows
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>- Non-data rows
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>### Cell Component Selection
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>The XPath for finding cell components:
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>```xpath
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>.//table[./thead/tr/th[@abbr=&quot;{columnName}&quot;]]/tbody/tr[@data-dnd-name=&quot;row {rowNumber}&quot;]/td[not (@data-empty-grid-message)][{columnNumber}]/*
-</code></pre></div></p>
+<p><strong>Raises:</strong></p>
 <ul>
-<li>The component within the cell</li>
+<li><code>TimeoutException</code>: If table with specified column not found within timeout</li>
 </ul>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
-<p><strong>Solutions:</strong>
-- Verify exact column name spelling and case
-- Check if table is loaded and visible
-- Ensure column name matches the <code>abbr</code> attribute in table headers
-- Wait for any dynamic table loading to complete</p>
-<p><strong>Solutions:</strong>
-- Check if table has pagination
-- Verify filters are not hiding rows
-- Ensure table data is fully loaded
-- Check for empty state messages</p>
-<p><strong>Cell Component Not Found:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>RuntimeError: Could not find component in cell at row 1, column &#39;Status&#39;
-</code></pre></div>
-<strong>Solutions:</strong>
-- Verify row index is within table bounds (0-based indexing)
-- Check if the specified column exists
-- Ensure cell contains an interactive component
-- Verify table structure matches expected format</p>
-<h3 id="debugging-tips">Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Inspect Table Structure</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Get table and inspect HTML</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&quot;outerHTML&quot;</span><span class="p">))</span>
+<p><strong>Returns:</strong> WebElement representing the table</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Employee ID&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Employee ID<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Name&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Status&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Status<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 1&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>001<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>John Doe<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Active<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </code></pre></div></p>
-</li>
-<li>
-<p><strong>Verify Column Names</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Find all column headers</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">headers</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;.//thead/tr/th&quot;</span><span class="p">)</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column: </span><span class="si">{</span><span class="n">header</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;abbr&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TableUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TableUtils</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
 </code></pre></div></p>
-</li>
-<li>
-<p><strong>Check Row Structure</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Inspect specific row</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">rows</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;.//tbody/tr&quot;</span><span class="p">)</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;data-dnd-name&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
-<h3 id="with-pytest-and-data-validation">With pytest and Data Validation<a class="headerlink" href="#with-pytest-and-data-validation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TableUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TableUtils</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestTableData</span><span class="p">:</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">teardown_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_employee_table_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian-app.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
-<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>        <span class="c1"># Validate table exists and has data</span>
-<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>        <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>        <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>
-<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>        <span class="k">assert</span> <span class="n">row_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Employee table should contain data&quot;</span>
-<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>
-<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>        <span class="c1"># Validate first row data</span>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>        <span class="n">emp_id</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>        <span class="k">assert</span> <span class="n">emp_id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;EMP&quot;</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Invalid employee ID format: </span><span class="si">{</span><span class="n">emp_id</span><span class="si">}</span><span class="s2">&quot;</span>
-<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>
-<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>        <span class="c1"># Check status values</span>
-<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>            <span class="n">status</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>            <span class="k">assert</span> <span class="n">status</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Active&quot;</span><span class="p">,</span> <span class="s2">&quot;Inactive&quot;</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;Invalid status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span>
-</code></pre></div>
-<h3 id="with-page-object-model">With Page Object Model<a class="headerlink" href="#with-page-object-model" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">EmployeeManagementPage</span><span class="p">:</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_employee_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>        <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>        <span class="k">return</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">find_employee_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emp_id</span><span class="p">):</span>
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>        <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>        <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
-<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>            <span class="n">id_component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Employee ID&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>            <span class="k">if</span> <span class="n">id_component</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">emp_id</span><span class="p">:</span>
-<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>                <span class="k">return</span> <span class="p">{</span>
-<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>                    <span class="s1">&#39;row&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
-<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>                    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>                    <span class="s1">&#39;department&#39;</span><span class="p">:</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>                <span class="p">}</span>
-<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>        <span class="k">return</span> <span class="kc">None</span>
-<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>
-<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update_employee_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">new_status</span><span class="p">):</span>
-<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>        <span class="n">employee</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_employee_by_id</span><span class="p">(</span><span class="n">emp_id</span><span class="p">)</span>
-<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>        <span class="k">if</span> <span class="n">employee</span><span class="p">:</span>
-<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>            <span class="n">edit_button</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span>
-<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">employee</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">],</span> <span class="s2">&quot;Actions&quot;</span>
-<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>            <span class="p">)</span>
-<a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>            <span class="n">edit_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>
-<a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>            <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="n">new_status</span><span class="p">)</span>
-<a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>            <span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Save&quot;</span><span class="p">)</span>
-<a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a>            <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a>        <span class="k">return</span> <span class="kc">False</span>
-</code></pre></div>
-<h3 id="with-data-export-functionality">With Data Export Functionality<a class="headerlink" href="#with-data-export-functionality" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">TableDataExporter</span><span class="p">:</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="p">):</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">wait</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">export_table_to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Export table data to CSV file&quot;&quot;&quot;</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>        <span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">column_name</span><span class="p">)</span>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>        <span class="n">row_count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
-<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>            <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
-<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>
-<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_count</span><span class="p">):</span>
-<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>                <span class="n">row_data</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>                <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
-<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>                    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>                        <span class="n">component</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
-<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>                        <span class="n">row_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">text</span>
-<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>                        <span class="n">row_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># Handle missing data</span>
-<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>
-<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="c1"># Usage</span>
-<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="n">exporter</span><span class="o">.</span><span class="n">export_table_to_csv</span><span class="p">(</span>
-<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>    <span class="s2">&quot;Employee ID&quot;</span><span class="p">,</span> 
-<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>    <span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> 
-<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>    <span class="p">[</span><span class="s2">&quot;Employee ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Hire Date&quot;</span><span class="p">]</span>
-<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="p">)</span>
-</code></pre></div>
-<h2 id="related-components">Related Components<a class="headerlink" href="#related-components" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong><a href="../button-utils/">ButtonUtils</a></strong> - For interacting with action buttons in table cells</li>
-<li><strong><a href="../dropdown-utils/">DropdownUtils</a></strong> - For dropdown selections in table cells</li>
-<li><strong><a href="../input-utils/">InputUtils</a></strong> - For input fields in editable table cells</li>
-<li><strong><a href="../component-driver/">ComponentDriver</a></strong> - For universal component interactions</li>
-</ul>
 <hr />
-<p><em>TableUtils provides powerful table interaction capabilities for Appian applications, enabling reliable data extraction, validation, and manipulation operations on complex table structures.</em></p>
+<h3 id="rowcount">rowCount<a class="headerlink" href="#rowcount" title="Permanent link">&para;</a></h3>
+<p>Count the number of data rows in a table.</p>
+<p>Use this to verify table content, validate search results, or determine if a table has data before processing rows. Excludes empty grid message rows, returning only actual data rows. Returns 0 if the table is empty.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>table</code> (WebElement): Table element (obtained from findTableByColumnName)</li>
+</ul>
+<p><strong>Raises:</strong> None</p>
+<p><strong>Returns:</strong> int: Number of data rows in the table</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 1&quot;</span><span class="p">&gt;&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Data 1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 2&quot;</span><span class="p">&gt;&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Data 2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 3&quot;</span><span class="p">&gt;&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Data 3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TableUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TableUtils</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findTableByColumnName</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">count</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table has </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">assert</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Table should have data&quot;</span>
+</code></pre></div></p>
+<hr />
+<h3 id="selectrowfromtablebycolumnnameandrownumber">selectRowFromTableByColumnNameAndRowNumber<a class="headerlink" href="#selectrowfromtablebycolumnnameandrownumber" title="Permanent link">&para;</a></h3>
+<p>Click a table row to select it or trigger row actions.</p>
+<p>Use this to select a row by clicking anywhere on it, typically to highlight the row or trigger navigation to a detail page. Row numbers are 0-based (first row is 0). Useful when clicking a row performs an action like opening a form or showing details.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>row_number</code> (int): 0-based row index (first row = 0)</li>
+<li><code>column_name</code> (str): Any column name in the table (used to locate the table)</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If table or row not found or not clickable within timeout</li>
+</ul>
+<p><strong>Returns:</strong> None</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Name&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 1&quot;</span><span class="p">&gt;&lt;</span><span class="nt">td</span><span class="p">&gt;</span>John Doe<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 2&quot;</span><span class="p">&gt;&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Jane Smith<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TableUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TableUtils</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">TableUtils</span><span class="o">.</span><span class="n">selectRowFromTableByColumnNameAndRowNumber</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="findcomponentfromtablecell">findComponentFromTableCell<a class="headerlink" href="#findcomponentfromtablecell" title="Permanent link">&para;</a></h3>
+<p>Find an interactive element inside a specific table cell.</p>
+<p>Use this when you need to interact with buttons, links, inputs, or other components within a table cell. Locates the cell by row number (0-based) and column name, then returns the first interactive component inside that cell. Essential for clicking action buttons in table rows.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>row_number</code> (int): 0-based row index (first row = 0)</li>
+<li><code>column_name</code> (str): Exact column name where the component is located</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If table, row, or component not found or not clickable within timeout</li>
+</ul>
+<p><strong>Returns:</strong> WebElement representing the component in the cell</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Name&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Actions&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Actions<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 1&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>John Doe<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Edit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TableUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TableUtils</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">edit_button</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentFromTableCell</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Actions&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">edit_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</code></pre></div></p>
+<hr />
+<h3 id="findcomponentbycolumnnameandrownumber">findComponentByColumnNameAndRowNumber<a class="headerlink" href="#findcomponentbycolumnnameandrownumber" title="Permanent link">&para;</a></h3>
+<p>Find an interactive element in a table cell using column and row coordinates.</p>
+<p>Use this as an alternative to findComponentFromTableCell when you need more control over element discovery. This method uses a different internal lookup strategy that may work better with certain table structures. Returns the clickable component at the specified cell location.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>row_number</code> (int): 0-based row index (first row = 0)</li>
+<li><code>column_name</code> (str): Exact column name (from abbr attribute)</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If table, row, column, or component not found within timeout</li>
+</ul>
+<p><strong>Returns:</strong> WebElement representing the component in the cell</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Employee ID&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;col_0&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>ID<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Status&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;col_1&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Status<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">data-dnd-name</span><span class="o">=</span><span class="s">&quot;row 1&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>001<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;status-badge&quot;</span><span class="p">&gt;</span>Active<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.TableUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">TableUtils</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">status_badge</span> <span class="o">=</span> <span class="n">TableUtils</span><span class="o">.</span><span class="n">findComponentByColumnNameAndRowNumber</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status: </span><span class="si">{</span><span class="n">status_badge</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></p>
 
 
 
@@ -2387,17 +1950,6 @@ def findTableByColumnName(wait: WebDriverWait, columnName: str) -&gt; WebElement
     
     
     
-      
-      
-    
-    <a href="https://pypi.org/project/robo-appian/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
-    </a>
-  
-    
-    
-    
-    
     <a href="mailto:dinilmithra.mailme@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M61.4 64C27.5 64 0 91.5 0 125.4c0 .9 0 1.7.1 2.6H0v256c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128h-.1c0-.9.1-1.7.1-2.6 0-33.9-27.5-61.4-61.4-61.4zM464 192.3V384c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192.3l154.8 117.4c31.4 23.9 74.9 23.9 106.4 0zM48 125.4c0-7.4 6-13.4 13.4-13.4h389.2c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7"/></svg>
     </a>
@@ -2416,7 +1968,7 @@ def findTableByColumnName(wait: WebDriverWait, columnName: str) -&gt; WebElement
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.50899def.min.js"></script>

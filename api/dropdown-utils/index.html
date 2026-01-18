@@ -26,7 +26,7 @@
     
     
       
-        <title>DropdownUtils - Robo Appian Documentation</title>
+        <title>Dropdowns - Robo Appian Documentation</title>
       
     
     
@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dropdownutils" class="md-skip">
+        <a href="#dropdown-utils" class="md-skip">
           Skip to content
         </a>
       
@@ -96,11 +98,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Robo Appian Documentation" class="md-header__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DropdownUtils
+              Dropdowns
             
           </span>
         </div>
@@ -201,16 +206,22 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+      </div>
+    
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -284,7 +295,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../button-utils/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -358,7 +369,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -379,11 +396,24 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Robo Appian Documentation" class="md-nav__button md-logo" aria-label="Robo Appian Documentation" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Robo Appian Documentation
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dinilmithra/robo_appian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -752,12 +782,83 @@
   
   
     <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../button-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ButtonUtils
+    Buttons
     
   </span>
   
@@ -780,7 +881,7 @@
   
   
   <span class="md-ellipsis">
-    InputUtils
+    Inputs
     
   </span>
   
@@ -803,7 +904,7 @@
   
   
   <span class="md-ellipsis">
-    DateUtils
+    Dates
     
   </span>
   
@@ -835,7 +936,7 @@
   
   
   <span class="md-ellipsis">
-    DropdownUtils
+    Dropdowns
     
   </span>
   
@@ -848,7 +949,7 @@
   
   
   <span class="md-ellipsis">
-    DropdownUtils
+    Dropdowns
     
   </span>
   
@@ -880,19 +981,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-methods" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
-      Class Methods
+      Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class Methods">
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#selectdropdownvaluebylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      selectDropdownValueByLabelText()
+      selectDropdownValueByLabelText
     </span>
   </a>
   
@@ -901,16 +1002,25 @@
           <li class="md-nav__item">
   <a href="#selectdropdownvaluebypartiallabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      selectDropdownValueByPartialLabelText()
+      selectDropdownValueByPartialLabelText
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#checkdropdownoptionvalueexists" class="md-nav__link">
+  <a href="#checkeditablestatusbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      checkDropdownOptionValueExists()
+      checkEditableStatusByLabelText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdropdownoptionvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      getDropdownOptionValues
     </span>
   </a>
   
@@ -919,7 +1029,7 @@
           <li class="md-nav__item">
   <a href="#checkreadonlystatusbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      checkReadOnlyStatusByLabelText()
+      checkReadOnlyStatusByLabelText
     </span>
   </a>
   
@@ -928,7 +1038,34 @@
           <li class="md-nav__item">
   <a href="#selectdropdownvaluebycomboboxcomponent" class="md-nav__link">
     <span class="md-ellipsis">
-      selectDropdownValueByComboboxComponent()
+      selectDropdownValueByComboboxComponent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitfordropdowntobeenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      waitForDropdownToBeEnabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkdropdownoptionvalueexists" class="md-nav__link">
+    <span class="md-ellipsis">
+      checkDropdownOptionValueExists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitfordropdownvaluestobechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      waitForDropdownValuesToBeChanged
     </span>
   </a>
   
@@ -936,234 +1073,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Best Practices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#label-based-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Label-Based Selection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validation-before-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validation Before Selection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handle-read-only-dropdowns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handle Read-Only Dropdowns
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Use Cases
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#form-data-entry" class="md-nav__link">
-    <span class="md-ellipsis">
-      Form Data Entry
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter-and-search" class="md-nav__link">
-    <span class="md-ellipsis">
-      Filter and Search
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration Settings
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#conditional-selections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conditional Selections
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dropdown-interaction-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dropdown Interaction Flow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#xpath-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      XPath Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aria-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      ARIA Attributes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Issues
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging Tips
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Integration Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-pytest-and-parameterization" class="md-nav__link">
-    <span class="md-ellipsis">
-      With pytest and Parameterization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-page-object-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Page Object Model
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-data-driven-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Data-Driven Configuration
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related Components
-    </span>
-  </a>
   
 </li>
       
@@ -1188,7 +1097,7 @@
   
   
   <span class="md-ellipsis">
-    SearchDropdownUtils
+    Search Dropdowns
     
   </span>
   
@@ -1211,7 +1120,7 @@
   
   
   <span class="md-ellipsis">
-    SearchInputUtils
+    Search Inputs
     
   </span>
   
@@ -1234,7 +1143,7 @@
   
   
   <span class="md-ellipsis">
-    TableUtils
+    Tables
     
   </span>
   
@@ -1257,7 +1166,7 @@
   
   
   <span class="md-ellipsis">
-    TabUtils
+    Tabs
     
   </span>
   
@@ -1280,7 +1189,7 @@
   
   
   <span class="md-ellipsis">
-    LabelUtils
+    Labels
     
   </span>
   
@@ -1303,7 +1212,7 @@
   
   
   <span class="md-ellipsis">
-    LinkUtils
+    Links
     
   </span>
   
@@ -1313,6 +1222,62 @@
   
 
               
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shared Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shared Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1344,17 +1309,48 @@
   
   
     <li class="md-nav__item">
-      <a href="../component-driver/" class="md-nav__link">
+      <a href="../robo-utils/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ComponentDriver
+    RoboUtils
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BrowserUtils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1667,19 +1663,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-methods" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
-      Class Methods
+      Methods
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class Methods">
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#selectdropdownvaluebylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      selectDropdownValueByLabelText()
+      selectDropdownValueByLabelText
     </span>
   </a>
   
@@ -1688,16 +1684,25 @@
           <li class="md-nav__item">
   <a href="#selectdropdownvaluebypartiallabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      selectDropdownValueByPartialLabelText()
+      selectDropdownValueByPartialLabelText
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#checkdropdownoptionvalueexists" class="md-nav__link">
+  <a href="#checkeditablestatusbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      checkDropdownOptionValueExists()
+      checkEditableStatusByLabelText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdropdownoptionvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      getDropdownOptionValues
     </span>
   </a>
   
@@ -1706,7 +1711,7 @@
           <li class="md-nav__item">
   <a href="#checkreadonlystatusbylabeltext" class="md-nav__link">
     <span class="md-ellipsis">
-      checkReadOnlyStatusByLabelText()
+      checkReadOnlyStatusByLabelText
     </span>
   </a>
   
@@ -1715,7 +1720,34 @@
           <li class="md-nav__item">
   <a href="#selectdropdownvaluebycomboboxcomponent" class="md-nav__link">
     <span class="md-ellipsis">
-      selectDropdownValueByComboboxComponent()
+      selectDropdownValueByComboboxComponent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitfordropdowntobeenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      waitForDropdownToBeEnabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkdropdownoptionvalueexists" class="md-nav__link">
+    <span class="md-ellipsis">
+      checkDropdownOptionValueExists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitfordropdownvaluestobechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      waitForDropdownValuesToBeChanged
     </span>
   </a>
   
@@ -1723,234 +1755,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Best Practices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#label-based-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Label-Based Selection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validation-before-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validation Before Selection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handle-read-only-dropdowns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handle Read-Only Dropdowns
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Use Cases
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#form-data-entry" class="md-nav__link">
-    <span class="md-ellipsis">
-      Form Data Entry
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter-and-search" class="md-nav__link">
-    <span class="md-ellipsis">
-      Filter and Search
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration Settings
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#conditional-selections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conditional Selections
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dropdown-interaction-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dropdown Interaction Flow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#xpath-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      XPath Strategies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aria-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      ARIA Attributes
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Issues
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging Tips
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Integration Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-pytest-and-parameterization" class="md-nav__link">
-    <span class="md-ellipsis">
-      With pytest and Parameterization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-page-object-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Page Object Model
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-data-driven-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      With Data-Driven Configuration
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Related Components
-    </span>
-  </a>
   
 </li>
       
@@ -1969,342 +1773,333 @@
                   
 
 
+  
+  
 
-<h1 id="dropdownutils">DropdownUtils<a class="headerlink" href="#dropdownutils" title="Permanent link">&para;</a></h1>
-<p>The <code>DropdownUtils</code> class provides comprehensive methods for interacting with dropdown and combobox components in Appian applications. It handles the complex interactions required for Appian's dynamic dropdown elements, providing reliable selection and validation capabilities.</p>
+
+<h1 id="dropdown-utils">Dropdown Utils<a class="headerlink" href="#dropdown-utils" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>DropdownUtils is designed to handle Appian's sophisticated dropdown structures, providing reliable methods to:</p>
+<p>DropdownUtils provides methods to interact with Appian dropdown components. Use DropdownUtils to select options from dropdowns by their label, check if dropdowns are enabled or read-only, retrieve all available options, and verify specific options exist. Dropdowns use the combobox ARIA pattern with clickable triggers and option lists.</p>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<h3 id="selectdropdownvaluebylabeltext">selectDropdownValueByLabelText<a class="headerlink" href="#selectdropdownvaluebylabeltext" title="Permanent link">&para;</a></h3>
+<p>Select an option from a dropdown by the dropdown's exact label text.</p>
+<p>Use this when you need to select a specific option from a dropdown and you know the exact label text displayed next to or above the dropdown. This method clicks the dropdown to open it, waits for options to appear, then clicks the desired option. Perfect for form submissions where dropdown selections are required.</p>
+<p><strong>Args:</strong></p>
 <ul>
-<li>Select dropdown values by visible label text</li>
-<li>Select values using partial label matching  </li>
-<li>Check if dropdown options exist</li>
-<li>Verify dropdown read-only status</li>
-<li>Handle combobox components directly</li>
-<li>Manage dynamic dropdown loading and selection</li>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+<li><code>value</code> (str): Exact text of the option to select from the dropdown</li>
 </ul>
-<h2 id="class-methods">Class Methods<a class="headerlink" href="#class-methods" title="Permanent link">&para;</a></h2>
-<h3 id="selectdropdownvaluebylabeltext">selectDropdownValueByLabelText()<a class="headerlink" href="#selectdropdownvaluebylabeltext" title="Permanent link">&para;</a></h3>
-<p>Selects a value from a dropdown by its exact visible label text.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>dropdown_label</code> (str): The exact visible text label of the dropdown
-- <code>value</code> (str): The value/option to select from the dropdown</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Select status from dropdown</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Approved&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Select department</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Select priority</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">)</span>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If dropdown or option not found or not clickable within timeout</li>
+</ul>
+<p><strong>Returns:</strong> None</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Status<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;dropdown_123_list&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cm">&lt;!-- After clicking combobox --&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;dropdown_123_list&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;listbox&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Active<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Inactive<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </code></pre></div></p>
-<hr />
-<h3 id="selectdropdownvaluebypartiallabeltext">selectDropdownValueByPartialLabelText()<a class="headerlink" href="#selectdropdownvaluebypartiallabeltext" title="Permanent link">&para;</a></h3>
-<p>Selects a value from a dropdown using partial label text matching.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>dropdown_label</code> (str): Partial text that appears in the dropdown label
-- <code>value</code> (str): The value/option to select from the dropdown</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># If label is &quot;Customer Status (Required)&quot;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Customer Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">)</span>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># If label is &quot;Employee Department (Optional)&quot;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;HR&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 <hr />
-<h3 id="checkdropdownoptionvalueexists">checkDropdownOptionValueExists()<a class="headerlink" href="#checkdropdownoptionvalueexists" title="Permanent link">&para;</a></h3>
-<p>Checks if a specific value exists in a dropdown's options.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>dropdown_label</code> (str): The label of the dropdown to check
-- <code>value</code> (str): The value to look for in the dropdown options</p>
-<p><strong>Returns:</strong>
-- <code>bool</code>: True if the value exists, False otherwise</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Check if option exists before selecting</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Pending&quot;</span><span class="p">):</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Pending&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status set to Pending&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pending status not available&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Conditional logic based on available options</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">available_statuses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Active&quot;</span><span class="p">,</span> <span class="s2">&quot;Inactive&quot;</span><span class="p">,</span> <span class="s2">&quot;Suspended&quot;</span><span class="p">]</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">available_statuses</span><span class="p">:</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="k">break</span>
-</code></pre></div></p>
-<hr />
-<h3 id="checkreadonlystatusbylabeltext">checkReadOnlyStatusByLabelText()<a class="headerlink" href="#checkreadonlystatusbylabeltext" title="Permanent link">&para;</a></h3>
-<p>Checks if a dropdown is in read-only mode.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>label</code> (str): The label of the dropdown to check</p>
-<p><strong>Returns:</strong>
-- <code>bool</code>: True if the dropdown is read-only, False if it's editable</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Check if dropdown is editable before trying to select</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkReadOnlyStatusByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">):</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Approved&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status dropdown is read-only&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<hr />
-<h3 id="selectdropdownvaluebycomboboxcomponent">selectDropdownValueByComboboxComponent()<a class="headerlink" href="#selectdropdownvaluebycomboboxcomponent" title="Permanent link">&para;</a></h3>
-<p>Selects a value from a dropdown using a direct combobox WebElement reference.</p>
-<p><strong>Parameters:</strong>
-- <code>wait</code> (WebDriverWait): Selenium WebDriverWait instance for element waiting
-- <code>combobox</code> (WebElement): The combobox WebElement to interact with
-- <code>value</code> (str): The value to select from the dropdown</p>
-<p><strong>Usage Example:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.common.by</span><span class="w"> </span><span class="kn">import</span> <span class="n">By</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Find combobox directly and select value</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">combobox</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s2">&quot;combobox_id&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByComboboxComponent</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">combobox</span><span class="p">,</span> <span class="s2">&quot;Option Value&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="label-based-selection">Label-Based Selection<a class="headerlink" href="#label-based-selection" title="Permanent link">&para;</a></h3>
-<p><strong>Prefer exact label matching</strong> for reliability:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># ✅ Recommended - exact match</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employee Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># ⚠️ Use carefully - partial match</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="validation-before-selection">Validation Before Selection<a class="headerlink" href="#validation-before-selection" title="Permanent link">&para;</a></h3>
-<p><strong>Check option availability</strong> before selection:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Robust selection with validation</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">dropdown_label</span> <span class="o">=</span> <span class="s2">&quot;Priority&quot;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">desired_value</span> <span class="o">=</span> <span class="s2">&quot;High&quot;</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">dropdown_label</span><span class="p">,</span> <span class="n">desired_value</span><span class="p">):</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">dropdown_label</span><span class="p">,</span> <span class="n">desired_value</span><span class="p">)</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected </span><span class="si">{</span><span class="n">desired_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">desired_value</span><span class="si">}</span><span class="s2"> not available in </span><span class="si">{</span><span class="n">dropdown_label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="handle-read-only-dropdowns">Handle Read-Only Dropdowns<a class="headerlink" href="#handle-read-only-dropdowns" title="Permanent link">&para;</a></h3>
-<p><strong>Verify dropdown state</strong> before interaction:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">safe_dropdown_selection</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkReadOnlyStatusByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dropdown &#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&#39; is read-only, skipping selection&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="k">return</span> <span class="kc">False</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; not found in dropdown &#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        <span class="k">return</span> <span class="kc">False</span>
-</code></pre></div></p>
-<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
-<p>Always wrap dropdown interactions in try-catch blocks:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Approved&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dropdown selection successful&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to select dropdown value: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h2 id="common-use-cases">Common Use Cases<a class="headerlink" href="#common-use-cases" title="Permanent link">&para;</a></h2>
-<h3 id="form-data-entry">Form Data Entry<a class="headerlink" href="#form-data-entry" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Fill out application form</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;United States&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;City&quot;</span><span class="p">,</span> <span class="s2">&quot;San Francisco&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employment Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Full-time&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="filter-and-search">Filter and Search<a class="headerlink" href="#filter-and-search" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Set search filters</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">)</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">)</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Date Range&quot;</span><span class="p">,</span> <span class="s2">&quot;Last 30 Days&quot;</span><span class="p">)</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Apply Filters&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="configuration-settings">Configuration Settings<a class="headerlink" href="#configuration-settings" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Configure application settings</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Time Zone&quot;</span><span class="p">,</span> <span class="s2">&quot;Pacific Standard Time&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Language&quot;</span><span class="p">,</span> <span class="s2">&quot;English&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Theme&quot;</span><span class="p">,</span> <span class="s2">&quot;Dark Mode&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="conditional-selections">Conditional Selections<a class="headerlink" href="#conditional-selections" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Dynamic selection based on available options</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">priority_options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Critical&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium&quot;</span><span class="p">,</span> <span class="s2">&quot;Low&quot;</span><span class="p">]</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">for</span> <span class="n">priority</span> <span class="ow">in</span> <span class="n">priority_options</span><span class="p">:</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="p">):</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="p">)</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Priority set to: </span><span class="si">{</span><span class="n">priority</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        <span class="k">break</span>
-</code></pre></div>
-<h2 id="technical-details">Technical Details<a class="headerlink" href="#technical-details" title="Permanent link">&para;</a></h2>
-<h3 id="dropdown-interaction-flow">Dropdown Interaction Flow<a class="headerlink" href="#dropdown-interaction-flow" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Find Combobox</strong>: Locate the dropdown combobox by label</li>
-<li><strong>Click to Open</strong>: Click the combobox to open dropdown options</li>
-<li><strong>Get Options ID</strong>: Extract the <code>aria-controls</code> attribute for option list ID</li>
-<li><strong>Locate Option</strong>: Find the specific option by value text</li>
-<li><strong>Select Option</strong>: Click the desired option</li>
-</ol>
-<h3 id="xpath-strategies">XPath Strategies<a class="headerlink" href="#xpath-strategies" title="Permanent link">&para;</a></h3>
-<p><strong>Exact Label Combobox:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>.//div[./div/span[normalize-space(text())=&quot;{label}&quot;]]/div/div/div/div[@role=&quot;combobox&quot; and not(@aria-disabled=&quot;true&quot;)]
-</code></pre></div></p>
-<p><strong>Partial Label Combobox:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>.//div[./div/span[contains(normalize-space(text()), &quot;{label}&quot;)]]/div/div/div/div[@role=&quot;combobox&quot; and not(@aria-disabled=&quot;true&quot;)]
-</code></pre></div></p>
-<p><strong>Option Selection:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>.//div/ul[@id=&quot;{dropdown_option_id}&quot;]/li[./div[normalize-space(text())=&quot;{value}&quot;]]
-</code></pre></div></p>
-<h3 id="aria-attributes">ARIA Attributes<a class="headerlink" href="#aria-attributes" title="Permanent link">&para;</a></h3>
-<p>DropdownUtils leverages ARIA attributes for reliable interaction:
-- <code>role="combobox"</code> - Identifies dropdown components
-- <code>aria-controls</code> - Links combobox to its option list
-- <code>aria-disabled</code> - Checks if dropdown is disabled</p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
-<p><strong>Dropdown Not Found:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Exception: Could not find combobox with label &quot;Status&quot;
-</code></pre></div>
-<strong>Solutions:</strong>
-- Verify exact label text (check for punctuation, spaces)
-- Ensure dropdown is visible and not inside collapsed sections
-- Check if dropdown is dynamically loaded
-- Use partial label matching if label has dynamic content</p>
-<p><strong>Option Not Available:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Exception: Could not find dropdown option &quot;Approved&quot; with dropdown option id &quot;dropdown_123&quot;
-</code></pre></div>
-<strong>Solutions:</strong>
-- Verify the exact option text
-- Check if options are loaded dynamically
-- Use <code>checkDropdownOptionValueExists()</code> to validate before selection
-- Ensure dropdown is fully expanded before selection</p>
-<p><strong>Dropdown is Read-Only:</strong>
-- Use <code>checkReadOnlyStatusByLabelText()</code> to verify state
-- Check if user has permissions to modify the field
-- Verify if dropdown becomes editable after other form interactions</p>
-<h3 id="debugging-tips">Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Inspect Dropdown Structure</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Status<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;options_123&quot;</span><span class="p">&gt;</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="cm">&lt;!-- Combobox content --&gt;</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;options_123&quot;</span><span class="p">&gt;</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Active<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Inactive<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Check Option Loading</strong>:</p>
-</li>
-<li>Some dropdowns load options dynamically</li>
-<li>Wait for options to be fully loaded before selection</li>
-<li>
-<p>Use explicit waits if needed</p>
-</li>
-<li>
-<p><strong>Verify Dropdown State</strong>:</p>
-</li>
-<li>Check if dropdown is enabled/disabled</li>
-<li>Verify if dropdown is visible in current view</li>
-<li>Ensure no overlays are blocking interaction</li>
-</ol>
-<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
-<h3 id="with-pytest-and-parameterization">With pytest and Parameterization<a class="headerlink" href="#with-pytest-and-parameterization" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium</span><span class="w"> </span><span class="kn">import</span> <span class="n">webdriver</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestDropdownSelections</span><span class="p">:</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">teardown_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;dropdown,value&quot;</span><span class="p">,</span> <span class="p">[</span>
-<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>        <span class="p">(</span><span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">),</span>
-<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>        <span class="p">(</span><span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">),</span>
-<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>        <span class="p">(</span><span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">),</span>
-<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>    <span class="p">])</span>
-<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_dropdown_selections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://your-appian-app.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
-<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>        <span class="c1"># Validate option exists before selection</span>
-<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>        <span class="k">assert</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">,</span> <span class="n">value</span>
-<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Option &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; not found in &#39;</span><span class="si">{</span><span class="n">dropdown</span><span class="si">}</span><span class="s2">&#39; dropdown&quot;</span>
-<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>
-<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>        <span class="c1"># Select the value</span>
-<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>        <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="with-page-object-model">With Page Object Model<a class="headerlink" href="#with-page-object-model" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">EmployeeFormPage</span><span class="p">:</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_employee_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">department</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">employment_type</span><span class="p">):</span>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>        <span class="c1"># Set department if dropdown is editable</span>
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkReadOnlyStatusByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">):</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>            <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="n">department</span><span class="p">)</span>
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>        <span class="c1"># Set status with validation</span>
-<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>        <span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
-<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>            <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
-<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>
-<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>        <span class="c1"># Set employment type</span>
-<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>        <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Employment Type&quot;</span><span class="p">,</span> <span class="n">employment_type</span><span class="p">)</span>
-<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>
-<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_available_departments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>        <span class="c1"># Custom method to extract all available options</span>
-<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>        <span class="c1"># Implementation would depend on specific requirements</span>
-<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>        <span class="k">pass</span>
-</code></pre></div>
-<h3 id="with-data-driven-configuration">With Data-Driven Configuration<a class="headerlink" href="#with-data-driven-configuration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Load form configuration</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;form_config.yaml&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="c1"># Fill dropdowns from configuration</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">for</span> <span class="n">dropdown_config</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;dropdowns&#39;</span><span class="p">]:</span>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>    <span class="n">label</span> <span class="o">=</span> <span class="n">dropdown_config</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">dropdown_config</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="n">required</span> <span class="o">=</span> <span class="n">dropdown_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
-<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>    <span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>        <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>    <span class="k">elif</span> <span class="n">required</span><span class="p">:</span>
-<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Required dropdown option &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; not found in &#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="related-components">Related Components<a class="headerlink" href="#related-components" title="Permanent link">&para;</a></h2>
+<h3 id="selectdropdownvaluebypartiallabeltext">selectDropdownValueByPartialLabelText<a class="headerlink" href="#selectdropdownvaluebypartiallabeltext" title="Permanent link">&para;</a></h3>
+<p>Select an option from a dropdown using partial label text matching.</p>
+<p>Use this when the dropdown label contains dynamic text or you only know part of the label. This method uses a contains match instead of exact match, making it useful for labels with counters, dates, or other variable content appended.</p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><strong><a href="../input-utils/">InputUtils</a></strong> - For text input field interactions</li>
-<li><strong><a href="../button-utils/">ButtonUtils</a></strong> - For form submission after dropdown selection</li>
-<li><strong><a href="../search-dropdown-utils/">SearchDropdownUtils</a></strong> - For searchable dropdown components</li>
-<li><strong><a href="../component-driver/">ComponentDriver</a></strong> - For universal component interactions</li>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Partial label text for the dropdown (uses contains matching)</li>
+<li><code>value</code> (str): Exact text of the option to select</li>
 </ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If dropdown or option not found within timeout</li>
+</ul>
+<p><strong>Returns:</strong> None</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Department (25 items)<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;dropdown_456_list&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;Sales&quot;</span><span class="p">)</span>
+</code></pre></div></p>
 <hr />
-<p><em>DropdownUtils provides robust dropdown interaction capabilities for Appian applications, handling the complexity of dynamic option loading and selection while maintaining reliability and ease of use.</em></p>
+<h3 id="checkeditablestatusbylabeltext">checkEditableStatusByLabelText<a class="headerlink" href="#checkeditablestatusbylabeltext" title="Permanent link">&para;</a></h3>
+<p>Check if a dropdown is enabled (editable) or disabled by its label.</p>
+<p>Use this to verify whether a dropdown is interactive before attempting to select options. Returns True if the dropdown is editable, False if it's disabled. Useful in test assertions to verify conditional dropdown states based on other form selections.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+</ul>
+<p><strong>Raises:</strong> None (returns False if dropdown not found)</p>
+<p><strong>Returns:</strong> bool: True if dropdown is editable, False if disabled or not found</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cm">&lt;!-- Enabled dropdown --&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Region<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-disabled</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="cm">&lt;!-- Disabled dropdown --&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Restricted Field<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">aria-disabled</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>Not Available<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkEditableStatusByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Region&quot;</span><span class="p">):</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Region&quot;</span><span class="p">,</span> <span class="s2">&quot;North&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="getdropdownoptionvalues">getDropdownOptionValues<a class="headerlink" href="#getdropdownoptionvalues" title="Permanent link">&para;</a></h3>
+<p>Retrieve all available option values from a dropdown as a list.</p>
+<p>Use this when you need to verify all available options, validate dropdown content, or make dynamic selections based on available choices. This method opens the dropdown, extracts all option texts, closes the dropdown, and returns the list of options.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If dropdown not found within timeout</li>
+</ul>
+<p><strong>Returns:</strong> list[str]: List of all option texts in the dropdown</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Priority<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;dropdown_789_list&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;dropdown_789_list&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;listbox&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Medium<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Low<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">options</span> <span class="o">=</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">getDropdownOptionValues</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># [&#39;High&#39;, &#39;Medium&#39;, &#39;Low&#39;]</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">assert</span> <span class="s2">&quot;High&quot;</span> <span class="ow">in</span> <span class="n">options</span><span class="p">,</span> <span class="s2">&quot;High priority option missing&quot;</span>
+</code></pre></div></p>
+<hr />
+<h3 id="checkreadonlystatusbylabeltext">checkReadOnlyStatusByLabelText<a class="headerlink" href="#checkreadonlystatusbylabeltext" title="Permanent link">&para;</a></h3>
+<p>Check if a dropdown is read-only (disabled) by its label.</p>
+<p>Use this to verify whether a dropdown is in read-only mode, typically displaying a static value without allowing interaction. This is the inverse of checkEditableStatusByLabelText. Returns True if the dropdown is read-only, False if it's editable or interactive.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+</ul>
+<p><strong>Raises:</strong> None (returns False if dropdown not found or an error occurs)</p>
+<p><strong>Returns:</strong> bool: True if dropdown is read-only, False if editable or not found</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cm">&lt;!-- Read-only dropdown --&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Approval Status<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&quot;status_label&quot;</span><span class="p">&gt;</span>Approved<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="cm">&lt;!-- Editable dropdown --&gt;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Department<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkReadOnlyStatusByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Approval Status&quot;</span><span class="p">):</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dropdown is read-only, cannot modify&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Approval Status&quot;</span><span class="p">,</span> <span class="s2">&quot;Pending&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="selectdropdownvaluebycomboboxcomponent">selectDropdownValueByComboboxComponent<a class="headerlink" href="#selectdropdownvaluebycomboboxcomponent" title="Permanent link">&para;</a></h3>
+<p>Select a dropdown option when you already have the combobox WebElement.</p>
+<p>Use this advanced method when you've already located the combobox element through other means and want to select an option directly. Useful in complex scenarios where you're iterating through multiple dropdowns or have custom element discovery logic. Skips the label-based lookup step.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>combobox</code> (WebElement): The combobox WebElement already located</li>
+<li><code>value</code> (str): Exact text of the option to select</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If option not found within timeout</li>
+<li><code>ValueError</code>: If combobox lacks required attributes</li>
+</ul>
+<p><strong>Returns:</strong> None</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;custom_dropdown&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;options_list&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;options_list&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;listbox&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Option A<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Option B<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.common.by</span><span class="w"> </span><span class="kn">import</span> <span class="n">By</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">combobox</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s2">&quot;custom_dropdown&quot;</span><span class="p">)))</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByComboboxComponent</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">combobox</span><span class="p">,</span> <span class="s2">&quot;Option A&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="waitfordropdowntobeenabled">waitForDropdownToBeEnabled<a class="headerlink" href="#waitfordropdowntobeenabled" title="Permanent link">&para;</a></h3>
+<p>Wait for a dropdown to transition from disabled to enabled state.</p>
+<p>Use this when a dropdown becomes interactive after other form actions complete (e.g., after selecting a region, the city dropdown becomes enabled). Polls the dropdown's editable status at regular intervals until it becomes enabled or the timeout expires. Useful for handling dynamic form behavior.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+<li><code>wait_interval</code> (float): Seconds to wait between status checks (default: 0.5)</li>
+<li><code>timeout</code> (int): Maximum seconds to wait for dropdown to enable (default: 2)</li>
+</ul>
+<p><strong>Raises:</strong> None (returns False if timeout expires)</p>
+<p><strong>Returns:</strong> bool: True if dropdown becomes enabled within timeout, False otherwise</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Country<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="cm">&lt;!-- Initially disabled --&gt;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>State<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">aria-disabled</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>Select country first<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="cm">&lt;!-- After selecting country, becomes enabled --&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;United States&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">waitForDropdownToBeEnabled</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="n">wait_interval</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State dropdown did not become enabled&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="checkdropdownoptionvalueexists">checkDropdownOptionValueExists<a class="headerlink" href="#checkdropdownoptionvalueexists" title="Permanent link">&para;</a></h3>
+<p>Check if a specific option value exists in a dropdown's option list.</p>
+<p>Use this to verify that expected options are available before attempting to select them, or to validate dropdown content in tests. Opens the dropdown, searches for the option, and returns whether it exists. Non-destructive check that doesn't modify the dropdown selection.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+<li><code>value</code> (str): Exact text of the option to check for</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If dropdown not found within timeout</li>
+</ul>
+<p><strong>Returns:</strong> bool: True if the option exists in the dropdown, False otherwise</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Priority<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;priority_list&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;priority_list&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;listbox&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>High<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;option&quot;</span><span class="p">&gt;&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Medium<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">if</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">):</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;High priority option not available&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="k">assert</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">checkDropdownOptionValueExists</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Priority&quot;</span><span class="p">,</span> <span class="s2">&quot;Critical&quot;</span><span class="p">),</span> <span class="s2">&quot;Critical option missing&quot;</span>
+</code></pre></div></p>
+<hr />
+<h3 id="waitfordropdownvaluestobechanged">waitForDropdownValuesToBeChanged<a class="headerlink" href="#waitfordropdownvaluestobechanged" title="Permanent link">&para;</a></h3>
+<p>Wait for a dropdown's available options to change from an initial set of values.</p>
+<p>Use this when dropdown options are dynamically populated based on other form selections. Compares the current dropdown options against an initial snapshot, polling at regular intervals until the options change or timeout expires. Essential for handling cascading dropdowns where options in one dropdown depend on the selection in another.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
+<li><code>label</code> (str): Exact label text for the dropdown</li>
+<li><code>initial_values</code> (list[str]): Initial list of option values to compare against</li>
+<li><code>poll_frequency</code> (float): Seconds to wait between checks (default: 0.5)</li>
+<li><code>timeout</code> (int): Maximum seconds to wait for values to change (default: 2)</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If dropdown not found within timeout</li>
+</ul>
+<p><strong>Returns:</strong> None (exits loop when values change or timeout expires)</p>
+<p><strong>Examples:</strong></p>
+<p>HTML:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Department<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="cm">&lt;!-- Job Title dropdown options change based on Department selection --&gt;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Job Title<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;combobox&quot;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&quot;job_list&quot;</span><span class="p">&gt;</span>Select...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></p>
+<p>Python:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.DropdownUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropdownUtils</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">initial_jobs</span> <span class="o">=</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">getDropdownOptionValues</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Job Title&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">selectDropdownValueByLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Department&quot;</span><span class="p">,</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="n">DropdownUtils</span><span class="o">.</span><span class="n">waitForDropdownValuesToBeChanged</span><span class="p">(</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    <span class="n">wait</span><span class="p">,</span> 
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    <span class="s2">&quot;Job Title&quot;</span><span class="p">,</span> 
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    <span class="n">initial_jobs</span><span class="p">,</span> 
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    <span class="n">poll_frequency</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="p">)</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="n">new_jobs</span> <span class="o">=</span> <span class="n">DropdownUtils</span><span class="o">.</span><span class="n">getDropdownOptionValues</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Job Title&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job titles updated: </span><span class="si">{</span><span class="n">new_jobs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></p>
 
 
 
@@ -2368,17 +2163,6 @@
     
     
     
-      
-      
-    
-    <a href="https://pypi.org/project/robo-appian/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
-    </a>
-  
-    
-    
-    
-    
     <a href="mailto:dinilmithra.mailme@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M61.4 64C27.5 64 0 91.5 0 125.4c0 .9 0 1.7.1 2.6H0v256c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128h-.1c0-.9.1-1.7.1-2.6 0-33.9-27.5-61.4-61.4-61.4zM464 192.3V384c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192.3l154.8 117.4c31.4 23.9 74.9 23.9 106.4 0zM48 125.4c0-7.4 6-13.4 13.4-13.4h389.2c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7"/></svg>
     </a>
@@ -2397,7 +2181,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
