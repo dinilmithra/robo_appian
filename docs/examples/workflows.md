@@ -111,7 +111,6 @@ RoboUtils.retry_on_timeout(submit_form, max_retries=3, name="Submit Form")
 ## Complete End-to-End Workflow
 
 ```python
-from robo_appian.controllers.ComponentDriver import ComponentDriver
 from robo_appian.components import TableUtils, ButtonUtils, LabelUtils, InputUtils, DropdownUtils, SearchDropdownUtils
 
 # Step 1: Create new request
