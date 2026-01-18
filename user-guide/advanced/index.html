@@ -711,15 +711,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#routing-with-componentdriver" class="md-nav__link">
-    <span class="md-ellipsis">
-      Routing with ComponentDriver
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#retrying-flaky-actions" class="md-nav__link">
     <span class="md-ellipsis">
       Retrying flaky actions
@@ -1579,15 +1570,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#routing-with-componentdriver" class="md-nav__link">
-    <span class="md-ellipsis">
-      Routing with ComponentDriver
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#retrying-flaky-actions" class="md-nav__link">
     <span class="md-ellipsis">
       Retrying flaky actions
@@ -1634,18 +1616,6 @@
 
 
 <h1 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h1>
-<h2 id="routing-with-componentdriver">Routing with ComponentDriver<a class="headerlink" href="#routing-with-componentdriver" title="Permanent link">&para;</a></h2>
-<p><code>ComponentDriver.execute(wait, type, action, label, value)</code> maps data-driven steps to the right util. Supported types/actions include:
-- <code>("Input Text", "Set Value", label, value)</code>
-- <code>("Button", "Click", label, None)</code>
-- <code>("Drop Down", "Select", label, value)</code>
-- <code>("Search Drop Down", "Select", label, value)</code>
-- <code>("Search Input Text", "Select", label, value)</code>
-- <code>("Date", "Set Value", label, value)</code>
-- <code>("Tab", "Find", label, None)</code>
-- <code>("Link", "Click", label, None)</code>
-- <code>("Label", "Find", label, None)</code></p>
-<p>Add new component types by wiring the <code>match</code> blocks inside <code>ComponentDriver</code> to the appropriate util.</p>
 <h2 id="retrying-flaky-actions">Retrying flaky actions<a class="headerlink" href="#retrying-flaky-actions" title="Permanent link">&para;</a></h2>
 <p>Use <code>RoboUtils.retry_on_timeout(op, max_retries, name)</code> to wrap waits or actions that may intermittently time out.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.utils.RoboUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">RoboUtils</span>
