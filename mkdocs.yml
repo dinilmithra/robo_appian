@@ -30,25 +30,9 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-  icon:
-    repo: fontawesome/brands/github
 
-plugins:
-  - search
-  - autorefs
-  - mkdocstrings:
-      default_handler: python
-      handlers:
-        python:
-          options:
-            docstring_style: google
-            show_if_no_docstring: true
-            show_source: true
-            heading_level: 2
-            inherited_members: false
-
-repo_url: https://github.com/dinilmithra/robo_appian
-repo_name: Source
+# repo_url: https://github.com/dinilmithra/robo_appian
+# repo_name: Source
 
 extra_css:
   - stylesheets/extra.css
