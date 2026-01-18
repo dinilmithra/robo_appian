@@ -12,7 +12,6 @@ hide:
 - **Label-first selectors**: Target inputs, buttons, dropdowns, and grids by their visible labels and ARIA structure instead of brittle IDs.
 - **Wait-first APIs**: Every public call starts with `WebDriverWait`, then safely drives the underlying `driver` (`wait._driver`).
 - **Consistent patterns**: Static `*Utils` classes for components, plus a high-level `ComponentDriver` router for orchestration.
-- **Appian-ready XPaths**: Built-in NBSP normalization for resilient text matching.
 - **Composable**: Use individual utils or route everything through `ComponentDriver.execute(...)` for data-driven steps.
 
 ## Quick links
