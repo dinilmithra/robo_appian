@@ -1,13 +1,3 @@
-extra:
-  social:
-    - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/dinilmithra
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/project/robo-appian/
-    - icon: fontawesome/regular/envelope
-      link: mailto:dinilmithra.mailme@gmail.com
-  version:
-    provider: mike
 site_name: Robo Appian Documentation
 site_description: Python library for Appian UI test automation
 site_author: Dinil Mithra
@@ -15,7 +5,7 @@ site_url: https://dinilmithra.github.io/robo_appian/
 
 theme:
   name: material
-  # custom_dir: overrides
+  custom_dir: overrides
   palette:
     # Palette toggle for light mode
     - scheme: default
@@ -33,21 +23,34 @@ theme:
         name: Switch to light mode
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.top
     - search.highlight
     - search.share
     - content.code.copy
-    - content.action.edit
-    - content.action.view
   icon:
     repo: fontawesome/brands/github
-  logo: assets/images/favicon.png
-  favicon: assets/images/favicon.png
 
 plugins:
   - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_if_no_docstring: true
+            show_source: true
+            heading_level: 2
+            inherited_members: false
+
+repo_url: https://github.com/dinilmithra/robo_appian
+repo_name: Source
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
@@ -79,18 +82,22 @@ nav:
       - Best Practices: user-guide/best-practices.md
       - Error Handling: user-guide/error-handling.md
   - API Reference:
-      - ButtonUtils: api/button-utils.md
-      - InputUtils: api/input-utils.md
-      - DateUtils: api/date-utils.md
-      - DropdownUtils: api/dropdown-utils.md
-      - SearchDropdownUtils: api/search-dropdown-utils.md
-      - SearchInputUtils: api/search-input-utils.md
-      - TableUtils: api/table-utils.md
-      - TabUtils: api/tab-utils.md
-      - LabelUtils: api/label-utils.md
-      - LinkUtils: api/link-utils.md
-      - ComponentUtils: api/component-utils.md
-      - ComponentDriver: api/component-driver.md
+      - Getting Started API: api/index.md
+      - Components:
+          - Buttons: api/button-utils.md
+          - Inputs: api/input-utils.md
+          - Dates: api/date-utils.md
+          - Dropdowns: api/dropdown-utils.md
+          - Search Dropdowns: api/search-dropdown-utils.md
+          - Search Inputs: api/search-input-utils.md
+          - Tables: api/table-utils.md
+          - Tabs: api/tab-utils.md
+          - Labels: api/label-utils.md
+          - Links: api/link-utils.md
+      - Shared Utils:
+          - ComponentUtils: api/component-utils.md
+          - RoboUtils: api/robo-utils.md
+          - BrowserUtils: api/browser-utils.md
   - Examples:
       - Login Tests: examples/login.md
       - Form Automation: examples/forms.md
@@ -100,13 +107,10 @@ nav:
       - pytest Integration: frameworks/pytest.md
       - unittest Integration: frameworks/unittest.md
   - About: about.md
-
 extra:
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/dinilmithra
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/project/robo-appian/
     - icon: fontawesome/regular/envelope
       link: mailto:dinilmithra.mailme@gmail.com
   version:

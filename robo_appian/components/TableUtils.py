@@ -44,29 +44,6 @@ class TableUtils:
     """
 
     @staticmethod
-    def rowCount(tableObject):
-        """
-        Count non-empty rows in a table.
-
-        Returns the number of data rows (excluding empty grid message placeholders).
-
-        Args:
-            tableObject: WebElement representing the table (from findTableByColumnName).
-
-        Returns:
-            int: Number of rows in the table.
-
-        Examples:
-            >>> table = TableUtils.findTableByColumnName(wait, "Name")
-            >>> rows = TableUtils.rowCount(table)
-            >>> print(f"Found {rows} employees")
-        """
-
-        xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
-        rows = tableObject.find_elements(By.XPATH, xpath)
-        return len(rows)
-
-    @staticmethod
     def __findColumNumberByColumnName(tableObject, columnName):
         """
         Finds the column number in a table by its column name.
@@ -171,3 +148,26 @@ class TableUtils:
 
         component = wait.until(EC.element_to_be_clickable(component))
         return component
+
+    @staticmethod
+    def rowCount(tableObject):
+        """
+        Count non-empty rows in a table.
+
+        Returns the number of data rows (excluding empty grid message placeholders).
+
+        Args:
+            tableObject: WebElement representing the table (from findTableByColumnName).
+
+        Returns:
+            int: Number of rows in the table.
+
+        Examples:
+            >>> table = TableUtils.findTableByColumnName(wait, "Name")
+            >>> rows = TableUtils.rowCount(table)
+            >>> print(f"Found {rows} employees")
+        """
+
+        xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
+        rows = tableObject.find_elements(By.XPATH, xpath)
+        return len(rows)

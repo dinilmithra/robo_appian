@@ -1,13 +1,19 @@
+# Core dependencies for robo_appian
+selenium>=4.34.0
+requests>=2.25.1
+numpy
+
+# Documentation dependencies
+mkdocs>=1.5.0
+mkdocs-material>=9.0.0
+mkdocstrings[python]>=0.24.0
+
+# Testing dependencies
+pytest>=8.0.0
+
 # Development and build requirements
-# These are installed before Poetry to bootstrap the environment
-
-# Package management
 poetry>=1.8.0
-
-# Build tools
 setuptools>=75.0.0
 build>=1.0.0
 twine>=5.0.0
-
-# Upgrade pip first
 pip>=24.0
