@@ -1,19 +1,5 @@
 # Advanced Features
 
-## Routing with ComponentDriver
-`ComponentDriver.execute(wait, type, action, label, value)` maps data-driven steps to the right util. Supported types/actions include:
-- `("Input Text", "Set Value", label, value)`
-- `("Button", "Click", label, None)`
-- `("Drop Down", "Select", label, value)`
-- `("Search Drop Down", "Select", label, value)`
-- `("Search Input Text", "Select", label, value)`
-- `("Date", "Set Value", label, value)`
-- `("Tab", "Find", label, None)`
-- `("Link", "Click", label, None)`
-- `("Label", "Find", label, None)`
-
-Add new component types by wiring the `match` blocks inside `ComponentDriver` to the appropriate util.
-
 ## Retrying flaky actions
 Use `RoboUtils.retry_on_timeout(op, max_retries, name)` to wrap waits or actions that may intermittently time out.
 
