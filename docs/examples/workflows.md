@@ -1,23 +1,6 @@
 # Complex Workflows
 
-Drive multi-step flows with `ComponentDriver` to keep steps data-driven and consistent.
-
-## Data-Driven Workflow
-
-```python
-from robo_appian.controllers.ComponentDriver import ComponentDriver
-
-steps = [
-    ("Input Text", "Set Value", "Request Title", "New laptop"),
-    ("Drop Down", "Select", "Priority", "High"),
-    ("Date", "Set Value", "Needed By", "02/15/2025"),
-    ("Search Drop Down", "Select", "Approver", "Jane Smith"),
-    ("Button", "Click", "Submit", None),
-]
-
-for type_, action, label, value in steps:
-    ComponentDriver.execute(wait, type_, action, label, value)
-```
+Drive multi-step flows using component utilities for clear, maintainable test code.
 
 ## Approval Workflow
 
@@ -129,22 +112,17 @@ RoboUtils.retry_on_timeout(submit_form, max_retries=3, name="Submit Form")
 
 ```python
 from robo_appian.controllers.ComponentDriver import ComponentDriver
-from robo_appian.components import TableUtils, ButtonUtils, LabelUtils
+from robo_appian.components import TableUtils, ButtonUtils, LabelUtils, InputUtils, DropdownUtils, SearchDropdownUtils
 
 # Step 1: Create new request
 ButtonUtils.clickByLabelText(wait, "New Request")
 
-# Fill request form using ComponentDriver
-request_steps = [
-    ("Input Text", "Set Value", "Request Title", "Software License"),
-    ("Input Text", "Set Value", "Justification", "Required for project"),
-    ("Drop Down", "Select", "Category", "Software"),
-    ("Search Drop Down", "Select", "Approver", "Manager Name"),
-    ("Button", "Click", "Submit", None),
-]
-
-for type_, action, label, value in request_steps:
-    ComponentDriver.execute(wait, type_, action, label, value)
+# Fill request form using component utilities
+InputUtils.setValueByLabelText(wait, "Request Title", "Software License")
+InputUtils.setValueByLabelText(wait, "Justification", "Required for project")
+DropdownUtils.selectDropdownValueByLabelText(wait, "Category", "Software")
+SearchDropdownUtils.selectSearchDropdownValueByLabelText(wait, "Approver", "Manager Name")
+ButtonUtils.clickByLabelText(wait, "Submit")
 
 # Step 2: Verify request appears in tracking
 LabelUtils.isLabelExists(wait, "Request Submitted")
@@ -195,8 +173,7 @@ print(f"Completed requests: {completed_count}")
 ```
 
 Tips:
-- Keep the `type`/`action` strings exactly as defined in `ComponentDriver`.
-- Add new component types by extending the router once, then reuse in your data tables.
+- Use specific component utilities for clear, readable test code.
 - Wrap long flows with `RoboUtils.retry_on_timeout` for known flaky spots instead of raising global timeouts.
 - Use `LabelUtils.isLabelExists()` to verify each page/step loaded before proceeding.
 - For debugging, add print statements or logging between major workflow steps.

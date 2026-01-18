@@ -11,8 +11,7 @@ hide:
 ## Why Robo Appian?
 - **Label-first selectors**: Target inputs, buttons, dropdowns, and grids by their visible labels and ARIA structure instead of brittle IDs.
 - **Wait-first APIs**: Every public call starts with `WebDriverWait`, then safely drives the underlying `driver` (`wait._driver`).
-- **Consistent patterns**: Static `*Utils` classes for components, plus a high-level `ComponentDriver` router for orchestration.
-- **Composable**: Use individual utils or route everything through `ComponentDriver.execute(...)` for data-driven steps.
+- **Consistent patterns**: Static `*Utils` classes for components make testing straightforward and maintainable.
 
 ## Quick links
 - Start fast: [Installation](getting-started/installation.md) · [Quick Start](getting-started/quick-start.md)

@@ -51,4 +51,4 @@ def test_user_can_login(wait):
 pytest -q
 ```
 
-If you prefer `unittest`, see [unittest integration](../frameworks/unittest.md). For data-driven steps, swap direct utils for `ComponentDriver.execute(...)`.
+If you prefer `unittest`, see [unittest integration](../frameworks/unittest.md).
