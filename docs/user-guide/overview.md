@@ -53,7 +53,7 @@ Direct `element.click()` calls fail frequently due to:
 Robo Appian's `ComponentUtils.click()` method combines:
 
 - **Explicit wait**: Ensures element is clickable before interaction
-- **ActionChains**: Moves mouse to element center and performs reliable click
+- **ActionChains**: Moves mouse to element center and performs reliable click.
 - **Error context**: Provides clear diagnostics when clicks fail
 
 All robo_appian click operations use this safe pattern internally.
