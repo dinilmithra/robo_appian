@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robo_appian"
-version = "0.0.34"
+version = "0.0.35"
 description = "Automate your Appian code testing with Python. Boost quality, save time."
 authors = ["Dinil Mithra <dinilmithra.mailme@gmail.com>"]
 readme = "README.md"
@@ -23,6 +23,8 @@ selenium = ">=4.34.0"
 mkdocs = "^1.5.0"
 mkdocs-material = "^9.0.0"
 mkdocstrings = {extras = ["python"], version = "^0.24.0"}
+mkdocs-macros-plugin = "^1.0.0"
+tomli = "^2.0.0"
 pytest = "^8.0.0"
 
 [build-system]

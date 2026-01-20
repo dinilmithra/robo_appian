@@ -91,6 +91,11 @@ nav:
       - pytest Integration: frameworks/pytest.md
       - unittest Integration: frameworks/unittest.md
   - About: about.md
+plugins:
+  - search
+  - macros:
+      module_name: docs/macros
+
 extra:
   social:
     - icon: fontawesome/brands/linkedin

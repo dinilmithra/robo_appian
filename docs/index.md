@@ -27,7 +27,7 @@ Robo Appian simplifies Appian UI test automation by providing label-driven, read
 ## Quick links
 - Start fast: [Installation](getting-started/installation.md) · [Quick Start](getting-started/quick-start.md)
 - How it works: [Component patterns](user-guide/components.md) · [Best practices](user-guide/best-practices.md)
-- API docs: [Component APIs](api/index.md) powered by mkdocstrings
+- API docs: [Component APIs](api/index.md)
 - Examples: [Login](examples/login.md) · [Forms](examples/forms.md) · [Tables](examples/tables.md) · [Workflows](examples/workflows.md)
 
 ## License
@@ -38,9 +38,9 @@ Copyright © 2024 Dinil Mithra
 
 ## Version History
 
-Current version: **0.0.33**
+Current version: **{{ version }}**
 
-Check the release notes for the latest updates and improvements.
+Check the [release notes](https://github.com/dinilmithra/robo_appian/releases) for updates and improvements.
 
 ---
 Ready to script? Jump to the [Quick Start](getting-started/quick-start.md).
