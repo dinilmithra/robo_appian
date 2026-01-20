@@ -44,14 +44,14 @@ ButtonUtils.clickByLabelText(wait, "Submit")
 
 ### clickByPartialLabelText
 
-Click a button by partial label match.
+Click a button by partial label text match.
 
-Use this when you only know part of the button text, or when button labels include dynamic content like counts or dates. Perfect for situations where the full label might change but a key word remains constant (e.g., "Submit" appears in "Submit Form", "Submit Application", etc.).
+Use this when you only know part of the button text, or when button labels include dynamic content like counts or timestamps. This method uses a contains match, so "Save" will match "Save", "Save Draft", and "Draft and Save". Perfect for buttons with variable text.
 
 **Args:**
 
 - `wait` (WebDriverWait): WebDriverWait instance
-- `label` (str): Partial button label text
+- `label` (str): Partial button text (e.g., "Save" matches "Save", "Save Draft", and "Draft and Save")
 
 **Raises:**
 
@@ -62,7 +62,10 @@ Use this when you only know part of the button text, or when button labels inclu
 HTML:
 ```html
 <button>
-  <span>Submit Form</span>
+  <span>Submit Application Form</span>
+</button>
+<button>
+  <span>Save Draft</span>
 </button>
 ```
 
@@ -70,8 +73,11 @@ Python:
 ```python
 from robo_appian.components.ButtonUtils import ButtonUtils
 
-# Matches "Submit", "Submit Form", "Form Submit", etc.
-ButtonUtils.clickByPartialLabelText(wait, "Submit")
+# Matches "Submit Application Form" (contains "Application")
+ButtonUtils.clickByPartialLabelText(wait, "Application")
+
+# Matches "Save Draft" (contains "Draft")
+ButtonUtils.clickByPartialLabelText(wait, "Draft")
 ```
 
 ---

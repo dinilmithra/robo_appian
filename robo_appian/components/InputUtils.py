@@ -58,7 +58,8 @@ class InputUtils:
         input_id = label_component.get_attribute("for")
         if input_id is None:
             raise ValueError(
-                f"Label component with text '{label}' does not have a 'for' attribute."
+                f"Label element with text '{label}' is missing the 'for' attribute that links it to an input field. "
+                f"Verify the HTML structure of the form component."
             )
 
         component = ComponentUtils.findComponentById(wait, input_id)
@@ -112,15 +113,22 @@ class InputUtils:
     @staticmethod
     def setValueByPartialLabelText(wait: WebDriverWait, label: str, value: str):
         """
-        Sets a value in an input component identified by its partial label text.
+        Set value in an input field by partial label text match.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The visible text label of the input component (partial match).
-            value: The value to set in the input field.
+        Useful when labels have dynamic suffixes (e.g., "Username (Production)" vs "Username (Test)").
 
-        Returns:
-            None
+        Args:
+            wait: WebDriverWait instance.
+            label: Partial label text to match (e.g., "Username" matches both examples above).
+            value: Text to enter into the input field.
+
+        Raises:
+            ValueError: If label element has no 'for' attribute linking to input.
+            TimeoutException: If label or input not found within wait timeout.
+
+        Examples:
+            >>> InputUtils.setValueByPartialLabelText(wait, "User", "john_doe")
+            >>> InputUtils.setValueByPartialLabelText(wait, "Email", "test@example.com")
         """
         component = InputUtils.__findComponentByPartialLabel(wait, label)
         InputUtils._setValueByComponent(wait, component, value)

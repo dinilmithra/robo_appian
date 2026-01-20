@@ -48,22 +48,22 @@ DateUtils.setValueByLabelText(wait, "End Date", "12/31/2024")
 
 ### clickByLabelText
 
-Click on a date picker field to open the calendar popup.
+Click a date component to open its date picker.
 
 Use this when you need to interact with the date picker's calendar interface rather than typing a date directly. This opens the visual calendar widget where users can select dates by clicking on days. Useful for exploring date selections or when the date picker requires calendar interaction for validation.
 
 **Args:**
 
-- `wait` (WebDriverWait): WebDriverWait instance with configured timeout
-- `label` (str): Exact label text for the date picker
-
-**Raises:**
-
-- `TimeoutException`: If date picker not found or not clickable within timeout
+- `wait` (WebDriverWait): WebDriverWait instance
+- `label` (str): Exact label text of the date component
 
 **Returns:**
 
-- WebElement representing the date input component
+- WebElement: The date input element that was clicked
+
+**Raises:**
+
+- `TimeoutException`: If date component not found or not clickable within timeout
 
 **Examples:**
 

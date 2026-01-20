@@ -57,13 +57,18 @@ class ButtonUtils:
     @staticmethod
     def clickByPartialLabelText(wait: WebDriverWait, label: str):
         """
-        Finds a button by its partial label and clicks it.
+        Click a button by partial label text match.
 
-        Parameters:
-            wait: Selenium WebDriverWait instance.
-            label: The partial label of the button to click.
-            Example:
-                ButtonUtils.clickByPartialLabelText(wait, "Button Label")
+        Args:
+            wait: WebDriverWait instance.
+            label: Partial button text (e.g., "Save" matches "Save", "Save Draft", "Save Changes").
+
+        Raises:
+            TimeoutException: If button not found or not clickable within timeout.
+
+        Examples:
+            >>> ButtonUtils.clickByPartialLabelText(wait, "Save")
+            >>> ButtonUtils.clickByPartialLabelText(wait, "Submit")
         """
         component = ButtonUtils._findByPartialLabelText(wait, label)
 

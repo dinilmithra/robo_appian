@@ -46,19 +46,19 @@ InputUtils.setValueByLabelText(wait, "Username", "john_doe")
 
 ### setValueByPartialLabelText
 
-Set value in an input field by partial label match.
+Set value in an input field by partial label text match.
 
-Use this when you only know part of the label text, or when labels include dynamic content. Perfect for situations where the full label might change but a key word remains constant (e.g., "Name" appears in "First Name", "User Name", etc.).
+Use this when you only know part of the label text, or when labels include dynamic content like suffixes or prefixes (e.g., "Username (Production)" vs "Username (Test)"). Perfect for environment-agnostic tests where labels have variable portions.
 
 **Args:**
 
 - `wait` (WebDriverWait): WebDriverWait instance
-- `label` (str): Partial label text to match
+- `label` (str): Partial label text to match (e.g., "Username" matches "Username (Production)")
 - `value` (str): Text to enter into the input field
 
 **Raises:**
 
-- `ValueError`: If label element has no 'for' attribute linking to input
+- `ValueError`: If label element is missing the 'for' attribute that links it to an input field. Verify the HTML structure of the form component.
 - `TimeoutException`: If label or input not found within timeout
 
 **Examples:**
@@ -66,8 +66,12 @@ Use this when you only know part of the label text, or when labels include dynam
 HTML:
 ```html
 <div>
-  <label for="first_name_input">First Name</label>
-  <input id="first_name_input" type="text" />
+  <label for="user_name_input">Full User Name</label>
+  <input id="user_name_input" type="text" />
+</div>
+<div>
+  <label for="first_input">Employee First Name</label>
+  <input id="first_input" type="text" />
 </div>
 ```
 
@@ -75,8 +79,11 @@ Python:
 ```python
 from robo_appian.components.InputUtils import InputUtils
 
-# Matches "First Name", "User Name", "Full Name", etc.
-InputUtils.setValueByPartialLabelText(wait, "Name", "John")
+# Matches "Full User Name" (contains "User")
+InputUtils.setValueByPartialLabelText(wait, "User", "John")
+
+# Matches "Employee First Name" (contains "First")
+InputUtils.setValueByPartialLabelText(wait, "First", "Jane")
 ```
 
 ---

@@ -56,18 +56,25 @@ class DropdownUtils:
     @staticmethod
     def __findDropdownOptionId(combobox: WebElement):
         """
-        Finds the dropdown option id from the combobox.
+        Extract the dropdown options list ID from combobox aria-controls attribute.
 
-        :param wait: WebDriverWait instance to wait for elements.
-        :param combobox: The combobox WebElement.
-        :return: The id of the dropdown options list.
-        Example:
-            dropdown_option_id = DropdownUtils.__findDropdownOptionId(wait, combobox)
+        Args:
+            combobox: The combobox WebElement.
+
+        Returns:
+            str: The ID of the dropdown options list element.
+
+        Raises:
+            ValueError: If combobox lacks aria-controls attribute.
+
+        Note:
+            Appian dropdowns use aria-controls to link combobox to its options list.
         """
         dropdown_option_id = combobox.get_attribute("aria-controls")
         if dropdown_option_id is None:
-            raise Exception(
-                'Dropdown component does not have a valid "aria-controls" attribute.'
+            raise ValueError(
+                'Dropdown combobox is missing "aria-controls" attribute. '
+                "This may indicate a non-standard dropdown component or incorrect element selection."
             )
         return dropdown_option_id
 

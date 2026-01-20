@@ -39,12 +39,17 @@ class DateUtils:
     @staticmethod
     def __findComponent(wait: WebDriverWait, label: str):
         """
-        Finds a date component by its label.
-        :param wait: WebDriverWait instance to wait for elements.
-        :param label: The label of the date component.
-        :return: The WebElement representing the date component.
-        Example:
-            DateUtils.__findComponent(wait, "Start Date")
+        Finds a date component by its label (internal helper).
+
+        Args:
+            wait: WebDriverWait instance.
+            label: The label of the date component.
+
+        Returns:
+            WebElement: The date input element.
+
+        Raises:
+            TimeoutException: If date component not found within timeout.
         """
 
         xpath = f'.//div[./div/label[normalize-space(translate(., "\u00a0", " "))="{label}"]]/div/div/div/input'
@@ -85,12 +90,21 @@ class DateUtils:
     @staticmethod
     def clickByLabelText(wait: WebDriverWait, label: str):
         """
-        Clicks on the date component to open the date picker.
-        :param wait: WebDriverWait instance to wait for elements.
-        :param label: The label of the date component.
-        :return: The WebElement representing the date component.
-        Example:
-            DateUtils.clickByLabelText(wait, "Start Date")
+        Click a date component to open its date picker.
+
+        Args:
+            wait: WebDriverWait instance.
+            label: Exact label text of the date component.
+
+        Returns:
+            WebElement: The date input element that was clicked.
+
+        Raises:
+            TimeoutException: If date component not found or not clickable within timeout.
+
+        Examples:
+            >>> DateUtils.clickByLabelText(wait, "Start Date")
+            >>> DateUtils.clickByLabelText(wait, "Event Date")
         """
         component = DateUtils.__findComponent(wait, label)
 

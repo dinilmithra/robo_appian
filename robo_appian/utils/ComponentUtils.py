@@ -180,24 +180,25 @@ class ComponentUtils:
         return False
 
     @staticmethod
-    def findCount(wait: WebDriverWait, xpath: str):
-        """Finds the count of components matching the given XPath.
+    def findCount(wait: WebDriverWait, xpath: str) -> int:
+        """Count elements matching the given XPath.
 
-        :param wait: WebDriverWait instance to wait for elements
-        :param xpath: XPath string to locate components
-        :return: Count of components matching the XPath
-        Example usage:
-        count = ComponentUtils.findCount(wait, "//div[@class='item']")
-        print(f"Number of items found: {count}")
+        Args:
+            wait: WebDriverWait instance.
+            xpath: XPath string to locate components.
+
+        Returns:
+            int: Number of elements matching the XPath (0 if none found).
+
+        Examples:
+            >>> count = ComponentUtils.findCount(wait, "//div[@class='item']")
+            >>> print(f"Found {count} items")
         """
-
-        length = 0
-
         try:
-            component = wait.until(
+            components = wait.until(
                 EC.presence_of_all_elements_located((By.XPATH, xpath))
             )
-            length = len(component)
+            return len(components)
         except NoSuchElementException:
             pass
 
