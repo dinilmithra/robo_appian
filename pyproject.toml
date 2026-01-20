@@ -4,10 +4,12 @@ version = "0.0.33"
 description = "Automate your Appian code testing with Python. Boost quality, save time."
 authors = ["Dinil Mithra <dinilmithra.mailme@gmail.com>"]
 readme = "README.md"
+license = "Apache-2.0"
 homepage = "https://github.com/dinilmithra/robo_appian"
 repository = "https://github.com/dinilmithra/robo_appian.git"
 classifiers = [
     "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
 ]
 
