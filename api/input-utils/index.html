@@ -1668,31 +1668,38 @@
 </code></pre></div></p>
 <hr />
 <h3 id="setvaluebypartiallabeltext">setValueByPartialLabelText<a class="headerlink" href="#setvaluebypartiallabeltext" title="Permanent link">&para;</a></h3>
-<p>Set value in an input field by partial label match.</p>
-<p>Use this when you only know part of the label text, or when labels include dynamic content. Perfect for situations where the full label might change but a key word remains constant (e.g., "Name" appears in "First Name", "User Name", etc.).</p>
+<p>Set value in an input field by partial label text match.</p>
+<p>Use this when you only know part of the label text, or when labels include dynamic content like suffixes or prefixes (e.g., "Username (Production)" vs "Username (Test)"). Perfect for environment-agnostic tests where labels have variable portions.</p>
 <p><strong>Args:</strong></p>
 <ul>
 <li><code>wait</code> (WebDriverWait): WebDriverWait instance</li>
-<li><code>label</code> (str): Partial label text to match</li>
+<li><code>label</code> (str): Partial label text to match (e.g., "Username" matches "Username (Production)")</li>
 <li><code>value</code> (str): Text to enter into the input field</li>
 </ul>
 <p><strong>Raises:</strong></p>
 <ul>
-<li><code>ValueError</code>: If label element has no 'for' attribute linking to input</li>
+<li><code>ValueError</code>: If label element is missing the 'for' attribute that links it to an input field. Verify the HTML structure of the form component.</li>
 <li><code>TimeoutException</code>: If label or input not found within timeout</li>
 </ul>
 <p><strong>Examples:</strong></p>
 <p>HTML:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;first_name_input&quot;</span><span class="p">&gt;</span>First Name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;first_name_input&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="p">/&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;user_name_input&quot;</span><span class="p">&gt;</span>Full User Name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;user_name_input&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="p">/&gt;</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;first_input&quot;</span><span class="p">&gt;</span>Employee First Name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;first_input&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="p">/&gt;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div></p>
 <p>Python:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.InputUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">InputUtils</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Matches &quot;First Name&quot;, &quot;User Name&quot;, &quot;Full Name&quot;, etc.</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Matches &quot;Full User Name&quot; (contains &quot;User&quot;)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Matches &quot;Employee First Name&quot; (contains &quot;First&quot;)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">InputUtils</span><span class="o">.</span><span class="n">setValueByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;First&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 <hr />
 <h3 id="setvaluebyid">setValueById<a class="headerlink" href="#setvaluebyid" title="Permanent link">&para;</a></h3>

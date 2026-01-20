@@ -1635,20 +1635,20 @@
 </code></pre></div></p>
 <hr />
 <h3 id="clickbylabeltext">clickByLabelText<a class="headerlink" href="#clickbylabeltext" title="Permanent link">&para;</a></h3>
-<p>Click on a date picker field to open the calendar popup.</p>
+<p>Click a date component to open its date picker.</p>
 <p>Use this when you need to interact with the date picker's calendar interface rather than typing a date directly. This opens the visual calendar widget where users can select dates by clicking on days. Useful for exploring date selections or when the date picker requires calendar interaction for validation.</p>
 <p><strong>Args:</strong></p>
 <ul>
-<li><code>wait</code> (WebDriverWait): WebDriverWait instance with configured timeout</li>
-<li><code>label</code> (str): Exact label text for the date picker</li>
-</ul>
-<p><strong>Raises:</strong></p>
-<ul>
-<li><code>TimeoutException</code>: If date picker not found or not clickable within timeout</li>
+<li><code>wait</code> (WebDriverWait): WebDriverWait instance</li>
+<li><code>label</code> (str): Exact label text of the date component</li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li>WebElement representing the date input component</li>
+<li>WebElement: The date input element that was clicked</li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul>
+<li><code>TimeoutException</code>: If date component not found or not clickable within timeout</li>
 </ul>
 <p><strong>Examples:</strong></p>
 <p>HTML:

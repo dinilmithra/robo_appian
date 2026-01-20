@@ -1720,12 +1720,12 @@
 </code></pre></div></p>
 <hr />
 <h3 id="clickbypartiallabeltext">clickByPartialLabelText<a class="headerlink" href="#clickbypartiallabeltext" title="Permanent link">&para;</a></h3>
-<p>Click a button by partial label match.</p>
-<p>Use this when you only know part of the button text, or when button labels include dynamic content like counts or dates. Perfect for situations where the full label might change but a key word remains constant (e.g., "Submit" appears in "Submit Form", "Submit Application", etc.).</p>
+<p>Click a button by partial label text match.</p>
+<p>Use this when you only know part of the button text, or when button labels include dynamic content like counts or timestamps. This method uses a contains match, so "Save" will match "Save", "Save Draft", and "Draft and Save". Perfect for buttons with variable text.</p>
 <p><strong>Args:</strong></p>
 <ul>
 <li><code>wait</code> (WebDriverWait): WebDriverWait instance</li>
-<li><code>label</code> (str): Partial button label text</li>
+<li><code>label</code> (str): Partial button text (e.g., "Save" matches "Save", "Save Draft", and "Draft and Save")</li>
 </ul>
 <p><strong>Raises:</strong></p>
 <ul>
@@ -1734,14 +1734,20 @@
 <p><strong>Examples:</strong></p>
 <p>HTML:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Submit Form<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Submit Application Form<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Save Draft<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </code></pre></div></p>
 <p>Python:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robo_appian.components.ButtonUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ButtonUtils</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Matches &quot;Submit&quot;, &quot;Submit Form&quot;, &quot;Form Submit&quot;, etc.</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Matches &quot;Submit Application Form&quot; (contains &quot;Application&quot;)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Application&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Matches &quot;Save Draft&quot; (contains &quot;Draft&quot;)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">ButtonUtils</span><span class="o">.</span><span class="n">clickByPartialLabelText</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="s2">&quot;Draft&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 <hr />
 <h3 id="clickbyid">clickById<a class="headerlink" href="#clickbyid" title="Permanent link">&para;</a></h3>
