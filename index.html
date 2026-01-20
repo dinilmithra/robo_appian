@@ -448,9 +448,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-robo-appian" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Why Robo Appian?
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technology Stack
     </span>
   </a>
   
@@ -466,9 +475,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#at-a-glance" class="md-nav__link">
+  <a href="#license" class="md-nav__link">
     <span class="md-ellipsis">
-      At a glance
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version History
     </span>
   </a>
   
@@ -563,29 +581,6 @@
   
   <span class="md-ellipsis">
     Quick Start
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="getting-started/first-test/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Your First Test
     
   </span>
   
@@ -1543,9 +1538,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-robo-appian" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Why Robo Appian?
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technology Stack
     </span>
   </a>
   
@@ -1561,9 +1565,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#at-a-glance" class="md-nav__link">
+  <a href="#license" class="md-nav__link">
     <span class="md-ellipsis">
-      At a glance
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version History
     </span>
   </a>
   
@@ -1588,12 +1601,21 @@
 
 
 <h1 id="robo-appian">Robo Appian<a class="headerlink" href="#robo-appian" title="Permanent link">&para;</a></h1>
-<p><strong>Robo Appian</strong> is a Python helper library that makes Appian UI automation readable, label-driven, and resilient. It wraps Selenium with Appian-aware locators so tests stay stable as the DOM shifts.</p>
-<h2 id="why-robo-appian">Why Robo Appian?<a class="headerlink" href="#why-robo-appian" title="Permanent link">&para;</a></h2>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Robo Appian simplifies Appian UI test automation by providing label-driven, readable APIs built on Selenium WebDriver. Tests use visible labels instead of brittle XPath selectors or IDs, making automation more stable and maintainable.</p>
+<p><strong>Key benefits:</strong></p>
 <ul>
-<li><strong>Label-first selectors</strong>: Target inputs, buttons, dropdowns, and grids by their visible labels and ARIA structure instead of brittle IDs.</li>
-<li><strong>Wait-first APIs</strong>: Every public call starts with <code>WebDriverWait</code>, then safely drives the underlying <code>driver</code> (<code>wait._driver</code>).</li>
-<li><strong>Consistent patterns</strong>: Static <code>*Utils</code> classes for components make testing straightforward and maintainable.</li>
+<li>✅ <strong>Label-first selectors</strong> - Locate elements by visible labels, not internal IDs</li>
+<li>✅ <strong>Resilient interactions</strong> - Smart waits and retry logic handle Appian's dynamic DOM</li>
+<li>✅ <strong>Clean API</strong> - Wait-first pattern keeps code consistent and readable</li>
+<li>✅ <strong>Comprehensive coverage</strong> - All major Appian UI components supported</li>
+</ul>
+<h2 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Python 3.12+</strong> - Modern Python with latest features</li>
+<li><strong>Selenium 4.34+</strong> - Latest WebDriver capabilities</li>
+<li><strong>Poetry</strong> - Dependency management and packaging</li>
+<li><strong>pytest</strong> - Recommended testing framework</li>
 </ul>
 <h2 id="quick-links">Quick links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1602,12 +1624,12 @@
 <li>API docs: <a href="api/">Component APIs</a> powered by mkdocstrings</li>
 <li>Examples: <a href="examples/login/">Login</a> · <a href="examples/forms/">Forms</a> · <a href="examples/tables/">Tables</a> · <a href="examples/workflows/">Workflows</a></li>
 </ul>
-<h2 id="at-a-glance">At a glance<a class="headerlink" href="#at-a-glance" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Python</strong>: 3.12</li>
-<li><strong>Selenium</strong>: &gt;= 4.34.0</li>
-<li><strong>Docs</strong>: MkDocs + Material + mkdocstrings</li>
-</ul>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>Apache License 2.0 - Free to use, modify, and distribute.</p>
+<p>Copyright © 2024 Dinil Mithra</p>
+<h2 id="version-history">Version History<a class="headerlink" href="#version-history" title="Permanent link">&para;</a></h2>
+<p>Current version: <strong>0.0.33</strong></p>
+<p>Check the release notes for the latest updates and improvements.</p>
 <hr />
 <p>Ready to script? Jump to the <a href="getting-started/quick-start/">Quick Start</a>.</p>
 
