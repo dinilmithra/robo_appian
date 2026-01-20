@@ -1,15 +1,6 @@
-# Overview
+# Architecture Overview
 
-Robo Appian is a Python library that transforms Appian UI test automation by providing label-driven, readable APIs built on top of Selenium WebDriver. Instead of maintaining brittle XPath selectors or element IDs that break with every Appian update, Robo Appian leverages the visible labels and ARIA attributes that business users already see on screen.
-
-## What is Robo Appian?
-
-Robo Appian wraps Selenium with Appian-specific locators and patterns so tests read like business steps. Every public API uses a `WebDriverWait` first, automatically derives the driver via `wait._driver`, and relies on label/ARIA metadata to find elements. This approach makes tests:
-
-- **Business-readable**: Use the same terms your product owners use ("Click Submit", "Set Username to test_user")
-- **Resilient**: Labels rarely change; internal IDs and structure shift constantly
-- **Maintainable**: One line of code replaces complex XPath and wait logic
-- **Self-documenting**: Method names describe intent, not implementation
+Robo Appian wraps Selenium with Appian-specific patterns, making tests business-readable and maintainable.
 
 ## Core Design Principles
 
@@ -142,89 +133,15 @@ InputUtils.setValueByPartialLabelText(wait, "Username", "test_user")
 
 This matches any label containing "Username", making tests environment-agnostic.
 
-### Multiple Wait Strategies
-
-Different methods provide appropriate wait conditions:
-
-- `visibility_of_element_located`: For elements that must be visible
-- `element_to_be_clickable`: For interactive elements
-- `presence_of_element_located`: For DOM presence checks
-- `invisibility_of_element_located`: For waiting until elements disappear
-
-## Integration Patterns
-
-### Pytest Integration
-
-```python
-import pytest
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-
-@pytest.fixture
-def browser():
-    driver = webdriver.Chrome()
-    wait = WebDriverWait(driver, 10)
-    yield driver, wait
-    driver.quit()
-
-def test_login(browser):
-    driver, wait = browser
-    driver.get("https://your-appian.example.com")
-    InputUtils.setValueByLabelText(wait, "Username", "test_user")
-    ButtonUtils.clickByLabelText(wait, "Sign In")
-```
-
-### Unittest Integration
-
-```python
-import unittest
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-
-class AppianTests(unittest.TestCase):
-    def setUp(self):
-        self.driver = webdriver.Chrome()
-        self.wait = WebDriverWait(self.driver, 10)
-    
-    def tearDown(self):
-        self.driver.quit()
-    
-    def test_form_submission(self):
-        self.driver.get("https://your-appian.example.com")
-        InputUtils.setValueByLabelText(self.wait, "Title", "Test Request")
-        ButtonUtils.clickByLabelText(self.wait, "Submit")
-```
-
 ## When to Use Robo Appian
 
-### Ideal Use Cases
+**Ideal for:**
+- Appian UI regression and end-to-end testing
+- CI/CD automation pipelines
+- Data-driven test scenarios
 
-- **Regression testing**: Verify existing functionality remains intact after Appian upgrades
-- **End-to-end workflows**: Test complete business processes from login to data submission
-- **Data-driven testing**: Run the same test flow with multiple data sets
-- **CI/CD pipelines**: Automated testing before production deployments
-- **Smoke testing**: Quickly verify critical paths after releases
+**Not recommended for:**
+- Non-Appian applications
+- API testing
 
-### Not Recommended For
-
-- **Non-Appian applications**: Library is optimized for Appian's DOM structure
-- **API testing**: Use direct HTTP clients for backend API tests
-- **Unit testing**: Test business logic separately from UI
-- **Performance testing**: Use load testing tools (JMeter, Locust) instead
-
-## Technical Requirements
-
-- **Python**: 3.12 or higher (uses match/case syntax)
-- **Selenium**: 4.34.0 or higher (modern WebDriver API)
-- **Browser drivers**: ChromeDriver, GeckoDriver, etc. must be installed and in PATH
-
-## Learning Path
-
-1. **Installation & Setup**: Start with [Installation](../getting-started/installation.md)
-2. **First Test**: Follow [Your First Test](../getting-started/first-test.md)
-3. **Component Guide**: Read [Core Components](components.md) to understand each utility
-4. **Examples**: Study real scenarios in [Examples](../examples/login.md)
-5. **Advanced Features**: Explore [Advanced Features](advanced.md) for complex scenarios
-6. **Best Practices**: Review [Best Practices](best-practices.md) for maintainable tests
-
-Continue to [Components](components.md) for detailed component patterns and API documentation.
+See [Components](components.md) for detailed usage patterns.
