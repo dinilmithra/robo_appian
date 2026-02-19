@@ -13,6 +13,23 @@ from selenium.webdriver.support.ui import WebDriverWait
 class ComponentUtils:
 
     @staticmethod
+    def upload_file(wait, file_path):
+        """
+        Upload file using hidden file input element.
+        Works with MultipleFileUploadWidget HTML structure.
+        """
+        try:
+            # Wait for the file input element to be present in DOM
+            file_input = wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='file']"))
+            )
+
+            # Send the file path directly to the input element
+            file_input.send_keys(file_path)
+        except Exception as e:
+            raise
+
+    @staticmethod
     def get_version():
         try:
             # pyproject.toml lives at the repo root (two levels above package dir)
@@ -130,25 +147,6 @@ class ComponentUtils:
         """
         return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
 
-    # @staticmethod
-    # def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-    #     """
-    #     Finds a component using the given XPath in the current WebDriver instance.
-
-    #         :param wait: WebDriverWait instance to wait for elements
-    #         :param xpath: XPath string to locate the component
-    #         :return: WebElement if found, raises NoSuchElementException otherwise
-
-    #     Example usage:
-    #         component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, "//button[@id='submit']")
-    #         component.click()
-    #     """
-    #     try:
-    #         component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-    #     except Exception:
-    #         raise Exception(f"Component with XPath '{xpath}' not visible.")
-    #     return component
-
     @staticmethod
     def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
         """Checks if a component with the given XPath exists in the current WebDriver instance."""
@@ -178,31 +176,6 @@ class ComponentUtils:
             pass
 
         return False
-
-    @staticmethod
-    def findCount(wait: WebDriverWait, xpath: str) -> int:
-        """Count elements matching the given XPath.
-
-        Args:
-            wait: WebDriverWait instance.
-            xpath: XPath string to locate components.
-
-        Returns:
-            int: Number of elements matching the XPath (0 if none found).
-
-        Examples:
-            >>> count = ComponentUtils.findCount(wait, "//div[@class='item']")
-            >>> print(f"Found {count} items")
-        """
-        try:
-            components = wait.until(
-                EC.presence_of_all_elements_located((By.XPATH, xpath))
-            )
-            return len(components)
-        except NoSuchElementException:
-            pass
-
-        return length
 
     @staticmethod
     def tab(wait: WebDriverWait):
