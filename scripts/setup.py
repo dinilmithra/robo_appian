@@ -39,6 +39,17 @@ def resolve_paths(repo_root: Path) -> tuple[Path, Path]:
     return venv_dir, venv_python
 
 
+def activate_venv_env(venv_dir: Path, venv_python: Path) -> dict[str, str]:
+    venv_env = os.environ.copy()
+    venv_env["VIRTUAL_ENV"] = str(venv_dir)
+    venv_env["PATH"] = f"{venv_python.parent}{os.pathsep}{venv_env.get('PATH', '')}"
+
+    # Activate for this setup.py process as well
+    os.environ["VIRTUAL_ENV"] = str(venv_dir)
+    os.environ["PATH"] = venv_env["PATH"]
+    return venv_env
+
+
 def resolve_poetry_binary() -> Path | None:
     poetry_path = which("poetry")
     if poetry_path:
@@ -117,43 +128,41 @@ def main() -> None:
     print("  Setting up robo_appian development")
     print(HEADER)
 
+    print("\n1) Creating virtual environment inside workspace (.venv)...")
     venv_dir, venv_python = resolve_paths(repo_root)
     ensure_venv(venv_dir, venv_python)
-    ensure_pip(venv_python)
 
-    print("\nUpgrading installer tooling...")
-    install_with_pip(venv_python, ["--upgrade", "pip", "setuptools", "wheel"])
-    run([str(venv_python), "-m", "pip", "--version"])
+    print("\n2) Activating virtual environment context...")
+    venv_env = activate_venv_env(venv_dir, venv_python)
+    print(f"Activated VIRTUAL_ENV={venv_env['VIRTUAL_ENV']}")
+
+    print("\n3) Installing/updating pip and Poetry...")
+    ensure_pip(venv_python)
+    install_with_pip(venv_python, ["--upgrade", "pip"])
+    run([str(venv_python), "-m", "pip", "--version"], env=venv_env)
 
     poetry_bin = ensure_poetry()
     update_poetry(poetry_bin)
     poetry_cmd(poetry_bin, "--version")
 
-    print("\nInstalling requirements from requirements.txt...")
+    print("\n4) Installing packages from requirements.txt into .venv...")
     install_with_pip(venv_python, ["-r", str(requirements_path)])
 
-    print("\nInstalling project dependencies via Poetry...")
-    poetry_env = os.environ.copy()
-    poetry_env["POETRY_VIRTUALENVS_CREATE"] = "false"
-    poetry_env["VIRTUAL_ENV"] = str(venv_dir)
-    poetry_env["PATH"] = f"{venv_python.parent}{os.pathsep}{poetry_env.get('PATH', '')}"
-    poetry_cmd(poetry_bin, "install", "--no-interaction", cwd=repo_root, env=poetry_env)
+    print("\n5) Installing current project into .venv...")
+    install_with_pip(venv_python, ["-e", str(repo_root)])
 
-    print("\nVerifying installed dependency graph...")
-    poetry_cmd(poetry_bin, "show", "--tree", cwd=repo_root, env=poetry_env)
+    print("\nVerification (must point to .venv):")
+    run([str(venv_python), "-m", "pip", "--version"], env=venv_env)
+    run([str(venv_python), "-m", "pip", "show", "robo_appian"], env=venv_env)
 
     print(f"\n{HEADER}")
     print("  Setup completed successfully")
     print(f"{HEADER}")
     print("\nNext steps:")
     if os.name == "nt":
-        print(f"0. Activate venv: {venv_dir}\\Scripts\\activate")
+        print(f"source equivalent: {venv_dir}\\Scripts\\activate")
     else:
-        print(f"0. Activate venv: source {venv_dir}/bin/activate")
-    print(f"1. {poetry_bin} run python -m robo_appian")
-    print(f"2. {poetry_bin} run mkdocs serve")
-    print(f"3. {poetry_bin} run pytest")
-
+        print(f"source {venv_dir}/bin/activate")
 
 if __name__ == "__main__":
     try:
