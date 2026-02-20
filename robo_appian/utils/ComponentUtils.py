@@ -13,6 +13,39 @@ from selenium.webdriver.support.ui import WebDriverWait
 class ComponentUtils:
 
     @staticmethod
+    def retry_until(
+        func, timeout=10, wait_interval=0.5, raise_on_timeout=False, *args, **kwargs
+    ):
+        """
+        Repeatedly call `func` until it returns a truthy value or the timeout is reached.
+
+        Args:
+            func: Callable to invoke. May return a truthy value on success.
+            timeout: Total seconds to keep retrying.
+            wait_interval: Seconds to sleep between attempts.
+            raise_on_timeout: If True, raise the last exception encountered or a TimeoutError when timed out.
+            *args, **kwargs: Passed to `func` when called.
+
+        Returns:
+            The truthy value returned by `func` on success, or False if timed out and `raise_on_timeout` is False.
+        """
+        end_time = time.time() + float(timeout)
+        last_exc = None
+        while time.time() < end_time:
+            try:
+                result = func(*args, **kwargs)
+                if result:
+                    return result
+            except Exception as e:
+                last_exc = e
+            time.sleep(wait_interval)
+        if raise_on_timeout:
+            if last_exc:
+                raise last_exc
+            raise TimeoutError(f"Operation did not succeed within {timeout} seconds")
+        return False
+
+    @staticmethod
     def upload_file(wait, file_path):
         """
         Upload file using hidden file input element.
