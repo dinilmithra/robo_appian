@@ -8,14 +8,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
+import time
 
 
 class ComponentUtils:
-
+    
     @staticmethod
-    def retry_until(
-        func, timeout=10, wait_interval=0.5, raise_on_timeout=False, *args, **kwargs
-    ):
+    def retry_until(func, timeout=10, wait_interval=0.5, raise_on_timeout=False, *args, **kwargs):
         """
         Repeatedly call `func` until it returns a truthy value or the timeout is reached.
 
