@@ -14,7 +14,6 @@ tomli>=2.0.0
 pytest>=8.0.0
 
 # Development and build requirements
-poetry>=1.8.0
 setuptools>=75.0.0
 build>=1.0.0
 twine>=5.0.0
