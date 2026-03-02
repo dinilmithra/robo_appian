@@ -126,60 +126,6 @@ class ComponentUtils:
         return component
 
     @staticmethod
-    def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-        """
-        Wait for an element to be visible and return it.
-
-        Used internally by all utilities to locate elements. Waits up to the WebDriverWait
-        timeout for an element matching the XPath to be both present in DOM and visible.
-
-        Args:
-            wait: WebDriverWait instance.
-            xpath: XPath expression to find the element.
-
-        Returns:
-            WebElement: The element once it becomes visible.
-
-        Raises:
-            TimeoutException: If element not visible within timeout.
-
-        Examples:
-            >>> elem = ComponentUtils.waitForComponentToBeVisibleByXpath(
-            ...     wait, "//span[text()='Loading']")
-        """
-        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        return component
-
-    @staticmethod
-    def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
-        wait.until(EC.staleness_of(component))
-
-    @staticmethod
-    def waitForComponentNotToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-        """
-        Wait until the element identified by the given XPath is no longer visible.
-        This function uses the provided WebDriverWait instance to poll for the
-        invisibility (or absence) of the element located by the given XPath.
-        The behavior (timeout and polling interval) is determined by the
-        configuration of the supplied WebDriverWait.
-        Parameters
-        ----------
-        wait : selenium.webdriver.support.wait.WebDriverWait
-            A WebDriverWait instance configured with the desired timeout and polling settings.
-        xpath : str
-            The XPath expression used to locate the target element.
-        Returns
-        -------
-        bool
-            True if the element became invisible or was removed from the DOM before the wait timed out.
-        Raises
-        ------
-        Exception
-            If the element does not become invisible within the wait timeout or another error occurs while waiting.
-        """
-        return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
-
-    @staticmethod
     def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
         """Checks if a component with the given XPath exists in the current WebDriver instance."""
         try:
@@ -310,16 +256,6 @@ class ComponentUtils:
         actions.move_to_element(component).click().perform()
 
     @staticmethod
-    def isComponentPresentByXpath(wait: WebDriverWait, xpath: str):
-        try:
-            wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-            return True
-        except NoSuchElementException:
-            pass
-
-        return False
-
-    @staticmethod
     def waitForElementToBeVisibleById(wait: WebDriverWait, id: str):
         return wait.until(EC.visibility_of_element_located((By.ID, id)))
 
@@ -342,3 +278,57 @@ class ComponentUtils:
         wait: WebDriverWait, component: WebElement
     ):
         return wait.until(EC.element_to_be_clickable(component))
+       
+    @staticmethod
+    def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
+        """
+        Wait for an element to be visible and return it.
+
+        Used internally by all utilities to locate elements. Waits up to the WebDriverWait
+        timeout for an element matching the XPath to be both present in DOM and visible.
+
+        Args:
+            wait: WebDriverWait instance.
+            xpath: XPath expression to find the element.
+
+        Returns:
+            WebElement: The element once it becomes visible.
+
+        Raises:
+            TimeoutException: If element not visible within timeout.
+
+        Examples:
+            >>> elem = ComponentUtils.waitForComponentToBeVisibleByXpath(
+            ...     wait, "//span[text()='Loading']")
+        """
+        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        return component
+
+    @staticmethod
+    def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
+        wait.until(EC.staleness_of(component))
+
+    @staticmethod
+    def waitForComponentNotToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
+        """
+        Wait until the element identified by the given XPath is no longer visible.
+        This function uses the provided WebDriverWait instance to poll for the
+        invisibility (or absence) of the element located by the given XPath.
+        The behavior (timeout and polling interval) is determined by the
+        configuration of the supplied WebDriverWait.
+        Parameters
+        ----------
+        wait : selenium.webdriver.support.wait.WebDriverWait
+            A WebDriverWait instance configured with the desired timeout and polling settings.
+        xpath : str
+            The XPath expression used to locate the target element.
+        Returns
+        -------
+        bool
+            True if the element became invisible or was removed from the DOM before the wait timed out.
+        Raises
+        ------
+        Exception
+            If the element does not become invisible within the wait timeout or another error occurs while waiting.
+        """
+        return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
