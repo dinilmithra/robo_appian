@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robo_appian"
-version = "0.0.39"
+version = "0.0.40"
 description = "Automate your Appian code testing with Python. Boost quality, save time."
 authors = ["Dinil Mithra <dinilmithra.mailme@gmail.com>"]
 readme = "README.md"
@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<4.0"
 requests = "^2.25.1"
 numpy = "*"
 selenium = ">=4.34.0"
