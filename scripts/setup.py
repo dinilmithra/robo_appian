@@ -9,6 +9,7 @@ import subprocess
 import sys
 from pathlib import Path
 from shutil import which
+from typing import NoReturn, Optional
 from urllib.request import urlopen
 
 
@@ -17,7 +18,7 @@ POETRY_INSTALLER_URL = "https://install.python-poetry.org"
 INSTALLER_TIMEOUT_SECONDS = 30
 
 
-def run(cmd: list[str], *, cwd: Path | None = None, env: dict[str, str] | None = None) -> None:
+def run(cmd: list[str], *, cwd: Optional[Path] = None, env: Optional[dict[str, str]] = None) -> None:
     rendered_cmd = shlex.join(cmd)
     if cwd:
         print(f"> (cd {cwd}) {rendered_cmd}")
@@ -26,7 +27,7 @@ def run(cmd: list[str], *, cwd: Path | None = None, env: dict[str, str] | None =
     subprocess.run(cmd, check=True, cwd=str(cwd) if cwd else None, env=env)
 
 
-def fail(message: str, *, code: int = 1) -> None:
+def fail(message: str, *, code: int = 1) -> NoReturn:
     print(f"ERROR: {message}", file=sys.stderr)
     raise SystemExit(code)
 
@@ -50,7 +51,7 @@ def activate_venv_env(venv_dir: Path, venv_python: Path) -> dict[str, str]:
     return venv_env
 
 
-def resolve_poetry_binary() -> Path | None:
+def resolve_poetry_binary() -> Optional[Path]:
     poetry_path = which("poetry")
     if poetry_path:
         return Path(poetry_path)
@@ -109,7 +110,7 @@ def ensure_poetry() -> Path:
     return poetry_bin
 
 
-def poetry_cmd(poetry_bin: Path, *args: str, cwd: Path | None = None, env: dict[str, str] | None = None) -> None:
+def poetry_cmd(poetry_bin: Path, *args: str, cwd: Optional[Path] = None, env: Optional[dict[str, str]] = None) -> None:
     run([str(poetry_bin), *args], cwd=cwd, env=env)
 
 
