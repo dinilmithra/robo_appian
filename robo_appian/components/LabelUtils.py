@@ -94,30 +94,3 @@ class LabelUtils:
         except Exception:
             return False
         return True
-
-    @staticmethod
-    def isLabelExistsAfterLoad(wait: WebDriverWait, label: str):
-        """
-        Check if a label exists after waiting for visibility (stricter validation).
-
-        Waits explicitly for the element to become visible, unlike isLabelExists which
-        may find invisible elements. Use this when page is still loading.
-
-        Args:
-            wait: WebDriverWait instance.
-            label: Exact visible text to search for.
-
-        Returns:
-            bool: True if label becomes visible within timeout, False otherwise.
-
-        Examples:
-            >>> # Wait for success message to appear after form submission
-            >>> if LabelUtils.isLabelExistsAfterLoad(wait, "Saved successfully"):
-            ...     print("Form saved")
-        """
-        try:
-            xpath = f'.//*[normalize-space(translate(., "\u00a0", " "))="{label}"]'
-            wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        except Exception:
-            return False
-        return True
