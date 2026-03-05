@@ -51,92 +51,54 @@ class ComponentDriver:
                 Valid actions depend on component type (see supported combinations below).
             label: Exact visible label text of the component on the page (used to locate element).
             value: Value to set or select. None for click/find actions; required for Set Value/Select.
-
-        Returns:
-            None
-
-        Raises:
-            ValueError: If component type or action is not supported.
-            TimeoutException: If component not found or not clickable within wait timeout.
-
-        Examples:
-            >>> # Set date value
-            >>> ComponentDriver.execute(wait, "Date", "Set Value", "Start Date", "01/01/2024")
-            >>> # Fill text input
-            >>> ComponentDriver.execute(wait, "Input Text", "Set Value", "Email", "test@example.com")
-            >>> # Click button
-            >>> ComponentDriver.execute(wait, "Button", "Click", "Submit", None)
-            >>> # Select dropdown
-            >>> ComponentDriver.execute(wait, "Drop Down", "Select", "Department", "Sales")
-            >>> # Search and select from search dropdown
-            >>> ComponentDriver.execute(wait, "Search Drop Down", "Select", "Employee", "John Doe")
-            >>> # Click link
-            >>> ComponentDriver.execute(wait, "Link", "Click", "Learn More", None)
-            >>> # Check if label exists
-            >>> ComponentDriver.execute(wait, "Label", "Find", "Important Notice", None)
-            >>> # Select tab
-            >>> ComponentDriver.execute(wait, "Tab", "Find", "Details", None)
         """
-        # This method executes an action on a specified component type based on the provided parameters.
 
-        match type:
-            case "Date":
-                match action:
-                    case "Set Value":
-                        DateUtils.setValueByLabelText(wait, label, value)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Input Text":
-                match action:
-                    case "Set Value":
-                        InputUtils.setValueByLabelText(wait, label, value)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Search Input Text":
-                match action:
-                    case "Select":
-                        SearchInputUtils.selectSearchDropdownByLabelText(
-                            wait, label, value
-                        )
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Label":
-                match action:
-                    case "Find":
-                        LabelUtils.isLabelExists(wait, label)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Link":
-                match action:
-                    case "Click":
-                        LinkUtils.click(wait, label)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Drop Down":
-                match action:
-                    case "Select":
-                        DropdownUtils.selectDropdownValueByLabelText(wait, label, value)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Search Drop Down":
-                match action:
-                    case "Select":
-                        SearchDropdownUtils.selectSearchDropdownValueByLabelText(
-                            wait, label, value
-                        )
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Button":
-                match action:
-                    case "Click":
-                        ButtonUtils.clickByLabelText(wait, label)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case "Tab":
-                match action:
-                    case "Find":
-                        TabUtils.selectTabByLabelText(wait, label)
-                    case _:
-                        raise ValueError(f"Unsupported action for {type}: {action}")
-            case _:
-                raise ValueError(f"Unsupported component type: {type}")
+        if type == "Date":
+            if action == "Set Value":
+                DateUtils.setValueByLabelText(wait, label, value)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Input Text":
+            if action == "Set Value":
+                InputUtils.setValueByLabelText(wait, label, value)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Search Input Text":
+            if action == "Select":
+                SearchInputUtils.selectSearchDropdownByLabelText(wait, label, value)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Label":
+            if action == "Find":
+                LabelUtils.isLabelExists(wait, label)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Link":
+            if action == "Click":
+                LinkUtils.click(wait, label)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Drop Down":
+            if action == "Select":
+                DropdownUtils.selectDropdownValueByLabelText(wait, label, value)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Search Drop Down":
+            if action == "Select":
+                SearchDropdownUtils.selectSearchDropdownValueByLabelText(
+                    wait, label, value
+                )
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Button":
+            if action == "Click":
+                ButtonUtils.clickByLabelText(wait, label)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        elif type == "Tab":
+            if action == "Find":
+                TabUtils.selectTabByLabelText(wait, label)
+            else:
+                raise ValueError(f"Unsupported action for {type}: {action}")
+        else:
+            raise ValueError(f"Unsupported component type: {type}")

@@ -1,4 +1,7 @@
-import tomllib
+try:
+    import tomllib
+except ImportError:  # pragma: no cover - Python < 3.11
+    import tomli as tomllib
 from pathlib import Path
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
