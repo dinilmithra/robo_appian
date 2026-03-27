@@ -4,7 +4,7 @@ import pytest
 from robo_appian.components.InputUtils import InputUtils
 from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.LabelUtils import LabelUtils
-from robo_appian.controllers.ComponentDriver import ComponentDriver
+from robo_appian.ComponentDriver import ComponentDriver
 
 
 @pytest.mark.e2e
