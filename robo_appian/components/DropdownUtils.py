@@ -8,9 +8,9 @@ Locator = Any
 
 class DropdownUtils:
     @staticmethod
-    def __findComboboxByLabelText(page: Page, label: str, isPartialText: bool = False):
+    def __findComboboxByLabelText(page: Page, label: str, is_partial_text: bool = False):
         label_literal = ComponentUtils.xpath_literal(label)
-        if isPartialText:
+        if is_partial_text:
             xpath = (
                 "//span[contains(normalize-space(translate(., '\u00a0', ' ')), "
                 f'{label_literal})]/ancestor::div[@role="presentation"][1]'

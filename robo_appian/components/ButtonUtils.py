@@ -16,7 +16,7 @@ class ButtonUtils:
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
     @staticmethod
-    def __findByLabelText(page: Page, label: str):
+    def _findByLabelText(page: Page, label: str):
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
             "//button[./span[normalize-space(translate(., '\u00a0', ' '))="
@@ -31,7 +31,7 @@ class ButtonUtils:
 
     @staticmethod
     def clickByLabelText(page: Page, label: str):
-        component = ButtonUtils.__findByLabelText(page, label)
+        component = ButtonUtils._findByLabelText(page, label)
         ComponentUtils.click(page, component)
 
     @staticmethod

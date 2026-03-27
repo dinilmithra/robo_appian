@@ -11,13 +11,13 @@ Follow these steps to install Robo Appian and its prerequisites.
 
 **Using pip:**
 ```bash
-pip install robo_appian
+pip install robo-appian-pr
 playwright install
 ```
 
 **Using Poetry:**
 ```bash
-poetry add robo_appian
+poetry add robo-appian-pr
 poetry run playwright install
 ```
 

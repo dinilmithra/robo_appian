@@ -9,7 +9,7 @@ Locator = Any
 
 class TableUtils:
     @staticmethod
-    def __findColumNumberByColumnName(tableObject: Locator, columnName: str) -> int:
+    def __findColumnNumberByColumnName(tableObject: Locator, columnName: str) -> int:
         xpath = f'./thead/tr/th[@scope="col" and @abbr={ComponentUtils.xpath_literal(columnName)}]'
         component = tableObject.locator(f"xpath={xpath}").first
         component.wait_for(state="visible")

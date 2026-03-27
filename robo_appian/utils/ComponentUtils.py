@@ -151,7 +151,7 @@ class ComponentUtils:
         ComponentUtils.click(page, component)
 
     @staticmethod
-    def click(page: Page, component: Locator | str):
+    def click(page: Page, component: Union[Locator, str]):
         locator = ComponentUtils._as_locator(page, component)
         locator.scroll_into_view_if_needed()
         locator.click()

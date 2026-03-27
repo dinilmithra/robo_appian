@@ -1,6 +1,6 @@
 # Robo Appian
 
-[![PyPI version](https://img.shields.io/badge/version-0.0.40-blue.svg)](https://pypi.org/project/robo_appian/)
+[![PyPI version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://pypi.org/project/robo-appian-pr/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 
@@ -22,7 +22,7 @@ Full documentation, guides, and API reference are available at:
 ## Quick Start
 1. Install Robo Appian:
    ```bash
-   pip install robo_appian
+   pip install robo-appian-pr
    ```
 2. Install browser binaries:
    ```bash
@@ -52,7 +52,7 @@ The version is managed centrally in `pyproject.toml` and automatically loaded at
 - No version synchronization issues
 - Dynamic version reporting in logs and debug info
 
-Current version: **0.0.40**
+Current version: **0.0.1**
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and updates.
 

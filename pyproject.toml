@@ -1,10 +1,11 @@
 [tool.poetry]
-name = "robo_appian"
-version = "0.0.40"
+name = "robo-appian-pr"
+version = "0.0.2"
 description = "Automate your Appian code testing with Python. Boost quality, save time."
 authors = ["Dinil Mithra <dinilmithra.mailme@gmail.com>"]
 readme = "README.md"
 license = "Apache-2.0"
+packages = [{include = "robo_appian"}]
 homepage = "https://github.com/dinilmithra/robo_appian"
 repository = "https://github.com/dinilmithra/robo_appian.git"
 classifiers = [

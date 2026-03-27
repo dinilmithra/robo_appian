@@ -75,14 +75,6 @@ class SearchDropdownUtils:
         return combobox
 
     @staticmethod
-    def _selectSearchDropdownValueByComboboxComponent(
-        page: Page, combobox: Locator, value: str
-    ):
-        return SearchDropdownUtils.__selectSearchDropdownValueByComboboxComponent(
-            page, combobox, value
-        )
-
-    @staticmethod
     def selectSearchDropdownValueByLabelText(
         page: Page, dropdown_label: str, value: str
     ):

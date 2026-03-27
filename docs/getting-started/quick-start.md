@@ -5,7 +5,7 @@ Get started with Robo Appian in minutes.
 ## Installation
 
 ```bash
-pip install robo_appian
+pip install robo-appian-pr
 playwright install
 ```
 
