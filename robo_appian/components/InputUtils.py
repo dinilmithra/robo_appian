@@ -11,7 +11,7 @@ class InputUtils:
     def __findComponentByPartialLabel(page: Page, label: str):
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
-            ".//div/label[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            ".//div/label[contains(translate(., '\u00a0', ' '), "
             f"{label_literal})]"
         )
         label_component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
@@ -29,7 +29,7 @@ class InputUtils:
     def __findComponentByLabel(page: Page, label: str):
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
-            ".//div/label[normalize-space(translate(., '\u00a0', ' '))="
+            ".//div/label[translate(., '\u00a0', ' ')="
             f"{label_literal}]"
         )
         label_component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
@@ -44,11 +44,12 @@ class InputUtils:
 
     @staticmethod
     def _setValueByComponent(page: Page, component: Locator, value: str):
+        input_value = "" if value is None else str(value)
         component.wait_for(state="visible")
         component.scroll_into_view_if_needed()
         component.click()
         component.fill("")
-        component.fill(value)
+        component.fill(input_value)
         return component
 
     @staticmethod

@@ -10,8 +10,10 @@ class ButtonUtils:
     def _findByPartialLabelText(page: Page, label: str):
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
-            "//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), "
-            f"{label_literal})]]"
+            "//button[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f"{label_literal})"
+            ' and not(ancestor::*[@aria-hidden="true"])'
+            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
@@ -53,8 +55,10 @@ class ButtonUtils:
     def isButtonExistsByPartialLabelText(page: Page, label: str):
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
-            "//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), "
-            f"{label_literal})]]"
+            "//button[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f"{label_literal})"
+            ' and not(ancestor::*[@aria-hidden="true"])'
+            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)
 
@@ -71,7 +75,9 @@ class ButtonUtils:
     def waitForButtonToBeVisibleByPartialLabelText(page: Page, label: str):
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
-            "//button[./span[contains(translate(normalize-space(.), '\u00a0', ' '), "
-            f"{label_literal})]]"
+            "//button[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f"{label_literal})"
+            ' and not(ancestor::*[@aria-hidden="true"])'
+            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
