@@ -1,21 +1,21 @@
-# Advanced Features
+﻿# Advanced Features
 
-## Retrying flaky actions
-Use `RoboUtils.retry_on_timeout(op, max_retries, name)` to wrap waits or actions that may intermittently time out.
+## Routing With ComponentDriver
 
-```python
-from robo_appian.utils.RoboUtils import RoboUtils
-from robo_appian.components import ButtonUtils
+Use `ComponentDriver.execute(page, type, action, label, value)` when your tests are driven by tables, spreadsheets, or reusable step definitions.
 
-RoboUtils.retry_on_timeout(
-    lambda: ButtonUtils.clickByLabelText(wait, "Submit"),
-    max_retries=3,
-    operation_name="click submit",
-)
-```
+Supported combinations include:
+- `( "Input Text", "Set Value", label, value )`
+- `( "Button", "Click", label, None )`
+- `( "Drop Down", "Select", label, value )`
+- `( "Search Drop Down", "Select", label, value )`
+- `( "Search Input Text", "Select", label, value )`
+- `( "Date", "Set Value", label, value )`
+- `( "Tab", "Find", label, None )`
+- `( "Tab", "Click", label, None )`
+- `( "Link", "Click", label, None )`
+- `( "Label", "Find", label, None )`
 
-## Safe clicking everywhere
-All click paths funnel through `ComponentUtils.click(wait, element)`, which waits for clickability and uses ActionChains to bypass overlay/animation issues. Use it for any custom elements you locate yourself.
+## Retry Flaky Actions
 
-## Version helper
-`ComponentUtils.get_version()` reads `pyproject.toml` from repo root—useful for diagnostics and reporting.
+Wrap known timeout-prone actions with `RoboUtils.retry_on_timeout(...)` instead of adding global sleeps.

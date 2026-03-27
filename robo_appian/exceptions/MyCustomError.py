@@ -3,7 +3,7 @@ class MyCustomError(Exception):
     Custom exception for robo_appian-specific error conditions.
 
     Use this exception when robo_appian operations encounter conditions that require
-    special handling distinct from standard Selenium or Python exceptions.
+    special handling distinct from standard automation or Python exceptions.
 
     Examples:
         >>> raise MyCustomError("Element not found in expected state")

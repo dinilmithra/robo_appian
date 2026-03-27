@@ -1,27 +1,30 @@
 # Architecture Overview
 
-Robo Appian wraps Selenium with Appian-specific patterns, making tests business-readable and maintainable.
+Robo Appian wraps Playwright with Appian-specific patterns, making tests business-readable and maintainable.
 
 ## Core Design Principles
 
-### Wait-First Pattern
+### Page-First Pattern
 
-Every robo_appian method accepts `WebDriverWait` as the first parameter. This ensures:
+Every robo_appian method accepts `page` as the first parameter. This ensures:
 
 - Consistent timeout behavior across all interactions
 - Automatic waiting for elements to be present, visible, and interactable
 - No need for manual `time.sleep()` or custom wait logic
-- Centralized timeout configuration (set once when creating `WebDriverWait`)
+- Centralized timeout configuration (set once on the Playwright page/context)
 
 ```python
-from selenium.webdriver.support.ui import WebDriverWait
+from playwright.sync_api import sync_playwright
+from robo_appian.components import InputUtils, ButtonUtils
 
-# Configure wait once
-wait = WebDriverWait(driver, 10)
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch()
+    page = browser.new_page()
+    page.set_default_timeout(10_000)
+    page.goto("https://your-appian.example.com")
 
-# All methods use this wait automatically
-InputUtils.setValueByLabelText(wait, "Username", "test_user")
-ButtonUtils.clickByLabelText(wait, "Sign In")
+    InputUtils.setValueByLabelText(page, "Username", "test_user")
+    ButtonUtils.clickByLabelText(page, "Sign In")
 ```
 
 ### Label-Driven Selectors
@@ -43,8 +46,9 @@ Direct `element.click()` calls fail frequently due to:
 
 Robo Appian's `ComponentUtils.click()` method combines:
 
-- **Explicit wait**: Ensures element is clickable before interaction
-- **ActionChains**: Moves mouse to element center and performs reliable click.
+- **Locator visibility checks**: Waits until the target is interactable
+- **Scroll into view**: Reduces viewport-related click failures
+- **Playwright click handling**: Uses locator-based clicks with the shared timeout
 - **Error context**: Provides clear diagnostics when clicks fail
 
 All robo_appian click operations use this safe pattern internally.
@@ -85,7 +89,7 @@ All component utilities are designed as static classes. This approach:
 - Eliminates unnecessary object instantiation
 - Makes imports cleaner (`from robo_appian.components import InputUtils`)
 - Signals that methods are stateless and side-effect free
-- Follows Selenium's established patterns
+- Keeps the Playwright wrappers small and composable
 
 ### Table Interactions
 
@@ -112,9 +116,9 @@ Tables are particularly complex in Appian. TableUtils provides:
 
 ```python
 def flaky_operation():
-    ButtonUtils.clickByLabelText(wait, "Load More")
+    ButtonUtils.clickByLabelText(page, "Load More")
 
-RoboUtils.retry_on_timeout(flaky_operation, max_retries=3, name="Load More Click")
+RoboUtils.retry_on_timeout(flaky_operation, max_retries=3, operation_name="Load More Click")
 ```
 
 This handles:
@@ -128,7 +132,7 @@ This handles:
 When Appian appends dynamic text to labels (e.g., "Username (Production)" vs "Username (Test)"), use partial matching:
 
 ```python
-InputUtils.setValueByPartialLabelText(wait, "Username", "test_user")
+InputUtils.setValueByPartialLabelText(page, "Username", "test_user")
 ```
 
 This matches any label containing "Username", making tests environment-agnostic.

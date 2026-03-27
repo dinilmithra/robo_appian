@@ -1,40 +1,30 @@
-# pytest Integration
+﻿# pytest Integration
 
-Use fixtures to share the browser and `WebDriverWait` across tests.
+Use Playwright fixtures and keep robo_appian calls page-first.
 
-## Sample `conftest.py`
+## Example
 ```python
 import pytest
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
+from playwright.sync_api import sync_playwright
+from robo_appian import ButtonUtils, InputUtils
 
 @pytest.fixture(scope="session")
-def driver():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    yield driver
-    driver.quit()
+def browser():
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch()
+        yield browser
+        browser.close()
 
 @pytest.fixture
-def wait(driver):
-    return WebDriverWait(driver, 10)
+def page(browser):
+    context = browser.new_context()
+    page = context.new_page()
+    page.set_default_timeout(15000)
+    yield page
+    context.close()
+
+def test_login(page):
+    page.goto("https://your-appian.example.com")
+    InputUtils.setValueByLabelText(page, "Username", "demo")
+    ButtonUtils.clickByLabelText(page, "Sign In")
 ```
-
-## Example test
-```python
-from robo_appian.components import InputUtils, ButtonUtils
-
-
-def test_login(wait):
-    driver = wait._driver
-    driver.get("https://your-appian.example.com")
-
-    InputUtils.setValueByLabelText(wait, "Username", "demo_user")
-    InputUtils.setValueByLabelText(wait, "Password", "SuperSecret!")
-    ButtonUtils.clickByLabelText(wait, "Sign In")
-```
-
-## Tips
-- Keep fixtures small; prefer one `wait` fixture that wraps a shared driver.
-- If tests need isolation, change driver fixture scope to `function`.
-- Add markers for slow/UI tests and run with `pytest -m ui` in CI.

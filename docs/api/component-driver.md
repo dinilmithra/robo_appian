@@ -1,14 +1,38 @@
 # Component Driver
 
-This page has been removed. Please use the individual component utilities directly:
+`ComponentDriver` is the high-level router for data-driven Playwright flows.
 
-- [Buttons](button-utils.md)
-- [Inputs](input-utils.md)
-- [Dates](date-utils.md)
-- [Dropdowns](dropdown-utils.md)
-- [Search Dropdowns](search-dropdown-utils.md)
-- [Search Inputs](search-input-utils.md)
-- [Tables](table-utils.md)
-- [Tabs](tab-utils.md)
-- [Labels](label-utils.md)
-- [Links](link-utils.md)
+## Method
+
+```python
+ComponentDriver.execute(page, type, action, label, value)
+```
+
+## Supported Routes
+
+- `( "Input Text", "Set Value", label, value )`
+- `( "Button", "Click", label, None )`
+- `( "Drop Down", "Select", label, value )`
+- `( "Search Drop Down", "Select", label, value )`
+- `( "Search Input Text", "Select", label, value )`
+- `( "Date", "Set Value", label, value )`
+- `( "Tab", "Find", label, None )`
+- `( "Tab", "Click", label, None )`
+- `( "Link", "Click", label, None )`
+- `( "Label", "Find", label, None )`
+
+Unsupported combinations raise `MyCustomError`.
+
+## Example
+
+```python
+from robo_appian.controllers.ComponentDriver import ComponentDriver
+
+steps = [
+	("Input Text", "Set Value", "Username", "demo_user"),
+	("Button", "Click", "Sign In", None),
+]
+
+for type_, action, label, value in steps:
+	ComponentDriver.execute(page, type_, action, label, value)
+```

@@ -2,35 +2,50 @@ try:
     import tomllib
 except ImportError:  # pragma: no cover - Python < 3.11
     import tomli as tomllib
-from pathlib import Path
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support.ui import WebDriverWait
+
 import time
+from datetime import date, timedelta
+from pathlib import Path
+from typing import Any, Union
+
+Page = Any
+Locator = Any
 
 
 class ComponentUtils:
-    
+
     @staticmethod
-    def retry_until(func, timeout=10, wait_interval=0.5, raise_on_timeout=False, *args, **kwargs):
-        """
-        Repeatedly call `func` until it returns a truthy value or the timeout is reached.
+    def xpath_literal(value: str) -> str:
+        if '"' not in value:
+            return f'"{value}"'
+        if "'" not in value:
+            return f"'{value}'"
 
-        Args:
-            func: Callable to invoke. May return a truthy value on success.
-            timeout: Total seconds to keep retrying.
-            wait_interval: Seconds to sleep between attempts.
-            raise_on_timeout: If True, raise the last exception encountered or a TimeoutError when timed out.
-            *args, **kwargs: Passed to `func` when called.
+        parts = value.split('"')
+        literals: list[str] = []
+        for index, part in enumerate(parts):
+            if part:
+                literals.append(f'"{part}"')
+            if index < len(parts) - 1:
+                literals.append("'\"'")
+        return f"concat({', '.join(literals)})"
 
-        Returns:
-            The truthy value returned by `func` on success, or False if timed out and `raise_on_timeout` is False.
-        """
+    @staticmethod
+    def _as_locator(page: Page, component_or_xpath: Union[Locator, str]) -> Locator:
+        if isinstance(component_or_xpath, str):
+            return page.locator(f"xpath={component_or_xpath}").first
+        return component_or_xpath
+
+    @staticmethod
+    def retry_until(
+        func,
+        timeout=10,
+        wait_interval=0.5,
+        raise_on_timeout=False,
+        timeout_result=None,
+        *args,
+        **kwargs,
+    ):
         end_time = time.time() + float(timeout)
         last_exc = None
         while time.time() < end_time:
@@ -38,300 +53,160 @@ class ComponentUtils:
                 result = func(*args, **kwargs)
                 if result:
                     return result
-            except Exception as e:
-                last_exc = e
+            except Exception as exc:
+                last_exc = exc
             time.sleep(wait_interval)
+
         if raise_on_timeout:
-            if last_exc:
+            if last_exc is not None:
                 raise last_exc
             raise TimeoutError(f"Operation did not succeed within {timeout} seconds")
-        return False
+
+        return timeout_result
 
     @staticmethod
-    def upload_file(wait, file_path):
-        """
-        Upload file using hidden file input element.
-        Works with MultipleFileUploadWidget HTML structure.
-        """
-        try:
-            # Wait for the file input element to be present in DOM
-            file_input = wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='file']"))
-            )
-
-            # Send the file path directly to the input element
-            file_input.send_keys(file_path)
-        except Exception as e:
-            raise
+    def upload_file(page: Page, file_path: str, selector: str = "input[type='file']"):
+        page.locator(selector).first.set_input_files(file_path)
 
     @staticmethod
     def get_version():
         try:
-            # pyproject.toml lives at the repo root (two levels above package dir)
             toml_path = Path(__file__).parents[2] / "pyproject.toml"
-            with open(toml_path, "rb") as f:
-                data = tomllib.load(f)
-                # Poetry-managed projects store version under [tool.poetry]
+            with open(toml_path, "rb") as handle:
+                data = tomllib.load(handle)
                 return data.get("tool", {}).get("poetry", {}).get("version", "0.0.0")
         except Exception:
             return "0.0.0"
 
     @staticmethod
     def today():
-        """
-        Returns today's date formatted as MM/DD/YYYY.
-        """
-
-        from datetime import date
-
-        today = date.today()
-        yesterday_formatted = today.strftime("%m/%d/%Y")
-        return yesterday_formatted
+        return date.today().strftime("%m/%d/%Y")
 
     @staticmethod
     def yesterday():
-        """
-        Returns yesterday's date formatted as MM/DD/YYYY.
-        """
-
-        from datetime import date, timedelta
-
-        yesterday = date.today() - timedelta(days=1)
-        yesterday_formatted = yesterday.strftime("%m/%d/%Y")
-        return yesterday_formatted
+        return (date.today() - timedelta(days=1)).strftime("%m/%d/%Y")
 
     @staticmethod
     def findChildComponentByXpath(
-        wait: WebDriverWait, component: WebElement, xpath: str
-    ):
-        """Finds a child component using the given XPath within a parent component.
-
-        :param wait: WebDriverWait instance to wait for elements
-        :param component: Parent WebElement to search within
-        :param xpath: XPath string to locate the child component
-        :return: WebElement if found, raises NoSuchElementException otherwise
-        Example usage:
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium import webdriver
-
-        driver = webdriver.Chrome()
-        wait = WebDriverWait(driver, 10)
-        parent_component = driver.find_element(By.ID, "parent")
-        xpath = ".//button[@class='child']"
-        child_component = ComponentUtils.findChildComponentByXpath(wait, parent_component, xpath)
-        """
-        component = wait.until(lambda comp: component.find_element(By.XPATH, xpath))
-        return component
+        page: Page, component: Union[Locator, str], xpath: str
+    ) -> Locator:
+        parent = ComponentUtils._as_locator(page, component)
+        child = parent.locator(f"xpath={xpath}").first
+        child.wait_for(state="visible")
+        return child
 
     @staticmethod
-    def findComponentById(wait: WebDriverWait, id: str):
-        component = wait.until(EC.presence_of_element_located((By.ID, id)))
-        return component
+    def findComponentById(page: Page, id: str):
+        locator = page.locator(f'xpath=//*[@id="{id}"]').first
+        locator.wait_for(state="visible")
+        return locator
 
     @staticmethod
-    def checkComponentExistsByXpath(wait: WebDriverWait, xpath: str):
-        """Checks if a component with the given XPath exists in the current WebDriver instance."""
-        try:
-            ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-            return True
-        except NoSuchElementException:
-            pass
-
-        return False
+    def checkComponentExistsByXpath(page: Page, xpath: str):
+        locator = page.locator(f"xpath={xpath}")
+        if locator.count() == 0:
+            return False
+        return locator.first.is_visible()
 
     @staticmethod
-    def checkComponentExistsById(driver: WebDriver, id: str):
-        """Checks if a component with the given ID exists in the current WebDriver instance.
-
-        :param driver: WebDriver instance to check for the component
-        :param id: ID of the component to check
-        :return: True if the component exists, False otherwise
-        Example usage:
-        exists = ComponentUtils.checkComponentExistsById(driver, "submit-button")
-        print(f"Component exists: {exists}")
-        """
-        try:
-            driver.find_element(By.ID, id)
-            return True
-        except NoSuchElementException:
-            pass
-
-        return False
+    def checkComponentExistsById(page: Page, id: str):
+        locator = page.locator(f'xpath=//*[@id="{id}"]')
+        if locator.count() == 0:
+            return False
+        return locator.first.is_visible()
 
     @staticmethod
-    def tab(wait: WebDriverWait):
-        """Simulates a tab key press in the current WebDriver instance.
-
-        :param wait: WebDriverWait instance to wait for elements
-        :return: None
-        Example usage:
-        ComponentUtils.tab(wait)
-        """
-        driver = wait._driver
-        actions = ActionChains(driver)
-        actions.send_keys(Keys.TAB).perform()
+    def tab(page: Page):
+        page.keyboard.press("Tab")
 
     @staticmethod
-    def findComponentsByXPath(wait: WebDriverWait, xpath: str):
-        """
-        Finds all components matching the given XPath in the current WebDriver instance.
+    def findComponentsByXPath(page: Page, xpath: str):
+        locators = page.locator(f"xpath={xpath}")
+        if locators.count() == 0:
+            raise ValueError(f"No components found for XPath: {xpath}")
 
-            :param wait: WebDriverWait instance to wait for elements
-            :param xpath: XPath string to locate the components
-            :return: List of WebElements matching the XPath
-        """
-        # Wait for the presence of elements matching the XPath
-        wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-
-        # Find all matching elements
-        driver = wait._driver
-        components = driver.find_elements(By.XPATH, xpath)
-
-        # Filter for clickable and displayed components
-        valid_components = []
-        for component in components:
+        valid_components: list[Locator] = []
+        for idx in range(locators.count()):
+            component = locators.nth(idx)
             try:
-                if component.is_displayed() and component.is_enabled():
+                if component.is_visible() and component.is_enabled():
                     valid_components.append(component)
             except Exception:
                 continue
 
-        if len(valid_components) > 0:
+        if valid_components:
             return valid_components
 
-        raise Exception(f"No valid components found for XPath: {xpath}")
+        raise ValueError(f"No valid components found for XPath: {xpath}")
 
     @staticmethod
-    def findComponentByXPath(wait: WebDriverWait, xpath: str):
-
-        try:
-            component = wait._driver.find_element(By.XPATH, xpath)
-        except NoSuchElementException as e:
-            raise
-        return component
+    def findComponentByXPath(page: Page, xpath: str):
+        locator = page.locator(f"xpath={xpath}").first
+        locator.wait_for(state="attached")
+        return locator
 
     @staticmethod
-    def findComponentUsingXpathAndClick(wait: WebDriverWait, xpath: str):
-        """Finds a component using the given XPath and clicks it.
-
-        :param wait: WebDriverWait instance to wait for elements
-        :param xpath: XPath string to locate the component
-        :return: None
-        Example usage:
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium import webdriver
-
-        driver = webdriver.Chrome()
-        wait = WebDriverWait(driver, 10)
-        xpath = "//button[@id='submit']"
-        ComponentUtils.findComponentUsingXpathAndClick(wait, xpath)
-        """
-
-        component = ComponentUtils.waitForComponentToBeVisibleByXpath(wait, xpath)
-        ComponentUtils.click(wait, component)
+    def findComponentUsingXpathAndClick(page: Page, xpath: str):
+        component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
+        ComponentUtils.click(page, component)
 
     @staticmethod
-    def click(wait: WebDriverWait, component: WebElement):
-        """
-        Reliably click an element using ActionChains and wait for clickability.
-
-        Preferred over direct element.click() because it handles animations, overlays,
-        and other DOM interactions that can cause click failures. Waits for the element
-        to be clickable, moves the mouse to it, and clicks using ActionChains.
-
-        Args:
-            wait: WebDriverWait instance.
-            component: WebElement to click.
-
-        Raises:
-            TimeoutException: If element not clickable within timeout.
-
-        Examples:
-            >>> from robo_appian.utils.ComponentUtils import ComponentUtils
-            >>> button = driver.find_element(By.ID, "save_btn")
-            >>> ComponentUtils.click(wait, button)  # Reliable click
-
-        Note:
-            This is used internally by all robo_appian click methods (ButtonUtils, etc).
-        """
-        wait.until(EC.element_to_be_clickable(component))
-        actions = ActionChains(wait._driver)
-        actions.move_to_element(component).click().perform()
+    def click(page: Page, component: Locator | str):
+        locator = ComponentUtils._as_locator(page, component)
+        locator.scroll_into_view_if_needed()
+        locator.click()
 
     @staticmethod
-    def waitForElementToBeVisibleById(wait: WebDriverWait, id: str):
-        return wait.until(EC.visibility_of_element_located((By.ID, id)))
+    def waitForElementToBeVisibleById(page: Page, id: str):
+        locator = page.locator(f'xpath=//*[@id="{id}"]').first
+        locator.wait_for(state="visible")
+        return locator
 
     @staticmethod
-    def waitForElementNotToBeVisibleById(wait: WebDriverWait, id: str):
-        return wait.until(EC.invisibility_of_element_located((By.ID, id)))
+    def waitForElementNotToBeVisibleById(page: Page, id: str):
+        locator = page.locator(f'xpath=//*[@id="{id}"]').first
+        locator.wait_for(state="hidden")
+        return True
 
     @staticmethod
-    def waitForElementToBeVisibleByText(wait: WebDriverWait, text: str):
-        xpath = f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
-        return wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+    def waitForElementToBeVisibleByText(page: Page, text: str):
+        xpath = (
+            f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" '
+            f'and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) '
+            f'and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        )
+        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
     @staticmethod
-    def waitForElementNotToBeVisibleByText(wait: WebDriverWait, text: str):
-        xpath = f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
-        return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
+    def waitForElementNotToBeVisibleByText(page: Page, text: str):
+        xpath = (
+            f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" '
+            f'and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) '
+            f'and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        )
+        return ComponentUtils.waitForComponentNotToBeVisibleByXpath(page, xpath)
 
     @staticmethod
     def waitForComponentToBeClickableByXpath(
-        wait: WebDriverWait, component: WebElement
+        page: Page, component: Union[Locator, str]
     ):
-        return wait.until(EC.element_to_be_clickable(component))
-       
-    @staticmethod
-    def waitForComponentToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-        """
-        Wait for an element to be visible and return it.
-
-        Used internally by all utilities to locate elements. Waits up to the WebDriverWait
-        timeout for an element matching the XPath to be both present in DOM and visible.
-
-        Args:
-            wait: WebDriverWait instance.
-            xpath: XPath expression to find the element.
-
-        Returns:
-            WebElement: The element once it becomes visible.
-
-        Raises:
-            TimeoutException: If element not visible within timeout.
-
-        Examples:
-            >>> elem = ComponentUtils.waitForComponentToBeVisibleByXpath(
-            ...     wait, "//span[text()='Loading']")
-        """
-        component = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-        return component
+        locator = ComponentUtils._as_locator(page, component)
+        locator.wait_for(state="visible")
+        return locator
 
     @staticmethod
-    def waitForComponentToBeInVisible(wait: WebDriverWait, component: WebElement):
-        wait.until(EC.staleness_of(component))
+    def waitForComponentToBeVisibleByXpath(page: Page, xpath: str):
+        locator = page.locator(f"xpath={xpath}").first
+        locator.wait_for(state="visible")
+        return locator
 
     @staticmethod
-    def waitForComponentNotToBeVisibleByXpath(wait: WebDriverWait, xpath: str):
-        """
-        Wait until the element identified by the given XPath is no longer visible.
-        This function uses the provided WebDriverWait instance to poll for the
-        invisibility (or absence) of the element located by the given XPath.
-        The behavior (timeout and polling interval) is determined by the
-        configuration of the supplied WebDriverWait.
-        Parameters
-        ----------
-        wait : selenium.webdriver.support.wait.WebDriverWait
-            A WebDriverWait instance configured with the desired timeout and polling settings.
-        xpath : str
-            The XPath expression used to locate the target element.
-        Returns
-        -------
-        bool
-            True if the element became invisible or was removed from the DOM before the wait timed out.
-        Raises
-        ------
-        Exception
-            If the element does not become invisible within the wait timeout or another error occurs while waiting.
-        """
-        return wait.until(EC.invisibility_of_element_located((By.XPATH, xpath)))
+    def waitForComponentToBeInVisible(page: Page, component: Locator):
+        component.wait_for(state="hidden")
+        return True
+
+    @staticmethod
+    def waitForComponentNotToBeVisibleByXpath(page: Page, xpath: str):
+        locator = page.locator(f"xpath={xpath}").first
+        locator.wait_for(state="hidden")
+        return True

@@ -4,7 +4,7 @@ Follow these steps to install Robo Appian and its prerequisites.
 
 ## Prerequisites
 - Python 3.12+
-- A working Selenium WebDriver for your browser (e.g., ChromeDriver, GeckoDriver) on PATH
+- Playwright browser binaries installed locally
 - pip and (optionally) Poetry for dev work
 
 ## Install the package
@@ -12,11 +12,13 @@ Follow these steps to install Robo Appian and its prerequisites.
 **Using pip:**
 ```bash
 pip install robo_appian
+playwright install
 ```
 
 **Using Poetry:**
 ```bash
 poetry add robo_appian
+poetry run playwright install
 ```
 
 ## Verify installation
@@ -24,4 +26,4 @@ poetry add robo_appian
 python -c "import robo_appian; print(robo_appian.__version__)"
 ```
 
-If you see a version string, installation was successful. If WebDriver fails to start, confirm the driver binary (ChromeDriver, GeckoDriver, etc.) matches your browser version and is on PATH.
+If you see a version string, installation was successful. If Playwright cannot launch a browser, rerun `playwright install` for your environment.

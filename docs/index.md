@@ -8,19 +8,19 @@ hide:
 
 ## Overview
 
-Robo Appian simplifies Appian UI test automation by providing label-driven, readable APIs built on Selenium WebDriver. Tests use visible labels instead of brittle XPath selectors or IDs, making automation more stable and maintainable.
+Robo Appian simplifies Appian UI test automation by providing label-driven, readable APIs built on Playwright. Tests use visible labels instead of brittle XPath selectors or IDs, making automation more stable and maintainable.
 
 **Key benefits:**
 
 - ✅ **Label-first selectors** - Locate elements by visible labels, not internal IDs
 - ✅ **Resilient interactions** - Smart waits and retry logic handle Appian's dynamic DOM
-- ✅ **Clean API** - Wait-first pattern keeps code consistent and readable
+- ✅ **Clean API** - Page-first pattern keeps code consistent and readable
 - ✅ **Comprehensive coverage** - All major Appian UI components supported
 
 ## Technology Stack
 
 - **Python 3.12+** - Modern Python with latest features
-- **Selenium 4.34+** - Latest WebDriver capabilities
+- **Playwright 1.52+** - Modern browser automation with reliable locator APIs
 - **Poetry** - Dependency management and packaging
 - **pytest** - Recommended testing framework
 

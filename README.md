@@ -5,6 +5,7 @@ Robo Appian is a Python library for automated UI testing of Appian applications.
 ## Features
 - Simple, readable API for Appian UI automation
 - Utilities for buttons, inputs, dropdowns, tables, tabs, and more
+- Playwright-based page-first APIs and a high-level ComponentDriver router
 - Data-driven and workflow testing support
 - Error handling and debugging helpers
 - Designed for both technical and business users
@@ -19,17 +20,21 @@ Full documentation, guides, and API reference are available at:
    ```bash
    pip install robo_appian
    ```
-2. See the [Getting Started Guide](docs/getting-started/installation.md) for setup and your first test.
+2. Install browser binaries:
+   ```bash
+   playwright install
+   ```
+3. See the [Getting Started Guide](docs/getting-started/installation.md) for setup and your first test.
 
 ## Example Usage
 ```python
-from robo_appian.components import InputUtils, ButtonUtils
+from robo_appian import InputUtils, ButtonUtils
 
 # Set value in a text field by label
-InputUtils.setValueByLabelText(wait, "Username", "testuser")
+InputUtils.setValueByLabelText(page, "Username", "testuser")
 
 # Click a button by label
-ButtonUtils.clickByLabelText(wait, "Sign In")
+ButtonUtils.clickByLabelText(page, "Sign In")
 ```
 
 ## Project Structure
@@ -40,7 +45,7 @@ ButtonUtils.clickByLabelText(wait, "Sign In")
 Contributions are welcome! Please see the [contributing guidelines](CONTRIBUTING.md) or open an issue to get started.
 
 ## License
-MIT License. See [LICENSE](LICENSE) for details.
+Apache License 2.0. See [LICENSE](LICENSE) for details.
 
 ---
 

@@ -6,30 +6,30 @@ Get started with Robo Appian in minutes.
 
 ```bash
 pip install robo_appian
+playwright install
 ```
 
 ## Basic Usage
 
 ```python
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
+from playwright.sync_api import sync_playwright
 from robo_appian.components import InputUtils, ButtonUtils
 
-# Setup
-driver = webdriver.Chrome()
-wait = WebDriverWait(driver, 10)
-driver.get("https://your-appian.example.com")
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch()
+    page = browser.new_page()
+    page.set_default_timeout(10_000)
+    page.goto("https://your-appian.example.com")
 
-# Interact by label
-InputUtils.setValueByLabelText(wait, "Username", "demo_user")
-InputUtils.setValueByLabelText(wait, "Password", "secret")
-ButtonUtils.clickByLabelText(wait, "Sign In")
+    InputUtils.setValueByLabelText(page, "Username", "demo_user")
+    InputUtils.setValueByLabelText(page, "Password", "secret")
+    ButtonUtils.clickByLabelText(page, "Sign In")
 
-driver.quit()
+    browser.close()
 ```
 
 **Key points:**
-- Pass `wait` first to all methods
+- Pass `page` first to all methods
 - Components located by visible labels (not IDs)
 - Automatic waiting and safe click handling
 
@@ -38,20 +38,28 @@ driver.quit()
 ```python
 # conftest.py
 import pytest
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
+from playwright.sync_api import sync_playwright
+
+@pytest.fixture(scope="session")
+def browser():
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch()
+        yield browser
+        browser.close()
+
 
 @pytest.fixture
-def wait():
-    driver = webdriver.Chrome()
-    yield WebDriverWait(driver, 10)
-    driver.quit()
+def page(browser):
+    page = browser.new_page()
+    page.set_default_timeout(10_000)
+    yield page
+    page.context.close()
 
 # test_login.py
-def test_login(wait):
-    wait._driver.get("https://your-appian.example.com")
-    InputUtils.setValueByLabelText(wait, "Username", "demo")
-    ButtonUtils.clickByLabelText(wait, "Sign In")
+def test_login(page):
+    page.goto("https://your-appian.example.com")
+    InputUtils.setValueByLabelText(page, "Username", "demo")
+    ButtonUtils.clickByLabelText(page, "Sign In")
 ```
 
 ## Next Steps
