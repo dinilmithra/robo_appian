@@ -39,13 +39,27 @@ class TableUtils:
         column_literal = ComponentUtils.xpath_literal(columnName)
         xpath = (
             f'.//table[./thead/tr/th[@abbr={column_literal}]]/tbody/tr[@data-dnd-name="row {rowNumber + 1}" '
-            f'and not(ancestor::*[@aria-hidden="true"])]'
+            f'and not(ancestor::*[@aria-hidden="true"])'
+            f' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
         row = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         return row
 
     @staticmethod
     def findComponentFromTableCell(page: Page, rowNumber: int, columnName: str):
+        """Find a component within a table cell using column name and row number.
+
+        Args:
+            page: Playwright Page object.
+            rowNumber: Zero-based row number.
+            columnName: Column name matching the header's abbr attribute.
+
+        Returns:
+            Locator: The component element within the cell.
+
+        Raises:
+            ValueError: If column or row cannot be found.
+        """
         return TableUtils.findComponentByColumnNameAndRowNumber(
             page, rowNumber, columnName
         )
@@ -54,6 +68,13 @@ class TableUtils:
     def selectRowFromTableByColumnNameAndRowNumber(
         page: Page, rowNumber: int, columnName: str
     ):
+        """Click and select a table row by column name and row number.
+
+        Args:
+            page: Playwright Page object.
+            rowNumber: Zero-based row number.
+            columnName: Column name matching the header's abbr attribute.
+        """
         row = TableUtils.__findRowByColumnNameAndRowNumber(page, rowNumber, columnName)
         ComponentUtils.click(page, row)
 
@@ -61,8 +82,21 @@ class TableUtils:
     def findComponentByColumnNameAndRowNumber(
         page: Page, rowNumber: int, columnName: str
     ):
+        """Find a component within a specific table cell.
+
+        Args:
+            page: Playwright Page object.
+            rowNumber: Zero-based row number.
+            columnName: Column name matching the header's abbr attribute.
+
+        Returns:
+            Locator: The component element at the specified cell location.
+
+        Raises:
+            ValueError: If column or row cannot be found.
+        """
         tableObject = TableUtils.findTableByColumnName(page, columnName)
-        xpath = f'./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)} and not(ancestor::*[@aria-hidden="true")] ]'
+        xpath = f'./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)} and not(ancestor::*[@aria-hidden="true"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         column = ComponentUtils.findChildComponentByXpath(page, tableObject, xpath)
         columnNumber = TableUtils.__findColumnNumberByHeader(column, columnName)
 
@@ -74,6 +108,18 @@ class TableUtils:
 
     @staticmethod
     def findTableByColumnName(page: Page, columnName: str):
+        """Find a table by one of its column names.
+
+        Args:
+            page: Playwright Page object.
+            columnName: Column name matching a header's abbr attribute.
+
+        Returns:
+            Locator: The table element.
+
+        Raises:
+            TimeoutError: If table with the specified column is not found.
+        """
         xpath = (
             f".//table[./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)}]]"
         )
@@ -81,6 +127,14 @@ class TableUtils:
 
     @staticmethod
     def rowCount(tableObject: Locator):
+        """Get the number of visible rows in a table.
+
+        Args:
+            tableObject: Locator pointing to a table element.
+
+        Returns:
+            int: The count of visible data rows (excluding empty grid messages).
+        """
         xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
         rows = tableObject.locator(f"xpath={xpath}")
         return rows.count()

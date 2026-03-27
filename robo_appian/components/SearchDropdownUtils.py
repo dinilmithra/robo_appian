@@ -34,6 +34,10 @@ class SearchDropdownUtils:
         page: Page, label: str, value: str
     ):
         label_literal = ComponentUtils.xpath_literal(label)
+        # Complex nested XPath breaks down as:
+        # .//div[./div/span[contains(...)]] - Find parent div containing span with partial label match
+        # /div/div/div/div[@role="combobox" - Navigate through nested divs to find the combobox
+        # and not(@aria-disabled="true")] - Ensure combobox is enabled
         xpath = (
             ".//div[./div/span[contains(normalize-space(translate(., '\u00a0', ' ')), "
             f'{label_literal})]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
@@ -46,6 +50,10 @@ class SearchDropdownUtils:
     @staticmethod
     def __selectSearchDropdownValueByLabelText(page: Page, label: str, value: str):
         label_literal = ComponentUtils.xpath_literal(label)
+        # Complex nested XPath breaks down as:
+        # .//div[./div/span[...="label"]] - Find parent div with span matching exact label
+        # /div/div/div/div[@role="combobox" - Navigate through nested divs to combobox
+        # and not(@aria-disabled="true")] - Ensure combobox is enabled
         xpath = (
             ".//div[./div/span[normalize-space(translate(., '\u00a0', ' '))="
             f'{label_literal}]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
@@ -78,6 +86,22 @@ class SearchDropdownUtils:
     def selectSearchDropdownValueByLabelText(
         page: Page, dropdown_label: str, value: str
     ):
+        """Select a search dropdown value by exact label text.
+
+        Args:
+            page: Playwright Page object.
+            dropdown_label: Exact text to match in the search dropdown label.
+            value: The option value to select.
+
+        Returns:
+            Locator: The combobox element.
+
+        Raises:
+            TimeoutError: If dropdown or option is not found.
+        """
+        return SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
+            page, dropdown_label, value
+        )
         return SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
             page, dropdown_label, value
         )
@@ -86,6 +110,19 @@ class SearchDropdownUtils:
     def selectSearchDropdownValueByPartialLabelText(
         page: Page, dropdown_label: str, value: str
     ):
+        """Select a search dropdown value by partial label text match.
+
+        Args:
+            page: Playwright Page object.
+            dropdown_label: Partial text to match in the search dropdown label.
+            value: The option value to select.
+
+        Returns:
+            Locator: The combobox element.
+
+        Raises:
+            TimeoutError: If dropdown or option is not found.
+        """
         return SearchDropdownUtils.__selectSearchDropdownValueByPartialLabelText(
             page, dropdown_label, value
         )

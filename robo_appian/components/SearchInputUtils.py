@@ -22,6 +22,11 @@ class SearchInputUtils:
         InputUtils._setValueByComponent(page, search_input_component, value)
 
         value_literal = ComponentUtils.xpath_literal(value)
+        # Complex nested XPath for finding search option:
+        # .//ul[@id=...] - Find the listbox container by aria-controls ID
+        # /li[@role="option" and @tabindex="-1"] - Find inactive option items
+        # and ./div/div/div/div/div/div/p[...] - Navigate deeply nested divs to text content
+        # normalize-space(translate(...)) - Normalize NBSP characters and whitespace
         option_xpath = (
             f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_list_id)} and @role="listbox"]'
             f"/li[@role=\"option\" and @tabindex=\"-1\" and ./div/div/div/div/div/div/p[normalize-space(translate(., '\u00a0', ' '))={value_literal}][1]]"
@@ -58,20 +63,66 @@ class SearchInputUtils:
 
     @staticmethod
     def selectSearchInputByLabelText(page: Page, label: str, value: str):
+        """Select a value in a search input by exact label text.
+
+        Args:
+            page: Playwright Page object.
+            label: Exact text to match in the search input label.
+            value: The option value to search and select.
+
+        Returns:
+            Locator: The search input component that was filled.
+
+        Raises:
+            TimeoutError: If search input or option is not found.
+        """
         return SearchInputUtils.__selectSearchInputComponentsByLabelText(
             page, label, value
         )
 
     @staticmethod
     def selectSearchInputByPartialLabelText(page: Page, label: str, value: str):
+        """Select a value in a search input by partial label text match.
+
+        Args:
+            page: Playwright Page object.
+            label: Partial text to match in the search input label.
+            value: The option value to search and select.
+
+        Returns:
+            Locator: The search input component that was filled.
+
+        Raises:
+            TimeoutError: If search input or option is not found.
+        """
         return SearchInputUtils.__selectSearchInputComponentsByPartialLabelText(
             page, label, value
         )
 
     @staticmethod
     def selectSearchDropdownByLabelText(page: Page, label: str, value: str):
+        """Select a value in a search dropdown by exact label text.
+
+        Args:
+            page: Playwright Page object.
+            label: Exact text to match in the search dropdown label.
+            value: The option value to search and select.
+
+        Returns:
+            Locator: The search input component that was filled.
+        """
         return SearchInputUtils.selectSearchInputByLabelText(page, label, value)
 
     @staticmethod
     def selectSearchDropdownByPartialLabelText(page: Page, label: str, value: str):
+        """Select a value in a search dropdown by partial label text match.
+
+        Args:
+            page: Playwright Page object.
+            label: Partial text to match in the search dropdown label.
+            value: The option value to search and select.
+
+        Returns:
+            Locator: The search input component that was filled.
+        """
         return SearchInputUtils.selectSearchInputByPartialLabelText(page, label, value)
