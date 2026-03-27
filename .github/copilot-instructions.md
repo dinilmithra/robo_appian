@@ -4,7 +4,7 @@ These notes make AI agents productive quickly in this repo. They capture the pat
 
 ## Big Picture
 - Purpose: Playwright helper library to automate Appian UI with readable, label-driven APIs.
-- Structure: Static component utilities under [robo_appian/components](../robo_appian/components), shared helpers in [robo_appian/utils](../robo_appian/utils), high-level router in [robo_appian/controllers/ComponentDriver.py](../robo_appian/controllers/ComponentDriver.py).
+- Structure: Static component utilities under [robo_appian/components](../robo_appian/components), shared helpers in [robo_appian/utils](../robo_appian/utils).
 - Style: Public APIs take `page: Page` first. XPaths favor label text and ARIA patterns matching Appian DOM.
 - Testing: Sample pytest harness in [tests](../tests) with Playwright browser/page fixtures; production tests may live in consumer repos.
 
@@ -31,9 +31,7 @@ All utilities follow consistent naming: `*ByLabelText` (exact match), `*ByPartia
 - **Browser**: BrowserUtils manages tabs—`switch_to_Tab(page, idx)`, `switch_to_next_tab(page)`, `close_current_tab_and_switch_back(page)`.
 
 ## Routing Actions
-- Use `ComponentDriver.execute(page, type, action, label, value)` as the orchestration entrypoint.
-  - Examples: `( "Date", "Set Value", label, value )`, `( "Button", "Click", label, None )`, `( "Drop Down", "Select", label, value )`.
-  - When adding a new utility, wire precise `type`/`action` strings into the `match` blocks.
+- Use direct utility method calls with consistent `page`-first signatures as the primary API pattern.
 
 ## Resilience & Helpers
 - Retry: Wrap flaky waits/actions with `RoboUtils.retry_on_timeout(op, max_retries, name)`.

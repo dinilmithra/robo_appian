@@ -8,7 +8,7 @@ This folder contains a minimal pytest harness showing recommended usage patterns
 - `app_url`: Base URL from `APP_URL`; tests skip if unset.
 
 ## Example e2e Test
-- `test_example_e2e.py` demonstrates both direct utility usage (for example, `InputUtils`, `ButtonUtils`) and orchestration via `ComponentDriver.execute()`.
+- `test_example_e2e.py` demonstrates direct utility usage patterns (for example, `InputUtils`, `ButtonUtils`).
 - The test is marked `@pytest.mark.e2e` and is skipped unless explicitly enabled.
 
 ## Run Locally

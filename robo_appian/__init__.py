@@ -11,7 +11,6 @@ from robo_appian.components.TabUtils import TabUtils
 from robo_appian.utils.BrowserUtils import BrowserUtils
 from robo_appian.components.SearchInputUtils import SearchInputUtils
 from robo_appian.components.TableUtils import TableUtils
-from robo_appian.ComponentDriver import ComponentDriver
 
 __version__ = ComponentUtils.get_version()
 
@@ -29,5 +28,4 @@ __all__ = [
     "TabUtils",
     "BrowserUtils",
     "SearchInputUtils",
-    "ComponentDriver",
 ]

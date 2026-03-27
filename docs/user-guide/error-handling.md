@@ -3,7 +3,7 @@
 ## Common Failures
 - `Playwright TimeoutError`: The target element did not become visible, hidden, or clickable before the configured timeout.
 - `ValueError`: A helper could not resolve a required id, aria attribute, or table column index.
-- `MyCustomError`: `ComponentDriver` received an unsupported component/action pair or a required value was missing.
+- `MyCustomError`: A component utility received invalid arguments or data.
 
 ## Practical Checks
 - Confirm the visible label text matches the Appian UI exactly.

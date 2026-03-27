@@ -4,13 +4,12 @@ import pytest
 from robo_appian.components.InputUtils import InputUtils
 from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.LabelUtils import LabelUtils
-from robo_appian.ComponentDriver import ComponentDriver
 
 
 @pytest.mark.e2e
 def test_example_login_flow(page, app_url):
     """
-    Minimal example showing the recommended page-first patterns and ComponentDriver.
+    Minimal example showing the recommended page-first patterns.
 
     This test is illustrative and will only run if RUN_E2E=1 and APP_URL is set.
     It assumes the target page has an input labeled "Username" and a button labeled
@@ -50,10 +49,6 @@ def test_example_login_flow(page, app_url):
     # Direct utility usage (preferred low-level pattern)
     InputUtils.setValueByLabelText(page, "Username", "testuser")
     ButtonUtils.clickByLabelText(page, "Sign In")
-
-    # Orchestrated action via router (preferred high-level pattern)
-    ComponentDriver.execute(page, "Input Text", "Set Value", "Username", "testuser")
-    ComponentDriver.execute(page, "Button", "Click", "Sign In", None)
 
     # Example assertion: ensure a label appears after sign-in (adjust to your app)
     assert LabelUtils.isLabelExists(page, "Welcome") is True

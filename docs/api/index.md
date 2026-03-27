@@ -2,12 +2,11 @@
 
 All robo_appian APIs are page-first. Pass a Playwright `page` as the first argument.
 
-Use the individual utility classes for direct interactions, or route data-driven steps through `ComponentDriver.execute(page, type, action, label, value)`.
+Use the individual utility classes for direct interactions with Appian components.
 
 ## Utilities
 - BrowserUtils: Browser tab helpers.
 - ButtonUtils: Click buttons by exact or partial label.
-- ComponentDriver: Route high-level actions to the correct utility.
 - ComponentUtils: Shared waits, clicks, XPath helpers, and date/version helpers.
 - DateUtils: Fill date inputs by label.
 - DropdownUtils: Select values from Appian dropdowns.
