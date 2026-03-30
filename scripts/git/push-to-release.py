@@ -129,7 +129,7 @@ def main() -> None:
         write_info(f"[DRY RUN] Would push from {current_branch} to playwright_release")
     else:
         confirm = input("Continue with push? (yes/no) ").strip().lower()
-        if confirm != "yes":
+        if confirm not in ("yes", "y"):
             write_info("Push cancelled")
             sys.exit(0)
 
