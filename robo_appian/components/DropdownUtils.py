@@ -83,6 +83,15 @@ class DropdownUtils:
 
     @staticmethod
     def checkReadOnlyStatusByLabelText(page: Page, label: str):
+        """Check if a dropdown is read-only by label text.
+
+        Args:
+            page: Playwright Page object.
+            label: Exact text to match in the dropdown label.
+
+        Returns:
+            bool: True if dropdown is read-only, False otherwise.
+        """
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
             "//span[normalize-space(translate(., '\u00a0', ' '))="
@@ -93,6 +102,15 @@ class DropdownUtils:
 
     @staticmethod
     def checkEditableStatusByLabelText(page: Page, label: str):
+        """Check if a dropdown is editable (not read-only) by label text.
+
+        Args:
+            page: Playwright Page object.
+            label: Exact text to match in the dropdown label.
+
+        Returns:
+            bool: True if dropdown is editable, False otherwise.
+        """
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
             "//span[normalize-space(translate(., '\u00a0', ' '))="
@@ -105,6 +123,17 @@ class DropdownUtils:
     def waitForDropdownToBeEnabled(
         page: Page, label: str, wait_interval: float = 0.5, timeout: int = 2
     ):
+        """Wait for a dropdown to become enabled/editable.
+
+        Args:
+            page: Playwright Page object.
+            label: Exact text to match in the dropdown label.
+            wait_interval: Time to wait between retries in seconds. Default: 0.5.
+            timeout: Maximum time to wait in seconds. Default: 2.
+
+        Returns:
+            bool: True if dropdown becomes enabled within timeout, False otherwise.
+        """
         return bool(
             ComponentUtils.retry_until(
                 lambda: DropdownUtils.checkEditableStatusByLabelText(page, label),
@@ -118,6 +147,20 @@ class DropdownUtils:
     def selectDropdownValueByComboboxComponent(
         page: Page, combobox: Locator, value: str
     ):
+        """Select a dropdown value using a combobox component locator.
+
+        Args:
+            page: Playwright Page object.
+            combobox: Locator pointing to a combobox element.
+            value: The option value to select.
+
+        Returns:
+            Locator: The combobox element.
+
+        Raises:
+            ValueError: If combobox is missing 'aria-controls' attribute.
+            TimeoutError: If option is not found.
+        """
         dropdown_option_id = DropdownUtils.__findDropdownOptionId(combobox)
         DropdownUtils.__clickCombobox(page, combobox)
         DropdownUtils.__selectDropdownValueByDropdownOptionId(
@@ -127,6 +170,19 @@ class DropdownUtils:
 
     @staticmethod
     def selectDropdownValueByLabelText(page: Page, dropdown_label: str, value: str):
+        """Select a dropdown value by exact label text.
+
+        Args:
+            page: Playwright Page object.
+            dropdown_label: Exact text to match in the dropdown label.
+            value: The option value to select.
+
+        Returns:
+            Locator: The combobox element.
+
+        Raises:
+            TimeoutError: If dropdown or option is not found.
+        """
         return DropdownUtils.__selectDropdownValueByLabelText(
             page, dropdown_label, value
         )
@@ -135,12 +191,35 @@ class DropdownUtils:
     def selectDropdownValueByPartialLabelText(
         page: Page, dropdown_label: str, value: str
     ):
+        """Select a dropdown value by partial label text match.
+
+        Args:
+            page: Playwright Page object.
+            dropdown_label: Partial text to match in the dropdown label.
+            value: The option value to select.
+
+        Returns:
+            Locator: The combobox element.
+
+        Raises:
+            TimeoutError: If dropdown or option is not found.
+        """
         return DropdownUtils.__selectDropdownValueByPartialLabelText(
             page, dropdown_label, value
         )
 
     @staticmethod
     def checkDropdownOptionValueExists(page: Page, dropdown_label: str, value: str):
+        """Check if a dropdown option value exists.
+
+        Args:
+            page: Playwright Page object.
+            dropdown_label: Exact text to match in the dropdown label.
+            value: The option value to check for.
+
+        Returns:
+            bool: True if the option exists, False otherwise.
+        """
         combobox = DropdownUtils.__findComboboxByLabelText(page, dropdown_label)
         DropdownUtils.__clickCombobox(page, combobox)
         dropdown_option_id = DropdownUtils.__findDropdownOptionId(combobox)
