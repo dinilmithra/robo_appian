@@ -26,11 +26,12 @@ class SearchInputUtils:
         # /li[@role="option" and @tabindex="-1"] - Find inactive option items
         # and ./div/div/div/div/div/div/p[...] - Navigate deeply nested divs to text content
         # translate(...) keeps internal spacing while normalizing NBSP to spaces
-        option_text_predicate = ComponentUtils.xpath_trim_equals(".", value)
+        option_literal = ComponentUtils.xpath_literal(value.strip())
+        option_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         option_xpath = (
             f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_list_id)} and @role="listbox"]'
-            f"/li[@role=\"option\" and @tabindex=\"-1\" and {visible_predicate} and ./div/div/div/div/div/div/p[{option_text_predicate}][1]]"
+            f"/li[@role=\"option\" and @tabindex=\"-1\" and {visible_predicate} and ./div/div/div/div/div/div/p[contains({option_text}, {option_literal})][1]]"
         )
         drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(
             page, option_xpath
