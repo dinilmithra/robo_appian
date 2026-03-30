@@ -21,14 +21,14 @@ INSTALLER_TIMEOUT_SECONDS = 30
 def run(cmd: list[str], *, cwd: Optional[Path] = None, env: Optional[dict[str, str]] = None) -> None:
     rendered_cmd = shlex.join(cmd)
     if cwd:
-        print(f"> (cd {cwd}) {rendered_cmd}")
+        print(f'> (cd {cwd}) {rendered_cmd}')
     else:
-        print(f"> {rendered_cmd}")
+        print(f'> {rendered_cmd}')
     subprocess.run(cmd, check=True, cwd=str(cwd) if cwd else None, env=env)
 
 
 def fail(message: str, *, code: int = 1) -> NoReturn:
-    print(f"ERROR: {message}", file=sys.stderr)
+    print(f'ERROR: {message}', file=sys.stderr)
     raise SystemExit(code)
 
 
@@ -43,7 +43,7 @@ def resolve_paths(repo_root: Path) -> tuple[Path, Path]:
 def activate_venv_env(venv_dir: Path, venv_python: Path) -> dict[str, str]:
     venv_env = os.environ.copy()
     venv_env["VIRTUAL_ENV"] = str(venv_dir)
-    venv_env["PATH"] = f"{venv_python.parent}{os.pathsep}{venv_env.get('PATH', '')}"
+    venv_env["PATH"] = f'{venv_python.parent}{os.pathsep}{venv_env.get("PATH", "")}'
 
     # Activate for this setup.py process as well
     os.environ["VIRTUAL_ENV"] = str(venv_dir)
@@ -68,13 +68,13 @@ def resolve_poetry_binary() -> Optional[Path]:
 
 def ensure_venv(venv_dir: Path, venv_python: Path) -> None:
     if venv_python.exists():
-        print(f"Virtual environment already exists at {venv_dir}")
+        print(f'Virtual environment already exists at {venv_dir}')
         return
 
-    print(f"Creating virtual environment at {venv_dir}...")
+    print(f'Creating virtual environment at {venv_dir}...')
     run([sys.executable, "-m", "venv", str(venv_dir)])
     if not venv_python.exists():
-        fail(f"virtual environment creation succeeded but Python was not found: {venv_python}")
+        fail(f'virtual environment creation succeeded but Python was not found: {venv_python}')
 
 
 def install_with_pip(venv_python: Path, args: list[str]) -> None:
@@ -123,7 +123,7 @@ def main() -> None:
     repo_root = Path(__file__).resolve().parent.parent
     requirements_path = repo_root / "requirements.txt"
     if not requirements_path.exists():
-        fail(f"requirements file not found: {requirements_path}")
+        fail(f'requirements file not found: {requirements_path}')
 
     print(HEADER)
     print("  Setting up robo_appian development")
@@ -135,7 +135,7 @@ def main() -> None:
 
     print("\n2) Activating virtual environment context...")
     venv_env = activate_venv_env(venv_dir, venv_python)
-    print(f"Activated VIRTUAL_ENV={venv_env['VIRTUAL_ENV']}")
+    print(f'Activated VIRTUAL_ENV={venv_env["VIRTUAL_ENV"]}')
 
     print("\n3) Installing/updating pip and Poetry...")
     ensure_pip(venv_python)
@@ -156,17 +156,17 @@ def main() -> None:
     run([str(venv_python), "-m", "pip", "--version"], env=venv_env)
     run([str(venv_python), "-m", "pip", "show", "robo_appian"], env=venv_env)
 
-    print(f"\n{HEADER}")
+    print(f'\n{HEADER}')
     print("  Setup completed successfully")
-    print(f"{HEADER}")
+    print(f'{HEADER}')
     print("\nNext steps:")
     if os.name == "nt":
-        print(f"source equivalent: {venv_dir}\\Scripts\\activate")
+        print(f'source equivalent: {venv_dir}\\Scripts\\activate')
     else:
-        print(f"source {venv_dir}/bin/activate")
+        print(f'source {venv_dir}/bin/activate')
 
 if __name__ == "__main__":
     try:
         main()
     except subprocess.CalledProcessError as exc:
-        fail(f"command failed with exit code {exc.returncode}: {' '.join(exc.cmd)}", code=exc.returncode)
+        fail(f'command failed with exit code {exc.returncode}: {" ".join(exc.cmd)}', code=exc.returncode)

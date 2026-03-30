@@ -14,7 +14,7 @@ class TableUtils:
         xpath = (
             f'./thead/tr/th[@scope="col" and @abbr={ComponentUtils.xpath_literal(columnName)} and {visible_predicate}]'
         )
-        component = tableObject.locator(f"xpath={xpath}").first
+        component = tableObject.locator(f'xpath={xpath}').first
         component.wait_for(state="visible")
 
         return TableUtils.__findColumnNumberByHeader(component, columnName)
@@ -32,7 +32,7 @@ class TableUtils:
             return int(id_match.group(1))
 
         raise ValueError(
-            f"Could not determine the column index for header '{columnName}'."
+            f'Could not determine the column index for header \'{columnName}\'.'
         )
 
     @staticmethod
@@ -110,7 +110,7 @@ class TableUtils:
             page, rowNumber, columnName
         )
         visible_predicate = ComponentUtils.xpath_visible_predicate()
-        child_xpath = f"./td[{columnNumber + 1}]/*[{visible_predicate}]"
+        child_xpath = f'./td[{columnNumber + 1}]/*[{visible_predicate}]'
         return ComponentUtils.findChildComponentByXpath(page, tableRow, child_xpath)
 
     @staticmethod
@@ -129,7 +129,7 @@ class TableUtils:
         """
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//table[{visible_predicate} and ./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)}]]"
+            f'.//table[{visible_predicate} and ./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)}]]'
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
@@ -145,7 +145,7 @@ class TableUtils:
         """
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f"./tbody/tr[{visible_predicate} and ./td[not (@data-empty-grid-message)]]"
+            f'./tbody/tr[{visible_predicate} and ./td[not (@data-empty-grid-message)]]'
         )
-        rows = tableObject.locator(f"xpath={xpath}")
+        rows = tableObject.locator(f'xpath={xpath}')
         return rows.count()

@@ -10,8 +10,8 @@ class LabelUtils:
         child_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
             "//*[self::label or self::span or self::p or self::a or self::abbr]"
-            f"[{label_predicate}"
-            f" and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][{child_label_predicate}])"
+            f'[{label_predicate}'
+            f' and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][{child_label_predicate}])'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -51,8 +51,8 @@ class LabelUtils:
         child_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
             "//*[self::label or self::span or self::p or self::a or self::abbr]"
-            f"[{label_predicate}"
-            f" and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][{child_label_predicate}])"
+            f'[{label_predicate}'
+            f' and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][{child_label_predicate}])'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )

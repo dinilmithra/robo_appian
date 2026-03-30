@@ -31,7 +31,7 @@ class SearchInputUtils:
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         option_xpath = (
             f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_list_id)} and @role="listbox"]'
-            f"/li[@role=\"option\" and @tabindex=\"-1\" and {visible_predicate} and ./div/div/div/div/div/div/p[contains({option_text}, {option_literal})][1]]"
+            f'/li[@role="option" and @tabindex="-1" and {visible_predicate} and ./div/div/div/div/div/div/p[contains({option_text}, {option_literal})][1]]'
         )
         drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(
             page, option_xpath
@@ -47,7 +47,7 @@ class SearchInputUtils:
         label_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//div[./div/span[contains({label_text}, "
+            f'.//div[./div/span[contains({label_text}, '
             f'{label_literal})]]/div/div/div/input[@role="combobox" and {visible_predicate}]'
         )
         return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
@@ -59,7 +59,7 @@ class SearchInputUtils:
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//div[./div/span[{label_predicate}]]/div/div/div/input[@role=\"combobox\" and {visible_predicate}]"
+            f'.//div[./div/span[{label_predicate}]]/div/div/div/input[@role="combobox" and {visible_predicate}]'
         )
         return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
             page, xpath, value

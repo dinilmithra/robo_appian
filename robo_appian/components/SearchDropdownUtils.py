@@ -15,16 +15,16 @@ class SearchDropdownUtils:
         if not component_id:
             raise ValueError("Invalid component_id provided.")
 
-        input_component_id = f"{component_id}_searchInput"
+        input_component_id = f'{component_id}_searchInput'
         input_component = ComponentUtils.findComponentById(page, input_component_id)
         InputUtils._setValueByComponent(page, input_component, value)
 
-        dropdown_option_id = f"{component_id}_list"
+        dropdown_option_id = f'{component_id}_list'
         value_predicate = ComponentUtils.xpath_trim_equals(".", value)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]"
-            f"/li[{visible_predicate} and ./div[{value_predicate}]][1]"
+            f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]'
+            f'/li[{visible_predicate} and ./div[{value_predicate}]][1]'
         )
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         ComponentUtils.click(page, component)
@@ -42,7 +42,7 @@ class SearchDropdownUtils:
         # /div/div/div/div[@role="combobox" - Navigate through nested divs to find the combobox
         # and not(@aria-disabled="true")] - Ensure combobox is enabled
         xpath = (
-            f".//div[./div/span[contains({label_text}, "
+            f'.//div[./div/span[contains({label_text}, '
             f'{label_literal})]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true") and {visible_predicate}]'
         )
         combobox = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
@@ -59,7 +59,7 @@ class SearchDropdownUtils:
         # /div/div/div/div[@role="combobox" - Navigate through nested divs to combobox
         # and not(@aria-disabled="true")] - Ensure combobox is enabled
         xpath = (
-            f".//div[./div/span[{label_predicate}]]/div/div/div/div[@role=\"combobox\" and not(@aria-disabled=\"true\") and {visible_predicate}]"
+            f'.//div[./div/span[{label_predicate}]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true") and {visible_predicate}]'
         )
         combobox = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         return SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(

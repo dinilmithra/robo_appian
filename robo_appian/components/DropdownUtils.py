@@ -15,13 +15,13 @@ class DropdownUtils:
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         if is_partial_text:
             xpath = (
-                f"//span[contains({span_text}, "
+                f'//span[contains({span_text}, '
                 f'{label_literal})]/ancestor::div[@role="presentation"][1]'
                 f'//div[@role="combobox" and not(@aria-disabled="true") and {visible_predicate}]'
             )
         else:
             xpath = (
-                f"//span[{label_predicate}]/ancestor::div[@role=\"presentation\"][1]"
+                f'//span[{label_predicate}]/ancestor::div[@role="presentation"][1]'
                 f'//div[@role="combobox" and not(@aria-disabled="true") and {visible_predicate}]'
             )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
@@ -44,8 +44,8 @@ class DropdownUtils:
         value_predicate = ComponentUtils.xpath_trim_equals(".", value)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//div/ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]"
-            f"/li[{visible_predicate} and ./div[{value_predicate}]]"
+            f'.//div/ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]'
+            f'/li[{visible_predicate} and ./div[{value_predicate}]]'
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)
 
@@ -56,8 +56,8 @@ class DropdownUtils:
         value_predicate = ComponentUtils.xpath_trim_equals(".", value)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         option_xpath = (
-            f".//div/ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]"
-            f"/li[{visible_predicate} and ./div[{value_predicate}]]"
+            f'.//div/ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]'
+            f'/li[{visible_predicate} and ./div[{value_predicate}]]'
         )
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(
             page, option_xpath
@@ -99,7 +99,7 @@ class DropdownUtils:
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f"//span[{label_predicate}]/ancestor::div[@role=\"presentation\"][1]"
+            f'//span[{label_predicate}]/ancestor::div[@role="presentation"][1]'
             f'//div[@aria-labelledby and not(@role="combobox") and {visible_predicate}]'
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)
@@ -118,7 +118,7 @@ class DropdownUtils:
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f"//span[{label_predicate}]/ancestor::div[@role=\"presentation\"][1]"
+            f'//span[{label_predicate}]/ancestor::div[@role="presentation"][1]'
             f'//div[@role="combobox" and not(@aria-disabled="true") and {visible_predicate}]'
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)
@@ -244,7 +244,7 @@ class DropdownUtils:
             f'//ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]'
             f'//li[@role="option" and {visible_predicate}]/div'
         )
-        option_elements = page.locator(f"xpath={xpath}")
+        option_elements = page.locator(f'xpath={xpath}')
 
         option_texts: list[str] = []
         for idx in range(option_elements.count()):

@@ -11,8 +11,8 @@ class ButtonUtils:
         label_literal = ComponentUtils.xpath_literal(label.strip())
         button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            f"//button[contains({button_text}, "
-            f"{label_literal})"
+            f'//button[contains({button_text}, '
+            f'{label_literal})'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
         )
@@ -22,7 +22,7 @@ class ButtonUtils:
     def _findByLabelText(page: Page, label: str):
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            f"//button[./span[{label_predicate}]"
+            f'//button[./span[{label_predicate}]'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -68,7 +68,7 @@ class ButtonUtils:
             TimeoutError: If element is not found or not visible.
         """
         visible_predicate = ComponentUtils.xpath_visible_predicate()
-        xpath = f"//*[@id={ComponentUtils.xpath_literal(id)} and {visible_predicate}]"
+        xpath = f'//*[@id={ComponentUtils.xpath_literal(id)} and {visible_predicate}]'
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         ComponentUtils.click(page, component)
 
@@ -85,7 +85,7 @@ class ButtonUtils:
         """
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            f"//button[./span[{label_predicate}]"
+            f'//button[./span[{label_predicate}]'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -105,8 +105,8 @@ class ButtonUtils:
         label_literal = ComponentUtils.xpath_literal(label.strip())
         button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            f"//button[contains({button_text}, "
-            f"{label_literal})"
+            f'//button[contains({button_text}, '
+            f'{label_literal})'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
         )
@@ -147,8 +147,8 @@ class ButtonUtils:
         label_literal = ComponentUtils.xpath_literal(label.strip())
         button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            f"//button[contains({button_text}, "
-            f"{label_literal})"
+            f'//button[contains({button_text}, '
+            f'{label_literal})'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
         )

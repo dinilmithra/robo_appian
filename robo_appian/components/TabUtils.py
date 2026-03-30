@@ -21,7 +21,7 @@ class TabUtils:
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f"//div[@role=\"link\" and {visible_predicate}][.//p[{label_predicate}]]"
+            f'//div[@role="link" and {visible_predicate}][.//p[{label_predicate}]]'
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
@@ -54,6 +54,6 @@ class TabUtils:
         selected_attr = component.get_attribute("aria-selected")
         selected_tab_predicate = ComponentUtils.xpath_trim_equals(".", "Selected Tab.")
         selected_indicator = component.locator(
-            f"xpath=.//span[{selected_tab_predicate}]"
+            f'xpath=.//span[{selected_tab_predicate}]'
         )
         return selected_attr == "true" or selected_indicator.count() > 0
