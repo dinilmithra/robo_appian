@@ -19,8 +19,9 @@ class TabUtils:
             TimeoutError: If tab is not found or not visible.
         """
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f"//div[@role=\"link\"][.//p[{label_predicate}]]"
+            f"//div[@role=\"link\" and {visible_predicate}][.//p[{label_predicate}]]"
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 

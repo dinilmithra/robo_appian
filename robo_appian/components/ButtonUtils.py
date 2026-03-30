@@ -67,7 +67,8 @@ class ButtonUtils:
         Raises:
             TimeoutError: If element is not found or not visible.
         """
-        xpath = f"//*[@id={ComponentUtils.xpath_literal(id)}]"
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        xpath = f"//*[@id={ComponentUtils.xpath_literal(id)} and {visible_predicate}]"
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         ComponentUtils.click(page, component)
 

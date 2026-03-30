@@ -65,6 +65,14 @@ class ComponentUtils:
         )
 
     @staticmethod
+    def xpath_visible_predicate() -> str:
+        """Build XPath predicate that excludes aria/class hidden nodes."""
+        return (
+            'not(ancestor-or-self::*[@aria-hidden="true"])'
+            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])'
+        )
+
+    @staticmethod
     def validate_text_input(value: str, param_name: str = "input") -> str:
         """Validate and sanitize text input for use in XPath or component lookups.
 

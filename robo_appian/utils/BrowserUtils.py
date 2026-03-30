@@ -21,6 +21,7 @@ class BrowserUtils:
         next_tab_index = (current_tab_index + 1) % len(pages)
         target = pages[next_tab_index]
         target.bring_to_front()
+        target.wait_for_load_state("networkidle")
         return target
 
     # @staticmethod

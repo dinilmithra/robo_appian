@@ -18,6 +18,11 @@ class LabelUtils:
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
     @staticmethod
+    def findByLabelText(page: Page, label: str):
+        """Find a label/text element by exact text match and return its locator."""
+        return LabelUtils.__findByLabelText(page, label)
+
+    @staticmethod
     def clickByLabelText(page: Page, label: str):
         """Click a label/text element by exact text match.
 

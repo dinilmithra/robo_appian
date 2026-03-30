@@ -127,6 +127,10 @@ class InputUtils:
         Raises:
             TimeoutError: If input element is not found or not visible.
         """
-        xpath = f".//input[@placeholder={ComponentUtils.xpath_literal(text)}]"
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        xpath = (
+            f".//input[@placeholder={ComponentUtils.xpath_literal(text)}"
+            f" and {visible_predicate}]"
+        )
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         return InputUtils._setValueByComponent(page, component, value)

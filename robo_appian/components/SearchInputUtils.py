@@ -27,9 +27,10 @@ class SearchInputUtils:
         # and ./div/div/div/div/div/div/p[...] - Navigate deeply nested divs to text content
         # translate(...) keeps internal spacing while normalizing NBSP to spaces
         option_text_predicate = ComponentUtils.xpath_trim_equals(".", value)
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
         option_xpath = (
             f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_list_id)} and @role="listbox"]'
-            f"/li[@role=\"option\" and @tabindex=\"-1\" and ./div/div/div/div/div/div/p[{option_text_predicate}][1]]"
+            f"/li[@role=\"option\" and @tabindex=\"-1\" and {visible_predicate} and ./div/div/div/div/div/div/p[{option_text_predicate}][1]]"
         )
         drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(
             page, option_xpath
@@ -43,9 +44,10 @@ class SearchInputUtils:
     ):
         label_literal = ComponentUtils.xpath_literal(label.strip())
         label_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
             f".//div[./div/span[contains({label_text}, "
-            f'{label_literal})]]/div/div/div/input[@role="combobox"]'
+            f'{label_literal})]]/div/div/div/input[@role="combobox" and {visible_predicate}]'
         )
         return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
             page, xpath, value
@@ -54,8 +56,9 @@ class SearchInputUtils:
     @staticmethod
     def __selectSearchInputComponentsByLabelText(page: Page, label: str, value: str):
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//div[./div/span[{label_predicate}]]/div/div/div/input[@role=\"combobox\"]"
+            f".//div[./div/span[{label_predicate}]]/div/div/div/input[@role=\"combobox\" and {visible_predicate}]"
         )
         return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
             page, xpath, value

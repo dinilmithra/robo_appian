@@ -19,8 +19,10 @@ class LinkUtils:
             TimeoutError: If link is not found or not visible.
         """
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
+        span_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            f".//a[{label_predicate} and not(ancestor::*[@aria-hidden=\"true\"])"
+            f'.//a[({label_predicate} or .//span[{span_label_predicate}])'
+            f' and not(ancestor-or-self::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)

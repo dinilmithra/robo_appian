@@ -10,7 +10,10 @@ Locator = Any
 class TableUtils:
     @staticmethod
     def __findColumnNumberByColumnName(tableObject: Locator, columnName: str) -> int:
-        xpath = f'./thead/tr/th[@scope="col" and @abbr={ComponentUtils.xpath_literal(columnName)}]'
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        xpath = (
+            f'./thead/tr/th[@scope="col" and @abbr={ComponentUtils.xpath_literal(columnName)} and {visible_predicate}]'
+        )
         component = tableObject.locator(f"xpath={xpath}").first
         component.wait_for(state="visible")
 
@@ -37,10 +40,10 @@ class TableUtils:
         page: Page, rowNumber: int, columnName: str
     ) -> Locator:
         column_literal = ComponentUtils.xpath_literal(columnName)
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
             f'.//table[./thead/tr/th[@abbr={column_literal}]]/tbody/tr[@data-dnd-name="row {rowNumber + 1}" '
-            f'and not(ancestor::*[@aria-hidden="true"])'
-            f' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+            f'and {visible_predicate}]'
         )
         row = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         return row
@@ -96,14 +99,18 @@ class TableUtils:
             ValueError: If column or row cannot be found.
         """
         tableObject = TableUtils.findTableByColumnName(page, columnName)
-        xpath = f'./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)} and not(ancestor::*[@aria-hidden="true"]) and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        xpath = (
+            f'./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)} and {visible_predicate}]'
+        )
         column = ComponentUtils.findChildComponentByXpath(page, tableObject, xpath)
         columnNumber = TableUtils.__findColumnNumberByHeader(column, columnName)
 
         tableRow = TableUtils.__findRowByColumnNameAndRowNumber(
             page, rowNumber, columnName
         )
-        child_xpath = f"./td[{columnNumber + 1}]/*"
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        child_xpath = f"./td[{columnNumber + 1}]/*[{visible_predicate}]"
         return ComponentUtils.findChildComponentByXpath(page, tableRow, child_xpath)
 
     @staticmethod
@@ -120,8 +127,9 @@ class TableUtils:
         Raises:
             TimeoutError: If table with the specified column is not found.
         """
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
         xpath = (
-            f".//table[./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)}]]"
+            f".//table[{visible_predicate} and ./thead/tr/th[@abbr={ComponentUtils.xpath_literal(columnName)}]]"
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
@@ -135,6 +143,9 @@ class TableUtils:
         Returns:
             int: The count of visible data rows (excluding empty grid messages).
         """
-        xpath = "./tbody/tr[./td[not (@data-empty-grid-message)]]"
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        xpath = (
+            f"./tbody/tr[{visible_predicate} and ./td[not (@data-empty-grid-message)]]"
+        )
         rows = tableObject.locator(f"xpath={xpath}")
         return rows.count()
