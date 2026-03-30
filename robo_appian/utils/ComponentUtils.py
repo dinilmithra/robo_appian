@@ -49,6 +49,22 @@ class ComponentUtils:
         return f"concat({', '.join(literals)})"
 
     @staticmethod
+    def xpath_text_with_normalized_nbsp(text_expr: str = ".") -> str:
+        """Build XPath text expression with NBSP normalized to regular spaces."""
+        return f"translate({text_expr}, '\u00a0', ' ')"
+
+    @staticmethod
+    def xpath_trim_equals(text_expr: str, expected: str) -> str:
+        """Build XPath predicate that trims only outer spaces (not inner spaces)."""
+        expected_literal = ComponentUtils.xpath_literal(expected.strip())
+        normalized_expr = ComponentUtils.xpath_text_with_normalized_nbsp(text_expr)
+        return (
+            f"contains({normalized_expr}, {expected_literal})"
+            f" and string-length(normalize-space(substring-before({normalized_expr}, {expected_literal})))=0"
+            f" and string-length(normalize-space(substring-after({normalized_expr}, {expected_literal})))=0"
+        )
+
+    @staticmethod
     def validate_text_input(value: str, param_name: str = "input") -> str:
         """Validate and sanitize text input for use in XPath or component lookups.
 
@@ -405,10 +421,12 @@ class ComponentUtils:
         Raises:
             TimeoutError: If element does not become visible within timeout.
         """
+        text_predicate = ComponentUtils.xpath_trim_equals(".", text)
+        child_text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         xpath = (
-            f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" '
-            f'and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) '
-            f'and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+            f"//*[{text_predicate} "
+            f"and not(*[{child_text_predicate}]) "
+            "and not(ancestor-or-self::*[contains(@class, '---hidden')])]"
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
@@ -426,10 +444,12 @@ class ComponentUtils:
         Raises:
             TimeoutError: If element does not become hidden within timeout.
         """
+        text_predicate = ComponentUtils.xpath_trim_equals(".", text)
+        child_text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         xpath = (
-            f'//*[normalize-space(translate(., "\u00a0", " "))="{text}" '
-            f'and not(*[normalize-space(translate(., "\u00a0", " "))="{text}"]) '
-            f'and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
+            f"//*[{text_predicate} "
+            f"and not(*[{child_text_predicate}]) "
+            "and not(ancestor-or-self::*[contains(@class, '---hidden')])]"
         )
         return ComponentUtils.waitForComponentNotToBeVisibleByXpath(page, xpath)
 

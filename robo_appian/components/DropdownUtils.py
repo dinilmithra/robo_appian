@@ -9,17 +9,18 @@ Locator = Any
 class DropdownUtils:
     @staticmethod
     def __findComboboxByLabelText(page: Page, label: str, is_partial_text: bool = False):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_literal = ComponentUtils.xpath_literal(label.strip())
+        span_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         if is_partial_text:
             xpath = (
-                "//span[contains(normalize-space(translate(., '\u00a0', ' ')), "
+                f"//span[contains({span_text}, "
                 f'{label_literal})]/ancestor::div[@role="presentation"][1]'
                 f'//div[@role="combobox" and not(@aria-disabled="true")]'
             )
         else:
             xpath = (
-                "//span[normalize-space(translate(., '\u00a0', ' '))="
-                f'{label_literal}]/ancestor::div[@role="presentation"][1]'
+                f"//span[{label_predicate}]/ancestor::div[@role=\"presentation\"][1]"
                 f'//div[@role="combobox" and not(@aria-disabled="true")]'
             )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
@@ -39,10 +40,10 @@ class DropdownUtils:
     def __checkDropdownOptionValueExistsByDropdownOptionId(
         page: Page, dropdown_option_id: str, value: str
     ):
-        value_literal = ComponentUtils.xpath_literal(value)
+        value_predicate = ComponentUtils.xpath_trim_equals(".", value)
         xpath = (
             f".//div/ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]"
-            f"/li[./div[normalize-space(translate(., '\u00a0', ' '))={value_literal}]]"
+            f"/li[./div[{value_predicate}]]"
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)
 
@@ -50,10 +51,10 @@ class DropdownUtils:
     def __selectDropdownValueByDropdownOptionId(
         page: Page, dropdown_option_id: str, value: str
     ):
-        value_literal = ComponentUtils.xpath_literal(value)
+        value_predicate = ComponentUtils.xpath_trim_equals(".", value)
         option_xpath = (
             f".//div/ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]"
-            f"/li[./div[normalize-space(translate(., '\u00a0', ' '))={value_literal}]]"
+            f"/li[./div[{value_predicate}]]"
         )
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(
             page, option_xpath
@@ -92,10 +93,9 @@ class DropdownUtils:
         Returns:
             bool: True if dropdown is read-only, False otherwise.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            "//span[normalize-space(translate(., '\u00a0', ' '))="
-            f'{label_literal}]/ancestor::div[@role="presentation"][1]'
+            f"//span[{label_predicate}]/ancestor::div[@role=\"presentation\"][1]"
             '//div[@aria-labelledby and not(@role="combobox")]'
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)
@@ -111,10 +111,9 @@ class DropdownUtils:
         Returns:
             bool: True if dropdown is editable, False otherwise.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            "//span[normalize-space(translate(., '\u00a0', ' '))="
-            f'{label_literal}]/ancestor::div[@role="presentation"][1]'
+            f"//span[{label_predicate}]/ancestor::div[@role=\"presentation\"][1]"
             '//div[@role="combobox" and not(@aria-disabled="true")]'
         )
         return ComponentUtils.checkComponentExistsByXpath(page, xpath)

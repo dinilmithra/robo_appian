@@ -8,9 +8,10 @@ Page = Any
 class ButtonUtils:
     @staticmethod
     def _findByPartialLabelText(page: Page, label: str):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_literal = ComponentUtils.xpath_literal(label.strip())
+        button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            "//button[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f"//button[contains({button_text}, "
             f"{label_literal})"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
@@ -19,10 +20,9 @@ class ButtonUtils:
 
     @staticmethod
     def _findByLabelText(page: Page, label: str):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            "//button[./span[normalize-space(translate(., '\u00a0', ' '))="
-            f"{label_literal}]"
+            f"//button[./span[{label_predicate}]"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -82,10 +82,9 @@ class ButtonUtils:
         Returns:
             bool: True if button exists and is visible, False otherwise.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            "//button[./span[normalize-space(translate(., '\u00a0', ' '))="
-            f"{label_literal}]"
+            f"//button[./span[{label_predicate}]"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -102,9 +101,10 @@ class ButtonUtils:
         Returns:
             bool: True if button exists and is visible, False otherwise.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_literal = ComponentUtils.xpath_literal(label.strip())
+        button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            "//button[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f"//button[contains({button_text}, "
             f"{label_literal})"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
@@ -143,9 +143,10 @@ class ButtonUtils:
         Raises:
             TimeoutError: If button does not become visible within timeout.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_literal = ComponentUtils.xpath_literal(label.strip())
+        button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            "//button[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f"//button[contains({button_text}, "
             f"{label_literal})"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
