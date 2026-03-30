@@ -76,6 +76,11 @@ def main() -> None:
         default="Update playwright_release branch",
         help="Commit message (currently unused, reserved for future use)"
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Force push (overwrites remote branch) - use with caution"
+    )
 
     args = parser.parse_args()
 
@@ -125,6 +130,8 @@ def main() -> None:
 
     # Confirm action
     print()
+    if args.force:
+        write_info("⚠️  FORCE PUSH enabled - will overwrite remote branch")
     if args.dry_run:
         write_info(f"[DRY RUN] Would push from {current_branch} to playwright_release")
     else:
@@ -145,13 +152,20 @@ def main() -> None:
 
     # Push current branch to playwright_release
     write_header("Pushing to playwright_release")
+    push_opts = ["push"]
+    if args.dry_run:
+        push_opts.append("--dry-run")
+    if args.force:
+        push_opts.append("--force-with-lease")
+    push_opts.extend(["origin", f"{current_branch}:playwright_release"])
+    
     if args.dry_run:
         write_info("[DRY RUN MODE]")
-        run_git_command(["push", "--dry-run", "origin", f"{current_branch}:playwright_release"])
+        run_git_command(push_opts)
         write_success("Dry run completed")
     else:
         result = subprocess.run(
-            ["git", "push", "origin", f"{current_branch}:playwright_release"],
+            ["git"] + push_opts,
             check=False
         )
         if result.returncode == 0:
