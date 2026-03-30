@@ -6,11 +6,12 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 class LabelUtils:
     @staticmethod
     def __findByLabelText(page: Page, label: str):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
+        child_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
             "//*[self::label or self::span or self::p or self::a or self::abbr]"
-            f"[normalize-space(translate(., '\u00a0', ' '))={label_literal}"
-            f" and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][normalize-space(translate(., '\u00a0', ' '))={label_literal}])"
+            f"[{label_predicate}"
+            f" and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][{child_label_predicate}])"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -41,11 +42,12 @@ class LabelUtils:
         Returns:
             bool: True if label exists and is visible, False otherwise.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
+        child_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
             "//*[self::label or self::span or self::p or self::a or self::abbr]"
-            f"[normalize-space(translate(., '\u00a0', ' '))={label_literal}"
-            f" and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][normalize-space(translate(., '\u00a0', ' '))={label_literal}])"
+            f"[{label_predicate}"
+            f" and not(descendant::*[self::label or self::span or self::p or self::a or self::abbr][{child_label_predicate}])"
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )

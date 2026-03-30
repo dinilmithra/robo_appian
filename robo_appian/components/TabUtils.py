@@ -18,10 +18,9 @@ class TabUtils:
         Raises:
             TimeoutError: If tab is not found or not visible.
         """
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            "//div[@role=\"link\"][.//p[normalize-space(translate(., '\u00a0', ' '))="
-            f"{label_literal}]]"
+            f"//div[@role=\"link\"][.//p[{label_predicate}]]"
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
@@ -52,7 +51,8 @@ class TabUtils:
         """
         component = TabUtils.findTabByLabelText(page, label)
         selected_attr = component.get_attribute("aria-selected")
+        selected_tab_predicate = ComponentUtils.xpath_trim_equals(".", "Selected Tab.")
         selected_indicator = component.locator(
-            'xpath=.//span[normalize-space(.)="Selected Tab."]'
+            f"xpath=.//span[{selected_tab_predicate}]"
         )
         return selected_attr == "true" or selected_indicator.count() > 0

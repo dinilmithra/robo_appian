@@ -21,15 +21,15 @@ class SearchInputUtils:
 
         InputUtils._setValueByComponent(page, search_input_component, value)
 
-        value_literal = ComponentUtils.xpath_literal(value)
         # Complex nested XPath for finding search option:
         # .//ul[@id=...] - Find the listbox container by aria-controls ID
         # /li[@role="option" and @tabindex="-1"] - Find inactive option items
         # and ./div/div/div/div/div/div/p[...] - Navigate deeply nested divs to text content
-        # normalize-space(translate(...)) - Normalize NBSP characters and whitespace
+        # translate(...) keeps internal spacing while normalizing NBSP to spaces
+        option_text_predicate = ComponentUtils.xpath_trim_equals(".", value)
         option_xpath = (
             f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_list_id)} and @role="listbox"]'
-            f"/li[@role=\"option\" and @tabindex=\"-1\" and ./div/div/div/div/div/div/p[normalize-space(translate(., '\u00a0', ' '))={value_literal}][1]]"
+            f"/li[@role=\"option\" and @tabindex=\"-1\" and ./div/div/div/div/div/div/p[{option_text_predicate}][1]]"
         )
         drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(
             page, option_xpath
@@ -41,9 +41,10 @@ class SearchInputUtils:
     def __selectSearchInputComponentsByPartialLabelText(
         page: Page, label: str, value: str
     ):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_literal = ComponentUtils.xpath_literal(label.strip())
+        label_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
         xpath = (
-            ".//div[./div/span[contains(normalize-space(translate(., '\u00a0', ' ')), "
+            f".//div[./div/span[contains({label_text}, "
             f'{label_literal})]]/div/div/div/input[@role="combobox"]'
         )
         return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
@@ -52,10 +53,9 @@ class SearchInputUtils:
 
     @staticmethod
     def __selectSearchInputComponentsByLabelText(page: Page, label: str, value: str):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            ".//div[./div/span[normalize-space(translate(., '\u00a0', ' '))="
-            f'{label_literal}]]/div/div/div/input[@role="combobox"]'
+            f".//div[./div/span[{label_predicate}]]/div/div/div/input[@role=\"combobox\"]"
         )
         return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
             page, xpath, value

@@ -9,10 +9,9 @@ Page = Any
 class DateUtils:
     @staticmethod
     def __findComponent(page: Page, label: str):
-        label_literal = ComponentUtils.xpath_literal(label)
+        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         xpath = (
-            ".//div[./div/label[normalize-space(translate(., '\u00a0', ' '))="
-            f"{label_literal}]]/div/div/div/input"
+            f".//div[./div/label[{label_predicate}]]/div/div/div/input"
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 

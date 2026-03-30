@@ -104,22 +104,23 @@ class TestLabelTextNormalization:
     def test_nbsp_normalization_pattern_consistency(self):
         """Verify NBSP normalization is consistent across utilities."""
         # All label-based utilities should use:
-        # normalize-space(translate(., '\u00a0', ' '))
-        # This normalizes NBSP to space, then collapses whitespace
+        # translate(., '\u00a0', ' ')
+        # This normalizes NBSP to space without collapsing internal whitespace
         nbsp_char = '\u00a0'
         regular_space = ' '
-        # Pattern translates NBSP to space, then normalize-space collapses it
+        # Pattern translates NBSP to space only
         assert nbsp_char != regular_space
 
     def test_label_text_trailing_whitespace_handling(self):
         """Test that label matching accounts for whitespace differences."""
-        # normalize-space() in XPath collapses leading/trailing whitespace
+        # Trim-only matching should ignore leading/trailing whitespace
+        # without changing spaces between words or characters
         labels_that_should_match = [
             "  Submit  ",  # with spaces
             "Submit",      # without spaces
             "\tSubmit\n",  # with tabs/newlines
         ]
-        # All should normalize to "Submit"
+        # All should trim to "Submit"
         for label in labels_that_should_match:
             assert "Submit" in label or label.strip() == "Submit"
 
