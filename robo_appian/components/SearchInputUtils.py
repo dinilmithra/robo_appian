@@ -1,4 +1,6 @@
-from playwright.sync_api import Page
+import re
+
+from playwright.sync_api import Locator, Page
 
 from robo_appian.components.InputUtils import InputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
@@ -6,11 +8,87 @@ from robo_appian.utils.ComponentUtils import ComponentUtils
 
 class SearchInputUtils:
     @staticmethod
-    def __findSearchInputComponentsByLabelPathAndSelectValue(
-        page: Page, xpath: str, value: str
+    def __text_regex(text: str, exact: bool):
+        normalized_text = ComponentUtils.validate_text_input(text, "text")
+        parts = [re.escape(part) for part in normalized_text.split()]
+        whitespace_pattern = r"[\s\u00A0]+"
+        text_pattern = whitespace_pattern.join(parts)
+        if exact:
+            return re.compile(rf"^\s*{text_pattern}\s*$")
+        return re.compile(text_pattern)
+
+    @staticmethod
+    def __normalize_text(text: str) -> str:
+        normalized_text = ComponentUtils.validate_text_input(text, "text")
+        return " ".join(normalized_text.replace("\u00A0", " ").split())
+
+    @staticmethod
+    def __wait_for_visible(locator: Locator) -> Locator:
+        component = locator.first
+        component.wait_for(state="visible")
+        return component
+
+    @staticmethod
+    def __findSearchInputComponentByLabel(page: Page, label: str, exact: bool):
+        normalized_label = ComponentUtils.validate_label_text(label)
+        label_regex = SearchInputUtils.__text_regex(normalized_label, exact)
+
+        try:
+            return SearchInputUtils.__wait_for_visible(
+                page.get_by_role("combobox", name=label_regex)
+            )
+        except Exception:
+            pass
+
+        container = (
+            page.locator("div")
+            .filter(has=page.locator("span").filter(has_text=label_regex))
+            .filter(has=page.locator('[role="combobox"]'))
+        )
+        return SearchInputUtils.__wait_for_visible(
+            container.locator('[role="combobox"]:visible')
+        )
+
+    @staticmethod
+    def __findDropdownOption(dropdown: Locator, value: str) -> Locator:
+        normalized_value = SearchInputUtils.__normalize_text(value)
+        option_locators = dropdown.get_by_role("option")
+
+        def find_matching_option(exact: bool):
+            for index in range(option_locators.count()):
+                option = option_locators.nth(index)
+                if not option.is_visible():
+                    continue
+
+                option_text = SearchInputUtils.__normalize_text(option.inner_text())
+                if exact and option_text == normalized_value:
+                    return option
+                if not exact and normalized_value in option_text:
+                    return option
+            return None
+
+        exact_match = ComponentUtils.retry_until(
+            lambda: find_matching_option(True),
+            timeout_result=None,
+        )
+        if exact_match is not None:
+            return exact_match
+
+        partial_match = ComponentUtils.retry_until(
+            lambda: find_matching_option(False),
+            timeout_result=None,
+        )
+        if partial_match is not None:
+            return partial_match
+
+        raise ValueError(f"No dropdown option matched value: {normalized_value}")
+
+    @staticmethod
+    def __findSearchInputComponentsByLabelAndSelectValue(
+        page: Page, label: str, value: str, exact: bool
     ):
-        search_input_component = ComponentUtils.waitForComponentToBeVisibleByXpath(
-            page, xpath
+        search_input_component = SearchInputUtils.__findSearchInputComponentByLabel(
+            page, label, exact
         )
         dropdown_list_id = search_input_component.get_attribute("aria-controls")
 
@@ -21,21 +99,10 @@ class SearchInputUtils:
 
         InputUtils._setValueByComponent(page, search_input_component, value)
 
-        # Complex nested XPath for finding search option:
-        # .//ul[@id=...] - Find the listbox container by aria-controls ID
-        # /li[@role="option" and @tabindex="-1"] - Find inactive option items
-        # and ./div/div/div/div/div/div/p[...] - Navigate deeply nested divs to text content
-        # translate(...) keeps internal spacing while normalizing NBSP to spaces
-        option_literal = ComponentUtils.xpath_literal(value.strip())
-        option_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
-        visible_predicate = ComponentUtils.xpath_visible_predicate()
-        option_xpath = (
-            f'.//ul[@id={ComponentUtils.xpath_literal(dropdown_list_id)} and @role="listbox"]'
-            f'/li[@role="option" and @tabindex="-1" and {visible_predicate} and ./div/div/div/div/div/div/p[contains({option_text}, {option_literal})][1]]'
+        dropdown = SearchInputUtils.__wait_for_visible(
+            page.locator(f'ul[id="{dropdown_list_id}"][role="listbox"]:visible')
         )
-        drop_down_item = ComponentUtils.waitForComponentToBeVisibleByXpath(
-            page, option_xpath
-        )
+        drop_down_item = SearchInputUtils.__findDropdownOption(dropdown, value)
         ComponentUtils.click(page, drop_down_item)
         return search_input_component
 
@@ -43,26 +110,14 @@ class SearchInputUtils:
     def __selectSearchInputComponentsByPartialLabelText(
         page: Page, label: str, value: str
     ):
-        label_literal = ComponentUtils.xpath_literal(label.strip())
-        label_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
-        visible_predicate = ComponentUtils.xpath_visible_predicate()
-        xpath = (
-            f'.//div[./div/span[contains({label_text}, '
-            f'{label_literal})]]/div/div/div/input[@role="combobox" and {visible_predicate}]'
-        )
-        return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
-            page, xpath, value
+        return SearchInputUtils.__findSearchInputComponentsByLabelAndSelectValue(
+            page, label, value, False
         )
 
     @staticmethod
     def __selectSearchInputComponentsByLabelText(page: Page, label: str, value: str):
-        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        visible_predicate = ComponentUtils.xpath_visible_predicate()
-        xpath = (
-            f'.//div[./div/span[{label_predicate}]]/div/div/div/input[@role="combobox" and {visible_predicate}]'
-        )
-        return SearchInputUtils.__findSearchInputComponentsByLabelPathAndSelectValue(
-            page, xpath, value
+        return SearchInputUtils.__findSearchInputComponentsByLabelAndSelectValue(
+            page, label, value, True
         )
 
     @staticmethod
