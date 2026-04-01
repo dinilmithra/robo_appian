@@ -12,7 +12,7 @@ class InputUtils:
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
             ".//div/label[contains(translate(., '\u00a0', ' '), "
-            f"{label_literal})"
+            f'{label_literal})'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -21,7 +21,7 @@ class InputUtils:
         input_id = label_component.get_attribute("for")
         if input_id is None:
             raise ValueError(
-                f"Label element with text '{label}' is missing the 'for' attribute that links it to an input field."
+                f'Label element with text \'{label}\' is missing the \'for\' attribute that links it to an input field.'
             )
 
         component = ComponentUtils.findComponentById(page, input_id)
@@ -32,7 +32,7 @@ class InputUtils:
         label_literal = ComponentUtils.xpath_literal(label)
         xpath = (
             ".//div/label[translate(., '\u00a0', ' ')="
-            f"{label_literal}"
+            f'{label_literal}'
             ' and not(ancestor::*[@aria-hidden="true"])'
             ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
         )
@@ -40,7 +40,7 @@ class InputUtils:
         input_id = label_component.get_attribute("for")
         if input_id is None:
             raise ValueError(
-                f"Label component with text '{label}' does not have a 'for' attribute."
+                f'Label component with text \'{label}\' does not have a \'for\' attribute.'
             )
 
         component = ComponentUtils.findComponentById(page, input_id)
@@ -127,6 +127,10 @@ class InputUtils:
         Raises:
             TimeoutError: If input element is not found or not visible.
         """
-        xpath = f".//input[@placeholder={ComponentUtils.xpath_literal(text)}]"
+        visible_predicate = ComponentUtils.xpath_visible_predicate()
+        xpath = (
+            f'.//input[@placeholder={ComponentUtils.xpath_literal(text)}'
+            f' and {visible_predicate}]'
+        )
         component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
         return InputUtils._setValueByComponent(page, component, value)
