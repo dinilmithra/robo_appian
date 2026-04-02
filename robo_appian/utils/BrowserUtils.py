@@ -5,12 +5,13 @@ class BrowserUtils:
 
     @staticmethod
     def switch_to_tab(page: Page, locator: Locator) -> Page:
-        """Click a locator that opens a new tab and return the new page."""
+        """Click a locator that must open a new tab and return the new page."""
         with page.context.expect_page() as new_page_info:
             locator.click()
 
         new_page = new_page_info.value
-        new_page.wait_for_load_state("domcontentloaded")
+        new_page.wait_for_load_state()
+        new_page.bring_to_front()
         return new_page
 
     @staticmethod
