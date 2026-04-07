@@ -124,8 +124,8 @@ class DropdownHelper:
     def __waitUntilDropdownEditable(
         page: Page,
         label: str,
-        timeout_seconds: int,
-        poll_interval_seconds: float,
+        timeout_seconds: int = 20,
+        poll_interval_seconds: int = 1,
     ) -> Locator:
         poll_interval_ms = int(poll_interval_seconds * 1000)
         combobox = DropdownHelper.__ensureComponentVisible(
@@ -147,8 +147,8 @@ class DropdownHelper:
         page: Page,
         label: str,
         value: str,
-        editable_timeout_seconds: int,
-        poll_interval_seconds: float,
+        editable_timeout_seconds: int = 5,
+        poll_interval_seconds: int = 1,
     ) -> bool:
         """Select a dropdown value after waiting for the labeled combobox to become editable."""
         combobox = DropdownHelper.__waitUntilDropdownEditable(
