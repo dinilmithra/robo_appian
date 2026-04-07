@@ -8,6 +8,8 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Union
 
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+
 Page = Any
 Locator = Any
 
@@ -73,50 +75,8 @@ class ComponentUtils:
         )
 
     @staticmethod
-    def validate_text_input(value: str, param_name: str = "input") -> str:
-        """Validate and sanitize text input for use in XPath or component lookups.
-
-        Args:
-            value: The text value to validate.
-            param_name: Name of the parameter (for error messages). Default: "input".
-
-        Returns:
-            str: The validated, stripped text value.
-
-        Raises:
-            ValueError: If value is None or contains only whitespace.
-        """
-        if value is None:
-            raise ValueError(f'{param_name} cannot be None')
-        if isinstance(value, str):
-            stripped = value.strip()
-            if not stripped:
-                raise ValueError(f'{param_name} cannot be empty or whitespace-only')
-            return stripped
-        raise ValueError(f'{param_name} must be a string, got {type(value).__name__}')
-
-    @staticmethod
-    def validate_label_text(label: str) -> str:
-        """Validate label text for element lookups.
-
-        Convenience method that calls validate_text_input with 'label' as param_name.
-
-        Args:
-            label: The label text to validate.
-
-        Returns:
-            str: The validated, stripped label text.
-
-        Raises:
-            ValueError: If label is None or empty/whitespace-only.
-        """
-        return ComponentUtils.validate_text_input(label, "label")
-
-    @staticmethod
     def validate_id(element_id: str) -> str:
-        """Validate element ID for lookups.
-
-        Convenience method that calls validate_text_input with 'element_id' as param_name.
+        """Validate and normalize an element ID for lookups.
 
         Args:
             element_id: The element ID to validate.
@@ -125,9 +85,49 @@ class ComponentUtils:
             str: The validated, stripped element ID.
 
         Raises:
-            ValueError: If element_id is None or empty/whitespace-only.
+            ValueError: If element_id is None, not a string, or empty/whitespace-only.
         """
-        return ComponentUtils.validate_text_input(element_id, "element_id")
+        if element_id is None:
+            raise ValueError("element_id cannot be None")
+        if isinstance(element_id, str):
+            stripped = element_id.strip()
+            if not stripped:
+                raise ValueError("element_id cannot be empty or whitespace-only")
+            return stripped
+        raise ValueError(
+            f'element_id must be a string, got {type(element_id).__name__}'
+        )
+
+    @staticmethod
+    def validate_text_input(text: str, field_name: str = "text") -> str:
+        """Validate and normalize a text input value.
+
+        Args:
+            text: The text value to validate.
+            field_name: Descriptive field name for error messages.
+
+        Returns:
+            str: The validated text with NBSP normalized and outer whitespace trimmed.
+
+        Raises:
+            ValueError: If text is None, not a string, or empty/whitespace-only.
+        """
+        if text is None:
+            raise ValueError(f"{field_name} cannot be None")
+        if not isinstance(text, str):
+            raise ValueError(
+                f"{field_name} must be a string, got {type(text).__name__}"
+            )
+
+        normalized_text = text.replace("\u00A0", " ").strip()
+        if not normalized_text:
+            raise ValueError(f"{field_name} cannot be empty or whitespace-only")
+        return normalized_text
+
+    @staticmethod
+    def validate_label_text(label: str) -> str:
+        """Validate and normalize label text for component lookups."""
+        return ComponentUtils.validate_text_input(label, "label")
 
     @staticmethod
     def _as_locator(page: Page, component_or_xpath: Union[Locator, str]) -> Locator:
@@ -170,8 +170,10 @@ class ComponentUtils:
                 result = func(*args, **kwargs)
                 if result:
                     return result
-            except Exception as exc:
+            except (TimeoutError, PlaywrightTimeoutError) as exc:
                 last_exc = exc
+            except Exception:
+                raise
             time.sleep(wait_interval)
 
         if raise_on_timeout:
@@ -414,6 +416,19 @@ class ComponentUtils:
         locator = page.locator(f'xpath=//*[@id="{id}"]').first
         locator.wait_for(state="hidden")
         return True
+
+    @staticmethod
+    def waitForAppianActionCompleted(page: Page):
+        """Wait for Appian progress and loading indicators to clear.
+
+        Args:
+            page: Playwright Page object.
+        """
+        page.wait_for_selector("#appian-nprogress", state="detached")
+        page.wait_for_selector(
+            ":is(svg[data-owl-icon-name='fa-circle-o-notch'], button.Button---is_loading)",
+            state="detached",
+        )
 
     @staticmethod
     def waitForElementToBeVisibleByText(page: Page, text: str):

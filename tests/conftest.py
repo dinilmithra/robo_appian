@@ -1,5 +1,26 @@
 import os
+from pathlib import Path
+
 import pytest
+
+from robo_appian.utils.RoboHelper import RoboHelper
+
+
+def _load_env_file() -> None:
+    env_path = Path(__file__).resolve().parents[1] / ".env"
+    if not env_path.exists():
+        return
+
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+
+        key, value = stripped.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+_load_env_file()
 
 
 @pytest.fixture(scope="session")
@@ -21,7 +42,13 @@ def browser():
         else:
             browser_type = playwright.chromium
 
-        browser_instance = browser_type.launch(headless=headless)
+        if headless:
+            browser_instance = browser_type.launch(headless=True)
+        else:
+            browser_instance = browser_type.launch(
+                headless=False,
+                args=["--start-maximized"],
+            )
         yield browser_instance
         browser_instance.close()
 
@@ -29,18 +56,26 @@ def browser():
 @pytest.fixture()
 def page(browser):
     """Function-scoped Playwright page aligned with library usage (page-first)."""
-    timeout = int(os.getenv("PLAYWRIGHT_TIMEOUT_MS", "15000"))
-    context = browser.new_context(viewport={"width": 1920, "height": 1080})
+    wait_time_seconds = int(os.getenv("WAIT_TIME", "15"))
+    timeout = wait_time_seconds * 1000
+    headless = os.getenv("HEADLESS", "1") == "1"
+
+    context_options = {}
+    if not headless:
+        context_options["no_viewport"] = True
+    else:
+        context_options["viewport"] = {"width": 1920, "height": 1080}
+
+    context = browser.new_context(**context_options)
     pg = context.new_page()
     pg.set_default_timeout(timeout)
+
+    try:
+        RoboHelper.sso_accept(pg)
+    except ValueError:
+        context.close()
+        pytest.skip("APP_URL not set; skipping e2e test.")
+
     yield pg
     context.close()
 
-
-@pytest.fixture()
-def app_url():
-    """Application base URL from APP_URL; skips test if not provided."""
-    url = os.getenv("APP_URL")
-    if not url:
-        pytest.skip("APP_URL not set; skipping e2e test.")
-    return url
