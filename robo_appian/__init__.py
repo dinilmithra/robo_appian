@@ -3,7 +3,6 @@ from robo_appian.utils.RoboHelper import RoboHelper
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.DateUtils import DateUtils
-from robo_appian.components.DropdownHelper import DropdownHelper
 from robo_appian.components.DropdownUtils import DropdownUtils
 from robo_appian.components.InputUtils import InputUtils
 from robo_appian.components.LabelUtils import LabelUtils
@@ -22,7 +21,6 @@ __all__ = [
     "RoboHelper",
     "ComponentUtils",
     "DateUtils",
-    "DropdownHelper",
     "DropdownUtils",
     "InputUtils",
     "LabelUtils",

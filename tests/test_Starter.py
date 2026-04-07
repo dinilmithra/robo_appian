@@ -5,7 +5,7 @@ import time
 import pytest
 from playwright.sync_api import Locator, Page, TimeoutError as PlaywrightTimeoutError
 
-from robo_appian.components.DropdownHelper import DropdownHelper
+from robo_appian.components.DropdownUtils import DropdownUtils
 
 pytestmark = pytest.mark.e2e
 
@@ -318,7 +318,7 @@ def _select_search_input_value_if_editable(
     label: str,
     value: str,
     editable_timeout_seconds: int,
-    poll_interval_seconds: float,
+    poll_interval_seconds: int,
 ) -> bool:
     poll_interval_ms = int(poll_interval_seconds * 1000)
     search_input = _wait_until_input_editable(
@@ -394,7 +394,7 @@ def _select_search_dropdown_value_if_editable(
     label: str,
     value: str,
     editable_timeout_seconds: int,
-    poll_interval_seconds: float,
+    poll_interval_seconds: int,
 ) -> bool:
     poll_interval_ms = int(poll_interval_seconds * 1000)
     search_dropdown = _wait_until_search_dropdown_editable(
@@ -458,9 +458,8 @@ def _fill_text_input_if_editable(
     label: str,
     value: str,
     editable_timeout_seconds: int,
-    poll_interval_seconds: float,
-) -> bool:
-    poll_interval_ms = int(poll_interval_seconds * 1000)
+    poll_interval_seconds: int,
+) -> bool:    
     text_input = _wait_until_text_input_editable(
         page,
         label,
@@ -556,35 +555,35 @@ def _click_submit(
 def _create_request(
     page: Page,
     editable_timeout_seconds: int,
-    poll_interval_seconds: float,
+    poll_interval_seconds: int,
 ) -> None:
-    DropdownHelper.selectDropdownIfEditable(
+    DropdownUtils.selectDropdownIfEditable(
         page,
         "Phase",
         "Execution",
         editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
+        poll_interval_seconds=int(poll_interval_seconds),
     )
-    DropdownHelper.selectDropdownIfEditable(
+    DropdownUtils.selectDropdownIfEditable(
         page,
         "Request Category",
         "P-Card",
         editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
+        poll_interval_seconds=int(poll_interval_seconds),
     )
-    DropdownHelper.selectDropdownIfEditable(
+    DropdownUtils.selectDropdownIfEditable(
         page,
         "Request Sub-Category",
         "Convenience Check",
         editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
+        poll_interval_seconds=int(poll_interval_seconds),
     )
-    DropdownHelper.selectDropdownIfEditable(
+    DropdownUtils.selectDropdownIfEditable(
         page,
         "Fiscal Year",
         "2026",
         editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
+        poll_interval_seconds=int(poll_interval_seconds),
     )
     _select_search_input_value_if_editable(
         page,
@@ -605,7 +604,7 @@ def _create_request(
 def _request_details_tab(
     page: Page,
     editable_timeout_seconds: int,
-    poll_interval_seconds: float,
+    poll_interval_seconds: int,
 ) -> None:
     _fill_text_input_if_editable(
         page,
@@ -642,12 +641,12 @@ def _request_details_tab(
         editable_timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=poll_interval_seconds,
     )
-    DropdownHelper.selectDropdownIfEditable(
+    DropdownUtils.selectDropdownIfEditable(
         page,
         "P-Card Holder",
         "Bala Chikkala - 676767",
         editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
+        poll_interval_seconds=int(poll_interval_seconds),
     )
     _select_search_dropdown_value_if_editable(
         page,
@@ -677,12 +676,12 @@ def _request_details_tab(
         editable_timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=poll_interval_seconds,
     )
-    DropdownHelper.selectDropdownIfEditable(
+    DropdownUtils.selectDropdownIfEditable(
         page,
         "Required Source",
         "No",
         editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
+        poll_interval_seconds=int(poll_interval_seconds),
     )
     _fill_text_input_if_editable(
         page,
@@ -696,7 +695,7 @@ def _request_details_tab(
 def test_starter(page: Page) -> None:
     """Starter workflow generated from `test_cases/starter.md` using Playwright only."""
     editable_timeout_seconds = int(os.getenv("EDITABLE_CHECK_TIMEOUT_SECONDS", "20"))
-    poll_interval_seconds = float(os.getenv("POLL_INTERVAL_SECONDS", "1"))
+    poll_interval_seconds = int(os.getenv("POLL_INTERVAL_SECONDS", "1"))
 
     _open_new_request(page)
     _create_request(page, editable_timeout_seconds, poll_interval_seconds)
