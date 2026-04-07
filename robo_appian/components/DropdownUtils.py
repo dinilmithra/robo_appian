@@ -34,6 +34,64 @@ class DropdownUtils:
             ) from exc
 
     @staticmethod
+    def __getOuterHtml(component: Locator) -> str:
+        try:
+            if component.count() > 0:
+                return str(component.first.evaluate("(node) => node.outerHTML"))
+        except Exception:
+            return ""
+        return ""
+
+    @staticmethod
+    def __describeDropdownState(page: Page, label: str) -> tuple[str, Locator | None, str]:
+        container = DropdownUtils.__findLabeledContainer(page, label).first
+        container = DropdownUtils.__ensureComponentVisible(
+            container, label, "dropdown container"
+        )
+        container_html = DropdownUtils.__getOuterHtml(container)
+
+        editable_combobox = container.locator(
+            '.DropdownWidget---dropdown_value[role="combobox"]:not(.DropdownWidget---is_disabled):not([aria-disabled="true"]), '
+            'div[role="combobox"]:not([aria-disabled="true"]), '
+            'input[role="combobox"]:not([disabled]):not([readonly])'
+        ).first
+        try:
+            if editable_combobox.count() > 0 and editable_combobox.is_visible():
+                return "editable", editable_combobox, container_html
+        except Exception:
+            pass
+
+        readonly_display = container.locator(
+            '.DropdownWidget---read_only, '
+            '.DropdownWidget---readonly_value, '
+            '[aria-readonly="true"], '
+            '[data-readonly="true"], '
+            '[aria-labelledby]:not([role="combobox"])'
+        ).first
+        try:
+            if readonly_display.count() > 0 and readonly_display.is_visible():
+                return "read-only", None, container_html
+        except Exception:
+            pass
+
+        non_editable_combobox = container.locator(
+            '.DropdownWidget---dropdown_value.DropdownWidget---is_disabled[role="combobox"], '
+            'div[role="combobox"][aria-disabled="true"], '
+            'input[role="combobox"][disabled], '
+            'input[role="combobox"][readonly]'
+        ).first
+        try:
+            if (
+                non_editable_combobox.count() > 0
+                and non_editable_combobox.is_visible()
+            ):
+                return "non-editable", non_editable_combobox, container_html
+        except Exception:
+            pass
+
+        return "unknown", None, container_html
+
+    @staticmethod
     def __findLabelElement(page: Page, label: str) -> Locator:
         exact_match = page.locator("label, span").filter(
             has_text=DropdownUtils.__exactTextPattern(label)
@@ -121,26 +179,38 @@ class DropdownUtils:
             return False
 
     @staticmethod
-    def __waitUntilDropdownEditable(
+    def __waitForDropdownState(
         page: Page,
         label: str,
         timeout_seconds: int = 20,
         poll_interval_seconds: int = 1,
-    ) -> Locator:
+    ) -> tuple[str, Locator | None, str]:
         poll_interval_ms = int(poll_interval_seconds * 1000)
-        combobox = DropdownUtils.__ensureComponentVisible(
-            DropdownUtils.__findCombobox(page, label),
-            label,
-            "dropdown",
-        )
         deadline = time.monotonic() + timeout_seconds
+        last_state = "unknown"
+        last_combobox: Locator | None = None
+        last_html = ""
 
         while time.monotonic() < deadline:
-            if DropdownUtils.__isDropdownEditable(combobox):
-                return combobox
+            state, combobox, container_html = DropdownUtils.__describeDropdownState(
+                page, label
+            )
+            last_state = state
+            if combobox is not None:
+                last_combobox = combobox
+            if container_html:
+                last_html = container_html
+
+            if state == "editable" and combobox is not None:
+                return state, combobox, last_html
+
+            # Read-only fields use a distinct, stable HTML structure and should be skipped.
+            if state == "read-only":
+                return state, None, last_html
+
             page.wait_for_timeout(poll_interval_ms)
 
-        return combobox
+        return last_state, last_combobox, last_html
 
     @staticmethod
     def __getDropdownOptionLocators(
@@ -183,6 +253,27 @@ class DropdownUtils:
         return option_locators
 
     @staticmethod
+    def __waitForVisibleComponent(
+        page: Page,
+        components: list[Locator],
+        timeout_seconds: int,
+        poll_interval_seconds: int = 1,
+    ) -> Locator | None:
+        poll_interval_ms = max(poll_interval_seconds * 1000, 100)
+        deadline = time.monotonic() + timeout_seconds
+
+        while time.monotonic() < deadline:
+            for component in components:
+                try:
+                    if component.count() > 0 and component.is_visible():
+                        return component
+                except Exception:
+                    continue
+            page.wait_for_timeout(poll_interval_ms)
+
+        return None
+
+    @staticmethod
     def __selectDropdownValueByCombobox(
         page: Page,
         combobox: Locator,
@@ -191,29 +282,45 @@ class DropdownUtils:
         poll_interval_seconds: int,
         dropdown_name: str,
     ) -> bool:
-        combobox.scroll_into_view_if_needed()
-        combobox.click()
-
-        option_locators = DropdownUtils.__getDropdownOptionLocators(
-            page,
+        combobox = DropdownUtils.__ensureComponentVisible(
             combobox,
-            value,
-            poll_interval_seconds,
+            dropdown_name,
+            "dropdown",
         )
+        combobox.scroll_into_view_if_needed()
 
         deadline = time.monotonic() + option_timeout_seconds
         while time.monotonic() < deadline:
-            for option in option_locators:
-                try:
-                    if option.count() == 0 or not option.is_visible():
-                        continue
-                    option.scroll_into_view_if_needed()
-                    option.click()
-                    page.wait_for_timeout(250)
-                    return True
-                except Exception:
-                    continue
-            page.wait_for_timeout(200)
+            try:
+                combobox.click()
+            except Exception:
+                page.wait_for_timeout(200)
+                continue
+
+            option_locators = DropdownUtils.__getDropdownOptionLocators(
+                page,
+                combobox,
+                value,
+                poll_interval_seconds,
+            )
+            remaining_seconds = max(int(deadline - time.monotonic()), 1)
+            option = DropdownUtils.__waitForVisibleComponent(
+                page,
+                option_locators,
+                timeout_seconds=min(max(poll_interval_seconds, 1), remaining_seconds),
+                poll_interval_seconds=poll_interval_seconds,
+            )
+            if option is None:
+                continue
+
+            try:
+                option.scroll_into_view_if_needed()
+                option.click()
+                page.wait_for_timeout(250)
+                return True
+            except Exception:
+                page.wait_for_timeout(200)
+                continue
 
         print(
             f"Skipping '{dropdown_name}' because option '{value}' was not available in time."
@@ -229,23 +336,39 @@ class DropdownUtils:
         poll_interval_seconds: int = 1,
     ) -> bool:
         """Select a dropdown value after waiting for the labeled combobox to become editable."""
-        combobox = DropdownUtils.__waitUntilDropdownEditable(
+        normalized_value = "" if value is None else str(value).strip()
+        if not normalized_value:
+            _, _, container_html = DropdownUtils.__describeDropdownState(page, label)
+            print(
+                f"Skipping '{label}' because no dropdown value was provided. "
+                f"Container HTML: {container_html}"
+            )
+            return False
+
+        state, combobox, container_html = DropdownUtils.__waitForDropdownState(
             page,
             label,
             timeout_seconds=editable_timeout_seconds,
             poll_interval_seconds=poll_interval_seconds,
         )
-        if not DropdownUtils.__isDropdownEditable(combobox):
+        if state == "read-only":
             print(
-                f"Skipping '{label}' because the dropdown is not editable within "
-                f"{editable_timeout_seconds} seconds."
+                f"Skipping '{label}' because the dropdown is read-only. "
+                f"Container HTML: {container_html}"
+            )
+            return False
+
+        if combobox is None or not DropdownUtils.__isDropdownEditable(combobox):
+            print(
+                f"Skipping '{label}' because the dropdown remained {state} within "
+                f"{editable_timeout_seconds} seconds. Container HTML: {container_html}"
             )
             return False
 
         return DropdownUtils.__selectDropdownValueByCombobox(
             page,
             combobox,
-            value,
+            normalized_value,
             option_timeout_seconds=editable_timeout_seconds,
             poll_interval_seconds=poll_interval_seconds,
             dropdown_name=label,
@@ -297,15 +420,59 @@ class DropdownUtils:
             value,
             poll_interval_seconds,
         )
+        option = DropdownUtils.__waitForVisibleComponent(
+            page,
+            option_locators,
+            timeout_seconds=option_timeout_seconds,
+            poll_interval_seconds=poll_interval_seconds,
+        )
 
-        deadline = time.monotonic() + option_timeout_seconds
+        return option is not None
+
+    @staticmethod
+    def waitForLabeledValueToLoad(
+        page: Page,
+        label: str,
+        timeout_seconds: int = 5,
+        poll_interval_seconds: int = 1,
+    ) -> bool:
+        """Wait for a labeled dropdown-related field to show a non-empty value."""
+        container = DropdownUtils.__ensureComponentVisible(
+            DropdownUtils.__findLabeledContainer(page, label),
+            label,
+            "field container",
+        )
+        poll_interval_ms = max(poll_interval_seconds * 1000, 100)
+        deadline = time.monotonic() + timeout_seconds
+
         while time.monotonic() < deadline:
-            for option in option_locators:
-                try:
-                    if option.count() > 0 and option.is_visible():
-                        return True
-                except Exception:
-                    continue
-            page.wait_for_timeout(200)
+            try:
+                fields = container.locator(
+                    'input:not([type="hidden"]), textarea, [role="combobox"]'
+                )
+                for index in range(fields.count()):
+                    field = fields.nth(index)
+                    if not field.is_visible():
+                        continue
 
+                    try:
+                        loaded_value = field.input_value().strip()
+                    except Exception:
+                        loaded_value = " ".join(field.inner_text().split()).strip()
+
+                    if loaded_value:
+                        return True
+
+                container_text = " ".join(container.inner_text().split())
+                if container_text and container_text.casefold() != label.strip().casefold():
+                    return True
+            except Exception:
+                pass
+
+            page.wait_for_timeout(poll_interval_ms)
+
+        print(
+            f"Skipping wait for '{label}' because no value was loaded within "
+            f"{timeout_seconds} seconds."
+        )
         return False
