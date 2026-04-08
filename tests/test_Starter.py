@@ -7,6 +7,7 @@ from playwright.sync_api import Locator, Page, TimeoutError as PlaywrightTimeout
 
 from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.DropdownUtils import DropdownUtils
+from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
 from robo_appian.components.SearchInputUtils import SearchInputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
@@ -87,37 +88,6 @@ def _find_labeled_container(page: Page, label: str) -> Locator:
     ).first
 
 
-def _find_combobox(page: Page, label: str) -> Locator:
-    exact_role_match = page.get_by_role("combobox", name=_exact_text_pattern(label)).first
-    if exact_role_match.count() > 0:
-        return exact_role_match
-
-    partial_role_match = page.get_by_role(
-        "combobox",
-        name=_partial_text_pattern(label),
-    ).first
-    if partial_role_match.count() > 0:
-        return partial_role_match
-
-    control = _find_control_by_label(page, label)
-    if control is not None:
-        if control.get_attribute("role") == "combobox":
-            return control
-
-        parent_combobox = control.locator(
-            "xpath=ancestor-or-self::*[@role='combobox'][1]"
-        ).first
-        if parent_combobox.count() > 0:
-            return parent_combobox
-
-    return _find_labeled_container(page, label).locator(
-        'div[role="combobox"], input[role="combobox"]'
-    ).first
-
-
-def _find_search_dropdown(page: Page, label: str) -> Locator:
-    return _find_combobox(page, label)
-
 
 def _find_text_input(page: Page, label: str) -> Locator:
     control = _find_control_by_label(page, label)
@@ -142,39 +112,6 @@ def _is_input_editable(input_component: Locator) -> bool:
         return False
 
 
-def _is_dropdown_editable(combobox: Locator) -> bool:
-    try:
-        return (
-            combobox.count() > 0
-            and combobox.is_visible()
-            and combobox.get_attribute("aria-disabled") != "true"
-            and not combobox.is_disabled()
-        )
-    except Exception:
-        return False
-
-
-def _wait_until_search_dropdown_editable(
-    page: Page,
-    label: str,
-    timeout_seconds: int,
-    poll_interval_seconds: float,
-) -> Locator:
-    search_dropdown = _ensure_component_visible(
-        _find_search_dropdown(page, label),
-        label,
-        "search dropdown",
-    )
-    poll_interval_ms = int(poll_interval_seconds * 1000)
-    deadline = time.monotonic() + timeout_seconds
-
-    while time.monotonic() < deadline:
-        if _is_input_editable(search_dropdown) or _is_dropdown_editable(search_dropdown):
-            return search_dropdown
-        page.wait_for_timeout(poll_interval_ms)
-
-    return search_dropdown
-
 
 def _wait_until_text_input_editable(
     page: Page,
@@ -197,69 +134,6 @@ def _wait_until_text_input_editable(
 
     return text_input
 
-
-def _select_search_dropdown_value_if_editable(
-    page: Page,
-    label: str,
-    value: str,
-    editable_timeout_seconds: int,
-    poll_interval_seconds: int,
-) -> bool:
-    poll_interval_ms = int(poll_interval_seconds * 1000)
-    search_dropdown = _wait_until_search_dropdown_editable(
-        page,
-        label,
-        timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
-    )
-    if not (_is_input_editable(search_dropdown) or _is_dropdown_editable(search_dropdown)):
-        print(
-            f"Skipping '{label}' because the search dropdown is not editable within "
-            f"{editable_timeout_seconds} seconds."
-        )
-        return False
-
-    search_dropdown.click()
-
-    component_id = search_dropdown.get_attribute("id")
-    fillable_input = search_dropdown
-    if component_id and component_id.endswith("_value"):
-        base_component_id = component_id[: -len("_value")]
-        linked_input = page.locator(f'[id="{base_component_id}_searchInput"]').first
-        fillable_input = _ensure_component_visible(linked_input, label, "search input")
-
-    fillable_input.click()
-    try:
-        fillable_input.press("Control+A")
-        fillable_input.press("Backspace")
-        fillable_input.type(value, delay=50)
-    except Exception:
-        fillable_input.fill(value)
-    page.wait_for_timeout(500)
-
-    dropdown_list_id = (
-        fillable_input.get_attribute("aria-controls")
-        or search_dropdown.get_attribute("aria-controls")
-    )
-    if not dropdown_list_id and component_id and component_id.endswith("_value"):
-        dropdown_list_id = f'{component_id[: -len("_value")]}_list'
-
-    if dropdown_list_id:
-        option = page.locator(
-            f'ul[id="{dropdown_list_id}"] li, [id="{dropdown_list_id}"] [role="option"]'
-        ).filter(has_text=_partial_text_pattern(value)).first
-        try:
-            option.wait_for(state="visible", timeout=editable_timeout_seconds * 1000)
-            option.click()
-            page.wait_for_timeout(250)
-            return True
-        except PlaywrightTimeoutError:
-            pass
-
-    fillable_input.press("ArrowDown")
-    fillable_input.press("Enter")
-    page.wait_for_timeout(250)
-    return True
 
 
 def _fill_text_input_if_editable(
@@ -388,12 +262,10 @@ def _request_details_tab(
         editable_timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=int(poll_interval_seconds),
     )
-    _select_search_dropdown_value_if_editable(
+    SearchDropdownUtils.selectSearchDropdownValueIfEditable(
         page,
         "Order Type*",
         "Office Supplies",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
     SearchInputUtils.selectSearchInputValueIfEditable(
         page,

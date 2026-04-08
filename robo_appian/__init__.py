@@ -1,17 +1,17 @@
-from robo_appian.utils.RoboUtils import RoboUtils
-from robo_appian.utils.RoboHelper import RoboHelper
-from robo_appian.utils.ComponentUtils import ComponentUtils
-from robo_appian.components.ButtonUtils import ButtonUtils
-from robo_appian.components.DateUtils import DateUtils
-from robo_appian.components.DropdownUtils import DropdownUtils
-from robo_appian.components.InputUtils import InputUtils
-from robo_appian.components.LabelUtils import LabelUtils
-from robo_appian.components.LinkUtils import LinkUtils
-from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
-from robo_appian.components.TabUtils import TabUtils
-from robo_appian.utils.BrowserUtils import BrowserUtils
-from robo_appian.components.SearchInputUtils import SearchInputUtils
-from robo_appian.components.TableUtils import TableUtils
+from .utils.RoboUtils import RoboUtils
+from .utils.RoboHelper import RoboHelper
+from .utils.ComponentUtils import ComponentUtils
+from .components.ButtonUtils import ButtonUtils
+from .components.DateUtils import DateUtils
+from .components.DropdownUtils import DropdownUtils
+from .components.InputUtils import InputUtils
+from .components.LabelUtils import LabelUtils
+from .components.LinkUtils import LinkUtils
+from .components.SearchDropdownUtils import SearchDropdownUtils
+from .components.TabUtils import TabUtils
+from .utils.BrowserUtils import BrowserUtils
+from .components.SearchInputUtils import SearchInputUtils
+from .components.TableUtils import TableUtils
 
 __version__ = ComponentUtils.get_version()
 
