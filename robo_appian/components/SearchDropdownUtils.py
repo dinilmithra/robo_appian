@@ -1,5 +1,5 @@
 import re
-from typing import Any
+from typing import Any, cast
 
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
@@ -12,11 +12,34 @@ class SearchDropdownUtils:
 
     @staticmethod
     def __exactTextPattern(text: str) -> re.Pattern[str]:
-        return re.compile(rf"^\s*{re.escape(text)}\s*$", re.IGNORECASE)
+        escaped = re.escape(text).replace("/", r"\/")
+        return re.compile(rf"^\s*{escaped}\s*$", re.IGNORECASE)
 
     @staticmethod
     def __partialTextPattern(text: str) -> re.Pattern[str]:
-        return re.compile(re.escape(text.strip()), re.IGNORECASE)
+        escaped = re.escape(text.strip()).replace("/", r"\/")
+        return re.compile(escaped, re.IGNORECASE)
+
+    @staticmethod
+    def __isLocatorCandidate(label_or_dropdown: Any) -> bool:
+        return not isinstance(label_or_dropdown, str) and hasattr(
+            label_or_dropdown, "click"
+        ) and hasattr(label_or_dropdown, "count")
+
+    @staticmethod
+    def __describeDropdownTarget(label_or_dropdown: str | Locator) -> str:
+        if isinstance(label_or_dropdown, str):
+            return label_or_dropdown
+
+        for attribute_name in ("aria-label", "name", "id"):
+            try:
+                attribute_value = label_or_dropdown.get_attribute(attribute_name)
+                if attribute_value:
+                    return attribute_value
+            except Exception:
+                continue
+
+        return "provided combobox"
 
     @staticmethod
     def __findLabelElement(page: Page, label: str) -> Locator:
@@ -149,16 +172,37 @@ class SearchDropdownUtils:
     @staticmethod
     def selectSearchDropdownValueIfEditable(
         page: Page,
-        label: str,
+        label: str | Locator,
         value: str,
     ) -> bool:
-        """Select a search dropdown value using Playwright's default waiting behavior."""
+        """Select a search dropdown value using a label string or an existing combobox locator."""
+        dropdown_name = SearchDropdownUtils.__describeDropdownTarget(label)
         normalized_value = "" if value is None else str(value).strip()
         if not normalized_value:
-            print(f"Skipping '{label}' because no search dropdown value was provided.")
+            print(
+                f"Skipping '{dropdown_name}' because no search dropdown value was provided."
+            )
             return False
 
-        search_dropdown = SearchDropdownUtils.__findSearchDropdown(page, label)
+        search_dropdown: Locator
+        if SearchDropdownUtils.__isLocatorCandidate(label):
+            search_dropdown = cast(Locator, label)
+            try:
+                if search_dropdown.get_attribute("role") != "combobox":
+                    nested_combobox = search_dropdown.locator(
+                        'div[role="combobox"], input[role="combobox"], [role="combobox"]'
+                    ).first
+                    if nested_combobox.count() > 0:
+                        search_dropdown = nested_combobox
+            except Exception:
+                pass
+        else:
+            search_dropdown = SearchDropdownUtils.__findSearchDropdown(
+                page,
+                cast(str, label),
+            )
+
+        search_dropdown.wait_for(state="visible")
         search_dropdown.click()
 
         fillable_input, component_id = SearchDropdownUtils.__getFillableInput(

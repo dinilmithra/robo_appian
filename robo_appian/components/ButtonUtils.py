@@ -34,6 +34,7 @@ class ButtonUtils:
 
     @staticmethod
     def __clickWhenVisible(page: Page, component: Locator) -> None:
+        ComponentUtils.waitForAppianActionCompleted(page)
         component.wait_for(state="visible")
         component.scroll_into_view_if_needed()
         component.click()

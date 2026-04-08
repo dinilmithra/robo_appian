@@ -23,16 +23,28 @@ def _load_env_file() -> None:
 _load_env_file()
 
 
+def _is_headless_enabled() -> bool:
+    value = os.getenv("HEAD_LESS", "Y").strip().upper()
+    if value in {"1", "Y", "YES", "TRUE"}:
+        return True
+    if value in {"0", "N", "NO", "FALSE"}:
+        return False
+
+    raise ValueError(
+        "HEAD_LESS must be Y/N, YES/NO, TRUE/FALSE, 1/0, or left unset."
+    )
+
+
 @pytest.fixture(scope="session")
 def browser():
     """Session-scoped Playwright browser.
     Configure via env vars:
       - BROWSER: chromium (default), firefox, or webkit.
-      - HEADLESS: "1" (default) to run headless; set "0" for headed.
+      - HEAD_LESS: Y/YES/TRUE/1 enables headless; N/NO/FALSE/0 disables it; leave unset for the default.
     """
     playwright_module = pytest.importorskip("playwright.sync_api")
     browser_name = os.getenv("BROWSER", "chromium").lower()
-    headless = os.getenv("HEADLESS", "1") == "1"
+    headless = _is_headless_enabled()
 
     with playwright_module.sync_playwright() as playwright:
         if browser_name == "firefox":
@@ -58,7 +70,7 @@ def page(browser):
     """Function-scoped Playwright page aligned with library usage (page-first)."""
     wait_time_seconds = int(os.getenv("WAIT_TIME", "15"))
     timeout = wait_time_seconds * 1000
-    headless = os.getenv("HEADLESS", "1") == "1"
+    headless = _is_headless_enabled()
 
     context_options = {}
     if not headless:
