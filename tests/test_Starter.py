@@ -5,7 +5,7 @@ import time
 import pytest
 from playwright.sync_api import Locator, Page, TimeoutError as PlaywrightTimeoutError
 
-from robo_appian.components.ButtonHelper import ButtonHelper
+from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.DropdownUtils import DropdownUtils
 from robo_appian.components.SearchInputUtils import SearchInputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
@@ -338,7 +338,7 @@ def _create_request(
         timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=int(poll_interval_seconds),
     )
-    ButtonHelper.click(page)
+    ButtonUtils.click(page)
 
 
 def _request_details_tab(

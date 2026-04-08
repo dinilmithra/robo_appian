@@ -7,7 +7,7 @@ Page = Any
 Locator = Any
 
 
-class ButtonHelper:
+class ButtonUtils:
     """Playwright helper for clicking Appian buttons when they become enabled."""
 
     @staticmethod
@@ -22,14 +22,14 @@ class ButtonHelper:
     def __findButton(page: Page, label: str) -> Locator:
         exact_match = page.get_by_role(
             "button",
-            name=ButtonHelper.__exactTextPattern(label),
+            name=ButtonUtils.__exactTextPattern(label),
         ).first
         if exact_match.count() > 0:
             return exact_match
 
         return page.get_by_role(
             "button",
-            name=ButtonHelper.__partialTextPattern(label),
+            name=ButtonUtils.__partialTextPattern(label),
         ).first
 
     @staticmethod
@@ -44,8 +44,8 @@ class ButtonHelper:
         label: str = "Submit",
     ) -> None:
         """Wait for the requested button to become visible, then click it."""
-        button = ButtonHelper.__findButton(page, label)        
-        ButtonHelper.__clickWhenVisible(button)
+        button = ButtonUtils.__findButton(page, label)
+        ButtonUtils.__clickWhenVisible(button)
 
     @staticmethod
     def clickById(
@@ -54,4 +54,4 @@ class ButtonHelper:
     ) -> None:
         """Wait for a visible element with the given id, then click it using Playwright's default waiting."""
         button = page.locator(f'[id="{id}"]').first
-        ButtonHelper.__clickWhenVisible(button)
+        ButtonUtils.__clickWhenVisible(button)

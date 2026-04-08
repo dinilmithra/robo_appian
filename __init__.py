@@ -1,4 +1,4 @@
-from robo_appian.components.ButtonHelper import ButtonHelper
+from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
 from robo_appian.components.DateUtils import DateUtils
@@ -13,7 +13,7 @@ from robo_appian.components.SearchInputUtils import SearchInputUtils
 __version__ = ComponentUtils.get_version()
 
 __all__ = [
-    "ButtonHelper",
+    "ButtonUtils",
     "ButtonUtils",
     "ComponentUtils", 
     "DateUtils",
