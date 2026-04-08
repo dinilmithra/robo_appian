@@ -8,6 +8,8 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Union
 
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+
 Page = Any
 Locator = Any
 
@@ -37,7 +39,7 @@ class ComponentUtils:
         if '"' not in value:
             return f'"{value}"'
         if "'" not in value:
-            return f"'{value}'"
+            return f'\'{value}\''
 
         parts = value.split('"')
         literals: list[str] = []
@@ -46,12 +48,12 @@ class ComponentUtils:
                 literals.append(f'"{part}"')
             if index < len(parts) - 1:
                 literals.append("'\"'")
-        return f"concat({', '.join(literals)})"
+        return f'concat({", ".join(literals)})'
 
     @staticmethod
     def xpath_text_with_normalized_nbsp(text_expr: str = ".") -> str:
         """Build XPath text expression with NBSP normalized to regular spaces."""
-        return f"translate({text_expr}, '\u00a0', ' ')"
+        return f'translate({text_expr}, \'\u00a0\', \' \')'
 
     @staticmethod
     def xpath_trim_equals(text_expr: str, expected: str) -> str:
@@ -59,56 +61,22 @@ class ComponentUtils:
         expected_literal = ComponentUtils.xpath_literal(expected.strip())
         normalized_expr = ComponentUtils.xpath_text_with_normalized_nbsp(text_expr)
         return (
-            f"contains({normalized_expr}, {expected_literal})"
-            f" and string-length(normalize-space(substring-before({normalized_expr}, {expected_literal})))=0"
-            f" and string-length(normalize-space(substring-after({normalized_expr}, {expected_literal})))=0"
+            f'contains({normalized_expr}, {expected_literal})'
+            f' and string-length(normalize-space(substring-before({normalized_expr}, {expected_literal})))=0'
+            f' and string-length(normalize-space(substring-after({normalized_expr}, {expected_literal})))=0'
         )
 
     @staticmethod
-    def validate_text_input(value: str, param_name: str = "input") -> str:
-        """Validate and sanitize text input for use in XPath or component lookups.
-
-        Args:
-            value: The text value to validate.
-            param_name: Name of the parameter (for error messages). Default: "input".
-
-        Returns:
-            str: The validated, stripped text value.
-
-        Raises:
-            ValueError: If value is None or contains only whitespace.
-        """
-        if value is None:
-            raise ValueError(f"{param_name} cannot be None")
-        if isinstance(value, str):
-            stripped = value.strip()
-            if not stripped:
-                raise ValueError(f"{param_name} cannot be empty or whitespace-only")
-            return stripped
-        raise ValueError(f"{param_name} must be a string, got {type(value).__name__}")
-
-    @staticmethod
-    def validate_label_text(label: str) -> str:
-        """Validate label text for element lookups.
-
-        Convenience method that calls validate_text_input with 'label' as param_name.
-
-        Args:
-            label: The label text to validate.
-
-        Returns:
-            str: The validated, stripped label text.
-
-        Raises:
-            ValueError: If label is None or empty/whitespace-only.
-        """
-        return ComponentUtils.validate_text_input(label, "label")
+    def xpath_visible_predicate() -> str:
+        """Build XPath predicate that excludes aria/class hidden nodes."""
+        return (
+            'not(ancestor-or-self::*[@aria-hidden="true"])'
+            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])'
+        )
 
     @staticmethod
     def validate_id(element_id: str) -> str:
-        """Validate element ID for lookups.
-
-        Convenience method that calls validate_text_input with 'element_id' as param_name.
+        """Validate and normalize an element ID for lookups.
 
         Args:
             element_id: The element ID to validate.
@@ -117,14 +85,54 @@ class ComponentUtils:
             str: The validated, stripped element ID.
 
         Raises:
-            ValueError: If element_id is None or empty/whitespace-only.
+            ValueError: If element_id is None, not a string, or empty/whitespace-only.
         """
-        return ComponentUtils.validate_text_input(element_id, "element_id")
+        if element_id is None:
+            raise ValueError("element_id cannot be None")
+        if isinstance(element_id, str):
+            stripped = element_id.strip()
+            if not stripped:
+                raise ValueError("element_id cannot be empty or whitespace-only")
+            return stripped
+        raise ValueError(
+            f'element_id must be a string, got {type(element_id).__name__}'
+        )
+
+    @staticmethod
+    def validate_text_input(text: str, field_name: str = "text") -> str:
+        """Validate and normalize a text input value.
+
+        Args:
+            text: The text value to validate.
+            field_name: Descriptive field name for error messages.
+
+        Returns:
+            str: The validated text with NBSP normalized and outer whitespace trimmed.
+
+        Raises:
+            ValueError: If text is None, not a string, or empty/whitespace-only.
+        """
+        if text is None:
+            raise ValueError(f"{field_name} cannot be None")
+        if not isinstance(text, str):
+            raise ValueError(
+                f"{field_name} must be a string, got {type(text).__name__}"
+            )
+
+        normalized_text = text.replace("\u00A0", " ").strip()
+        if not normalized_text:
+            raise ValueError(f"{field_name} cannot be empty or whitespace-only")
+        return normalized_text
+
+    @staticmethod
+    def validate_label_text(label: str) -> str:
+        """Validate and normalize label text for component lookups."""
+        return ComponentUtils.validate_text_input(label, "label")
 
     @staticmethod
     def _as_locator(page: Page, component_or_xpath: Union[Locator, str]) -> Locator:
         if isinstance(component_or_xpath, str):
-            return page.locator(f"xpath={component_or_xpath}").first
+            return page.locator(f'xpath={component_or_xpath}').first
         return component_or_xpath
 
     @staticmethod
@@ -162,14 +170,16 @@ class ComponentUtils:
                 result = func(*args, **kwargs)
                 if result:
                     return result
-            except Exception as exc:
+            except (TimeoutError, PlaywrightTimeoutError) as exc:
                 last_exc = exc
+            except Exception:
+                raise
             time.sleep(wait_interval)
 
         if raise_on_timeout:
             if last_exc is not None:
                 raise last_exc
-            raise TimeoutError(f"Operation did not succeed within {timeout} seconds")
+            raise TimeoutError(f'Operation did not succeed within {timeout} seconds')
 
         return timeout_result
 
@@ -235,7 +245,7 @@ class ComponentUtils:
             TimeoutError: If child element is not found or not visible.
         """
         parent = ComponentUtils._as_locator(page, component)
-        child = parent.locator(f"xpath={xpath}").first
+        child = parent.locator(f'xpath={xpath}').first
         child.wait_for(state="visible")
         return child
 
@@ -268,7 +278,7 @@ class ComponentUtils:
         Returns:
             bool: True if element exists and is visible, False otherwise.
         """
-        locator = page.locator(f"xpath={xpath}")
+        locator = page.locator(f'xpath={xpath}')
         if locator.count() == 0:
             return False
         return locator.first.is_visible()
@@ -312,9 +322,9 @@ class ComponentUtils:
         Raises:
             ValueError: If no valid components are found.
         """
-        locators = page.locator(f"xpath={xpath}")
+        locators = page.locator(f'xpath={xpath}')
         if locators.count() == 0:
-            raise ValueError(f"No components found for XPath: {xpath}")
+            raise ValueError(f'No components found for XPath: {xpath}')
 
         valid_components: list[Locator] = []
         for idx in range(locators.count()):
@@ -328,7 +338,7 @@ class ComponentUtils:
         if valid_components:
             return valid_components
 
-        raise ValueError(f"No valid components found for XPath: {xpath}")
+        raise ValueError(f'No valid components found for XPath: {xpath}')
 
     @staticmethod
     def findComponentByXPath(page: Page, xpath: str):
@@ -341,7 +351,7 @@ class ComponentUtils:
         Returns:
             Locator: The component element locator.
         """
-        locator = page.locator(f"xpath={xpath}").first
+        locator = page.locator(f'xpath={xpath}').first
         locator.wait_for(state="attached")
         return locator
 
@@ -408,6 +418,19 @@ class ComponentUtils:
         return True
 
     @staticmethod
+    def waitForAppianActionCompleted(page: Page):
+        """Wait for Appian progress and loading indicators to clear.
+
+        Args:
+            page: Playwright Page object.
+        """
+        page.wait_for_selector("#appian-nprogress", state="detached")
+        page.wait_for_selector(
+            ":is(svg[data-owl-icon-name='fa-circle-o-notch'], button.Button---is_loading)",
+            state="detached",
+        )
+
+    @staticmethod
     def waitForElementToBeVisibleByText(page: Page, text: str):
         """Wait for an element to become visible by exact text match.
 
@@ -424,8 +447,8 @@ class ComponentUtils:
         text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         child_text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         xpath = (
-            f"//*[{text_predicate} "
-            f"and not(*[{child_text_predicate}]) "
+            f'//*[{text_predicate} '
+            f'and not(*[{child_text_predicate}]) '
             "and not(ancestor-or-self::*[contains(@class, '---hidden')])]"
         )
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
@@ -447,8 +470,8 @@ class ComponentUtils:
         text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         child_text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         xpath = (
-            f"//*[{text_predicate} "
-            f"and not(*[{child_text_predicate}]) "
+            f'//*[{text_predicate} '
+            f'and not(*[{child_text_predicate}]) '
             "and not(ancestor-or-self::*[contains(@class, '---hidden')])]"
         )
         return ComponentUtils.waitForComponentNotToBeVisibleByXpath(page, xpath)
@@ -484,7 +507,7 @@ class ComponentUtils:
         Raises:
             TimeoutError: If element does not become visible within timeout.
         """
-        locator = page.locator(f"xpath={xpath}").first
+        locator = page.locator(f'xpath={xpath}').first
         locator.wait_for(state="visible")
         return locator
 
@@ -519,6 +542,6 @@ class ComponentUtils:
         Raises:
             TimeoutError: If element does not become hidden within timeout.
         """
-        locator = page.locator(f"xpath={xpath}").first
+        locator = page.locator(f'xpath={xpath}').first
         locator.wait_for(state="hidden")
         return True

@@ -1,128 +1,237 @@
-from typing import Any
+import re
+from typing import Any, cast
 
-from robo_appian.components.InputUtils import InputUtils
-from robo_appian.utils.ComponentUtils import ComponentUtils
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
 Page = Any
 Locator = Any
 
 
 class SearchDropdownUtils:
-    @staticmethod
-    def __selectSearchDropdownValueByDropdownId(
-        page: Page, component_id: str, value: str
-    ):
-        if not component_id:
-            raise ValueError("Invalid component_id provided.")
-
-        input_component_id = f"{component_id}_searchInput"
-        input_component = ComponentUtils.findComponentById(page, input_component_id)
-        InputUtils._setValueByComponent(page, input_component, value)
-
-        dropdown_option_id = f"{component_id}_list"
-        value_predicate = ComponentUtils.xpath_trim_equals(".", value)
-        xpath = (
-            f".//ul[@id={ComponentUtils.xpath_literal(dropdown_option_id)}]"
-            f"/li[./div[{value_predicate}]][1]"
-        )
-        component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
-        ComponentUtils.click(page, component)
-        return component
+    """Playwright helper for selecting Appian search dropdown values only when editable."""
 
     @staticmethod
-    def __selectSearchDropdownValueByPartialLabelText(
-        page: Page, label: str, value: str
-    ):
-        label_literal = ComponentUtils.xpath_literal(label.strip())
-        label_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
-        # Complex nested XPath breaks down as:
-        # .//div[./div/span[contains(...)]] - Find parent div containing span with partial label match
-        # /div/div/div/div[@role="combobox" - Navigate through nested divs to find the combobox
-        # and not(@aria-disabled="true")] - Ensure combobox is enabled
-        xpath = (
-            f".//div[./div/span[contains({label_text}, "
-            f'{label_literal})]]/div/div/div/div[@role="combobox" and not(@aria-disabled="true")]'
-        )
-        combobox = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
-        return SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(
-            page, combobox, value
-        )
+    def __exactTextPattern(text: str) -> re.Pattern[str]:
+        escaped = re.escape(text).replace("/", r"\/")
+        return re.compile(rf"^\s*{escaped}\s*$", re.IGNORECASE)
 
     @staticmethod
-    def __selectSearchDropdownValueByLabelText(page: Page, label: str, value: str):
-        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        # Complex nested XPath breaks down as:
-        # .//div[./div/span[...="label"]] - Find parent div with span matching exact label
-        # /div/div/div/div[@role="combobox" - Navigate through nested divs to combobox
-        # and not(@aria-disabled="true")] - Ensure combobox is enabled
-        xpath = (
-            f".//div[./div/span[{label_predicate}]]/div/div/div/div[@role=\"combobox\" and not(@aria-disabled=\"true\")]"
-        )
-        combobox = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
-        return SearchDropdownUtils._selectSearchDropdownValueByComboboxComponent(
-            page, combobox, value
-        )
+    def __partialTextPattern(text: str) -> re.Pattern[str]:
+        escaped = re.escape(text.strip()).replace("/", r"\/")
+        return re.compile(escaped, re.IGNORECASE)
 
     @staticmethod
-    def _selectSearchDropdownValueByComboboxComponent(
-        page: Page, combobox: Locator, value: str
-    ):
-        combobox_id = combobox.get_attribute("id")
-        if not combobox_id:
-            raise ValueError("Combobox element does not have an 'id' attribute.")
+    def __isLocatorCandidate(label_or_dropdown: Any) -> bool:
+        return not isinstance(label_or_dropdown, str) and hasattr(
+            label_or_dropdown, "click"
+        ) and hasattr(label_or_dropdown, "count")
 
-        if combobox_id.endswith("_value"):
-            component_id = combobox_id.rsplit("_value", 1)[0]
+    @staticmethod
+    def __describeDropdownTarget(label_or_dropdown: str | Locator) -> str:
+        if isinstance(label_or_dropdown, str):
+            return label_or_dropdown
+
+        for attribute_name in ("aria-label", "name", "id"):
+            try:
+                attribute_value = label_or_dropdown.get_attribute(attribute_name)
+                if attribute_value:
+                    return attribute_value
+            except Exception:
+                continue
+
+        return "provided combobox"
+
+    @staticmethod
+    def __findLabelElement(page: Page, label: str) -> Locator:
+        exact_match = page.locator("label, span").filter(
+            has_text=SearchDropdownUtils.__exactTextPattern(label)
+        ).first
+        if exact_match.count() > 0:
+            return exact_match
+
+        return page.locator("label, span").filter(
+            has_text=SearchDropdownUtils.__partialTextPattern(label)
+        ).first
+
+    @staticmethod
+    def __findControlByLabel(page: Page, label: str) -> Locator | None:
+        label_element = SearchDropdownUtils.__findLabelElement(page, label)
+        if label_element.count() == 0:
+            return None
+
+        control_id = label_element.get_attribute("for")
+        if not control_id:
+            return None
+
+        control = page.locator(f'[id="{control_id}"]').first
+        if control.count() == 0:
+            return None
+
+        return control
+
+    @staticmethod
+    def __findLabeledContainer(page: Page, label: str) -> Locator:
+        label_element = SearchDropdownUtils.__findLabelElement(page, label)
+        if label_element.count() > 0:
+            container = label_element.locator(
+                "xpath=ancestor::div[@role='presentation'][1]"
+            ).first
+            if container.count() > 0:
+                return container
+
+        label_pattern = SearchDropdownUtils.__exactTextPattern(label)
+        return page.locator("div[role='presentation']").filter(
+            has=page.locator("label, span").filter(has_text=label_pattern)
+        ).first
+
+    @staticmethod
+    def __findSearchDropdown(page: Page, label: str) -> Locator:
+        exact_role_match = page.get_by_role(
+            "combobox",
+            name=SearchDropdownUtils.__exactTextPattern(label),
+        ).first
+        if exact_role_match.count() > 0:
+            return exact_role_match
+
+        partial_role_match = page.get_by_role(
+            "combobox",
+            name=SearchDropdownUtils.__partialTextPattern(label),
+        ).first
+        if partial_role_match.count() > 0:
+            return partial_role_match
+
+        control = SearchDropdownUtils.__findControlByLabel(page, label)
+        if control is not None:
+            if control.get_attribute("role") == "combobox":
+                return control
+
+            parent_combobox = control.locator(
+                "xpath=ancestor-or-self::*[@role='combobox'][1]"
+            ).first
+            if parent_combobox.count() > 0:
+                return parent_combobox
+
+        return SearchDropdownUtils.__findLabeledContainer(page, label).locator(
+            'div[role="combobox"], input[role="combobox"]'
+        ).first
+
+    @staticmethod
+    def __getFillableInput(search_dropdown: Locator, page: Page) -> tuple[Locator, str | None]:
+        component_id = search_dropdown.get_attribute("id")
+        if component_id and component_id.endswith("_value"):
+            base_component_id = component_id[: -len("_value")]
+            return page.locator(f'[id="{base_component_id}_searchInput"]').first, component_id
+
+        return search_dropdown, component_id
+
+    @staticmethod
+    def __getOptionCandidates(
+        page: Page,
+        search_dropdown: Locator,
+        fillable_input: Locator,
+        value: str,
+        component_id: str | None,
+    ) -> list[Locator]:
+        dropdown_list_id = (
+            fillable_input.get_attribute("aria-controls")
+            or search_dropdown.get_attribute("aria-controls")
+        )
+        if not dropdown_list_id and component_id and component_id.endswith("_value"):
+            dropdown_list_id = f'{component_id[: -len("_value")]}_list'
+
+        option_candidates: list[Locator] = []
+        if dropdown_list_id:
+            scoped_options = page.locator(
+                f'ul[id="{dropdown_list_id}"] li, [id="{dropdown_list_id}"] [role="option"]'
+            )
+            option_candidates.extend(
+                [
+                    scoped_options.filter(
+                        has_text=SearchDropdownUtils.__exactTextPattern(value)
+                    ).first,
+                    scoped_options.filter(
+                        has_text=SearchDropdownUtils.__partialTextPattern(value)
+                    ).first,
+                ]
+            )
+
+        option_candidates.extend(
+            [
+                page.get_by_role(
+                    "option",
+                    name=SearchDropdownUtils.__exactTextPattern(value),
+                ).first,
+                page.get_by_role(
+                    "option",
+                    name=SearchDropdownUtils.__partialTextPattern(value),
+                ).first,
+            ]
+        )
+        return option_candidates
+
+    @staticmethod
+    def selectSearchDropdownValueIfEditable(
+        page: Page,
+        label: str | Locator,
+        value: str,
+    ) -> bool:
+        """Select a search dropdown value using a label string or an existing combobox locator."""
+        dropdown_name = SearchDropdownUtils.__describeDropdownTarget(label)
+        normalized_value = "" if value is None else str(value).strip()
+        if not normalized_value:
+            print(
+                f"Skipping '{dropdown_name}' because no search dropdown value was provided."
+            )
+            return False
+
+        search_dropdown: Locator
+        if SearchDropdownUtils.__isLocatorCandidate(label):
+            search_dropdown = cast(Locator, label)
+            try:
+                if search_dropdown.get_attribute("role") != "combobox":
+                    nested_combobox = search_dropdown.locator(
+                        'div[role="combobox"], input[role="combobox"], [role="combobox"]'
+                    ).first
+                    if nested_combobox.count() > 0:
+                        search_dropdown = nested_combobox
+            except Exception:
+                pass
         else:
-            component_id = combobox_id
+            search_dropdown = SearchDropdownUtils.__findSearchDropdown(
+                page,
+                cast(str, label),
+            )
 
-        ComponentUtils.click(page, combobox)
-        SearchDropdownUtils.__selectSearchDropdownValueByDropdownId(
-            page, component_id, value
-        )
-        return combobox
+        search_dropdown.wait_for(state="visible")
+        search_dropdown.click()
 
-    @staticmethod
-    def selectSearchDropdownValueByLabelText(
-        page: Page, dropdown_label: str, value: str
-    ):
-        """Select a search dropdown value by exact label text.
-
-        Args:
-            page: Playwright Page object.
-            dropdown_label: Exact text to match in the search dropdown label.
-            value: The option value to select.
-
-        Returns:
-            Locator: The combobox element.
-
-        Raises:
-            TimeoutError: If dropdown or option is not found.
-        """
-        return SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
-            page, dropdown_label, value
-        )
-        return SearchDropdownUtils.__selectSearchDropdownValueByLabelText(
-            page, dropdown_label, value
+        fillable_input, component_id = SearchDropdownUtils.__getFillableInput(
+            search_dropdown,
+            page,
         )
 
-    @staticmethod
-    def selectSearchDropdownValueByPartialLabelText(
-        page: Page, dropdown_label: str, value: str
-    ):
-        """Select a search dropdown value by partial label text match.
+        fillable_input.click()
+        try:
+            fillable_input.press("Control+A")
+            fillable_input.press("Backspace")
+            fillable_input.type(normalized_value, delay=50)
+        except Exception:
+            fillable_input.fill("")
+            fillable_input.fill(normalized_value)
 
-        Args:
-            page: Playwright Page object.
-            dropdown_label: Partial text to match in the search dropdown label.
-            value: The option value to select.
+        for option in SearchDropdownUtils.__getOptionCandidates(
+            page,
+            search_dropdown,
+            fillable_input,
+            normalized_value,
+            component_id,
+        ):
+            try:
+                option.click()
+                return True
+            except PlaywrightTimeoutError:
+                continue
 
-        Returns:
-            Locator: The combobox element.
-
-        Raises:
-            TimeoutError: If dropdown or option is not found.
-        """
-        return SearchDropdownUtils.__selectSearchDropdownValueByPartialLabelText(
-            page, dropdown_label, value
-        )
+        fillable_input.press("ArrowDown")
+        fillable_input.press("Enter")
+        return True

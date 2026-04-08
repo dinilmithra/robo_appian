@@ -1,154 +1,59 @@
+import re
 from typing import Any
 
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
 Page = Any
+Locator = Any
 
 
 class ButtonUtils:
-    @staticmethod
-    def _findByPartialLabelText(page: Page, label: str):
-        label_literal = ComponentUtils.xpath_literal(label.strip())
-        button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
-        xpath = (
-            f"//button[contains({button_text}, "
-            f"{label_literal})"
-            ' and not(ancestor::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
-        )
-        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
+    """Playwright helper for clicking Appian buttons when they become enabled."""
 
     @staticmethod
-    def _findByLabelText(page: Page, label: str):
-        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        xpath = (
-            f"//button[./span[{label_predicate}]"
-            ' and not(ancestor::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
-        )
-        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
+    def __exactTextPattern(text: str) -> re.Pattern[str]:
+        return re.compile(rf"^\s*{re.escape(text)}\s*$", re.IGNORECASE)
 
     @staticmethod
-    def clickByPartialLabelText(page: Page, label: str):
-        """Click a button by partial label text match.
-
-        Args:
-            page: Playwright Page object.
-            label: Partial text to match in the button label.
-
-        Raises:
-            TimeoutError: If button is not found or not visible.
-        """
-        component = ButtonUtils._findByPartialLabelText(page, label)
-        ComponentUtils.click(page, component)
+    def __partialTextPattern(text: str) -> re.Pattern[str]:
+        return re.compile(re.escape(text.strip()), re.IGNORECASE)
 
     @staticmethod
-    def clickByLabelText(page: Page, label: str):
-        """Click a button by exact label text match.
+    def __findButton(page: Page, label: str) -> Locator:
+        exact_match = page.get_by_role(
+            "button",
+            name=ButtonUtils.__exactTextPattern(label),
+        ).first
+        if exact_match.count() > 0:
+            return exact_match
 
-        Args:
-            page: Playwright Page object.
-            label: Exact text to match in the button label.
-
-        Raises:
-            TimeoutError: If button is not found or not visible.
-        """
-        component = ButtonUtils._findByLabelText(page, label)
-        ComponentUtils.click(page, component)
-
-    @staticmethod
-    def clickById(page: Page, id: str):
-        """Click an element by ID.
-
-        Args:
-            page: Playwright Page object.
-            id: The ID attribute of the element.
-
-        Raises:
-            TimeoutError: If element is not found or not visible.
-        """
-        xpath = f"//*[@id={ComponentUtils.xpath_literal(id)}]"
-        component = ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
-        ComponentUtils.click(page, component)
+        return page.get_by_role(
+            "button",
+            name=ButtonUtils.__partialTextPattern(label),
+        ).first
 
     @staticmethod
-    def isButtonExistsByLabelText(page: Page, label: str):
-        """Check if a button exists by exact label text match.
-
-        Args:
-            page: Playwright Page object.
-            label: Exact text to match in the button label.
-
-        Returns:
-            bool: True if button exists and is visible, False otherwise.
-        """
-        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        xpath = (
-            f"//button[./span[{label_predicate}]"
-            ' and not(ancestor::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
-        )
-        return ComponentUtils.checkComponentExistsByXpath(page, xpath)
+    def __clickWhenVisible(page: Page, component: Locator) -> None:
+        ComponentUtils.waitForAppianActionCompleted(page)
+        component.wait_for(state="visible")
+        component.scroll_into_view_if_needed()
+        component.click()
+        ComponentUtils.waitForAppianActionCompleted(page)
 
     @staticmethod
-    def isButtonExistsByPartialLabelText(page: Page, label: str):
-        """Check if a button exists by partial label text match.
-
-        Args:
-            page: Playwright Page object.
-            label: Partial text to match in the button label.
-
-        Returns:
-            bool: True if button exists and is visible, False otherwise.
-        """
-        label_literal = ComponentUtils.xpath_literal(label.strip())
-        button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
-        xpath = (
-            f"//button[contains({button_text}, "
-            f"{label_literal})"
-            ' and not(ancestor::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
-        )
-        return ComponentUtils.checkComponentExistsByXpath(page, xpath)
+    def click(
+        page: Page,
+        label: str = "Submit",
+    ) -> None:
+        """Wait for the requested button to become visible, click it, and wait for Appian to finish processing."""
+        button = ButtonUtils.__findButton(page, label)
+        ButtonUtils.__clickWhenVisible(page, button)
 
     @staticmethod
-    def isButtonExistsByPartialLabelTextAfterLoad(page: Page, label: str):
-        """Check if a button exists after waiting with retry logic.
-
-        Args:
-            page: Playwright Page object.
-            label: Partial text to match in the button label.
-
-        Returns:
-            bool: True if button appears within the retry window, False otherwise.
-        """
-        return bool(
-            ComponentUtils.retry_until(
-                lambda: ButtonUtils.isButtonExistsByPartialLabelText(page, label),
-                timeout_result=False,
-            )
-        )
-
-    @staticmethod
-    def waitForButtonToBeVisibleByPartialLabelText(page: Page, label: str):
-        """Wait for a button to become visible by partial label text match.
-
-        Args:
-            page: Playwright Page object.
-            label: Partial text to match in the button label.
-
-        Returns:
-            Locator: The button element once visible.
-
-        Raises:
-            TimeoutError: If button does not become visible within timeout.
-        """
-        label_literal = ComponentUtils.xpath_literal(label.strip())
-        button_text = ComponentUtils.xpath_text_with_normalized_nbsp(".")
-        xpath = (
-            f"//button[contains({button_text}, "
-            f"{label_literal})"
-            ' and not(ancestor::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]' 
-        )
-        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
+    def clickById(
+        page: Page,
+        id: str,
+    ) -> None:
+        """Wait for a visible element with the given id, then click it using Playwright's default waiting."""
+        button = page.locator(f'[id="{id}"]').first
+        ButtonUtils.__clickWhenVisible(page, button)

@@ -21,22 +21,22 @@ class Colors:
 
 def write_header(text: str) -> None:
     """Print a formatted header."""
-    print(f"\n{Colors.CYAN}=== {text} ==={Colors.RESET}")
+    print(f'\n{Colors.CYAN}=== {text} ==={Colors.RESET}')
 
 
 def write_success(text: str) -> None:
     """Print a success message."""
-    print(f"{Colors.GREEN}✓ {text}{Colors.RESET}")
+    print(f'{Colors.GREEN}✓ {text}{Colors.RESET}')
 
 
 def write_error(text: str) -> None:
     """Print an error message."""
-    print(f"{Colors.RED}✗ {text}{Colors.RESET}")
+    print(f'{Colors.RED}✗ {text}{Colors.RESET}')
 
 
 def write_info(text: str) -> None:
     """Print an info message."""
-    print(f"{Colors.YELLOW}ℹ {text}{Colors.RESET}")
+    print(f'{Colors.YELLOW}ℹ {text}{Colors.RESET}')
 
 
 def run_git_command(args: list[str], capture_output: bool = False) -> str | None:
@@ -93,20 +93,20 @@ def main() -> None:
     os.chdir(repo_root)
 
     write_header("Playwright Release Push Script")
-    print(f"Working directory: {repo_root}")
+    print(f'Working directory: {repo_root}')
 
     # Check git status
     git_status = run_git_command(["status", "--porcelain"], capture_output=True)
     if git_status:
         write_error("Working directory has uncommitted changes:")
         print(git_status)
-        print(f"\n{Colors.YELLOW}Please commit or stash changes before pushing to release.{Colors.RESET}")
+        print(f'\n{Colors.YELLOW}Please commit or stash changes before pushing to release.{Colors.RESET}')
         sys.exit(1)
     write_success("Working tree is clean")
 
     # Get current branch
     current_branch = run_git_command(["rev-parse", "--abbrev-ref", "HEAD"], capture_output=True)
-    write_info(f"Current branch: {current_branch}")
+    write_info(f'Current branch: {current_branch}')
 
     # Verify playwright_release branch exists
     branches = run_git_command(["branch", "-a"], capture_output=True)
@@ -126,14 +126,14 @@ def main() -> None:
     if commits:
         print(commits)
     else:
-        write_info(f"No new commits to push from {current_branch} to playwright_release")
+        write_info(f'No new commits to push from {current_branch} to playwright_release')
 
     # Confirm action
     print()
     if args.force:
         write_info("⚠️  FORCE PUSH enabled - will overwrite remote branch")
     if args.dry_run:
-        write_info(f"[DRY RUN] Would push from {current_branch} to playwright_release")
+        write_info(f'[DRY RUN] Would push from {current_branch} to playwright_release')
     else:
         confirm = input("Continue with push? (yes/no) ").strip().lower()
         if confirm not in ("yes", "y"):
@@ -157,7 +157,7 @@ def main() -> None:
         push_opts.append("--dry-run")
     if args.force:
         push_opts.append("--force-with-lease")
-    push_opts.extend(["origin", f"{current_branch}:playwright_release"])
+    push_opts.extend(["origin", f'{current_branch}:playwright_release'])
     
     if args.dry_run:
         write_info("[DRY RUN MODE]")
