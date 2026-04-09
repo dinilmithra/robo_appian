@@ -1,6 +1,8 @@
 import re
 from typing import Any
 
+from playwright.sync_api import expect
+
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
 Page = Any
@@ -35,7 +37,7 @@ class ButtonUtils:
     @staticmethod
     def __clickWhenVisible(page: Page, component: Locator) -> None:
         ComponentUtils.waitForAppianActionCompleted(page)
-        component.wait_for(state="visible")
+        expect(component).to_be_visible()
         component.scroll_into_view_if_needed()
         component.click()
         ComponentUtils.waitForAppianActionCompleted(page)

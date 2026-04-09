@@ -1,7 +1,7 @@
 import re
 from typing import Any, Optional, Tuple, Union, cast
 
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, expect
 
 Page = Any
 Locator = Any
@@ -202,7 +202,7 @@ class SearchDropdownUtils:
                 cast(str, label),
             )
 
-        search_dropdown.wait_for(state="visible")
+        expect(search_dropdown).to_be_visible()
         search_dropdown.click()
 
         fillable_input, component_id = SearchDropdownUtils.__getFillableInput(
