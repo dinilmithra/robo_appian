@@ -1,6 +1,6 @@
 import re
 import time
-from typing import Any
+from typing import Any, Optional
 
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
@@ -43,7 +43,7 @@ class DropdownUtils:
         return ""
 
     @staticmethod
-    def __describeDropdownState(page: Page, label: str) -> tuple[str, Locator | None, str]:
+    def __describeDropdownState(page: Page, label: str) -> tuple[str, Optional[Locator], str]:
         container = DropdownUtils.__findLabeledContainer(page, label).first
         container = DropdownUtils.__ensureComponentVisible(
             container, label, "dropdown container"
@@ -105,7 +105,7 @@ class DropdownUtils:
         return DropdownUtils.__ensureComponentVisible(partial_match, label, "label")
 
     @staticmethod
-    def __findControlByLabel(page: Page, label: str) -> Locator | None:
+    def __findControlByLabel(page: Page, label: str) -> Optional[Locator]:
         label_element = DropdownUtils.__findLabelElement(page, label)
         if label_element.count() == 0:
             return None
@@ -184,11 +184,11 @@ class DropdownUtils:
         label: str,
         timeout_seconds: int = 20,
         poll_interval_seconds: int = 1,
-    ) -> tuple[str, Locator | None, str]:
+    ) -> tuple[str, Optional[Locator], str]:
         poll_interval_ms = int(poll_interval_seconds * 1000)
         deadline = time.monotonic() + timeout_seconds
         last_state = "unknown"
-        last_combobox: Locator | None = None
+        last_combobox: Optional[Locator] = None
         last_html = ""
 
         while time.monotonic() < deadline:
@@ -258,7 +258,7 @@ class DropdownUtils:
         components: list[Locator],
         timeout_seconds: int,
         poll_interval_seconds: int = 1,
-    ) -> Locator | None:
+    ) -> Optional[Locator]:
         poll_interval_ms = max(poll_interval_seconds * 1000, 100)
         deadline = time.monotonic() + timeout_seconds
 
