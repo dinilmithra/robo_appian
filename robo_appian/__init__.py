@@ -13,6 +13,8 @@ from .components.TabUtils import TabUtils
 from .utils.BrowserUtils import BrowserUtils
 from .components.TableUtils import TableUtils
 
+SearchInputHelper = SearchInputUtils
+
 __version__ = ComponentUtils.get_version()
 
 __all__ = [
@@ -27,6 +29,7 @@ __all__ = [
     "LinkUtils",
     "SearchDropdownUtils",
     "SearchInputUtils",
+    "SearchInputHelper",
     "TableUtils",
     "TabUtils",
     "BrowserUtils",
