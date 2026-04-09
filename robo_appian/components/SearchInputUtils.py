@@ -1,6 +1,6 @@
 import re
 import time
-from typing import Any
+from typing import Any, Optional
 
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
@@ -47,7 +47,7 @@ class SearchInputUtils:
         return SearchInputUtils.__ensureComponentVisible(partial_match, label, "label")
 
     @staticmethod
-    def __findControlByLabel(page: Page, label: str) -> Locator | None:
+    def __findControlByLabel(page: Page, label: str) -> Optional[Locator]:
         label_element = SearchInputUtils.__findLabelElement(page, label)
         if label_element.count() == 0:
             return None
