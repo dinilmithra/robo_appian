@@ -8,6 +8,7 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
+from typing import Optional
 
 
 class Colors:
@@ -39,7 +40,7 @@ def write_info(text: str) -> None:
     print(f'{Colors.YELLOW}ℹ {text}{Colors.RESET}')
 
 
-def run_git_command(args: list[str], capture_output: bool = False) -> str | None:
+def run_git_command(args: list[str], capture_output: bool = False) -> Optional[str]:
     """Run a git command and return output if requested."""
     try:
         result = subprocess.run(

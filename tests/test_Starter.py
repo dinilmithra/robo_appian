@@ -1,6 +1,7 @@
 import os
 import re
 import time
+from typing import Optional
 
 import pytest
 from playwright.sync_api import Locator, Page, TimeoutError as PlaywrightTimeoutError
@@ -57,7 +58,7 @@ def _find_label_element(page: Page, label: str) -> Locator:
     return _ensure_component_visible(partial_match, label, "label")
 
 
-def _find_control_by_label(page: Page, label: str) -> Locator | None:
+def _find_control_by_label(page: Page, label: str) -> Optional[Locator]:
     label_element = _find_label_element(page, label)
     if label_element.count() == 0:
         return None

@@ -1,5 +1,5 @@
 import re
-from typing import Any, cast
+from typing import Any, Optional, Tuple, Union, cast
 
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
@@ -27,7 +27,7 @@ class SearchDropdownUtils:
         ) and hasattr(label_or_dropdown, "count")
 
     @staticmethod
-    def __describeDropdownTarget(label_or_dropdown: str | Locator) -> str:
+    def __describeDropdownTarget(label_or_dropdown: Union[str, Locator]) -> str:
         if isinstance(label_or_dropdown, str):
             return label_or_dropdown
 
@@ -54,7 +54,7 @@ class SearchDropdownUtils:
         ).first
 
     @staticmethod
-    def __findControlByLabel(page: Page, label: str) -> Locator | None:
+    def __findControlByLabel(page: Page, label: str) -> Optional[Locator]:
         label_element = SearchDropdownUtils.__findLabelElement(page, label)
         if label_element.count() == 0:
             return None
@@ -116,7 +116,7 @@ class SearchDropdownUtils:
         ).first
 
     @staticmethod
-    def __getFillableInput(search_dropdown: Locator, page: Page) -> tuple[Locator, str | None]:
+    def __getFillableInput(search_dropdown: Locator, page: Page) -> Tuple[Locator, Optional[str]]:
         component_id = search_dropdown.get_attribute("id")
         if component_id and component_id.endswith("_value"):
             base_component_id = component_id[: -len("_value")]
@@ -130,7 +130,7 @@ class SearchDropdownUtils:
         search_dropdown: Locator,
         fillable_input: Locator,
         value: str,
-        component_id: str | None,
+        component_id: Optional[str],
     ) -> list[Locator]:
         dropdown_list_id = (
             fillable_input.get_attribute("aria-controls")
@@ -172,7 +172,7 @@ class SearchDropdownUtils:
     @staticmethod
     def selectSearchDropdownValueIfEditable(
         page: Page,
-        label: str | Locator,
+        label: Union[str, Locator],
         value: str,
     ) -> bool:
         """Select a search dropdown value using a label string or an existing combobox locator."""
