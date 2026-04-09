@@ -32,7 +32,7 @@ class DateUtils:
             TimeoutError: If date input is not found or not visible.
         """
         component = DateUtils.__findComponent(page, label)
-        InputUtils._setValueByComponent(page, component, value)
+        InputUtils.fill_value_by_locator(component, value)
         component.blur()
         return component
 
