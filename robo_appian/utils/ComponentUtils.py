@@ -8,7 +8,7 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Union
 
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, expect
 
 Page = Any
 Locator = Any
@@ -246,7 +246,7 @@ class ComponentUtils:
         """
         parent = ComponentUtils._as_locator(page, component)
         child = parent.locator(f'xpath={xpath}').first
-        child.wait_for(state="visible")
+        expect(child).to_be_visible()
         return child
 
     @staticmethod
@@ -264,7 +264,7 @@ class ComponentUtils:
             TimeoutError: If element with ID is not found or not visible.
         """
         locator = page.locator(f'xpath=//*[@id="{id}"]').first
-        locator.wait_for(state="visible")
+        expect(locator).to_be_visible()
         return locator
 
     @staticmethod
@@ -396,7 +396,7 @@ class ComponentUtils:
             TimeoutError: If element does not become visible within timeout.
         """
         locator = page.locator(f'xpath=//*[@id="{id}"]').first
-        locator.wait_for(state="visible")
+        expect(locator).to_be_visible()
         return locator
 
     @staticmethod
@@ -490,7 +490,7 @@ class ComponentUtils:
             Locator: The component element locator once visible.
         """
         locator = ComponentUtils._as_locator(page, component)
-        locator.wait_for(state="visible")
+        expect(locator).to_be_visible()
         return locator
 
     @staticmethod
@@ -508,7 +508,7 @@ class ComponentUtils:
             TimeoutError: If element does not become visible within timeout.
         """
         locator = page.locator(f'xpath={xpath}').first
-        locator.wait_for(state="visible")
+        expect(locator).to_be_visible()
         return locator
 
     @staticmethod

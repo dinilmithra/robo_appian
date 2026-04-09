@@ -1,4 +1,4 @@
-from playwright.sync_api import Locator, Page
+from playwright.sync_api import Locator, Page, expect
 
 
 class InputUtils:
@@ -6,7 +6,7 @@ class InputUtils:
 
     @staticmethod
     def fill_value_by_locator(locator: Locator, value: str) -> Locator: 
-        locator.wait_for(state="visible")
+        expect(locator).to_be_visible()
         locator.fill("" if value is None else str(value))
         locator.blur()
         return locator

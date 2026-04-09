@@ -1,6 +1,8 @@
 import re
 from typing import Any
 
+from playwright.sync_api import expect
+
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
 Page = Any
@@ -15,7 +17,7 @@ class TableUtils:
             f'./thead/tr/th[@scope="col" and @abbr={ComponentUtils.xpath_literal(columnName)} and {visible_predicate}]'
         )
         component = tableObject.locator(f'xpath={xpath}').first
-        component.wait_for(state="visible")
+        expect(component).to_be_visible()
 
         return TableUtils.__findColumnNumberByHeader(component, columnName)
 

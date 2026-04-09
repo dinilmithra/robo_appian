@@ -2,7 +2,7 @@ import re
 import time
 from typing import Any, Optional
 
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, expect
 
 Page = Any
 Locator = Any
@@ -26,9 +26,9 @@ class DropdownUtils:
         component_type: str,
     ) -> Locator:
         try:
-            component.wait_for(state="visible")
+            expect(component).to_be_visible()
             return component
-        except PlaywrightTimeoutError as exc:
+        except (AssertionError, PlaywrightTimeoutError) as exc:
             raise AssertionError(
                 f"Expected visible {component_type} for '{label}', but it was not visible."
             ) from exc

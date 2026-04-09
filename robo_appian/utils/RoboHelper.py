@@ -1,6 +1,6 @@
 import os
 
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 
 class RoboHelper:
@@ -20,7 +20,7 @@ class RoboHelper:
             'a.btn[title="Accept"], a[onclick*="postAccept"], form[action*="SSO.ping"] a:has-text("Accept")'
         ).first
 
-        accept_locator.wait_for(state="visible")
+        expect(accept_locator).to_be_visible()
         accept_locator.scroll_into_view_if_needed()
         accept_locator.click(force=True)
 
