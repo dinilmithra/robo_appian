@@ -8,10 +8,12 @@ from .components.InputUtils import InputUtils
 from .components.LabelUtils import LabelUtils
 from .components.LinkUtils import LinkUtils
 from .components.SearchDropdownUtils import SearchDropdownUtils
+from .components.SearchInputUtils import SearchInputUtils
 from .components.TabUtils import TabUtils
 from .utils.BrowserUtils import BrowserUtils
-from .components.SearchInputUtils import SearchInputUtils
 from .components.TableUtils import TableUtils
+
+SearchInputHelper = SearchInputUtils
 
 __version__ = ComponentUtils.get_version()
 
@@ -26,8 +28,9 @@ __all__ = [
     "LabelUtils",
     "LinkUtils",
     "SearchDropdownUtils",
+    "SearchInputUtils",
+    "SearchInputHelper",
     "TableUtils",
     "TabUtils",
     "BrowserUtils",
-    "SearchInputUtils",
 ]

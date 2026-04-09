@@ -8,6 +8,7 @@ class InputUtils:
     def fill_value_by_locator(locator: Locator, value: str) -> Locator: 
         locator.wait_for(state="visible")
         locator.fill("" if value is None else str(value))
+        locator.blur()
         return locator
 
     @staticmethod

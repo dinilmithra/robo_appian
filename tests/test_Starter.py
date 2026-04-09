@@ -68,19 +68,19 @@ def _create_request(
         editable_timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=int(poll_interval_seconds),
     )
-    SearchInputUtils.selectSearchInputValueIfEditable(
+    SearchInputUtils.select(
         page,
         "Entity Lookup",
         "FDA/CDER/OSP/OPSA/DSAS/",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
+
     DropdownUtils.waitForLabeledValueToLoad(
         page,
         "Center",
         timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=int(poll_interval_seconds),
     )
+
     ButtonUtils.click(page)
 
 
@@ -126,12 +126,10 @@ def _request_details_tab(
         "Order Type*",
         "Office Supplies",
     )
-    SearchInputUtils.selectSearchInputValueIfEditable(
+    SearchInputUtils.select(
         page,
         "Vendor Name*",
         "GUIDEHOUSE INC.",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
     InputUtils.fill_value(
         page,
