@@ -1,14 +1,13 @@
 import os
 import re
-import time
-from typing import Optional
 
 import pytest
-from playwright.sync_api import Locator, Page, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import Page
 
 from robo_appian.components.ButtonUtils import ButtonUtils
 from robo_appian.components.DropdownUtils import DropdownUtils
 from robo_appian.components.SearchDropdownUtils import SearchDropdownUtils
+from robo_appian.components.InputUtils import InputUtils
 from robo_appian.components.SearchInputUtils import SearchInputUtils
 from robo_appian.utils.ComponentUtils import ComponentUtils
 
@@ -30,137 +29,6 @@ def _open_new_request(page: Page) -> None:
     ).first.click()
     page.wait_for_load_state("domcontentloaded")
     page.wait_for_load_state("networkidle")
-
-
-def _ensure_component_visible(
-    component: Locator,
-    label: str,
-    component_type: str,
-) -> Locator:
-    try:
-        component.wait_for(state="visible")
-        return component
-    except PlaywrightTimeoutError as exc:
-        raise AssertionError(
-            f"Expected visible {component_type} for '{label}', but it was not visible."
-        ) from exc
-
-
-def _find_label_element(page: Page, label: str) -> Locator:
-    exact_pattern = _exact_text_pattern(label)
-    exact_match = page.locator("label, span").filter(has_text=exact_pattern).first
-    if exact_match.count() > 0:
-        return _ensure_component_visible(exact_match, label, "label")
-
-    partial_match = page.locator("label, span").filter(
-        has_text=_partial_text_pattern(label)
-    ).first
-    return _ensure_component_visible(partial_match, label, "label")
-
-
-def _find_control_by_label(page: Page, label: str) -> Optional[Locator]:
-    label_element = _find_label_element(page, label)
-    if label_element.count() == 0:
-        return None
-
-    control_id = label_element.get_attribute("for")
-    if not control_id:
-        return None
-
-    control = page.locator(f'[id="{control_id}"]').first
-    if control.count() == 0:
-        return None
-
-    return control
-
-
-def _find_labeled_container(page: Page, label: str) -> Locator:
-    label_element = _find_label_element(page, label)
-    if label_element.count() > 0:
-        container = label_element.locator(
-            "xpath=ancestor::div[@role='presentation'][1]"
-        ).first
-        if container.count() > 0:
-            return container
-
-    label_pattern = _exact_text_pattern(label)
-    return page.locator("div[role='presentation']").filter(
-        has=page.locator("label, span").filter(has_text=label_pattern)
-    ).first
-
-
-
-def _find_text_input(page: Page, label: str) -> Locator:
-    control = _find_control_by_label(page, label)
-    if control is not None:
-        return control
-
-    return _find_labeled_container(page, label).locator(
-        'input:not([id$="_searchInput"]):not([type="hidden"]), textarea'
-    ).first
-
-
-def _is_input_editable(input_component: Locator) -> bool:
-    try:
-        return (
-            input_component.count() > 0
-            and input_component.is_visible()
-            and input_component.get_attribute("readonly") is None
-            and input_component.get_attribute("aria-disabled") != "true"
-            and not input_component.is_disabled()
-        )
-    except Exception:
-        return False
-
-
-
-def _wait_until_text_input_editable(
-    page: Page,
-    label: str,
-    timeout_seconds: int,
-    poll_interval_seconds: float,
-) -> Locator:
-    text_input = _ensure_component_visible(
-        _find_text_input(page, label),
-        label,
-        "text input",
-    )
-    poll_interval_ms = int(poll_interval_seconds * 1000)
-    deadline = time.monotonic() + timeout_seconds
-
-    while time.monotonic() < deadline:
-        if _is_input_editable(text_input):
-            return text_input
-        page.wait_for_timeout(poll_interval_ms)
-
-    return text_input
-
-
-
-def _fill_text_input_if_editable(
-    page: Page,
-    label: str,
-    value: str,
-    editable_timeout_seconds: int,
-    poll_interval_seconds: int,
-) -> bool:    
-    text_input = _wait_until_text_input_editable(
-        page,
-        label,
-        timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
-    )
-    if not _is_input_editable(text_input):
-        print(
-            f"Skipping '{label}' because the text input is not editable within "
-            f"{editable_timeout_seconds} seconds."
-        )
-        return False
-
-    text_input.click()
-    text_input.fill(value)
-    page.wait_for_timeout(250)
-    return True
 
 
 def _create_request(
@@ -221,40 +89,30 @@ def _request_details_tab(
     editable_timeout_seconds: int,
     poll_interval_seconds: int,
 ) -> None:
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Title*",
         "Selenium Testcase",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Description/Justification*",
         "Selenium Testcase",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Purchase Amount *",
         "600",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Check Issued Date",
         "04/05/2026",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Check #",
         "123456789",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
     DropdownUtils.selectDropdownIfEditable(
         page,
@@ -275,19 +133,15 @@ def _request_details_tab(
         editable_timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=poll_interval_seconds,
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Vendor Address",
         "GUIDEHOUSE INC.",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Date Purchased",
         "04/05/2026",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
     DropdownUtils.selectDropdownIfEditable(
         page,
@@ -296,12 +150,10 @@ def _request_details_tab(
         editable_timeout_seconds=editable_timeout_seconds,
         poll_interval_seconds=int(poll_interval_seconds),
     )
-    _fill_text_input_if_editable(
+    InputUtils.fill_value(
         page,
         "Source Justification",
         "Selenium Testcase",
-        editable_timeout_seconds=editable_timeout_seconds,
-        poll_interval_seconds=poll_interval_seconds,
     )
 
 
