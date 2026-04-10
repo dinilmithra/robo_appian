@@ -1,5 +1,6 @@
 from .robo_appian.components.ButtonUtils import ButtonUtils
 from .robo_appian.utils.ComponentUtils import ComponentUtils
+from .robo_appian.utils.AppianUtils import AppianUtils
 from .robo_appian.components.DateUtils import DateUtils
 from .robo_appian.components.DropdownUtils import DropdownUtils
 from .robo_appian.components.InputUtils import InputUtils
@@ -15,6 +16,7 @@ __version__ = ComponentUtils.get_version()
 __all__ = [
     "ButtonUtils",
     "ComponentUtils",
+    "AppianUtils",
     "DateUtils",
     "DropdownUtils",
     "InputUtils",
