@@ -1,6 +1,7 @@
 from .utils.RoboUtils import RoboUtils
 from .utils.RoboHelper import RoboHelper
 from .utils.ComponentUtils import ComponentUtils
+from .utils.AppianUtils import AppianUtils
 from .components.ButtonUtils import ButtonUtils
 from .components.DateUtils import DateUtils
 from .components.DropdownUtils import DropdownUtils
@@ -22,6 +23,7 @@ __all__ = [
     "RoboUtils",
     "RoboHelper",
     "ComponentUtils",
+    "AppianUtils",
     "DateUtils",
     "DropdownUtils",
     "InputUtils",

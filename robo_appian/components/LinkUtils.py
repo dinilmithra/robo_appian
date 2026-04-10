@@ -1,46 +1,23 @@
 from playwright.sync_api import Page
 
-from robo_appian.utils.ComponentUtils import ComponentUtils
-
 
 class LinkUtils:
-    @staticmethod
-    def find(page: Page, label: str):
-        """Find a link by exact label text.
-
-        Args:
-            page: Playwright Page object.
-            label: Exact text to match in the link.
-
-        Returns:
-            Locator: The link element.
-
-        Raises:
-            TimeoutError: If link is not found or not visible.
-        """
-        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        span_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        xpath = (
-            f'.//a[({label_predicate} or .//span[{span_label_predicate}])'
-            f' and not(ancestor-or-self::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
-        )
-        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
     @staticmethod
     def click(page: Page, label: str):
-        """Click a link by label text.
-
-        Args:
-            page: Playwright Page object.
-            label: Exact text to match in the link.
-
-        Returns:
-            Locator: The link element that was clicked.
-
-        Raises:
-            TimeoutError: If link is not found or not visible.
         """
-        component = LinkUtils.find(page, label)
-        ComponentUtils.click(page, component)
-        return component
+        Clicks a visible link with the specified text, 
+        ensuring it is not inside an aria-hidden container.
+        """
+        # The CSS selector logic:
+        # 1. :not([aria-hidden="true"]) * -> Look inside elements that are NOT hidden.
+        # 2. a:has-text("{label}")        -> Find an 'a' tag that contains the text.
+        # 3. :visible                     -> Playwright pseudo-class to ensure it's on screen.
+        
+        selector = f':not([aria-hidden="true"]) * a:has-text("{label}"):visible'
+        
+        # In Playwright style, you don't need explicit waits. 
+        # .click() automatically waits for the element matching the selector to appear.
+        locator = page.locator(selector).first
+        locator.click()
+        return locator

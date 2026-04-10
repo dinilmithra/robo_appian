@@ -10,6 +10,8 @@ from typing import Any, Union
 
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, expect
 
+from .AppianUtils import AppianUtils
+
 Page = Any
 Locator = Any
 
@@ -432,26 +434,8 @@ class ComponentUtils:
 
     @staticmethod
     def waitForElementToBeVisibleByText(page: Page, text: str):
-        """Wait for an element to become visible by exact text match.
-
-        Args:
-            page: Playwright Page object.
-            text: Exact text to match (NBSP will be normalized).
-
-        Returns:
-            Locator: The element locator once visible.
-
-        Raises:
-            TimeoutError: If element does not become visible within timeout.
-        """
-        text_predicate = ComponentUtils.xpath_trim_equals(".", text)
-        child_text_predicate = ComponentUtils.xpath_trim_equals(".", text)
-        xpath = (
-            f'//*[{text_predicate} '
-            f'and not(*[{child_text_predicate}]) '
-            "and not(ancestor-or-self::*[contains(@class, '---hidden')])]"
-        )
-        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
+        """Wait for an element to become visible by exact text match."""
+        return AppianUtils.waitForVisibleElementByText(page, text)
 
     @staticmethod
     def waitForElementNotToBeVisibleByText(page: Page, text: str):
