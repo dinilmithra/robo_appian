@@ -1,46 +1,30 @@
 from playwright.sync_api import Page
 
-from robo_appian.utils.ComponentUtils import ComponentUtils
-
 
 class LinkUtils:
-    @staticmethod
-    def find(page: Page, label: str):
-        """Find a link by exact label text.
-
-        Args:
-            page: Playwright Page object.
-            label: Exact text to match in the link.
-
-        Returns:
-            Locator: The link element.
-
-        Raises:
-            TimeoutError: If link is not found or not visible.
-        """
-        label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        span_label_predicate = ComponentUtils.xpath_trim_equals(".", label)
-        xpath = (
-            f'.//a[({label_predicate} or .//span[{span_label_predicate}])'
-            f' and not(ancestor-or-self::*[@aria-hidden="true"])'
-            ' and not(ancestor-or-self::*[contains(@class, "---hidden")])]'
-        )
-        return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
     @staticmethod
     def click(page: Page, label: str):
-        """Click a link by label text.
-
-        Args:
-            page: Playwright Page object.
-            label: Exact text to match in the link.
-
-        Returns:
-            Locator: The link element that was clicked.
-
-        Raises:
-            TimeoutError: If link is not found or not visible.
         """
-        component = LinkUtils.find(page, label)
-        ComponentUtils.click(page, component)
-        return component
+        Clicks a link by label text if it and its ancestors are not aria-hidden.
+        """
+        # 1. Locate the link by its user-visible role and text.
+        # This is the "Playwright Style" start point.
+        links = page.get_by_role("link", name=label, exact=True)
+
+        # 2. Create an exclusion filter for hidden ancestors.
+        # :not([aria-hidden='true'])   -> The element itself isn't hidden.
+        # :not([aria-hidden='true'] *) -> The element is not inside a hidden parent.
+        not_hidden_selector = ":not([aria-hidden='true']):not([aria-hidden='true'] *)"
+
+        # 3. Chain the locators.
+        # .and_() intersects the 'link' locator with the 'not hidden' locator.
+        # .filter(visible=True) ensures it's actually on the screen.
+        locator = (
+            links.and_(page.locator(not_hidden_selector)).filter(visible=True).first
+        )
+
+        # 4. Perform the click on the first valid match.
+        # .first handles cases where Appian might have temporary DOM duplicates.
+        locator.click()
+        return locator
