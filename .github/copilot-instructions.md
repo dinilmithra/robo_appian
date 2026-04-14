@@ -42,8 +42,7 @@ All utilities follow consistent naming: `*ByLabelText` (exact match), `*ByPartia
 - Python 3.12; Playwright >= 1.52.0 (see [pyproject.toml](../pyproject.toml)).
 - Install for dev:
   ```bash
-  pip install -r requirements.txt
-  poetry install
+  poetry install --with dev
   poetry run playwright install
   ```
 - **Tests**: pytest harness in [tests](../tests); fixtures: `browser` (session-scoped), `page` (function-scoped), `app_url` (from `APP_URL` env).

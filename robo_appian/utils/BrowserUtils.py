@@ -17,7 +17,9 @@ class BrowserUtils:
     @staticmethod
     def switch_to_next_tab(page: Page) -> Page:
         """Switch to the next open tab relative to the current page."""
-        pages = [open_page for open_page in page.context.pages if not open_page.is_closed()]
+        pages = [
+            open_page for open_page in page.context.pages if not open_page.is_closed()
+        ]
         current_tab_index = pages.index(page)
         next_tab_index = (current_tab_index + 1) % len(pages)
         target = pages[next_tab_index]

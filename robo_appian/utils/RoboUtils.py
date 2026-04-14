@@ -56,16 +56,16 @@ class RoboUtils:
             except PlaywrightTimeoutError as e:
                 retry_count += 1
                 if retry_count >= max_retries:
-                    msg = f'Failed to execute {operation_name} after {max_retries} attempts.'
+                    msg = f"Failed to execute {operation_name} after {max_retries} attempts."
                     logger.error(msg)
                     raise PlaywrightTimeoutError(msg) from e
                 else:
                     logger.warning(
-                        f'Timeout during {operation_name}, retrying ({retry_count}/{max_retries})...'
+                        f"Timeout during {operation_name}, retrying ({retry_count}/{max_retries})..."
                     )
                     if retry_delay_seconds > 0:
                         time.sleep(retry_delay_seconds)
             except Exception as e:
-                msg = f'Error during {operation_name}: {e}'
+                msg = f"Error during {operation_name}: {e}"
                 logger.error(msg)
                 raise
