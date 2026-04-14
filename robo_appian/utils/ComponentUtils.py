@@ -3,6 +3,7 @@ try:
 except ImportError:  # pragma: no cover - Python < 3.11
     import tomli as tomllib
 
+import logging
 import time
 from datetime import date, timedelta
 from pathlib import Path
@@ -14,6 +15,8 @@ from .AppianUtils import AppianUtils
 
 Page = Any
 Locator = Any
+
+logger = logging.getLogger(__name__)
 
 
 class ComponentUtils:
@@ -41,7 +44,7 @@ class ComponentUtils:
         if '"' not in value:
             return f'"{value}"'
         if "'" not in value:
-            return f'\'{value}\''
+            return f"'{value}'"
 
         parts = value.split('"')
         literals: list[str] = []
@@ -55,7 +58,7 @@ class ComponentUtils:
     @staticmethod
     def xpath_text_with_normalized_nbsp(text_expr: str = ".") -> str:
         """Build XPath text expression with NBSP normalized to regular spaces."""
-        return f'translate({text_expr}, \'\u00a0\', \' \')'
+        return f"translate({text_expr}, '\u00a0', ' ')"
 
     @staticmethod
     def xpath_trim_equals(text_expr: str, expected: str) -> str:
@@ -63,9 +66,9 @@ class ComponentUtils:
         expected_literal = ComponentUtils.xpath_literal(expected.strip())
         normalized_expr = ComponentUtils.xpath_text_with_normalized_nbsp(text_expr)
         return (
-            f'contains({normalized_expr}, {expected_literal})'
-            f' and string-length(normalize-space(substring-before({normalized_expr}, {expected_literal})))=0'
-            f' and string-length(normalize-space(substring-after({normalized_expr}, {expected_literal})))=0'
+            f"contains({normalized_expr}, {expected_literal})"
+            f" and string-length(normalize-space(substring-before({normalized_expr}, {expected_literal})))=0"
+            f" and string-length(normalize-space(substring-after({normalized_expr}, {expected_literal})))=0"
         )
 
     @staticmethod
@@ -97,7 +100,7 @@ class ComponentUtils:
                 raise ValueError("element_id cannot be empty or whitespace-only")
             return stripped
         raise ValueError(
-            f'element_id must be a string, got {type(element_id).__name__}'
+            f"element_id must be a string, got {type(element_id).__name__}"
         )
 
     @staticmethod
@@ -121,7 +124,7 @@ class ComponentUtils:
                 f"{field_name} must be a string, got {type(text).__name__}"
             )
 
-        normalized_text = text.replace("\u00A0", " ").strip()
+        normalized_text = text.replace("\u00a0", " ").strip()
         if not normalized_text:
             raise ValueError(f"{field_name} cannot be empty or whitespace-only")
         return normalized_text
@@ -134,7 +137,7 @@ class ComponentUtils:
     @staticmethod
     def _as_locator(page: Page, component_or_xpath: Union[Locator, str]) -> Locator:
         if isinstance(component_or_xpath, str):
-            return page.locator(f'xpath={component_or_xpath}').first
+            return page.locator(f"xpath={component_or_xpath}").first
         return component_or_xpath
 
     @staticmethod
@@ -181,7 +184,7 @@ class ComponentUtils:
         if raise_on_timeout:
             if last_exc is not None:
                 raise last_exc
-            raise TimeoutError(f'Operation did not succeed within {timeout} seconds')
+            raise TimeoutError(f"Operation did not succeed within {timeout} seconds")
 
         return timeout_result
 
@@ -247,7 +250,7 @@ class ComponentUtils:
             TimeoutError: If child element is not found or not visible.
         """
         parent = ComponentUtils._as_locator(page, component)
-        child = parent.locator(f'xpath={xpath}').first
+        child = parent.locator(f"xpath={xpath}").first
         expect(child).to_be_visible()
         return child
 
@@ -280,7 +283,7 @@ class ComponentUtils:
         Returns:
             bool: True if element exists and is visible, False otherwise.
         """
-        locator = page.locator(f'xpath={xpath}')
+        locator = page.locator(f"xpath={xpath}")
         if locator.count() == 0:
             return False
         return locator.first.is_visible()
@@ -324,9 +327,9 @@ class ComponentUtils:
         Raises:
             ValueError: If no valid components are found.
         """
-        locators = page.locator(f'xpath={xpath}')
+        locators = page.locator(f"xpath={xpath}")
         if locators.count() == 0:
-            raise ValueError(f'No components found for XPath: {xpath}')
+            raise ValueError(f"No components found for XPath: {xpath}")
 
         valid_components: list[Locator] = []
         for idx in range(locators.count()):
@@ -340,7 +343,7 @@ class ComponentUtils:
         if valid_components:
             return valid_components
 
-        raise ValueError(f'No valid components found for XPath: {xpath}')
+        raise ValueError(f"No valid components found for XPath: {xpath}")
 
     @staticmethod
     def findComponentByXPath(page: Page, xpath: str):
@@ -353,7 +356,7 @@ class ComponentUtils:
         Returns:
             Locator: The component element locator.
         """
-        locator = page.locator(f'xpath={xpath}').first
+        locator = page.locator(f"xpath={xpath}").first
         locator.wait_for(state="attached")
         return locator
 
@@ -380,8 +383,11 @@ class ComponentUtils:
             component: Component locator or XPath string to click.
         """
         locator = ComponentUtils._as_locator(page, component)
+        target = component if isinstance(component, str) else str(locator)
+        logger.info("Clicking component: %s", target)
         locator.scroll_into_view_if_needed()
         locator.click()
+        logger.info("Clicked component successfully: %s", target)
 
     @staticmethod
     def waitForElementToBeVisibleById(page: Page, id: str):
@@ -426,11 +432,15 @@ class ComponentUtils:
         Args:
             page: Playwright Page object.
         """
-        page.wait_for_selector("#appian-nprogress", state="detached")
-        page.wait_for_selector(
-            ":is(svg[data-owl-icon-name='fa-circle-o-notch'], button.Button---is_loading)",
-            state="detached",
+
+        progress_bar = page.locator("#appian-nprogress")
+        
+        visible_loading_indicators = page.locator(
+            "svg[data-owl-icon-name='fa-circle-o-notch']:visible, button.Button---is_loading:visible"
         )
+
+        expect(progress_bar).to_be_hidden()
+        expect(visible_loading_indicators).to_have_count(0)
 
     @staticmethod
     def waitForElementToBeVisibleByText(page: Page, text: str):
@@ -454,8 +464,8 @@ class ComponentUtils:
         text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         child_text_predicate = ComponentUtils.xpath_trim_equals(".", text)
         xpath = (
-            f'//*[{text_predicate} '
-            f'and not(*[{child_text_predicate}]) '
+            f"//*[{text_predicate} "
+            f"and not(*[{child_text_predicate}]) "
             "and not(ancestor-or-self::*[contains(@class, '---hidden')])]"
         )
         return ComponentUtils.waitForComponentNotToBeVisibleByXpath(page, xpath)
@@ -491,7 +501,7 @@ class ComponentUtils:
         Raises:
             TimeoutError: If element does not become visible within timeout.
         """
-        locator = page.locator(f'xpath={xpath}').first
+        locator = page.locator(f"xpath={xpath}").first
         expect(locator).to_be_visible()
         return locator
 
@@ -526,6 +536,6 @@ class ComponentUtils:
         Raises:
             TimeoutError: If element does not become hidden within timeout.
         """
-        locator = page.locator(f'xpath={xpath}').first
+        locator = page.locator(f"xpath={xpath}").first
         locator.wait_for(state="hidden")
         return True

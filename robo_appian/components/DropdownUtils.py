@@ -43,7 +43,9 @@ class DropdownUtils:
         return ""
 
     @staticmethod
-    def __describeDropdownState(page: Page, label: str) -> tuple[str, Optional[Locator], str]:
+    def __describeDropdownState(
+        page: Page, label: str
+    ) -> tuple[str, Optional[Locator], str]:
         container = DropdownUtils.__findLabeledContainer(page, label).first
         container = DropdownUtils.__ensureComponentVisible(
             container, label, "dropdown container"
@@ -62,8 +64,8 @@ class DropdownUtils:
             pass
 
         readonly_display = container.locator(
-            '.DropdownWidget---read_only, '
-            '.DropdownWidget---readonly_value, '
+            ".DropdownWidget---read_only, "
+            ".DropdownWidget---readonly_value, "
             '[aria-readonly="true"], '
             '[data-readonly="true"], '
             '[aria-labelledby]:not([role="combobox"])'
@@ -81,10 +83,7 @@ class DropdownUtils:
             'input[role="combobox"][readonly]'
         ).first
         try:
-            if (
-                non_editable_combobox.count() > 0
-                and non_editable_combobox.is_visible()
-            ):
+            if non_editable_combobox.count() > 0 and non_editable_combobox.is_visible():
                 return "non-editable", non_editable_combobox, container_html
         except Exception:
             pass
@@ -93,15 +92,19 @@ class DropdownUtils:
 
     @staticmethod
     def __findLabelElement(page: Page, label: str) -> Locator:
-        exact_match = page.locator("label, span").filter(
-            has_text=DropdownUtils.__exactTextPattern(label)
-        ).first
+        exact_match = (
+            page.locator("label, span")
+            .filter(has_text=DropdownUtils.__exactTextPattern(label))
+            .first
+        )
         if exact_match.count() > 0:
             return DropdownUtils.__ensureComponentVisible(exact_match, label, "label")
 
-        partial_match = page.locator("label, span").filter(
-            has_text=DropdownUtils.__partialTextPattern(label)
-        ).first
+        partial_match = (
+            page.locator("label, span")
+            .filter(has_text=DropdownUtils.__partialTextPattern(label))
+            .first
+        )
         return DropdownUtils.__ensureComponentVisible(partial_match, label, "label")
 
     @staticmethod
@@ -131,9 +134,11 @@ class DropdownUtils:
                 return container
 
         label_pattern = DropdownUtils.__exactTextPattern(label)
-        return page.locator("div[role='presentation']").filter(
-            has=page.locator("label, span").filter(has_text=label_pattern)
-        ).first
+        return (
+            page.locator("div[role='presentation']")
+            .filter(has=page.locator("label, span").filter(has_text=label_pattern))
+            .first
+        )
 
     @staticmethod
     def __findCombobox(page: Page, label: str) -> Locator:
@@ -162,9 +167,11 @@ class DropdownUtils:
             if parent_combobox.count() > 0:
                 return parent_combobox
 
-        return DropdownUtils.__findLabeledContainer(page, label).locator(
-            'div[role="combobox"], input[role="combobox"]'
-        ).first
+        return (
+            DropdownUtils.__findLabeledContainer(page, label)
+            .locator('div[role="combobox"], input[role="combobox"]')
+            .first
+        )
 
     @staticmethod
     def __isDropdownEditable(combobox: Locator) -> bool:
@@ -233,22 +240,30 @@ class DropdownUtils:
                 f'ul[id="{dropdown_option_id}"] li, [id="{dropdown_option_id}"] [role="option"]'
             )
             option_locators.append(
-                scoped_options.filter(has_text=DropdownUtils.__exactTextPattern(value)).first
+                scoped_options.filter(
+                    has_text=DropdownUtils.__exactTextPattern(value)
+                ).first
             )
             option_locators.append(
-                scoped_options.filter(has_text=DropdownUtils.__partialTextPattern(value)).first
+                scoped_options.filter(
+                    has_text=DropdownUtils.__partialTextPattern(value)
+                ).first
             )
 
         option_locators.append(
-            page.get_by_role("option", name=DropdownUtils.__exactTextPattern(value)).first
-        )
-        option_locators.append(
-            page.get_by_role("option", name=DropdownUtils.__partialTextPattern(value)).first
-        )
-        option_locators.append(
-            page.locator('[role="option"], li').filter(
-                has_text=DropdownUtils.__partialTextPattern(value)
+            page.get_by_role(
+                "option", name=DropdownUtils.__exactTextPattern(value)
             ).first
+        )
+        option_locators.append(
+            page.get_by_role(
+                "option", name=DropdownUtils.__partialTextPattern(value)
+            ).first
+        )
+        option_locators.append(
+            page.locator('[role="option"], li')
+            .filter(has_text=DropdownUtils.__partialTextPattern(value))
+            .first
         )
         return option_locators
 
@@ -464,7 +479,10 @@ class DropdownUtils:
                         return True
 
                 container_text = " ".join(container.inner_text().split())
-                if container_text and container_text.casefold() != label.strip().casefold():
+                if (
+                    container_text
+                    and container_text.casefold() != label.strip().casefold()
+                ):
                     return True
             except Exception:
                 pass

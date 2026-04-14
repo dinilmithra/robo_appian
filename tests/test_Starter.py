@@ -36,7 +36,6 @@ def _create_request(
     editable_timeout_seconds: int,
     poll_interval_seconds: int,
 ) -> None:
-    
 
     ComponentUtils.waitForElementToBeVisibleByText(page, "Create Request")
 

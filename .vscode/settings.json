@@ -4,26 +4,23 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
     "python.terminal.activateEnvironment": true,
-    "black-formatter.importStrategy": "useBundled",
     "python.terminal.activateEnvInCurrentTerminal": true,
     "python.terminal.executeInFileDir": true,
-    "python.linting.enabled": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.useLibraryCodeForTypes": true,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
     },
-    "files.exclude": {
-        "**/__pycache__": true,
-        "**/*.pyc": true
-    },
-    "files.watcherExclude": {
-        "**/__pycache__/**": true,
-        "**/*.pyc": true
-    },
     "python-envs.defaultEnvManager": "ms-python.python:poetry",
-    "python-envs.defaultPackageManager": "ms-python.python:poetry"
+    "python-envs.defaultPackageManager": "ms-python.python:poetry",
+    "python-envs.pythonProjects": [
+        {
+            "path": "${workspaceFolder}",
+            "envManager": "ms-python.python:poetry",
+            "packageManager": "ms-python.python:poetry"
+        }
+    ]
 }

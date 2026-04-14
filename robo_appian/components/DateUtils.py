@@ -11,9 +11,7 @@ class DateUtils:
     def __findComponent(page: Page, label: str):
         label_predicate = ComponentUtils.xpath_trim_equals(".", label)
         visible_predicate = ComponentUtils.xpath_visible_predicate()
-        xpath = (
-            f'.//div[./div/label[{label_predicate}]]/div/div/div/input[{visible_predicate}]'
-        )
+        xpath = f".//div[./div/label[{label_predicate}]]/div/div/div/input[{visible_predicate}]"
         return ComponentUtils.waitForComponentToBeVisibleByXpath(page, xpath)
 
     @staticmethod

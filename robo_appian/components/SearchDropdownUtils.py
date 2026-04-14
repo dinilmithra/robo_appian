@@ -22,9 +22,11 @@ class SearchDropdownUtils:
 
     @staticmethod
     def __isLocatorCandidate(label_or_dropdown: Any) -> bool:
-        return not isinstance(label_or_dropdown, str) and hasattr(
-            label_or_dropdown, "click"
-        ) and hasattr(label_or_dropdown, "count")
+        return (
+            not isinstance(label_or_dropdown, str)
+            and hasattr(label_or_dropdown, "click")
+            and hasattr(label_or_dropdown, "count")
+        )
 
     @staticmethod
     def __describeDropdownTarget(label_or_dropdown: Union[str, Locator]) -> str:
@@ -43,15 +45,19 @@ class SearchDropdownUtils:
 
     @staticmethod
     def __findLabelElement(page: Page, label: str) -> Locator:
-        exact_match = page.locator("label, span").filter(
-            has_text=SearchDropdownUtils.__exactTextPattern(label)
-        ).first
+        exact_match = (
+            page.locator("label, span")
+            .filter(has_text=SearchDropdownUtils.__exactTextPattern(label))
+            .first
+        )
         if exact_match.count() > 0:
             return exact_match
 
-        return page.locator("label, span").filter(
-            has_text=SearchDropdownUtils.__partialTextPattern(label)
-        ).first
+        return (
+            page.locator("label, span")
+            .filter(has_text=SearchDropdownUtils.__partialTextPattern(label))
+            .first
+        )
 
     @staticmethod
     def __findControlByLabel(page: Page, label: str) -> Optional[Locator]:
@@ -80,9 +86,11 @@ class SearchDropdownUtils:
                 return container
 
         label_pattern = SearchDropdownUtils.__exactTextPattern(label)
-        return page.locator("div[role='presentation']").filter(
-            has=page.locator("label, span").filter(has_text=label_pattern)
-        ).first
+        return (
+            page.locator("div[role='presentation']")
+            .filter(has=page.locator("label, span").filter(has_text=label_pattern))
+            .first
+        )
 
     @staticmethod
     def __findSearchDropdown(page: Page, label: str) -> Locator:
@@ -111,16 +119,23 @@ class SearchDropdownUtils:
             if parent_combobox.count() > 0:
                 return parent_combobox
 
-        return SearchDropdownUtils.__findLabeledContainer(page, label).locator(
-            'div[role="combobox"], input[role="combobox"]'
-        ).first
+        return (
+            SearchDropdownUtils.__findLabeledContainer(page, label)
+            .locator('div[role="combobox"], input[role="combobox"]')
+            .first
+        )
 
     @staticmethod
-    def __getFillableInput(search_dropdown: Locator, page: Page) -> Tuple[Locator, Optional[str]]:
+    def __getFillableInput(
+        search_dropdown: Locator, page: Page
+    ) -> Tuple[Locator, Optional[str]]:
         component_id = search_dropdown.get_attribute("id")
         if component_id and component_id.endswith("_value"):
             base_component_id = component_id[: -len("_value")]
-            return page.locator(f'[id="{base_component_id}_searchInput"]').first, component_id
+            return (
+                page.locator(f'[id="{base_component_id}_searchInput"]').first,
+                component_id,
+            )
 
         return search_dropdown, component_id
 
@@ -132,10 +147,9 @@ class SearchDropdownUtils:
         value: str,
         component_id: Optional[str],
     ) -> list[Locator]:
-        dropdown_list_id = (
-            fillable_input.get_attribute("aria-controls")
-            or search_dropdown.get_attribute("aria-controls")
-        )
+        dropdown_list_id = fillable_input.get_attribute(
+            "aria-controls"
+        ) or search_dropdown.get_attribute("aria-controls")
         if not dropdown_list_id and component_id and component_id.endswith("_value"):
             dropdown_list_id = f'{component_id[: -len("_value")]}_list'
 

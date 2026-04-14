@@ -30,9 +30,7 @@ def _is_headless_enabled() -> bool:
     if value in {"0", "N", "NO", "FALSE"}:
         return False
 
-    raise ValueError(
-        "HEAD_LESS must be Y/N, YES/NO, TRUE/FALSE, 1/0, or left unset."
-    )
+    raise ValueError("HEAD_LESS must be Y/N, YES/NO, TRUE/FALSE, 1/0, or left unset.")
 
 
 @pytest.fixture(scope="session")
@@ -90,4 +88,3 @@ def page(browser):
 
     yield pg
     context.close()
-

@@ -5,7 +5,7 @@ class InputUtils:
     """Helper utilities for interacting with text inputs."""
 
     @staticmethod
-    def fill_value_by_locator(locator: Locator, value: str) -> Locator: 
+    def fill_value_by_locator(locator: Locator, value: str) -> Locator:
         expect(locator).to_be_visible()
         locator.fill("" if value is None else str(value))
         locator.blur()
