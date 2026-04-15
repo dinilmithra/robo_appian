@@ -81,7 +81,12 @@ def page(browser):
     pg.set_default_timeout(timeout)
 
     try:
-        RoboHelper.sso_accept(pg)
+        RoboHelper.load_url(pg)
+        RoboHelper.agree_popup(pg)
+        RoboHelper.login(pg)
+        print("Logged in successfully.")
+
+        # RoboHelper.sso_accept(pg)
     except ValueError:
         context.close()
         pytest.skip("APP_URL not set; skipping e2e test.")
